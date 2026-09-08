@@ -198,19 +198,19 @@
             gap: 10px;
         }
 
-        .viral-rule-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
+        .viral-rule-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .viral-rule-text { font-size: 0.75rem; color: #f1f5f9; line-height: 1.35; }
+        .viral-rule-text strong { color: var(--accent); }
 
-        .viral-rule-text {
-            font-size: 0.75rem;
-            color: #f1f5f9;
-            line-height: 1.35;
-        }
-
-        .viral-rule-text strong {
-            color: var(--accent);
+        /* ACTIVE QUIZ SHORTCUT NOTICE FOR RETURNING CREATOR */
+        #creator-restore-notice {
+            display: none;
+            background: rgba(139, 92, 246, 0.18);
+            border: 1.5px solid var(--primary);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-align: center;
         }
 
         /* NAVIGATION TABS */
@@ -244,7 +244,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        /* SUBMIT ACCOUNT DETAILS SECTION */
+        /* SUBMIT BANK ACCOUNT DETAILS SECTION */
         .payout-portal-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(255, 215, 0, 0.3);
@@ -281,11 +281,7 @@
             font-weight: 600;
         }
 
-        .locked-input {
-            opacity: 0.55;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
+        .locked-input { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
 
         /* HEADINGS */
         .badge {
@@ -300,19 +296,8 @@
             margin-bottom: 8px;
         }
 
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
+        h1 { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .subtitle { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; margin-bottom: 20px; }
 
         /* TOP 3 WINNERS PODIUM */
         .winners-card {
@@ -391,7 +376,7 @@
         /* INPUTS & CONTROLS */
         .input-group { text-align: left; margin-bottom: 16px; }
         .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        input[type="text"], select {
+        input[type="text"] {
             width: 100%;
             background: rgba(0, 0, 0, 0.45);
             border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -402,7 +387,7 @@
             outline: none;
             transition: all 0.2s;
         }
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus {
             border-color: var(--primary);
             box-shadow: 0 0 15px var(--primary-glow);
         }
@@ -488,15 +473,33 @@
         }
         .attempts-list {
             list-style: none;
-            max-height: 160px;
+            max-height: 200px;
             overflow-y: auto;
             font-size: 0.8rem;
         }
         .attempts-list li {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .btn-inspect-answers {
+            background: rgba(0, 255, 163, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+        }
+        .btn-inspect-answers:active {
+            transform: scale(0.95);
+            background: var(--accent);
+            color: #000;
         }
 
         /* 300x250 BANNER AD ZONE */
@@ -514,6 +517,71 @@
             width: 100%;
         }
 
+        /* ================= MODAL: FRIEND DETAILED ANSWERS ================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
+        .modal-content {
+            background: #121826;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+        }
+        .modal-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .modal-header h3 { font-size: 0.95rem; font-weight: 800; color: var(--gold); }
+        .btn-modal-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 800;
+        }
+        .modal-body {
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .breakdown-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 10px 12px;
+            border-left: 4px solid var(--accent);
+            text-align: left;
+        }
+        .breakdown-item.wrong {
+            border-left-color: var(--danger);
+            background: rgba(255, 77, 77, 0.04);
+        }
+        .breakdown-q { font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .breakdown-ans { font-size: 0.72rem; margin-top: 3px; line-height: 1.35; }
+
         .screen { display: none; }
         .screen.active { display: block; animation: fadeIn 0.3s ease; }
         #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
@@ -525,7 +593,23 @@
 </head>
 <body>
 
+    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT (TOP OF BODY) ================= -->
+    <script type="text/javascript" src="//pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
+
     <canvas id="confetti-canvas"></canvas>
+
+    <!-- ================= MODAL: DETAILED ANSWERS COMPARISON ================= -->
+    <div id="answers-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Dost Ke Answers vs Aapke Answers</h3>
+                <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
+            </div>
+            <div id="modal-body-content" class="modal-body">
+                <!-- Dynamically injected question breakdown -->
+            </div>
+        </div>
+    </div>
 
     <div class="container">
 
@@ -566,6 +650,12 @@
                         <div class="timer-label">Secs</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- RETURNING CREATOR DASHBOARD RESTORE BUTTON -->
+            <div id="creator-restore-notice">
+                <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #c4b5fd;">⚡ Aapka dare link pehle se live hai!</p>
+                <button class="btn-primary" style="padding: 9px; font-size: 0.85rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
             </div>
 
             <!-- VIRAL INCENTIVE RULE BOX -->
@@ -691,7 +781,7 @@
         <div id="screen-share" class="screen">
             <div style="font-size: 3rem; margin-bottom: 8px;">🔥</div>
             <h1>Aapka Dare Link Ready Hai!</h1>
-            <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Jitne zyada dost 10/10 score karenge, aapka 15 September ko jeetne ka chance utna hi barh jayega!</p>
+            <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche har dost ke live answers dekhein!</p>
 
             <div class="input-group">
                 <label>AAPKA DATABASE VIRAL LINK</label>
@@ -701,10 +791,10 @@
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
 
-            <!-- LIVE SCOREBOARD FOR CREATOR -->
+            <!-- LIVE SCOREBOARD FOR CREATOR (WITH INSPECT ANSWERS) -->
             <div class="live-scoreboard">
                 <h4>
-                    <span>Doston Ka Live Score</span>
+                    <span>Doston Ke Answers & Scores</span>
                     <span id="live-views-count">Views: 0</span>
                 </h4>
                 <ul id="live-attempts-list" class="attempts-list">
@@ -758,6 +848,10 @@
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
+
+        // Cached data for Answer Inspector
+        window.activeQuizCreatorAnswers = [];
+        window.activeCachedAttempts = {};
 
         // --- TAB SWITCHER LOGIC ---
         function switchTab(tab) {
@@ -945,16 +1039,15 @@
             render();
         }
 
-        // --- 7. INITIALIZATION & LIVE ATTEMPTS LISTENER ---
+        // --- 7. INITIALIZATION & DATA LOADING ---
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const quizId = urlParams.get('id');
 
             if (quizId) {
-                // ATOMIC VIEW COUNTER
+                // Friend Mode: Loading target quiz
                 db.ref('quizzes/' + quizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
-                // FETCH TARGET QUIZ
                 db.ref('quizzes/' + quizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
@@ -975,8 +1068,25 @@
                 }).catch(err => {
                     console.error("Firebase read error:", err);
                 });
+            } else {
+                // Creator Returning Check
+                const savedQuizId = localStorage.getItem("my_created_quiz_id");
+                if (savedQuizId) {
+                    document.getElementById('creator-restore-notice').style.display = 'block';
+                }
             }
         };
+
+        function openMySavedDashboard() {
+            const savedQuizId = localStorage.getItem("my_created_quiz_id");
+            if (savedQuizId) {
+                soundClick();
+                const shareURL = window.location.origin + window.location.pathname + "?id=" + savedQuizId;
+                document.getElementById('share-link-input').value = shareURL;
+                switchScreen('screen-share');
+                listenToCreatorDashboard(savedQuizId);
+            }
+        }
 
         function setGender(g) {
             selectedGender = g;
@@ -1042,7 +1152,7 @@
             const myDeviceId = getOrCreateDeviceId();
 
             if (!isFriendMode) {
-                // CREATOR FINISH
+                // CREATOR FINISH: Save with full creator answers
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
 
@@ -1054,20 +1164,23 @@
                     totalViews: 0,
                     createdAt: Date.now()
                 }).then(() => {
+                    // Save persistently for returning creator
+                    localStorage.setItem("my_created_quiz_id", quizId);
+                    window.activeQuizCreatorAnswers = creatorAnswers;
+
                     const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
                     document.getElementById('share-link-input').value = shareURL;
                     soundWin();
                     launchConfetti();
                     switchScreen('screen-share');
 
-                    // ATTACH LIVE DASHBOARD LISTENER
                     listenToCreatorDashboard(quizId);
                 }).catch(err => {
                     alert("Database Save Error: " + err.message);
                 });
 
             } else {
-                // FRIEND FINISH
+                // FRIEND FINISH: Calculate score & SAVE DETAILED ANSWERS
                 let score = 0;
                 for (let i = 0; i < DARE_QUESTIONS.length; i++) {
                     if (friendAnswers[i] === quizTargetData.answers[i]) {
@@ -1078,12 +1191,13 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
-                // RECORD FRIEND ATTEMPT WITH DEVICE ID
+                // Save attempt WITH DETAILED ANSWERS in Firebase
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
                     timeSeconds: timeTaken,
                     deviceId: myDeviceId,
+                    answers: friendAnswers, // Detailed individual answers saved!
                     timestamp: Date.now()
                 });
 
@@ -1106,26 +1220,92 @@
 
         // REAL-TIME DASHBOARD LISTENER FOR CREATOR
         function listenToCreatorDashboard(quizId) {
+            // First fetch creator answers to compare if not already cached
+            if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
+                db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
+                    if (snap.exists()) window.activeQuizCreatorAnswers = snap.val();
+                });
+            }
+
             // Live Views
             db.ref('quizzes/' + quizId + '/totalViews').on('value', snap => {
                 document.getElementById('live-views-count').innerText = "Views: " + (snap.val() || 0);
             });
 
-            // Live Attempts List
+            // Live Attempts List with "Jawab Dekhein" Button
             db.ref('quizzes/' + quizId + '/attempts').on('value', snap => {
                 const listEl = document.getElementById('live-attempts-list');
                 listEl.innerHTML = "";
+                window.activeCachedAttempts = {};
+
                 if (snap.exists()) {
                     snap.forEach(child => {
+                        const attemptKey = child.key;
                         const val = child.val();
+                        window.activeCachedAttempts[attemptKey] = val;
+
                         const li = document.createElement('li');
-                        li.innerHTML = `<span><strong>${val.name}</strong> (${val.timeSeconds}s)</span> <span style="color:var(--accent); font-weight:700;">${val.score}/10</span>`;
+                        li.innerHTML = `
+                            <div>
+                                <strong>${val.name}</strong> 
+                                <span style="font-size:0.7rem; color:var(--text-dim);">(${val.timeSeconds}s)</span>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <span style="color:var(--accent); font-weight:800; font-size:0.95rem;">${val.score}/10</span>
+                                <button class="btn-inspect-answers" onclick="inspectFriendAnswers('${attemptKey}')">👁️ Jawab Dekhein</button>
+                            </div>
+                        `;
                         listEl.prepend(li);
                     });
                 } else {
                     listEl.innerHTML = "<li style='color:var(--text-dim);'>Abhi tak kisi dost ne submit nahi kiya...</li>";
                 }
             });
+        }
+
+        // INSPECT DETAILED ANSWERS MODAL ENGINE
+        function inspectFriendAnswers(attemptKey) {
+            soundClick();
+            const attempt = window.activeCachedAttempts[attemptKey];
+            if (!attempt) return;
+
+            const friendAnswersList = attempt.answers || [];
+            const creatorAnsList = window.activeQuizCreatorAnswers || [];
+
+            document.getElementById('modal-title').innerText = attempt.name + " Ke Answers (Score: " + attempt.score + "/10)";
+            const bodyEl = document.getElementById('modal-body-content');
+            bodyEl.innerHTML = "";
+
+            DARE_QUESTIONS.forEach((qObj, idx) => {
+                const friendChoiceIdx = friendAnswersList[idx];
+                const creatorChoiceIdx = creatorAnsList[idx];
+                const isCorrect = (friendChoiceIdx === creatorChoiceIdx);
+
+                const div = document.createElement('div');
+                div.className = "breakdown-item " + (isCorrect ? "correct" : "wrong");
+
+                const qTitle = `Q${idx + 1}: ${qObj.q}`;
+                const creatorChoiceText = creatorChoiceIdx !== undefined ? qObj.options[creatorChoiceIdx] : "N/A";
+                const friendChoiceText = friendChoiceIdx !== undefined ? qObj.options[friendChoiceIdx] : "Answer Not Recorded";
+
+                div.innerHTML = `
+                    <div class="breakdown-q">${qTitle}</div>
+                    <div class="breakdown-ans" style="color: var(--accent);">
+                        ✅ <strong>Aapka Asli Jawab:</strong> ${creatorChoiceText}
+                    </div>
+                    <div class="breakdown-ans" style="color: ${isCorrect ? 'var(--accent)' : 'var(--danger)'};">
+                        ${isCorrect ? '✅' : '❌'} <strong>${attempt.name} Ka Jawab:</strong> ${friendChoiceText}
+                    </div>
+                `;
+                bodyEl.appendChild(div);
+            });
+
+            document.getElementById('answers-modal').classList.add('active');
+        }
+
+        function closeAnswersModal() {
+            soundClick();
+            document.getElementById('answers-modal').classList.remove('active');
         }
 
         function switchScreen(screenId) {
@@ -1158,9 +1338,5 @@
             window.location.href = window.location.origin + window.location.pathname;
         }
     </script>
-
-    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT ================= -->
-    <script type="text/javascript" src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
-
 </body>
 </html>
