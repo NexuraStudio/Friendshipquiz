@@ -134,9 +134,7 @@
             line-height: 1.4;
         }
 
-        .congrats-banner strong {
-            color: var(--accent);
-        }
+        .congrats-banner strong { color: var(--accent); }
 
         /* 15 SEPTEMBER COUNTDOWN */
         .countdown-container {
@@ -185,7 +183,7 @@
             margin-top: 2px;
         }
 
-        /* VIRAL WINNING RULE BOX */
+        /* VIRAL INCENTIVE RULE BOX */
         .viral-rule-box {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(0, 255, 163, 0.1));
             border: 1px solid rgba(0, 255, 163, 0.3);
@@ -202,15 +200,16 @@
         .viral-rule-text { font-size: 0.75rem; color: #f1f5f9; line-height: 1.35; }
         .viral-rule-text strong { color: var(--accent); }
 
-        /* ACTIVE QUIZ SHORTCUT NOTICE FOR RETURNING CREATOR */
+        /* PERSISTENT RETURNING CREATOR SHORTCUT */
         #creator-restore-notice {
             display: none;
-            background: rgba(139, 92, 246, 0.18);
-            border: 1.5px solid var(--primary);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 255, 163, 0.15));
+            border: 1.5px solid var(--accent);
             border-radius: 14px;
             padding: 12px;
             margin-bottom: 16px;
             text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
         }
 
         /* NAVIGATION TABS */
@@ -244,7 +243,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        /* SUBMIT BANK ACCOUNT DETAILS SECTION */
+        /* CLAIM PRIZE / BANK DETAILS (LOCKED PREVIEW) */
         .payout-portal-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(255, 215, 0, 0.3);
@@ -434,6 +433,22 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
 
+        /* SEARCH OLD QUIZ EXPANDER */
+        .manual-restore-box {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .manual-restore-toggle {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
         /* QUIZ SCREEN */
         .quiz-progress { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; font-weight: 700; }
         .progress-bar-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
@@ -473,7 +488,7 @@
         }
         .attempts-list {
             list-style: none;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             font-size: 0.8rem;
         }
@@ -517,7 +532,7 @@
             width: 100%;
         }
 
-        /* ================= MODAL: FRIEND DETAILED ANSWERS ================= */
+        /* MODAL: FRIEND DETAILED ANSWERS */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -606,7 +621,7 @@
                 <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
             </div>
             <div id="modal-body-content" class="modal-body">
-                <!-- Dynamically injected question breakdown -->
+                <!-- Dynamically injected comparison -->
             </div>
         </div>
     </div>
@@ -652,10 +667,10 @@
                 </div>
             </div>
 
-            <!-- RETURNING CREATOR DASHBOARD RESTORE BUTTON -->
+            <!-- PERMANENT RETURNING CREATOR SHORTCUT CARD -->
             <div id="creator-restore-notice">
-                <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #c4b5fd;">⚡ Aapka dare link pehle se live hai!</p>
-                <button class="btn-primary" style="padding: 9px; font-size: 0.85rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
+                <p style="font-size: 0.82rem; font-weight: 800; margin-bottom: 6px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
+                <button class="btn-primary" style="padding: 10px; font-size: 0.88rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
             </div>
 
             <!-- VIRAL INCENTIVE RULE BOX -->
@@ -720,6 +735,15 @@
                 </div>
 
                 <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
+
+                <!-- MANUAL DASHBOARD RESTORE BOX -->
+                <div class="manual-restore-box">
+                    <button class="manual-restore-toggle" onclick="toggleManualRestore()">🔍 Kisi aur phone par banaya tha? Quiz ID se track karein</button>
+                    <div id="manual-restore-input-group" style="display: none; margin-top: 10px;">
+                        <input type="text" id="manual-quiz-id" placeholder="Apna Quiz ID ya Link paste karein..." style="padding: 10px; font-size: 0.85rem; margin-bottom: 8px;">
+                        <button class="btn-primary" style="padding: 10px; font-size: 0.85rem;" onclick="restoreQuizManually()">Answers & Scores Dekhein →</button>
+                    </div>
+                </div>
             </div>
 
             <!-- VIEW B: SUBMIT BANK ACCOUNT DETAILS (CLAIM PRIZE) -->
@@ -781,15 +805,22 @@
         <div id="screen-share" class="screen">
             <div style="font-size: 3rem; margin-bottom: 8px;">🔥</div>
             <h1>Aapka Dare Link Ready Hai!</h1>
-            <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche har dost ke live answers dekhein!</p>
+            <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur answers dekhein!</p>
 
             <div class="input-group">
-                <label>AAPKA DATABASE VIRAL LINK</label>
+                <label>AAPKA DARE LINK (DOSTON KO BHEJEIN)</label>
                 <input type="text" id="share-link-input" readonly>
             </div>
 
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
+
+            <!-- PRIVATE DASHBOARD BOOKMARK LINK -->
+            <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 12px; margin-top: 14px; font-size: 0.75rem; text-align: left; border: 1px solid rgba(255,255,255,0.08);">
+                <span style="color: var(--gold); font-weight: 700;">📌 Aapka Secret Dashboard Link:</span>
+                <p style="color: var(--text-dim); margin-top: 2px;">Agar browser band bhi ho jaye, toh is link ko bookmark kar lein ya WhatsApp par save karein taaki answers kisi bhi waqt dekh sakein:</p>
+                <input type="text" id="private-dashboard-link" readonly style="padding: 8px; font-size: 0.78rem; margin-top: 6px; background: rgba(0,0,0,0.5);">
+            </div>
 
             <!-- LIVE SCOREBOARD FOR CREATOR (WITH INSPECT ANSWERS) -->
             <div class="live-scoreboard">
@@ -849,7 +880,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // Cached data for Answer Inspector
+        // Cached Data for Detailed Answer Comparisons
         window.activeQuizCreatorAnswers = [];
         window.activeCachedAttempts = {};
 
@@ -867,6 +898,11 @@
                 document.getElementById('tab-payout-btn').classList.add('active');
                 document.getElementById('tab-play-btn').classList.remove('active');
             }
+        }
+
+        function toggleManualRestore() {
+            const el = document.getElementById('manual-restore-input-group');
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
         }
 
         // --- 1. 15 SEPTEMBER COUNTDOWN TIMER ENGINE ---
@@ -1039,22 +1075,29 @@
             render();
         }
 
-        // --- 7. INITIALIZATION & DATA LOADING ---
+        // --- 7. INITIALIZATION & ROUTING LOGIC ---
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const quizId = urlParams.get('id');
+            const friendQuizId = urlParams.get('id');
+            const manageQuizId = urlParams.get('manage');
 
-            if (quizId) {
+            if (manageQuizId) {
+                // Direct Dashboard Link accessed!
+                loadAndShowCreatorDashboard(manageQuizId);
+                return;
+            }
+
+            if (friendQuizId) {
                 // Friend Mode: Loading target quiz
-                db.ref('quizzes/' + quizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
+                db.ref('quizzes/' + friendQuizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
-                db.ref('quizzes/' + quizId).once('value').then(snapshot => {
+                db.ref('quizzes/' + friendQuizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
-                        quizTargetData.id = quizId;
+                        quizTargetData.id = friendQuizId;
                         isFriendMode = true;
 
-                        const hasAttempted = localStorage.getItem("dare_done_" + quizId);
+                        const hasAttempted = localStorage.getItem("dare_done_" + friendQuizId);
                         if (hasAttempted) {
                             alert("🚫 Aap pehle hi yeh dare attempt kar chuke hain! Score: " + hasAttempted + "/10");
                         }
@@ -1069,7 +1112,7 @@
                     console.error("Firebase read error:", err);
                 });
             } else {
-                // Creator Returning Check
+                // Creator Returning Check from local device
                 const savedQuizId = localStorage.getItem("my_created_quiz_id");
                 if (savedQuizId) {
                     document.getElementById('creator-restore-notice').style.display = 'block';
@@ -1077,15 +1120,53 @@
             }
         };
 
+        // Open Dashboard from Memory
         function openMySavedDashboard() {
             const savedQuizId = localStorage.getItem("my_created_quiz_id");
             if (savedQuizId) {
-                soundClick();
-                const shareURL = window.location.origin + window.location.pathname + "?id=" + savedQuizId;
-                document.getElementById('share-link-input').value = shareURL;
-                switchScreen('screen-share');
-                listenToCreatorDashboard(savedQuizId);
+                loadAndShowCreatorDashboard(savedQuizId);
             }
+        }
+
+        // Open Dashboard from Manual ID / Link
+        function restoreQuizManually() {
+            let input = document.getElementById('manual-quiz-id').value.trim();
+            if (!input) {
+                alert("Pehle apna Quiz ID ya Link enter karein!");
+                return;
+            }
+
+            // Extract id if full link is pasted
+            if (input.includes("id=")) {
+                input = input.split("id=")[1].split("&")[0];
+            } else if (input.includes("manage=")) {
+                input = input.split("manage=")[1].split("&")[0];
+            }
+
+            loadAndShowCreatorDashboard(input);
+        }
+
+        function loadAndShowCreatorDashboard(quizId) {
+            soundClick();
+            db.ref('quizzes/' + quizId).once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    window.activeQuizCreatorAnswers = data.answers || [];
+
+                    const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
+                    const manageURL = window.location.origin + window.location.pathname + "?manage=" + quizId;
+
+                    document.getElementById('share-link-input').value = shareURL;
+                    document.getElementById('private-dashboard-link').value = manageURL;
+
+                    switchScreen('screen-share');
+                    listenToCreatorDashboard(quizId);
+                } else {
+                    alert("❌ Is ID ka koi quiz database mein nahi mila! Baraye meherbani sahi ID check karein.");
+                }
+            }).catch(err => {
+                alert("Database Error: " + err.message);
+            });
         }
 
         function setGender(g) {
@@ -1169,7 +1250,11 @@
                     window.activeQuizCreatorAnswers = creatorAnswers;
 
                     const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
+                    const manageURL = window.location.origin + window.location.pathname + "?manage=" + quizId;
+
                     document.getElementById('share-link-input').value = shareURL;
+                    document.getElementById('private-dashboard-link').value = manageURL;
+
                     soundWin();
                     launchConfetti();
                     switchScreen('screen-share');
