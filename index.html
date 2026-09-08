@@ -1006,5 +1006,92 @@
     }
 </script>
 <script src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
-</body>
+<!-- ================= ANTI-CHEAT SYSTEM START ================= -->
+<script>
+// 1. CONFIGURATION & STATE
+const SPEED_LIMIT_SECONDS = 10; // Aapke mutabiq strictly 10 seconds
+let quizStartTime = null;
+let tabSwitchCount = 0;
+let isQuizActive = false; // Jab sawalaat shuru honge tab true hoga
+
+// 2. RIGHT-CLICK & INSPECT ELEMENT LOCK
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+document.addEventListener("keydown", function(e) {
+    // F12 key
+    if (e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (DevTools)
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+        e.preventDefault();
+        return false;
+    }
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.keyCode === 85) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 3. TAB SWITCH / MINIMIZE DETECTION (WhatsApp / Google roknay ke liye)
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden && isQuizActive) {
+        tabSwitchCount++;
+        if (tabSwitchCount === 1) {
+            alert("⚠️ CHEATING WARNING: Tab ya app switch mat karein! Agli baar test cancel ho jayega.");
+        } else if (tabSwitchCount >= 2) {
+            alert("❌ DISQUALIFIED: Aapne quiz ke dauran WhatsApp/browser switch kiya. Aapka test cancel kar diya gaya hai!");
+            isQuizActive = false;
+            location.reload(); // Page reload karke disqualified kar dega
+        }
+    }
+});
+
+// 4. ONE ATTEMPT PER DEVICE LOCK (LocalStorage)
+function checkDeviceAlreadyPlayed(quizId) {
+    const previousScore = localStorage.getItem("dare_completed_" + quizId);
+    if (previousScore !== null) {
+        alert("🚫 Aap is device se pehle hi yeh dare attempt kar chuke hain! Score: " + previousScore + "/10");
+        document.body.innerHTML = `
+            <div style="text-align:center; padding:50px 20px; color:#fff; font-family:sans-serif;">
+                <h1 style="font-size:3rem;">🚫</h1>
+                <h2>Access Blocked!</h2>
+                <p>Aap is dare ko pehle hi attempt kar chuke hain. Multiple attempts allow nahi hain.</p>
+            </div>
+        `;
+        return true;
+    }
+    return false;
+}
+
+// 5. SPEED TIMER (10 SECONDS VALIDATION)
+function startAntiCheatTimer() {
+    quizStartTime = Date.now();
+    isQuizActive = true;
+    tabSwitchCount = 0;
+}
+
+function validateAntiCheat(quizId, finalScore) {
+    // Check total time taken
+    if (!quizStartTime) return false;
+    
+    let timeTakenInSeconds = (Date.now() - quizStartTime) / 1000;
+
+    // 10-Second Speed Check
+    if (timeTakenInSeconds < SPEED_LIMIT_SECONDS) {
+        alert("⚠️ Suspicious activity: Aapne " + Math.round(timeTakenInSeconds) + " seconds mein submit kar diya! Minimum 10 seconds zaroori hain. Attempt invalid!");
+        isQuizActive = false;
+        location.reload();
+        return false;
+    }
+
+    // Attempt successful: Device lock active kar dein
+    localStorage.setItem("dare_completed_" + quizId, finalScore);
+    isQuizActive = false;
+    return true;
+}
+</script>
+<!-- ================== ANTI-CHEAT SYSTEM END =================== --></body>
 </html>
