@@ -63,14 +63,14 @@
             z-index: 2;
         }
 
-        /* REWARD BANNER */
+        /* REWARD BANNER (RS. 10,000) */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 1.5px solid rgba(255, 215, 0, 0.6);
             border-radius: 16px;
             padding: 14px 12px;
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
             animation: border-pulse 2.5s infinite alternate;
         }
@@ -121,14 +121,14 @@
             font-weight: 700;
         }
 
-        /* CONGRATS TICKER FOR LAST WEEK */
+        /* CONGRATS TICKER */
         .congrats-banner {
-            background: rgba(0, 255, 163, 0.1);
+            background: rgba(0, 255, 163, 0.08);
             border: 1px dashed var(--accent);
             border-radius: 12px;
-            padding: 9px 12px;
-            margin-bottom: 16px;
-            font-size: 0.76rem;
+            padding: 8px 12px;
+            margin-bottom: 14px;
+            font-size: 0.75rem;
             text-align: center;
             color: #d1fae5;
             line-height: 1.4;
@@ -144,7 +144,7 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 14px;
             padding: 12px 10px;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
@@ -185,7 +185,35 @@
             margin-top: 2px;
         }
 
-        /* TAB NAVIGATION (GAME vs CLAIM PRIZE) */
+        /* VIRAL WINNING RULE BOX */
+        .viral-rule-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(0, 255, 163, 0.1));
+            border: 1px solid rgba(0, 255, 163, 0.3);
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .viral-rule-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .viral-rule-text {
+            font-size: 0.75rem;
+            color: #f1f5f9;
+            line-height: 1.35;
+        }
+
+        .viral-rule-text strong {
+            color: var(--accent);
+        }
+
+        /* NAVIGATION TABS */
         .nav-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -216,7 +244,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        /* SUBMIT ACCOUNT DETAILS SECTION (LOCKED VIEW) */
+        /* SUBMIT ACCOUNT DETAILS SECTION */
         .payout-portal-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1.5px solid rgba(255, 215, 0, 0.3);
@@ -510,7 +538,7 @@
                 <p class="reward-sub-text">Khelte sab hain, Cash sirf <span>True Best Friends</span> jeet-te hain!</p>
             </div>
 
-            <!-- LAST WEEK CONGRATULATIONS TICKER -->
+            <!-- LAST WEEK CONGRATS TICKER -->
             <div class="congrats-banner">
                 🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!
             </div>
@@ -540,10 +568,18 @@
                 </div>
             </div>
 
+            <!-- VIRAL INCENTIVE RULE BOX -->
+            <div class="viral-rule-box">
+                <div class="viral-rule-icon">🔥</div>
+                <div class="viral-rule-text">
+                    <strong>Jeetne Ka Formula:</strong> Jitne zyada dost aapke dare ko attempt karenge aur <strong>10/10 sahi jawab</strong> denge, aapka contest rank aur Rs. 10,000 jeetne ka chance utna hi barh jayega!
+                </div>
+            </div>
+
             <!-- NAVIGATION TABS -->
             <div class="nav-tabs">
                 <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare Challenge</button>
-                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">💳 Claim Prize (Winners)</button>
+                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Claim Prize (Bank)</button>
             </div>
 
             <!-- VIEW A: PLAY DARE FORM -->
@@ -596,35 +632,31 @@
                 <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
             </div>
 
-            <!-- VIEW B: SUBMIT ACCOUNT DETAILS (CLAIM PRIZE) -->
+            <!-- VIEW B: SUBMIT BANK ACCOUNT DETAILS (CLAIM PRIZE) -->
             <div id="view-payout-portal" style="display: none;">
                 <div class="payout-portal-card">
                     <div class="lock-notice-box">
                         <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
-                        <p>Yeh account details wala option countdown khatam hotay hi enable ho jayega! Winners yahan apna JazzCash / EasyPaisa submit kar ke prize claim kar saken ge.</p>
+                        <p>Yeh account details wala option countdown khatam hotay hi enable ho jayega! Top winners yahan apne Official Bank Account / Wire Transfer details submit karke prize receive kar saken ge.</p>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>WINNER NAME (JO QUIZ MEIN USE KIYA)</label>
-                        <input type="text" placeholder="E.g. Hamza R." disabled>
+                        <label>ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
+                        <input type="text" placeholder="Account Holder Official Name" disabled>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>PAYMENT METHOD</label>
-                        <select disabled style="background:#111; color:#fff;">
-                            <option>EasyPaisa Account</option>
-                            <option>JazzCash Account</option>
-                            <option>Direct Bank Transfer</option>
-                        </select>
+                        <label>BANK NAME (LOCAL / INTERNATIONAL)</label>
+                        <input type="text" placeholder="e.g. Meezan Bank, HBL, Standard Chartered, Chase, etc." disabled>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>MOBILE ACCOUNT NUMBER</label>
-                        <input type="text" placeholder="03XXXXXXXXX" disabled>
+                        <label>BANK ACCOUNT NUMBER / IBAN</label>
+                        <input type="text" placeholder="IBAN ya 14-digit Account Number" disabled>
                     </div>
 
                     <button class="btn-primary" style="opacity:0.6; cursor:not-allowed;" onclick="alert('⚠️ Yeh portal 15 September ko countdown mukammal hote hi live open hoga!')">
-                        🔒 Claim Locked (Unlocks on 15 Sep)
+                        🔒 Portal Locked (Unlocks on 15 Sep)
                     </button>
                 </div>
             </div>
@@ -659,7 +691,7 @@
         <div id="screen-share" class="screen">
             <div style="font-size: 3rem; margin-bottom: 8px;">🔥</div>
             <h1>Aapka Dare Link Ready Hai!</h1>
-            <p class="subtitle">Isko apne WhatsApp Status aur doston ke groups mein share karein. Top 3 highest scorers ko 15 September ko prize milega!</p>
+            <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Jitne zyada dost 10/10 score karenge, aapka 15 September ko jeetne ka chance utna hi barh jayega!</p>
 
             <div class="input-group">
                 <label>AAPKA DATABASE VIRAL LINK</label>
@@ -919,8 +951,10 @@
             const quizId = urlParams.get('id');
 
             if (quizId) {
+                // ATOMIC VIEW COUNTER
                 db.ref('quizzes/' + quizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
+                // FETCH TARGET QUIZ
                 db.ref('quizzes/' + quizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
@@ -1008,6 +1042,7 @@
             const myDeviceId = getOrCreateDeviceId();
 
             if (!isFriendMode) {
+                // CREATOR FINISH
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
 
@@ -1025,12 +1060,14 @@
                     launchConfetti();
                     switchScreen('screen-share');
 
+                    // ATTACH LIVE DASHBOARD LISTENER
                     listenToCreatorDashboard(quizId);
                 }).catch(err => {
                     alert("Database Save Error: " + err.message);
                 });
 
             } else {
+                // FRIEND FINISH
                 let score = 0;
                 for (let i = 0; i < DARE_QUESTIONS.length; i++) {
                     if (friendAnswers[i] === quizTargetData.answers[i]) {
@@ -1041,6 +1078,7 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
+                // RECORD FRIEND ATTEMPT WITH DEVICE ID
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
@@ -1066,11 +1104,14 @@
             }
         }
 
+        // REAL-TIME DASHBOARD LISTENER FOR CREATOR
         function listenToCreatorDashboard(quizId) {
+            // Live Views
             db.ref('quizzes/' + quizId + '/totalViews').on('value', snap => {
                 document.getElementById('live-views-count').innerText = "Views: " + (snap.val() || 0);
             });
 
+            // Live Attempts List
             db.ref('quizzes/' + quizId + '/attempts').on('value', snap => {
                 const listEl = document.getElementById('live-attempts-list');
                 listEl.innerHTML = "";
@@ -1108,7 +1149,7 @@
         function shareToWhatsApp() {
             soundClick();
             const link = document.getElementById("share-link-input").value;
-            const text = "🔥 *REAL FRIEND YA SIRF DELULU? 💀*\n\nMaine apna challenge set kiya hai. Dekhein kaun mujhe kitna samajhta hai!\n\nTop 3 highest scorers ko Rs. 10,000 cash pool milega 15 September ko 👇\n" + link;
+            const text = "🔥 *REAL FRIEND YA SIRF DELULU? 💀*\n\nMaine apna challenge set kiya hai. Dekhein kaun mujhe kitna samajhta hai!\n\nJitne zyada log sahi answers denge, Rs. 10,000 cash pool jeetne ka chance utna zyada hoga 👇\n" + link;
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
@@ -1118,7 +1159,7 @@
         }
     </script>
 
-    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT (PLANCHED AT VERY BOTTOM) ================= -->
+    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT ================= -->
     <script type="text/javascript" src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
 
 </body>
