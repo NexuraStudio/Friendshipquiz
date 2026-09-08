@@ -8,17 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- 1. ADSTERRA SOCIAL BAR SCRIPT (Instant Floating Notification) -->
-    <script src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
-
-    <!-- 2. FIREBASE COMPATIBILITY SDK -->
+    <!-- FIREBASE COMPATIBILITY SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(18, 24, 38, 0.93);
+            --card-bg: rgba(18, 24, 38, 0.94);
             --primary: #8b5cf6;
             --primary-glow: rgba(139, 92, 246, 0.5);
             --accent: #00FFA3;
@@ -66,14 +63,14 @@
             z-index: 2;
         }
 
-        /* REWARD BANNER (RS. 10,000) */
+        /* REWARD BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 1.5px solid rgba(255, 215, 0, 0.6);
             border-radius: 16px;
             padding: 14px 12px;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
             animation: border-pulse 2.5s infinite alternate;
         }
@@ -124,9 +121,26 @@
             font-weight: 700;
         }
 
-        /* 15 SEPTEMBER COUNTDOWN TIMER WIDGET */
+        /* CONGRATS TICKER FOR LAST WEEK */
+        .congrats-banner {
+            background: rgba(0, 255, 163, 0.1);
+            border: 1px dashed var(--accent);
+            border-radius: 12px;
+            padding: 9px 12px;
+            margin-bottom: 16px;
+            font-size: 0.76rem;
+            text-align: center;
+            color: #d1fae5;
+            line-height: 1.4;
+        }
+
+        .congrats-banner strong {
+            color: var(--accent);
+        }
+
+        /* 15 SEPTEMBER COUNTDOWN */
         .countdown-container {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 14px;
             padding: 12px 10px;
@@ -141,10 +155,6 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
         }
 
         .countdown-grid {
@@ -175,6 +185,80 @@
             margin-top: 2px;
         }
 
+        /* TAB NAVIGATION (GAME vs CLAIM PRIZE) */
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 18px;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 4px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 10px 6px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.25));
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* SUBMIT ACCOUNT DETAILS SECTION (LOCKED VIEW) */
+        .payout-portal-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(255, 215, 0, 0.3);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .lock-notice-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px dashed var(--gold);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .lock-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.25);
+            color: var(--gold);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+
+        .lock-notice-box p {
+            font-size: 0.77rem;
+            color: #fef08a;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .locked-input {
+            opacity: 0.55;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         /* HEADINGS */
         .badge {
             display: inline-block;
@@ -202,7 +286,7 @@
             margin-bottom: 20px;
         }
 
-        /* TOP 3 WINNERS PODIUM (RS. 10,000 BREAKDOWN) */
+        /* TOP 3 WINNERS PODIUM */
         .winners-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -279,7 +363,7 @@
         /* INPUTS & CONTROLS */
         .input-group { text-align: left; margin-bottom: 16px; }
         .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        input[type="text"] {
+        input[type="text"], select {
             width: 100%;
             background: rgba(0, 0, 0, 0.45);
             border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -290,7 +374,7 @@
             outline: none;
             transition: all 0.2s;
         }
-        input[type="text"]:focus {
+        input[type="text"]:focus, select:focus {
             border-color: var(--primary);
             box-shadow: 0 0 15px var(--primary-glow);
         }
@@ -387,7 +471,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* 300x250 IN-PAGE BANNER AD ZONE */
+        /* 300x250 BANNER AD ZONE */
         .ad-zone {
             margin-top: 18px;
             padding: 4px 0;
@@ -419,10 +503,16 @@
 
         <!-- SCREEN 1: WELCOME & START -->
         <div id="screen-welcome" class="screen active">
+            <!-- RS. 10,000 BANNER -->
             <div class="reward-highlight-banner">
                 <div class="reward-top-tag"><span class="pulse-dot"></span> WORLD'S 1ST REAL PAYING DARE GAME ⚡</div>
                 <h3 class="reward-main-title">Dosti Test Karo & Jeeto <span class="cash-glow">Rs. 10,000 Cash! 💸</span></h3>
                 <p class="reward-sub-text">Khelte sab hain, Cash sirf <span>True Best Friends</span> jeet-te hain!</p>
+            </div>
+
+            <!-- LAST WEEK CONGRATULATIONS TICKER -->
+            <div class="congrats-banner">
+                🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!
             </div>
 
             <!-- 15 SEPTEMBER ANNOUNCEMENT COUNTDOWN -->
@@ -450,52 +540,94 @@
                 </div>
             </div>
 
-            <div class="badge">🔥 2026 GEN Z DARE</div>
-            <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
-            <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
-
-            <!-- RS. 10,000 PODIUM -->
-            <div class="winners-card">
-                <div class="winners-header">
-                    <span>🏆 Top 3 Winners (Rs. 10,000 Pool)</span>
-                    <span class="live-tag">● Live Contest</span>
-                </div>
-                <div class="podium-grid">
-                    <div class="podium-item second">
-                        <div class="podium-rank">🥈</div>
-                        <div class="podium-name">Ayesha K.</div>
-                        <div class="podium-score">10/10 (12s)</div>
-                        <div class="podium-prize">Rs. 3,000</div>
-                    </div>
-                    <div class="podium-item first">
-                        <div class="podium-rank">👑</div>
-                        <div class="podium-name">Hamza R.</div>
-                        <div class="podium-score">10/10 (11s)</div>
-                        <div class="podium-prize">Rs. 5,000</div>
-                    </div>
-                    <div class="podium-item third">
-                        <div class="podium-rank">🥉</div>
-                        <div class="podium-name">Zain M.</div>
-                        <div class="podium-score">9/10 (14s)</div>
-                        <div class="podium-prize">Rs. 2,000</div>
-                    </div>
-                </div>
+            <!-- NAVIGATION TABS -->
+            <div class="nav-tabs">
+                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare Challenge</button>
+                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">💳 Claim Prize (Winners)</button>
             </div>
 
-            <div class="input-group">
-                <label>TUMHARA COOL NAAM</label>
-                <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
+            <!-- VIEW A: PLAY DARE FORM -->
+            <div id="view-play-dare">
+                <div class="badge">🔥 2026 GEN Z DARE</div>
+                <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
+                <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
+
+                <!-- RS. 10,000 PODIUM -->
+                <div class="winners-card">
+                    <div class="winners-header">
+                        <span>🏆 Top 3 Winners (Rs. 10,000 Pool)</span>
+                        <span class="live-tag">● Live Contest</span>
+                    </div>
+                    <div class="podium-grid">
+                        <div class="podium-item second">
+                            <div class="podium-rank">🥈</div>
+                            <div class="podium-name">Ayesha K.</div>
+                            <div class="podium-score">10/10 (12s)</div>
+                            <div class="podium-prize">Rs. 3,000</div>
+                        </div>
+                        <div class="podium-item first">
+                            <div class="podium-rank">👑</div>
+                            <div class="podium-name">Hamza R.</div>
+                            <div class="podium-score">10/10 (11s)</div>
+                            <div class="podium-prize">Rs. 5,000</div>
+                        </div>
+                        <div class="podium-item third">
+                            <div class="podium-rank">🥉</div>
+                            <div class="podium-name">Zain M.</div>
+                            <div class="podium-score">9/10 (14s)</div>
+                            <div class="podium-prize">Rs. 2,000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>TUMHARA COOL NAAM</label>
+                    <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
+                </div>
+
+                <div id="gender-group" class="input-group">
+                    <label>AAP KAUN HAIN?</label>
+                    <div class="gender-select">
+                        <button class="gender-btn active" onclick="setGender('boy')">👦 Boy</button>
+                        <button class="gender-btn" onclick="setGender('girl')">👧 Girl</button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
             </div>
 
-            <div id="gender-group" class="input-group">
-                <label>AAP KAUN HAIN?</label>
-                <div class="gender-select">
-                    <button class="gender-btn active" onclick="setGender('boy')">👦 Boy</button>
-                    <button class="gender-btn" onclick="setGender('girl')">👧 Girl</button>
+            <!-- VIEW B: SUBMIT ACCOUNT DETAILS (CLAIM PRIZE) -->
+            <div id="view-payout-portal" style="display: none;">
+                <div class="payout-portal-card">
+                    <div class="lock-notice-box">
+                        <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
+                        <p>Yeh account details wala option countdown khatam hotay hi enable ho jayega! Winners yahan apna JazzCash / EasyPaisa submit kar ke prize claim kar saken ge.</p>
+                    </div>
+
+                    <div class="input-group locked-input">
+                        <label>WINNER NAME (JO QUIZ MEIN USE KIYA)</label>
+                        <input type="text" placeholder="E.g. Hamza R." disabled>
+                    </div>
+
+                    <div class="input-group locked-input">
+                        <label>PAYMENT METHOD</label>
+                        <select disabled style="background:#111; color:#fff;">
+                            <option>EasyPaisa Account</option>
+                            <option>JazzCash Account</option>
+                            <option>Direct Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group locked-input">
+                        <label>MOBILE ACCOUNT NUMBER</label>
+                        <input type="text" placeholder="03XXXXXXXXX" disabled>
+                    </div>
+
+                    <button class="btn-primary" style="opacity:0.6; cursor:not-allowed;" onclick="alert('⚠️ Yeh portal 15 September ko countdown mukammal hote hi live open hoga!')">
+                        🔒 Claim Locked (Unlocks on 15 Sep)
+                    </button>
                 </div>
             </div>
-
-            <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
 
             <!-- ADSTERRA 300x250 BANNER UNIT -->
             <div class="ad-zone">
@@ -595,6 +727,22 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // --- TAB SWITCHER LOGIC ---
+        function switchTab(tab) {
+            soundClick();
+            if (tab === 'play') {
+                document.getElementById('view-play-dare').style.display = 'block';
+                document.getElementById('view-payout-portal').style.display = 'none';
+                document.getElementById('tab-play-btn').classList.add('active');
+                document.getElementById('tab-payout-btn').classList.remove('active');
+            } else {
+                document.getElementById('view-play-dare').style.display = 'none';
+                document.getElementById('view-payout-portal').style.display = 'block';
+                document.getElementById('tab-payout-btn').classList.add('active');
+                document.getElementById('tab-play-btn').classList.remove('active');
+            }
+        }
+
         // --- 1. 15 SEPTEMBER COUNTDOWN TIMER ENGINE ---
         const targetDate = new Date("September 15, 2026 23:59:59").getTime();
 
@@ -642,7 +790,7 @@
             { q: "Agar humari ladaai ho jaye, toh pehle manane kaun aayega?", options: ["Hamesha main hi aata hoon 🙄", "Tum aate ho 😇", "Dono ego mein chup rehte hain 💀", "Koi teesra dost sulah karwata hai 🤝"] },
             { q: "Meri life ka sabse bada secret kya tum jante ho?", options: ["Haan sab pata hai 100% 🤫", "Kuch baatein pata hain 50% 🤔", "Bilkul andaza nahi hai ❌", "Tum jhooth bol rahe ho koi secret nahi 🤣"] },
             { q: "Party ya wedding par mera sabse favourite spot kaunsa hota hai?", options: ["Khaane ka counter 🍗", "Photoshoot & aesthetic selfies 📸", "Chupchap corner mein bethna 🪑", "Dance floor par aag lagana 🔥"] },
-            { q: "Agar main subah 3 baje call karoon, toh tumhara reaction kya hoga?", options: ["Foran call utha kar poonchoge 📞", "Silent karke so jaoge 😴", "Galiyan doge neend kharab karne par 🤬", "Sochenge koi serious masla ho گیا 🚨"] },
+            { q: "Agar main subah 3 baje call karoon, toh tumhara reaction kya hoga?", options: ["Foran call utha kar poonchoge 📞", "Silent karke so jaoge 😴", "Galiyan doge neend kharab karne par 🤬", "Sochenge koi serious masla ho gaya 🚨"] },
             { q: "Aapke khayal mein hamari dosti kitne saal chalegi?", options: ["Zindagi bhar (Soulmates) ♾️", "Jab tak faida hai tab tak 💀", "Shadi ke baad bhool jaoge 💍", "Real dost kabhi door nahi hote ❤️"] }
         ];
 
@@ -771,10 +919,8 @@
             const quizId = urlParams.get('id');
 
             if (quizId) {
-                // ATOMIC VIEW COUNTER INCREMENT
                 db.ref('quizzes/' + quizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
-                // FETCH TARGET QUIZ
                 db.ref('quizzes/' + quizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
@@ -862,7 +1008,6 @@
             const myDeviceId = getOrCreateDeviceId();
 
             if (!isFriendMode) {
-                // CREATOR FINISH
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
 
@@ -880,14 +1025,12 @@
                     launchConfetti();
                     switchScreen('screen-share');
 
-                    // ATTACH LIVE DASHBOARD LISTENER
                     listenToCreatorDashboard(quizId);
                 }).catch(err => {
                     alert("Database Save Error: " + err.message);
                 });
 
             } else {
-                // FRIEND FINISH
                 let score = 0;
                 for (let i = 0; i < DARE_QUESTIONS.length; i++) {
                     if (friendAnswers[i] === quizTargetData.answers[i]) {
@@ -898,7 +1041,6 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
-                // RECORD FRIEND ATTEMPT WITH DEVICE ID
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
@@ -924,14 +1066,11 @@
             }
         }
 
-        // REAL-TIME DASHBOARD LISTENER FOR CREATOR
         function listenToCreatorDashboard(quizId) {
-            // Live Views
             db.ref('quizzes/' + quizId + '/totalViews').on('value', snap => {
                 document.getElementById('live-views-count').innerText = "Views: " + (snap.val() || 0);
             });
 
-            // Live Attempts List
             db.ref('quizzes/' + quizId + '/attempts').on('value', snap => {
                 const listEl = document.getElementById('live-attempts-list');
                 listEl.innerHTML = "";
@@ -978,5 +1117,9 @@
             window.location.href = window.location.origin + window.location.pathname;
         }
     </script>
+
+    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT (PLANCHED AT VERY BOTTOM) ================= -->
+    <script type="text/javascript" src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
+
 </body>
 </html>
