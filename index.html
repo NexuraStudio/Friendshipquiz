@@ -434,7 +434,7 @@
 
     <!-- ================= JAVASCRIPT & FIREBASE ENGINE ================= -->
     <script>
-        // --- 0. FIREBASE INITIALIZATION (REAL CREDENTIALS) ---
+        // --- 0. FIREBASE INITIALIZATION ---
         const firebaseConfig = {
             apiKey: "AIzaSyD7pm092-rDb590HkUvK5_FNYe2kKDnuQg",
             authDomain: "quiz-415c2.firebaseapp.com",
@@ -446,6 +446,16 @@
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
+
+        // --- UNIQUE DEVICE IDENTIFIER GENERATOR ---
+        function getOrCreateDeviceId() {
+            let deviceId = localStorage.getItem("dare_device_fingerprint");
+            if (!deviceId) {
+                deviceId = "dev_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now().toString(36);
+                localStorage.setItem("dare_device_fingerprint", deviceId);
+            }
+            return deviceId;
+        }
 
         // --- 1. QUESTIONS DATABASE ---
         const DARE_QUESTIONS = [
@@ -468,7 +478,7 @@
         let isFriendMode = false;
         let quizTargetData = null;
 
-        // --- 2. ANTI-CHEAT ENGINE (10s Speed Check & Shields) ---
+        // --- 2. ANTI-CHEAT ENGINE ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
@@ -488,7 +498,7 @@
                 if (tabSwitchCount === 1) {
                     alert("⚠️ WARNING: Tab ya WhatsApp switch mat karein! Agli baar test disqualify ho jayega.");
                 } else if (tabSwitchCount >= 2) {
-                    alert("❌ DISQUALIFIED: Aapne quiz ke dauran browser change kiya. Attempt cancel!");
+                    alert("❌ DISQUALIFIED: Aapne quiz ke dauran browser switch kiya. Attempt cancel!");
                     isAntiCheatActive = false;
                     location.reload();
                 }
@@ -577,13 +587,18 @@
             render();
         }
 
-        // --- 5. INITIALIZATION (FIREBASE DATABASE LOAD) ---
+        // --- 5. INITIALIZATION & VIEW TRACKER ---
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const quizId = urlParams.get('id');
 
             if (quizId) {
-                // Firebase Realtime DB se Creator ka quiz fetch karein
+                // TRACK TOTAL VIEWS (Safe Atomic Increment)
+                db.ref('quizzes/' + quizId + '/totalViews').transaction(function(currentViews) {
+                    return (currentViews || 0) + 1;
+                });
+
+                // FETCH QUIZ DETAILS
                 db.ref('quizzes/' + quizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
@@ -667,15 +682,19 @@
         function finishQuiz() {
             if (!validateAntiCheatSubmission()) return;
 
+            const myDeviceId = getOrCreateDeviceId();
+
             if (!isFriendMode) {
-                // CREATOR FINISH: Firebase Database mein Save Karein
+                // CREATOR FINISH
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
 
                 db.ref('quizzes/' + quizId).set({
                     creator: creatorName,
+                    creatorDeviceId: myDeviceId,
                     gender: selectedGender,
                     answers: creatorAnswers,
+                    totalViews: 0,
                     createdAt: Date.now()
                 }).then(() => {
                     const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
@@ -688,7 +707,7 @@
                 });
 
             } else {
-                // FRIEND FINISH: Score calculate karein aur Firebase mein Push karein
+                // FRIEND FINISH
                 let score = 0;
                 for (let i = 0; i < DARE_QUESTIONS.length; i++) {
                     if (friendAnswers[i] === quizTargetData.answers[i]) {
@@ -699,11 +718,12 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
-                // Firebase attempts list mein live update
+                // SAVE ATTEMPT WITH DEVICE ID
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
                     timeSeconds: timeTaken,
+                    deviceId: myDeviceId,
                     timestamp: Date.now()
                 });
 
