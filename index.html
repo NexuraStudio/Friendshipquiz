@@ -3,615 +3,877 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who Knows Me Better? - Friendship Dare Quiz</title>
+    <title>Who Knows Me Better? - Gen Z Friendship Dare</title>
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #ec4899;
-            --accent: #8b5cf6;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --success: #22c55e;
-            --danger: #ef4444;
+            --bg-deep: #090d16;
+            --card-surface: #111827;
+            --neon-pink: #ff2a85;
+            --neon-purple: #8b5cf6;
+            --neon-cyan: #06b6d4;
+            --neon-green: #10b981;
+            --neon-yellow: #facc15;
+            --danger: #f43f5e;
+            --text-light: #f8fafc;
+            --text-sub: #94a3b8;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--bg-deep);
+            color: var(--text-light);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                              radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+            padding: 14px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 42, 133, 0.18) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.18) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
         }
 
         .container {
             width: 100%;
-            max-width: 480px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
+            max-width: 440px;
+            background: rgba(17, 24, 39, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
             padding: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(139, 92, 246, 0.2);
+            position: relative;
+            z-index: 10;
         }
 
         .screen {
             display: none;
-            animation: fadeIn 0.3s ease-in-out;
+            animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .screen.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(16px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .shake-screen {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 42, 133, 0.15);
+            border: 1px solid rgba(255, 42, 133, 0.4);
+            color: #ff7ebb;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 12px;
-            border-radius: 50px;
+            letter-spacing: 1.2px;
+            padding: 5px 14px;
+            border-radius: 999px;
             margin-bottom: 12px;
         }
 
         h1 {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: 27px;
+            font-weight: 900;
             line-height: 1.2;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         p {
-            color: var(--text-muted);
+            color: var(--text-sub);
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        .input-group {
+        .input-box {
             margin-bottom: 20px;
+            text-align: left;
         }
 
-        label {
+        .input-box label {
             display: block;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
             margin-bottom: 8px;
-            color: #cbd5e1;
         }
 
-        input[type="text"] {
+        .input-field {
             width: 100%;
-            padding: 14px 16px;
-            background: #0f172a;
+            padding: 16px 18px;
+            background: rgba(15, 23, 42, 0.8);
             border: 2px solid #334155;
-            border-radius: 14px;
-            color: white;
+            border-radius: 16px;
+            color: #fff;
             font-size: 16px;
             outline: none;
-            transition: 0.2s border;
+            transition: all 0.25s ease;
         }
 
-        input[type="text"]:focus {
-            border-color: var(--primary);
+        .input-field:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 16px rgba(255, 42, 133, 0.35);
         }
 
         .btn {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
+            gap: 10px;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
             text-decoration: none;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        .btn:active {
+            transform: scale(0.97);
         }
 
-        .btn-primary:active {
-            transform: scale(0.98);
+        .btn-neon {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.4);
         }
 
         .btn-whatsapp {
             background: #25D366;
-            color: white;
-            margin-top: 12px;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            color: #0b2212;
+            font-weight: 900;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
         }
 
-        .progress-box {
-            margin-bottom: 20px;
+        .btn-copy {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            margin-bottom: 12px;
         }
 
-        .progress-text {
+        /* Question UI */
+        .hud-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .hud-title {
             font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 6px;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .progress-bar-bg {
-            background: #334155;
-            height: 8px;
-            border-radius: 10px;
+        .hud-counter {
+            font-size: 12px;
+            font-weight: 900;
+            background: #1f2937;
+            padding: 4px 10px;
+            border-radius: 8px;
+            color: var(--neon-yellow);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: #1f2937;
+            border-radius: 99px;
             overflow: hidden;
+            margin-bottom: 22px;
         }
 
-        .progress-bar-fill {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        .progress-thumb {
             height: 100%;
             width: 0%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             transition: width 0.3s ease;
         }
 
-        .question-card {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 1.4;
+        .question-bubble {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--neon-pink);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.45;
             color: #fff;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .option-btn {
-            background: #0f172a;
-            border: 2px solid #334155;
-            color: #e2e8f0;
-            padding: 14px 16px;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s;
+            min-height: 75px;
             display: flex;
             align-items: center;
+        }
+
+        .options-stack {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .option-btn:hover {
-            border-color: var(--primary);
-            background: #1e1b4b;
+        .opt-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1.5px solid #334155;
+            color: #f1f5f9;
+            padding: 15px 18px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .option-btn.selected {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.2);
+        .opt-btn:hover {
+            border-color: var(--neon-purple);
+            background: rgba(139, 92, 246, 0.15);
         }
 
-        .option-btn.correct {
-            border-color: var(--success);
-            background: rgba(34, 197, 94, 0.2);
-            color: #86efac;
+        .opt-btn:active {
+            transform: scale(0.98);
         }
 
-        .option-btn.wrong {
-            border-color: var(--danger);
-            background: rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
+        .opt-tag {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 900;
+            color: var(--text-sub);
+            flex-shrink: 0;
         }
 
-        .share-box {
-            background: #0f172a;
+        .opt-btn.correct {
+            border-color: var(--neon-green) !important;
+            background: rgba(16, 185, 129, 0.25) !important;
+            color: #a7f3d0 !important;
+        }
+
+        .opt-btn.wrong {
+            border-color: var(--danger) !important;
+            background: rgba(244, 63, 94, 0.25) !important;
+            color: #fecdd3 !important;
+        }
+
+        /* Link Box */
+        .url-card {
+            background: #090d16;
             border: 1px dashed #475569;
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 14px;
-            margin: 15px 0;
+            margin: 18px 0;
+            font-size: 12px;
+            color: var(--neon-cyan);
             word-break: break-all;
-            font-size: 13px;
-            color: #94a3b8;
+            line-height: 1.4;
         }
 
-        .score-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        /* Score Meter */
+        .score-box {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
-            color: white;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(6, 182, 212, 0.2));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 35px rgba(255, 42, 133, 0.25);
         }
 
-        .score-number {
-            font-size: 38px;
+        .score-val {
+            font-size: 46px;
             font-weight: 900;
             line-height: 1;
+            background: linear-gradient(135deg, #fff, var(--neon-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .score-total {
-            font-size: 14px;
-            opacity: 0.8;
-            font-weight: 600;
-        }
-
-        .ad-placeholder {
-            margin-top: 20px;
-            padding: 12px;
-            border: 1px dashed #334155;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 11px;
-            color: #64748b;
+        .score-cap {
+            font-size: 12px;
+            color: var(--text-sub);
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+        }
+
+        .roast-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 22px;
+            line-height: 1.4;
+        }
+
+        /* Ad Frame */
+        .ad-zone {
+            margin-top: 22px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #475569;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- SCREEN 1: WELCOME SCREEN (CREATOR) -->
-    <div id="screen-welcome" class="screen active">
-        <span class="badge">Viral 2026 Edition</span>
-        <h1>Who Knows You Best? 🔥</h1>
-        <p>Apne baare mein 10 sawalaat ke jawab dein, link generate karein aur doston ko challenge karein!</p>
-        
-        <div class="input-group">
-            <label for="creator-name">Apna Naam Likhein:</label>
-            <input type="text" id="creator-name" placeholder="E.g. Ali, Hamza, Sara..." autocomplete="off">
+<canvas id="confetti-canvas"></canvas>
+
+<div class="container" id="quiz-card">
+
+    <!-- 1. CREATOR INTRO -->
+    <div id="screen-creator-intro" class="screen active">
+        <span class="pill-badge">🔥 2026 Gen Z Dare</span>
+        <h1>Real Friend ya Sirf Delulu? 💀</h1>
+        <p>Apne 10 unhinged sawalon ke jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
+
+        <div class="input-box">
+            <label>Tumhara Cool Naam</label>
+            <input type="text" id="creator-name" class="input-field" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
         </div>
 
-        <button class="btn btn-primary" onclick="startCreatingQuiz()">
-            Quiz Start Karein ➔
+        <button class="btn btn-neon" onclick="startQuizBuilding()">
+            Game Shuru Karo ➔
         </button>
 
-        <div class="ad-placeholder">Sponsor Ad Slot</div>
+        <div class="ad-zone">Sponsor Ad Unit</div>
     </div>
 
-    <!-- SCREEN 2: QUESTION ANSWERING SCREEN -->
-    <div id="screen-quiz" class="screen">
-        <div class="progress-box">
-            <div class="progress-text">
-                <span id="quiz-player-mode">Apne Answers Chunein</span>
-                <span id="question-number">1 / 10</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div id="progress-bar" class="progress-bar-fill"></div>
-            </div>
+    <!-- 2. GAME PLAYING SCREEN -->
+    <div id="screen-game" class="screen">
+        <div class="hud-header">
+            <span id="hud-title" class="hud-title">Apna Answer Chuno</span>
+            <span id="hud-counter" class="hud-counter">1/10</span>
+        </div>
+        <div class="progress-track">
+            <div id="progress-bar" class="progress-thumb"></div>
         </div>
 
-        <div id="question-title" class="question-card">Question text goes here?</div>
-        <div id="options-container" class="options-grid"></div>
-        <div class="ad-placeholder">Sponsor Ad Slot</div>
+        <div id="question-text" class="question-bubble">Question loading...</div>
+        <div id="options-holder" class="options-stack"></div>
+
+        <div class="ad-zone">Sponsor Ad Unit</div>
     </div>
 
-    <!-- SCREEN 3: CREATOR LINK READY SCREEN -->
+    <!-- 3. CREATOR SHARE SCREEN -->
     <div id="screen-share" class="screen">
-        <span class="badge">Quiz Ready! 🎉</span>
-        <h1>Aapka Quiz Ban Gaya!</h1>
-        <p>Niche diya gaya link copy karein ya direct WhatsApp par send karke doston ka test lein:</p>
+        <span class="pill-badge">🎯 Link Cooked Ho Gaya!</span>
+        <h1>Boom! Dare Ready Hai! 🔥</h1>
+        <p>Yeh link copy karke WhatsApp status aur groups mein phek do aur dekho kaun pass hota hai aur kaun fail!</p>
 
-        <div id="quiz-link-box" class="share-box">Generating link...</div>
+        <div id="share-link-preview" class="url-card">Generating secret link...</div>
 
-        <button class="btn btn-primary" onclick="copyQuizLink()">
-            📋 Link Copy Karein
+        <button class="btn btn-copy" onclick="copyDareLink()">
+            📋 Secret Link Copy Karo
         </button>
 
-        <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()">
-            💬 WhatsApp Par Bhejein
+        <button class="btn btn-whatsapp" onclick="dispatchWhatsApp()">
+            💬 WhatsApp Pe Challenge Bhejo
         </button>
 
-        <div class="ad-placeholder">Sponsor Ad Slot</div>
+        <div class="ad-zone">Sponsor Ad Unit</div>
     </div>
 
-    <!-- SCREEN 4: FRIEND ENTRY SCREEN -->
-    <div id="screen-friend-welcome" class="screen">
-        <span class="badge">Friend Challenge ⚡</span>
-        <h1><span id="friend-target-name">Friend</span> Ka Test!</h1>
-        <p>Dekhte hain aap <strong id="friend-target-bold" style="color:white;">unhe</strong> kitna jante hain. 10 sawalaat ke sahi jawab do!</p>
+    <!-- 4. FRIEND INVITATION -->
+    <div id="screen-friend-start" class="screen">
+        <span class="pill-badge">⚠️ Friendship Audit</span>
+        <h1><span id="target-name">Dost</span> Ka Vibe Check!</h1>
+        <p>Dekhte hain tum <strong id="target-highlight" style="color:var(--neon-pink);">unhe</strong> kitna jante ho ya bas fake friendship chala rahe ho? 10 sawal, zero cheating!</p>
 
-        <div class="input-group">
-            <label for="friend-name">Apna Naam Likhein:</label>
-            <input type="text" id="friend-name" placeholder="Aapka naam..." autocomplete="off">
+        <div class="input-box">
+            <label>Tumhara Asli Naam</label>
+            <input type="text" id="friend-name" class="input-field" placeholder="Apna naam daalo..." autocomplete="off">
         </div>
 
-        <button class="btn btn-primary" onclick="startFriendQuiz()">
-            Challenge Accept Karein ➔
+        <button class="btn btn-neon" onclick="acceptFriendChallenge()">
+            Challenge Accept Karo ⚡
         </button>
 
-        <div class="ad-placeholder">Sponsor Ad Slot</div>
+        <div class="ad-zone">Sponsor Ad Unit</div>
     </div>
 
-    <!-- SCREEN 5: FRIEND RESULT SCREEN -->
-    <div id="screen-result" class="screen">
-        <span class="badge">Score Card 🏆</span>
-        <h1>Aapka Result!</h1>
-        <p id="result-message">Dekhein aapne kitne sahi jawab diye:</p>
+    <!-- 5. FINAL REPORT SCREEN -->
+    <div id="screen-score" class="screen">
+        <span id="score-badge" class="pill-badge">Audit Report 📊</span>
+        <h1 id="score-headline">Result Aa Gaya!</h1>
+        <p id="score-subtext">Tumhari friendship score:</p>
 
-        <div class="score-circle">
-            <span id="score-val" class="score-number">0</span>
-            <span class="score-total">out of 10</span>
+        <div class="score-box">
+            <span id="final-score" class="score-val">0</span>
+            <span class="score-cap">Out of 10</span>
         </div>
 
-        <p id="result-verdict" style="text-align: center; font-weight: 700; color: #cbd5e1; margin-bottom: 24px;">Remark...</p>
+        <div id="verdict-roast" class="roast-pill">Verdict loading...</div>
 
-        <button class="btn btn-whatsapp" onclick="shareScoreOnWhatsApp()">
-            💬 Apna Score <span id="score-share-name">Dost</span> Ko Bhejein
+        <button class="btn btn-whatsapp" onclick="shareScoreToCreator()">
+            💬 Apna Score <span id="target-friend-label">Dost</span> Ko Bhejo
         </button>
 
-        <button class="btn btn-primary" style="margin-top: 12px;" onclick="resetToNewQuiz()">
-            🔥 Apna Khud Ka Quiz Banayein
+        <button class="btn btn-neon" style="margin-top: 12px;" onclick="createNewDare()">
+            🔥 Apna Khud Ka Dare Banao
         </button>
 
-        <div class="ad-placeholder">Sponsor Ad Slot</div>
+        <div class="ad-zone">Sponsor Ad Unit</div>
     </div>
+
 </div>
 
 <script>
-    // 10 Viral & Fun Friendship Questions
-    const questions = [
+    // -------------------------------------------------------------
+    // 1. CHIPTUNE AUDIO SYNTHESIZER (No external MP3 required!)
+    // -------------------------------------------------------------
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    // Tap sound
+    function playBeep(freq = 440, type = 'sine', duration = 0.08) {
+        try {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {}
+    }
+
+    // High energy start arpeggio
+    function playStartFanfare() {
+        try {
+            initAudio();
+            const notes = [261.63, 329.63, 392.00, 523.25];
+            notes.forEach((note, index) => {
+                setTimeout(() => playBeep(note, 'triangle', 0.12), index * 70);
+            });
+        } catch (e) {}
+    }
+
+    // Victory celebration tune
+    function playWinSound() {
+        try {
+            initAudio();
+            const winNotes = [392.00, 523.25, 659.25, 783.99, 1046.50];
+            winNotes.forEach((freq, idx) => {
+                setTimeout(() => playBeep(freq, 'sine', 0.2), idx * 90);
+            });
+        } catch (e) {}
+    }
+
+    // "Cooked / Fail" trombone slide
+    function playFailSound() {
+        try {
+            initAudio();
+            const failNotes = [440, 415.3, 392, 349.23];
+            failNotes.forEach((freq, idx) => {
+                setTimeout(() => playBeep(freq, 'sawtooth', 0.22), idx * 130);
+            });
+        } catch (e) {}
+    }
+
+    // -------------------------------------------------------------
+    // 2. 10 GEN Z FRIENDSHIP QUESTIONS
+    // -------------------------------------------------------------
+    const quizDataset = [
         {
-            q: "Mera favourite khana (food) kaunsa hai?",
-            options: ["Biryani", "Pizza / Burger", "Desi Karahi / Tikka", "Chai Paratha"]
+            q: "Agar humara random lafda ho jaye kisi se, toh mera pehla reaction?",
+            options: ["Seedha ladne chala jaunga 🥊", "Side se video bana ke reels pe dalunga 📱", "Dono ko shaant karane ki acting karunga 🕊️", "Wahan se sabse pehle bhaag jaunga 🏃"]
         },
         {
-            q: "Agar mujhe free time mile toh main kya karunga?",
-            options: ["Mobile / Reels dekhna", "Sona (Sleep)", "Doston ke sath ghoomna", "Gaming / Movies"]
+            q: "Mera sabse bada Toxic Trait kya hai? (Real Talk 💀)",
+            options: ["Online ho kar reply na dena", "Hamesha har jagah late aana", "Overthink karke scene banana", "Faltu baaton par zyada hasna"]
         },
         {
-            q: "Meri sabse badi aadat kya hai?",
-            options: ["Har waqt late aana", "Zaroorat se zyada sochna", "Har baat par hasna", "Baat baat par chillana"]
+            q: "Mera late night 3 AM mood kya hota hai?",
+            options: ["Existential crisis & deep thoughts", "Midnight biryani ya snacks crave karna", "Reels aur memes scroll karte rehna", "Ghar walon ki tarah chup chaap sona"]
         },
         {
-            q: "Mera favourite season (mausam) kaunsa hai?",
-            options: ["Sardiyan (Winter)", "Garmiyan (Summer)", "Baarish (Monsoon)", "Bahaar (Spring)"]
+            q: "Agar mere account mein achanak 1 Crore aa jayein?",
+            options: ["Duniya ghoomne nikal jaunga ✈️", "iPhone aur gaari le kar show-off 😎", "Khamoshi se invest karke crypto/stocks 📈", "Sab doston ko bula kar grand party 🍕"]
         },
         {
-            q: "Chai ya Coffee?",
-            options: ["Karak Chai", "Cold Coffee", "Black Coffee", "Dono mein se kuch nahi"]
+            q: "Mera comfort drink kya hai?",
+            options: ["Karak Dhaba Chai ☕", "Iced Cold Coffee 🥤", "Sting / Energy Drink ⚡", "Thanda Paani (Hydration king) 💧"]
         },
         {
-            q: "Subah jaldi uthna ya raat ko der tak jaagna?",
-            options: ["Early Morning Bird ☀️", "Night Owl 🦉", "Jab neend aaye tab!", "Din bhar bas susti"]
+            q: "Mera attention span kitna hai?",
+            options: ["Goldfish jaisa (10 seconds) 🐠", "Agar topic pasand ho toh ghanton sununga", "Bas meme dekhte waqt focus rehta hai", "Bohot disciplined aur focused"]
         },
         {
-            q: "Main gusse mein sabse pehle kya karta hoon?",
-            options: ["Khamosh ho jana", "Chilla kar ladna", "Phone band kar dena", "Has kar taal dena"]
+            q: "Meri dream vibe trip kahan ki hai?",
+            options: ["Northern Mountains & Campfire 🏔️", "Dubai / Neon City aesthetic 🏙️", "Beach side chill & sunsets 🏖️", "Ghar ka bistar aur AC on 🛏️"]
         },
         {
-            q: "Agar 1 Crore rupay mil jayein toh pehla kaam?",
-            options: ["World Tour par nikalna", "Business / Investment", "Sab doston ko party", "Bank mein chupana"]
+            q: "Agar main chup chaap ho jaun, toh iska kya matlab hai?",
+            options: ["Mood bohot heavy kharab hai 😤", "Neend aa rahi hai bas 😴", "Koi gehri scheming chal rahi hai 🧠", "Battery 1% bachi hai social hone ki"]
         },
         {
-            q: "Meri dream travel destination kaunsi hai?",
-            options: ["Northern Areas / Mountains", "Dubai / Modern City", "Maldives / Sea Beach", "Turkey / Europe"]
+            q: "Hum dono ki dosti ka main base kya hai?",
+            options: ["Dono ka humor unhinged hai 💀", "Ek doosre ki roast karne ki aadat", "Life ke har dukh ka rona 🫂", "Bina bole baat samajh aana ✨"]
         },
         {
-            q: "Hamari dosti ka sabse best part kya hai?",
-            options: ["Late night calls/chats", "Bina matlab ki hasi", "Mushkil waqt ka sahara", "Ek doosre ki bezzati karna"]
+            q: "Aakhri sawal: Kya main main character hoon ya background NPC?",
+            options: ["100% Main Character Energy 💅", "Chaos create karne wala villain 😈", "Chill background character 🍿", "Bas vibes pe chal raha hoon 🧘"]
         }
     ];
 
-    let currentQuestionIndex = 0;
+    // -------------------------------------------------------------
+    // 3. STATE CONTROLLER & LOGIC
+    // -------------------------------------------------------------
+    let currentIdx = 0;
     let creatorAnswers = [];
     let friendAnswers = [];
     let isFriendMode = false;
-    let quizCreatorName = "";
-    let guestFriendName = "";
-    let finalShareableLink = "";
+    let creatorName = "";
+    let friendName = "";
+    let finalDareUrl = "";
 
-    // DOM Navigation Helper
-    function showScreen(screenId) {
+    function switchScreen(id) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(screenId).classList.add('active');
-        window.scrollTo(0, 0);
+        document.getElementById(id).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Check if user came from a shared link
-    window.onload = function() {
+    // App Initialization (Inspects URL for payload)
+    window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
-        const quizData = urlParams.get('q');
+        const encoded = urlParams.get('q');
 
-        if (quizData) {
+        if (encoded) {
             try {
-                // Decode base64 URL payload
-                const decoded = JSON.parse(decodeURIComponent(escape(atob(quizData))));
-                if (decoded && decoded.n && decoded.a && decoded.a.length === 10) {
-                    quizCreatorName = decoded.n;
-                    creatorAnswers = decoded.a;
+                const payload = JSON.parse(decodeURIComponent(escape(atob(encoded))));
+                if (payload && payload.n && Array.isArray(payload.a) && payload.a.length === 10) {
+                    creatorName = payload.n;
+                    creatorAnswers = payload.a;
                     isFriendMode = true;
 
-                    document.getElementById('friend-target-name').innerText = quizCreatorName;
-                    document.getElementById('friend-target-bold').innerText = quizCreatorName;
-                    showScreen('screen-friend-welcome');
+                    document.getElementById('target-name').innerText = creatorName;
+                    document.getElementById('target-highlight').innerText = creatorName;
+                    switchScreen('screen-friend-start');
                     return;
                 }
             } catch (e) {
-                console.error("Invalid quiz payload in URL");
+                console.warn("Invalid challenge URL string.");
             }
         }
-        showScreen('screen-welcome');
-    };
+        switchScreen('screen-creator-intro');
+    });
 
-    // Mode 1: Creator Starts
-    function startCreatingQuiz() {
-        const nameInput = document.getElementById('creator-name').value.trim();
-        if (!nameInput) {
-            alert("Bhai apna naam toh likhein!");
+    // Creator starts making quiz
+    function startQuizBuilding() {
+        const input = document.getElementById('creator-name').value.trim();
+        if (!input) {
+            playBeep(220, 'sawtooth', 0.15);
+            document.getElementById('quiz-card').classList.add('shake-screen');
+            setTimeout(() => document.getElementById('quiz-card').classList.remove('shake-screen'), 400);
             return;
         }
-        quizCreatorName = nameInput;
+        playStartFanfare();
+        creatorName = input;
         isFriendMode = false;
-        currentQuestionIndex = 0;
+        currentIdx = 0;
         creatorAnswers = [];
-        document.getElementById('quiz-player-mode').innerText = "Apne Answers Select Karein";
-        showScreen('screen-quiz');
-        renderQuestion();
+        document.getElementById('hud-title').innerText = "Apna Asli Answer Chuno";
+        switchScreen('screen-game');
+        displayQuestion();
     }
 
-    // Mode 2: Friend Starts
-    function startFriendQuiz() {
-        const nameInput = document.getElementById('friend-name').value.trim();
-        if (!nameInput) {
-            alert("Pehle apna naam likhein!");
+    // Friend accepts challenge
+    function acceptFriendChallenge() {
+        const input = document.getElementById('friend-name').value.trim();
+        if (!input) {
+            playBeep(220, 'sawtooth', 0.15);
+            document.getElementById('quiz-card').classList.add('shake-screen');
+            setTimeout(() => document.getElementById('quiz-card').classList.remove('shake-screen'), 400);
             return;
         }
-        guestFriendName = nameInput;
-        currentQuestionIndex = 0;
+        playStartFanfare();
+        friendName = input;
+        currentIdx = 0;
         friendAnswers = [];
-        document.getElementById('quiz-player-mode').innerText = `${quizCreatorName} Ke Answers Guess Karein`;
-        showScreen('screen-quiz');
-        renderQuestion();
+        document.getElementById('hud-title').innerText = `${creatorName} Ka Answer Guess Karo`;
+        switchScreen('screen-game');
+        displayQuestion();
     }
 
-    // Render Question & Options
-    function renderQuestion() {
-        const q = questions[currentQuestionIndex];
-        document.getElementById('question-number').innerText = `${currentQuestionIndex + 1} / ${questions.length}`;
+    // Display current Question Card
+    function displayQuestion() {
+        const currentData = quizDataset[currentIdx];
+        document.getElementById('hud-counter').innerText = `${currentIdx + 1}/10`;
         
-        // Dynamic Question text for friend vs creator
-        let titleText = q.q;
+        // Progress bar percentage
+        const pct = ((currentIdx) / quizDataset.length) * 100;
+        document.getElementById('progress-bar').style.width = `${pct}%`;
+
+        // Format question for friend vs creator
+        let title = currentData.q;
         if (isFriendMode) {
-            titleText = titleText.replace(/Mera/g, `${quizCreatorName} ka`).replace(/Meri/g, `${quizCreatorName} ki`).replace(/Main/g, quizCreatorName);
+            title = title.replace(/Mera/g, `${creatorName} ka`).replace(/Meri/g, `${creatorName} ki`).replace(/main/g, creatorName);
         }
-        document.getElementById('question-title').innerText = titleText;
+        document.getElementById('question-text').innerText = title;
 
-        const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
-        document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+        const container = document.getElementById('options-holder');
+        container.innerHTML = '';
 
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = '';
-
-        q.options.forEach((opt, idx) => {
+        currentData.options.forEach((choice, index) => {
             const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerHTML = `<span style="opacity:0.5;">#${idx+1}</span> ${opt}`;
-            btn.onclick = () => selectOption(idx);
-            optionsContainer.appendChild(btn);
+            btn.className = 'opt-btn';
+            btn.innerHTML = `<span class="opt-tag">${index + 1}</span> <span>${choice}</span>`;
+            btn.onclick = () => recordPick(index, btn);
+            container.appendChild(btn);
         });
     }
 
     // Handle Option Selection
-    function selectOption(selectedIdx) {
+    function recordPick(idx, element) {
+        playBeep(520 + (currentIdx * 30), 'sine', 0.09);
+
         if (!isFriendMode) {
-            // Creator saving their true answer
-            creatorAnswers.push(selectedIdx);
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                renderQuestion();
+            creatorAnswers.push(idx);
+            currentIdx++;
+            if (currentIdx < quizDataset.length) {
+                displayQuestion();
             } else {
-                finishCreatingQuiz();
+                completeCreatorQuiz();
             }
         } else {
-            // Friend guessing
-            friendAnswers.push(selectedIdx);
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                renderQuestion();
+            friendAnswers.push(idx);
+            // Instant feedback
+            if (idx === creatorAnswers[currentIdx]) {
+                element.classList.add('correct');
             } else {
-                finishFriendQuiz();
+                element.classList.add('wrong');
             }
+            
+            // Short delay so friend sees feedback
+            setTimeout(() => {
+                currentIdx++;
+                if (currentIdx < quizDataset.length) {
+                    displayQuestion();
+                } else {
+                    completeFriendAudit();
+                }
+            }, 250);
         }
     }
 
-    // Creator Finishes -> Generate Viral Link
-    function finishCreatingQuiz() {
+    // Creator completes answers -> Generate Base64 Dare Link
+    function completeCreatorQuiz() {
         const payload = {
-            n: quizCreatorName,
+            n: creatorName,
             a: creatorAnswers
         };
         const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
         const cleanBaseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-        finalShareableLink = `${cleanBaseUrl}?q=${encoded}`;
+        finalDareUrl = `${cleanBaseUrl}?q=${encoded}`;
 
-        document.getElementById('quiz-link-box').innerText = finalShareableLink;
-        showScreen('screen-share');
+        document.getElementById('share-link-preview').innerText = finalDareUrl;
+        playWinSound();
+        triggerConfetti(40);
+        switchScreen('screen-share');
     }
 
-    function copyQuizLink() {
-        navigator.clipboard.writeText(finalShareableLink).then(() => {
-            alert("Quiz link copy ho gaya! Ab WhatsApp ya Instagram par share karein.");
+    function copyDareLink() {
+        playBeep(600, 'triangle', 0.08);
+        navigator.clipboard.writeText(finalDareUrl).then(() => {
+            alert("🔥 Link Copy Ho Gaya! Ab WhatsApp status aur stories pe dosti ka test lo!");
         }).catch(() => {
-            alert("Link: " + finalShareableLink);
+            alert("Link: " + finalDareUrl);
         });
     }
 
-    function shareOnWhatsApp() {
-        const text = `🔥 *Who Knows Me Better Challenge!* 🔥\n\nDekhte hain tum mujhe kitna jante ho! 10 sawalaat ke sahi jawab do aur apna score dikhao 😈👇\n\n${finalShareableLink}`;
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    function dispatchWhatsApp() {
+        const msg = `🔥 *WHO KNOWS ME BETTER? (Gen Z Edition)* 🔥\n\nBhai dekhte hain tum mujhe sach mein kitna jante ho ya bas fake friendship chal rahi hai 💀!\n\n10 sawalon ka jawab do aur apna score dikhao 😈👇\n${finalDareUrl}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Friend Finishes -> Calculate Score
-    function finishFriendQuiz() {
+    // Friend finishes quiz -> Compute Result & Roast
+    function completeFriendAudit() {
         let score = 0;
-        for (let i = 0; i < questions.length; i++) {
+        for (let i = 0; i < quizDataset.length; i++) {
             if (friendAnswers[i] === creatorAnswers[i]) {
                 score++;
             }
         }
 
-        document.getElementById('score-val').innerText = score;
-        document.getElementById('score-share-name').innerText = quizCreatorName;
+        document.getElementById('final-score').innerText = score;
+        document.getElementById('target-friend-label').innerText = creatorName;
 
-        let verdict = "";
+        const roast = document.getElementById('verdict-roast');
+        const headline = document.getElementById('score-headline');
+
         if (score >= 8) {
-            verdict = "🔥 Bhai tum toh dil ke kareeb ho! 100% True Friend!";
+            playWinSound();
+            triggerConfetti(120);
+            headline.innerText = "W RIZZ! Certified Soulmate! 👑";
+            roast.innerHTML = `🔥 <strong>${friendName}</strong>, tum toh literal mind-reader ho! Dosti level: 100% Unbreakable! Party banti hai!`;
         } else if (score >= 5) {
-            verdict = "👍 Theek thaak jante ho, thodi aur mehnat ki zaroorat hai!";
+            playBeep(440, 'triangle', 0.2);
+            headline.innerText = "Mid Friendship 😐";
+            roast.innerHTML = `⚠️ Thoda sa delulu chal rahe ho! Theek thaak jante ho lekin thoda aur dhyan do ${creatorName} par!`;
         } else {
-            verdict = "💀 Tum toh anjaan nikle! Dobara se dosti karni padegi!";
+            playFailSound();
+            document.getElementById('quiz-card').classList.add('shake-screen');
+            headline.innerText = "💀 BRO IS COOKED! Fake Friend Alert!";
+            roast.innerHTML = `🤡 Tum toh anjaan nikle! Itna galat guess kaise kar sakte ho? Contact delete karne ka time aa gaya hai!`;
         }
-        document.getElementById('result-verdict').innerText = verdict;
-        showScreen('screen-result');
+
+        switchScreen('screen-score');
     }
 
-    function shareScoreOnWhatsApp() {
-        const score = document.getElementById('score-val').innerText;
-        const text = `Maine *${quizCreatorName}* ke Friendship Quiz mein 10 mein se *${score}* score kiya hai! 😎\n\nKya tum mujhe beat kar sakte ho? Test do 👇\n${window.location.href}`;
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    function shareScoreToCreator() {
+        const score = document.getElementById('final-score').innerText;
+        const msg = `Maine *${creatorName}* ke Friendship Audit mein 10 mein se *${score}* score kiya hai! 😎💀\n\nKya tum mujhse better score kar sakte ho? Test do 👇\n${window.location.href}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    function resetToNewQuiz() {
+    function createNewDare() {
         window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    }
+
+    // -------------------------------------------------------------
+    // 4. CONFETTI ANIMATION ENGINE
+    // -------------------------------------------------------------
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerConfetti(count = 60) {
+        particles = [];
+        const colors = ['#ff2a85', '#8b5cf6', '#06b6d4', '#facc15', '#10b981', '#ffffff'];
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                w: Math.random() * 8 + 4,
+                h: Math.random() * 8 + 4,
+                dx: (Math.random() - 0.5) * 14,
+                dy: (Math.random() - 0.7) * 16,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * 360,
+                rotSpeed: (Math.random() - 0.5) * 10,
+                opacity: 1
+            });
+        }
+        animateConfetti();
+    }
+
+    function animateConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+            p.dy += 0.4; // gravity
+            p.rotation += p.rotSpeed;
+            p.opacity -= 0.012;
+
+            if (p.opacity > 0) {
+                active = true;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = Math.max(p.opacity, 0);
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+            }
+        });
+
+        if (active) {
+            requestAnimationFrame(animateConfetti);
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
     }
 </script>
 </body>
