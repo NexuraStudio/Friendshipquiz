@@ -2,144 +2,420 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who Knows Me Better? - Gen Z Friendship Dare</title>
-    <style>/* ================= CASH REWARD BANNER STYLING ================= */
-.reward-highlight-banner {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(0, 255, 163, 0.08));
-    border: 1.5px solid rgba(255, 215, 0, 0.4);
-    border-radius: 16px;
-    padding: 16px 14px;
-    text-align: center;
-    margin-bottom: 22px;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.15), inset 0 0 15px rgba(255, 215, 0, 0.05);
-    backdrop-filter: blur(10px);
-    animation: border-pulse 2.5s infinite alternate;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Friendship Dare 2026 - Real Friend ya Delulu?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-.reward-top-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 215, 0, 0.18);
-    color: #FFD700;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.pulse-dot {
-    width: 7px;
-    height: 7px;
-    background-color: #00FFA3;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #00FFA3;
-    animation: blink 1.2s infinite;
-}
-
-.reward-main-title {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: #ffffff;
-    margin: 4px 0 8px 0;
-    line-height: 1.35;
-    letter-spacing: -0.5px;
-}
-
-.cash-glow {
-    background: linear-gradient(90deg, #FFE259, #00FFA3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 18px rgba(0, 255, 163, 0.4);
-    font-weight: 900;
-}
-
-.reward-sub-text {
-    font-size: 0.82rem;
-    color: #cbd5e1;
-    margin: 0 0 12px 0;
-}
-
-.reward-sub-text span {
-    color: #FFE259;
-    font-weight: 700;
-}
-
-.payout-badges {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.badge-pill {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 8px;
-}
-
-/* Animations */
-@keyframes border-pulse {
-    0% {
-        border-color: rgba(255, 215, 0, 0.3);
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
-    }
-    100% {
-        border-color: rgba(0, 255, 163, 0.6);
-        box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
-    }
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-}
+    <style>
         :root {
-            --bg-deep: #090d16;
-            --card-surface: #111827;
-            --neon-pink: #ff2a85;
-            --neon-purple: #8b5cf6;
-            --neon-cyan: #06b6d4;
-            --neon-green: #10b981;
-            --neon-yellow: #facc15;
-            --danger: #f43f5e;
-            --text-light: #f8fafc;
-            --text-sub: #94a3b8;
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --accent: #00FFA3;
+            --accent-glow: rgba(0, 255, 163, 0.4);
+            --gold: #FFD700;
+            --gold-glow: rgba(255, 215, 0, 0.4);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --danger: #ff4d4d;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-light);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.15) 0px, transparent 50%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 14px;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 42, 133, 0.18) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.18) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+            padding: 16px;
+            color: var(--text-main);
             overflow-x: hidden;
-            position: relative;
         }
 
+        .container {
+            width: 100%;
+            max-width: 460px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* VIRAL REWARD TOP BANNER */
+        .reward-highlight-banner {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 163, 0.1));
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            border-radius: 16px;
+            padding: 14px 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+            animation: border-pulse 2.5s infinite alternate;
+        }
+
+        .reward-top-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: blink 1.2s infinite;
+        }
+
+        .reward-main-title {
+            font-size: 1.2rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .cash-glow {
+            background: linear-gradient(90deg, #FFE259, #00FFA3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reward-sub-text {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .reward-sub-text span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* HEADER & BADGE */
+        .badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid var(--primary);
+            color: #c4b5fd;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        /* TOP 3 WINNERS PODIUM / LEADERBOARD */
+        .winners-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 22px;
+        }
+
+        .winners-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .live-tag {
+            background: rgba(0, 255, 163, 0.15);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+        }
+
+        .podium-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr 1fr;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .podium-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .podium-item.first {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.18), rgba(255, 215, 0, 0.05));
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .podium-item.second {
+            background: linear-gradient(180deg, rgba(192, 192, 192, 0.15), rgba(192, 192, 192, 0.03));
+            border: 1px solid #c0c0c0;
+        }
+
+        .podium-item.third {
+            background: linear-gradient(180deg, rgba(205, 127, 50, 0.15), rgba(205, 127, 50, 0.03));
+            border: 1px solid #cd7f32;
+        }
+
+        .podium-rank {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .podium-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .podium-score {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+
+        .podium-prize {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--accent);
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+
+        .podium-item.first .podium-prize {
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* INPUTS & CONTROLS */
+        .input-group {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 14px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .gender-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gender-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .gender-btn.active {
+            background: rgba(139, 92, 246, 0.25);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+            color: #fff;
+        }
+
+        /* ACTION BUTTONS */
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #000;
+            font-weight: 800;
+            margin-top: 12px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        /* QUIZ SCREEN */
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-box {
+            font-size: 1.15rem;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 20px;
+            min-height: 55px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px 16px;
+            color: #fff;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:active, .option-btn.selected {
+            background: rgba(0, 255, 163, 0.15);
+            border-color: var(--accent);
+            transform: scale(0.99);
+        }
+
+        /* AD ZONE PLACEHOLDER */
+        .ad-zone {
+            margin-top: 18px;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* SCREENS VISIBILITY */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* CONFETTI CANVAS */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -147,1069 +423,498 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 999;
+            z-index: 9999;
         }
 
-        .container {
-            width: 100%;
-            max-width: 440px;
-            background: rgba(17, 24, 39, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 28px;
-            padding: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(139, 92, 246, 0.2);
-            position: relative;
-            z-index: 10;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .screen {
-            display: none;
-            animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        @keyframes border-pulse {
+            0% { border-color: rgba(255, 215, 0, 0.3); box-shadow: 0 0 15px rgba(255, 215, 0, 0.1); }
+            100% { border-color: rgba(0, 255, 163, 0.6); box-shadow: 0 0 30px rgba(0, 255, 163, 0.25); }
         }
 
-        .screen.active {
-            display: block;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(16px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-6px); }
-            40%, 80% { transform: translateX(6px); }
-        }
-
-        .shake-screen {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        .pill-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 42, 133, 0.15);
-            border: 1px solid rgba(255, 42, 133, 0.4);
-            color: #ff7ebb;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            padding: 5px 14px;
-            border-radius: 999px;
-            margin-bottom: 12px;
-        }
-
-        h1 {
-            font-size: 26px;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            color: var(--text-sub);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .input-box {
-            margin-bottom: 18px;
-            text-align: left;
-        }
-
-        .input-box label {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: var(--neon-cyan);
-            margin-bottom: 8px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 15px 18px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 2px solid #334155;
-            border-radius: 16px;
-            color: #fff;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.25s ease;
-        }
-
-        .input-field:focus {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 16px rgba(255, 42, 133, 0.35);
-        }
-
-        /* GENDER SELECTOR BUTTONS */
-        .gender-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .gender-btn {
-            background: rgba(15, 23, 42, 0.7);
-            border: 2px solid #334155;
-            border-radius: 16px;
-            padding: 14px 10px;
-            color: var(--text-sub);
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .gender-btn.selected-male {
-            border-color: var(--neon-cyan);
-            background: rgba(6, 182, 212, 0.18);
-            color: #fff;
-            box-shadow: 0 0 16px rgba(6, 182, 212, 0.3);
-        }
-
-        .gender-btn.selected-female {
-            border-color: var(--neon-pink);
-            background: rgba(255, 42, 133, 0.18);
-            color: #fff;
-            box-shadow: 0 0 16px rgba(255, 42, 133, 0.3);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 16px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: transform 0.15s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn-neon {
-            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
-            color: white;
-            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.4);
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: #0b2212;
-            font-weight: 900;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
-        }
-
-        .btn-copy {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            margin-bottom: 12px;
-        }
-
-        /* HUD & Question UI */
-        .hud-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .hud-title {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hud-counter {
-            font-size: 12px;
-            font-weight: 900;
-            background: #1f2937;
-            padding: 4px 10px;
-            border-radius: 8px;
-            color: var(--neon-yellow);
-        }
-
-        .progress-track {
-            height: 6px;
-            background: #1f2937;
-            border-radius: 99px;
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .progress-thumb {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            transition: width 0.3s ease;
-        }
-
-        .question-bubble {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-left: 4px solid var(--neon-pink);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 18px;
-            font-size: 17px;
-            font-weight: 800;
-            line-height: 1.45;
-            color: #fff;
-            min-height: 75px;
-            display: flex;
-            align-items: center;
-        }
-
-        .options-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .opt-btn {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1.5px solid #334155;
-            color: #f1f5f9;
-            padding: 15px 18px;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 700;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .opt-btn:hover {
-            border-color: var(--neon-purple);
-            background: rgba(139, 92, 246, 0.15);
-        }
-
-        .opt-btn:active {
-            transform: scale(0.98);
-        }
-
-        .opt-tag {
-            width: 26px;
-            height: 26px;
-            border-radius: 8px;
-            background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 900;
-            color: var(--text-sub);
-            flex-shrink: 0;
-        }
-
-        .opt-btn.correct {
-            border-color: var(--neon-green) !important;
-            background: rgba(16, 185, 129, 0.25) !important;
-            color: #a7f3d0 !important;
-        }
-
-        .opt-btn.wrong {
-            border-color: var(--danger) !important;
-            background: rgba(244, 63, 94, 0.25) !important;
-            color: #fecdd3 !important;
-        }
-
-        .url-card {
-            background: #090d16;
-            border: 1px dashed #475569;
-            border-radius: 16px;
-            padding: 14px;
-            margin: 18px 0;
-            font-size: 12px;
-            color: var(--neon-cyan);
-            word-break: break-all;
-            line-height: 1.4;
-        }
-
-        .score-box {
-            width: 140px;
-            height: 140px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(6, 182, 212, 0.2));
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 35px rgba(255, 42, 133, 0.25);
-        }
-
-        .score-val {
-            font-size: 46px;
-            font-weight: 900;
-            line-height: 1;
-            background: linear-gradient(135deg, #fff, var(--neon-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .score-cap {
-            font-size: 12px;
-            color: var(--text-sub);
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .roast-pill {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 22px;
-            line-height: 1.4;
-        }
-
-        .ad-zone {
-            margin-top: 22px;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            text-align: center;
-            font-size: 10px;
-            font-weight: 800;
-            color: #475569;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        @keyframes blink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
         }
     </style>
 </head>
 <body>
 
-<canvas id="confetti-canvas"></canvas>
+    <canvas id="confetti-canvas"></canvas>
 
-<div class="container" id="quiz-card">
+    <div class="container">
 
-    <!-- 1. CREATOR INTRO -->
-    <div id="screen-creator-intro" class="screen active">
-        <!-- 1. YAHAN HTML PASTE HOGA (Style tag ke bahar) -->
-    <div class="reward-highlight-banner">
-        <div class="reward-top-tag">
-            <span class="pulse-dot"></span> 
-            WORLD'S 1ST REAL PAYING DARE GAME ⚡
-        </div>
-        <h3 class="reward-main-title">
-            Dosti Test Karo & Jeeto <span class="cash-glow">Rs. 3,000 Cash! 💸</span>
-        </h3>
-        <p class="reward-sub-text">
-            Khelte sab hain, Cash sirf <span>True Best Friends</span> jeet-te hain!
-        </p>
-        <div class="payout-badges">
-            <span class="badge-pill">⚡ Instant EasyPaisa</span>
-            <span class="badge-pill">📲 Direct JazzCash</span>
-        </div>
-    </div>
-
-    <!-- 2. Yeh pehle se likha hua hai aapke paas -->
-    <div class="badge">🔥 2026 GEN Z DARE</div>
-    <h1>Real Friend ya Sirf Delulu? 💀</h1>
-        <span class="pill-badge">🔥 2026 Gen Z Dare</span>
-        <h1>Real Friend ya Sirf Delulu? 💀</h1>
-        <p>Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
-
-        <div class="input-box">
-            <label>Tumhara Cool Naam</label>
-            <input type="text" id="creator-name" class="input-field" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
-        </div>
-
-        <div class="input-box">
-            <label>Aap Kaun Hain?</label>
-            <div class="gender-grid">
-                <button type="button" id="btn-male" class="gender-btn selected-male" onclick="setGender('m')">
-                    👦 Boy
-                </button>
-                <button type="button" id="btn-female" class="gender-btn" onclick="setGender('f')">
-                    👧 Girl
-                </button>
+        <!-- ================= SCREEN 1: WELCOME & START ================= -->
+        <div id="screen-welcome" class="screen active">
+            <!-- REWARD BANNER -->
+            <div class="reward-highlight-banner">
+                <div class="reward-top-tag">
+                    <span class="pulse-dot"></span> 
+                    WORLD'S 1ST REAL PAYING DARE GAME ⚡
+                </div>
+                <h3 class="reward-main-title">
+                    Dosti Test Karo & Jeeto <span class="cash-glow">Rs. 3,000 Cash! 💸</span>
+                </h3>
+                <p class="reward-sub-text">
+                    Khelte sab hain, Cash sirf <span>True Best Friends</span> jeet-te hain!
+                </p>
             </div>
+
+            <!-- SINGLE TITLE -->
+            <div class="badge">🔥 2026 GEN Z DARE</div>
+            <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
+            <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
+
+            <!-- TOP 3 WINNERS SHOWCASE -->
+            <div class="winners-card">
+                <div class="winners-header">
+                    <span>🏆 Top 3 Winners (Rs. 3,000 Pool)</span>
+                    <span class="live-tag">● Live Contest</span>
+                </div>
+                <div class="podium-grid">
+                    <!-- 2nd Place -->
+                    <div class="podium-item second">
+                        <div class="podium-rank">🥈</div>
+                        <div class="podium-name">Ayesha K.</div>
+                        <div class="podium-score">10/10 (12s)</div>
+                        <div class="podium-prize">Rs. 1,000</div>
+                    </div>
+                    <!-- 1st Place -->
+                    <div class="podium-item first">
+                        <div class="podium-rank">👑</div>
+                        <div class="podium-name">Hamza R.</div>
+                        <div class="podium-score">10/10 (11s)</div>
+                        <div class="podium-prize">Rs. 1,500</div>
+                    </div>
+                    <!-- 3rd Place -->
+                    <div class="podium-item third">
+                        <div class="podium-rank">🥉</div>
+                        <div class="podium-name">Zain M.</div>
+                        <div class="podium-score">9/10 (14s)</div>
+                        <div class="podium-prize">Rs. 500</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM CONTROLS -->
+            <div class="input-group">
+                <label>TUMHARA COOL NAAM</label>
+                <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
+            </div>
+
+            <div id="gender-group" class="input-group">
+                <label>AAP KAUN HAIN?</label>
+                <div class="gender-select">
+                    <button class="gender-btn active" onclick="setGender('boy')">👦 Boy</button>
+                    <button class="gender-btn" onclick="setGender('girl')">👧 Girl</button>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
+
+            <div class="ad-zone">SPONSOR AD UNIT</div>
         </div>
 
-        <button class="btn btn-neon" onclick="startQuizBuilding()">
-            Game Shuru Karo ➔
-        </button>
+        <!-- ================= SCREEN 2: THE 10 QUESTIONS ================= -->
+        <div id="screen-quiz" class="screen">
+            <div class="quiz-progress">
+                <span id="question-number">Question 1/10</span>
+                <span id="anti-cheat-status" style="color: var(--accent);">● Shield Protected</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-bar" class="progress-fill"></div>
+            </div>
 
-        <div class="ad-zone">Sponsor Ad Unit</div>
-    </div>
+            <div id="question-text" class="question-box">Loading question...</div>
+            <div id="options-container" class="options-list"></div>
 
-    <!-- 2. GAME PLAYING SCREEN -->
-    <div id="screen-game" class="screen">
-        <div class="hud-header">
-            <span id="hud-title" class="hud-title">Apna Answer Chuno</span>
-            <span id="hud-counter" class="hud-counter">1/10</span>
-        </div>
-        <div class="progress-track">
-            <div id="progress-bar" class="progress-thumb"></div>
-        </div>
-
-        <div id="question-text" class="question-bubble">Question loading...</div>
-        <div id="options-holder" class="options-stack"></div>
-
-        <div class="ad-zone">Sponsor Ad Unit</div>
-    </div>
-
-    <!-- 3. CREATOR SHARE SCREEN -->
-    <div id="screen-share" class="screen">
-        <span class="pill-badge">🎯 Link Cooked Ho Gaya!</span>
-        <h1>Boom! Dare Ready Hai! 🔥</h1>
-        <p>Yeh link copy karke WhatsApp status aur groups mein bhej do aur dekho kaun pass hota hai aur kaun fail!</p>
-
-        <div id="share-link-preview" class="url-card">Generating secret link...</div>
-
-        <button class="btn btn-copy" onclick="copyDareLink()">
-            📋 Secret Link Copy Karo
-        </button>
-
-        <button class="btn btn-whatsapp" onclick="dispatchWhatsApp()">
-            💬 WhatsApp Pe Challenge Bhejo
-        </button>
-
-        <div class="ad-zone">Sponsor Ad Unit</div>
-    </div>
-
-    <!-- 4. FRIEND INVITATION -->
-    <div id="screen-friend-start" class="screen">
-        <span class="pill-badge">⚠️ Friendship Audit</span>
-        <h1><span id="target-name">Dost</span> Ka Vibe Check!</h1>
-        <p>Dekhte hain tum <strong id="target-highlight" style="color:var(--neon-pink);">unhe</strong> kitna jante ho ya bas fake friendship chala rahe ho? 10 sawal, zero cheating!</p>
-
-        <div class="input-box">
-            <label>Tumhara Asli Naam</label>
-            <input type="text" id="friend-name" class="input-field" placeholder="Apna naam daalo..." autocomplete="off">
+            <div class="ad-zone">SPONSOR AD UNIT</div>
         </div>
 
-        <button class="btn btn-neon" onclick="acceptFriendChallenge()">
-            Challenge Accept Karo ⚡
-        </button>
+        <!-- ================= SCREEN 3: CREATOR SHARE LINK ================= -->
+        <div id="screen-share" class="screen">
+            <div style="font-size: 3rem; margin-bottom: 8px;">🔥</div>
+            <h1>Aapka Dare Link Ready Hai!</h1>
+            <p class="subtitle">Isko apne WhatsApp Status aur doston ke groups mein share karein. Top 3 highest scorers ko Sunday ko prize milega!</p>
 
-        <div class="ad-zone">Sponsor Ad Unit</div>
-    </div>
+            <div class="input-group">
+                <label>AAPKA VIRAL LINK</label>
+                <input type="text" id="share-link-input" readonly>
+            </div>
 
-    <!-- 5. FINAL REPORT SCREEN -->
-    <div id="screen-score" class="screen">
-        <span id="score-badge" class="pill-badge">Audit Report 📊</span>
-        <h1 id="score-headline">Result Aa Gaya!</h1>
-        <p id="score-subtext">Tumhari friendship score:</p>
+            <button class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
+            <button class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
 
-        <div class="score-box">
-            <span id="final-score" class="score-val">0</span>
-            <span class="score-cap">Out of 10</span>
+            <div class="ad-zone">SPONSOR AD UNIT</div>
         </div>
 
-        <div id="verdict-roast" class="roast-pill">Verdict loading...</div>
+        <!-- ================= SCREEN 4: FRIEND'S RESULT ================= -->
+        <div id="screen-result" class="screen">
+            <div id="result-icon" style="font-size: 3.2rem; margin-bottom: 6px;">🎉</div>
+            <h1 id="result-title">Result Calculation</h1>
+            <p id="result-subtitle" class="subtitle">Checking your friendship level...</p>
 
-        <button class="btn btn-whatsapp" onclick="shareScoreToCreator()">
-            💬 Apna Score <span id="target-friend-label">Dost</span> Ko Bhejo
-        </button>
+            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">Final Score</div>
+                <div id="score-display" style="font-size: 2.5rem; font-weight: 900; color: var(--accent);">0/10</div>
+                <p id="roast-comment" style="font-size: 0.85rem; font-weight: 600; margin-top: 4px;">Roast loading...</p>
+            </div>
 
-        <button class="btn btn-neon" style="margin-top: 12px;" onclick="createNewDare()">
-            🔥 Apna Khud Ka Dare Banao
-        </button>
+            <button class="btn-primary" onclick="createOwnQuizRedirect()">🔥 Apna Khud Ka Dare Banao</button>
 
-        <div class="ad-zone">Sponsor Ad Unit</div>
+            <div class="ad-zone">SPONSOR AD UNIT</div>
+        </div>
+
     </div>
 
-</div>
+    <!-- ================= AAPKA NAYA ADSTERRA SCRIPT ================= -->
+    <script src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
 
-<script>
-    // -------------------------------------------------------------
-    // 1. CHIPTUNE AUDIO SYNTHESIZER
-    // -------------------------------------------------------------
-    let audioCtx = null;
-
-    function initAudio() {
-        if (!audioCtx) {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            audioCtx = new AudioContext();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    }
-
-    function playBeep(freq = 440, type = 'sine', duration = 0.08) {
-        try {
-            initAudio();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = type;
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
-        } catch (e) {}
-    }
-
-    function playStartFanfare() {
-        try {
-            initAudio();
-            const notes = [261.63, 329.63, 392.00, 523.25];
-            notes.forEach((note, index) => {
-                setTimeout(() => playBeep(note, 'triangle', 0.12), index * 70);
-            });
-        } catch (e) {}
-    }
-
-    function playWinSound() {
-        try {
-            initAudio();
-            const winNotes = [392.00, 523.25, 659.25, 783.99, 1046.50];
-            winNotes.forEach((freq, idx) => {
-                setTimeout(() => playBeep(freq, 'sine', 0.2), idx * 90);
-            });
-        } catch (e) {}
-    }
-
-    function playFailSound() {
-        try {
-            initAudio();
-            const failNotes = [440, 415.3, 392, 349.23];
-            failNotes.forEach((freq, idx) => {
-                setTimeout(() => playBeep(freq, 'sawtooth', 0.22), idx * 130);
-            });
-        } catch (e) {}
-    }
-
-    // -------------------------------------------------------------
-    // 2. QUESTIONS DATASET WITH GENDER CONJUGATIONS
-    // -------------------------------------------------------------
-    const quizDataset = [
-        {
-            q: "Agar humara random lafda ho jaye kisi se, toh {N_POSS} pehla reaction?",
-            options: [
-                { m: "Seedha ladne chala jaunga 🥊", f: "Seedha ladne chali jaungi 🥊", fm: "Seedha ladne chala jayega 🥊", ff: "Seedha ladne chali jayegi 🥊" },
-                { m: "Side se video bana ke reels pe dalunga 📱", f: "Side se video bana ke reels pe dalungi 📱", fm: "Side se video bana ke reels pe dalega 📱", ff: "Side se video bana ke reels pe dalegi 📱" },
-                { m: "Dono ko shaant karane ki acting karunga 🕊️", f: "Dono ko shaant karane ki acting karungi 🕊️", fm: "Dono ko shaant karane ki acting karega 🕊️", ff: "Dono ko shaant karane ki acting karegi 🕊️" },
-                { m: "Wahan se sabse pehle bhaag jaunga 🏃", f: "Wahan se sabse pehle bhaag jaungi 🏃", fm: "Wahan se sabse pehle bhaag jayega 🏃", ff: "Wahan se sabse pehle bhaag jayegi 🏃" }
-            ]
-        },
-        {
-            q: "{N_POSS} sabse bada Toxic Trait kya hai? (Real Talk 💀)",
-            options: [
-                "Online ho kar reply na dena",
-                "Hamesha har jagah late aana",
-                "Overthink karke scene banana",
-                "Faltu baaton par zyada hasna"
-            ]
-        },
-        {
-            q: "{N_POSS} late night 3 AM mood kya hota hai?",
-            options: [
-                "Existential crisis & deep thoughts",
-                "Midnight biryani ya snacks crave karna",
-                "Reels aur memes scroll karte rehna",
-                "Ghar walon ki tarah chup chaap sona"
-            ]
-        },
-        {
-            q: "Agar {N_POSS} account mein achanak 1 Crore aa jayein?",
-            options: [
-                { m: "Duniya ghoomne nikal jaunga ✈️", f: "Duniya ghoomne nikal jaungi ✈️", fm: "Duniya ghoomne nikal jayega ✈️", ff: "Duniya ghoomne nikal jayegi ✈️" },
-                "iPhone aur gaari le kar show-off 😎",
-                "Khamoshi se invest karke crypto/stocks 📈",
-                { m: "Sab doston ko bula kar grand party doonga 🍕", f: "Sab doston ko bula kar grand party doongi 🍕", fm: "Sab doston ko bula kar grand party dega 🍕", ff: "Sab doston ko bula kar grand party degi 🍕" }
-            ]
-        },
-        {
-            q: "{N_POSS} comfort drink kya hai?",
-            options: [
-                "Karak Dhaba Chai ☕",
-                "Iced Cold Coffee 🥤",
-                "Sting / Energy Drink ⚡",
-                { m: "Thanda Paani (Hydration King) 💧", f: "Thanda Paani (Hydration Queen) 💧" }
-            ]
-        },
-        {
-            q: "{N_POSS} attention span kitna hai?",
-            options: [
-                "Goldfish jaisa (10 seconds) 🐠",
-                { m: "Agar topic pasand ho toh ghanton sununga 🎧", f: "Agar topic pasand ho toh ghanton sunungi 🎧", fm: "Agar topic pasand ho toh ghanton sunega 🎧", ff: "Agar topic pasand ho toh ghanton sunegi 🎧" },
-                "Bas meme dekhte waqt focus rehta hai",
-                "Bohot disciplined aur focused"
-            ]
-        },
-        {
-            q: "{N_POSS} dream vibe trip kahan ki hai?",
-            options: [
-                "Northern Mountains & Campfire 🏔️",
-                "Dubai / Neon City aesthetic 🏙️",
-                "Beach side chill & sunsets 🏖️",
-                "Ghar ka bistar aur AC on 🛏️"
-            ]
-        },
-        {
-            q: "Agar {N_SUBJ} chup chaap ho {VERB_HO}, toh iska kya matlab hai?",
-            options: [
-                "Mood bohot heavy kharab hai 😤",
-                "Neend aa rahi hai bas 😴",
-                "Koi gehri scheming chal rahi hai 🧠",
-                "Battery 1% bachi hai social hone ki"
-            ]
-        },
-        {
-            q: "Hum dono ki dosti ka main base kya hai?",
-            options: [
-                "Dono ka humor unhinged hai 💀",
-                "Ek doosre ko roast karne ki aadat",
-                "Life ke har dukh ka rona 🫂",
-                "Bina bole baat samajh aana ✨"
-            ]
-        },
-        {
-            q: "Aakhri sawal: Kya {N_SUBJ} main character {VERB_HAI} ya background NPC?",
-            options: [
-                "100% Main Character Energy 💅",
-                { m: "Chaos create karne wala villain 😈", f: "Chaos create karne wali villain 😈" },
-                "Chill background character 🍿",
-                { m: "Bas vibes pe chal raha hoon 🧘", f: "Bas vibes pe chal rahi hoon 🧘", fm: "Bas vibes pe chal raha hai 🧘", ff: "Bas vibes pe chal rahi hai 🧘" }
-            ]
-        }
-    ];
-
-    // -------------------------------------------------------------
-    // 3. STATE & HELPERS
-    // -------------------------------------------------------------
-    let currentIdx = 0;
-    let creatorAnswers = [];
-    let friendAnswers = [];
-    let isFriendMode = false;
-    let creatorName = "";
-    let friendName = "";
-    let creatorGender = "m"; // 'm' or 'f'
-    let finalDareUrl = "";
-
-    function setGender(gen) {
-        creatorGender = gen;
-        playBeep(480, 'sine', 0.05);
-        if (gen === 'm') {
-            document.getElementById('btn-male').className = "gender-btn selected-male";
-            document.getElementById('btn-female').className = "gender-btn";
-        } else {
-            document.getElementById('btn-female').className = "gender-btn selected-female";
-            document.getElementById('btn-male').className = "gender-btn";
-        }
-    }
-
-    function switchScreen(id) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Helper: Dynamic Grammar Formatter
-    function resolveChoiceText(choice) {
-        if (typeof choice === 'string') return choice;
-        if (!isFriendMode) {
-            return creatorGender === 'f' ? choice.f : choice.m;
-        } else {
-            // Friend viewing creator
-            if (creatorGender === 'f') {
-                return choice.ff || choice.f;
-            } else {
-                return choice.fm || choice.m;
+    <!-- ================= FULL JAVASCRIPT ENGINE ================= -->
+    <script>
+        // --- 1. QUESTIONS DATABASE (10 Gen Z Dare Questions) ---
+        const DARE_QUESTIONS = [
+            {
+                q: "Agar hum kisi emergency mein phans jayein toh mera sabse pehla reaction kya hoga?",
+                options: ["Panic karke chillana 😱", "Cool dimaagh se solution nikalna 😎", "Sab kuch tum par chhod dena 😂", "Meme banakar post karna 📱"]
+            },
+            {
+                q: "Meri sabse badi toxic aadat kaunsi hai?",
+                options: ["Messages late seen karna ⏳", "Bina wajah overthink karna 🧠", "Achanak plan cancel karna 🏃‍♂️", "Khana share na karna 🍕"]
+            },
+            {
+                q: "Mujhe free time mein sabse zyada kya karna pasand hai?",
+                options: ["Reels & TikTok scroll karna 📱", "Ghanton sote rehna 😴", "Ghoomna phirna aur hangout 🚗", "Deep baatein karna ☕"]
+            },
+            {
+                q: "Agar mujhe 1 Crore rupaye mil jayein toh main pehle kya karunga?",
+                options: ["World tour par nikal jaunga ✈️", "iPhone & luxury shopping 🛍️", "Apna business shuru karunga 💼", "Sabko bhool kar gayab ho jaunga 👻"]
+            },
+            {
+                q: "Mera gussa control karne ka sabse best tareeqa kya hai?",
+                options: ["Mera favourite food khilana 🍔", "Thodi der akela chhod dena 🤫", "Mazaakiya baat karke hasana 😂", "Sorry bol dena seedha 🙏"]
+            },
+            {
+                q: "Agar humari ladaai ho jaye, toh pehle manane kaun aayega?",
+                options: ["Hamesha main hi aata hoon 🙄", "Tum aate ho 😇", "Dono ego mein chup rehte hain 💀", "Koi teesra dost sulah karwata hai 🤝"]
+            },
+            {
+                q: "Meri life ka sabse bada secret kya tum jante ho?",
+                options: ["Haan sab pata hai 100% 🤫", "Kuch baatein pata hain 50% 🤔", "Bilkul andaza nahi hai ❌", "Tum jhooth bol rahe ho koi secret nahi 🤣"]
+            },
+            {
+                q: "Party ya wedding par mera sabse favourite spot kaunsa hota hai?",
+                options: ["Khaane ka counter 🍗", "Photoshoot & aesthetic selfies 📸", "Chupchap corner mein bethna 🪑", "Dance floor par aag lagana 🔥"]
+            },
+            {
+                q: "Agar main subah 3 baje call karoon, toh tumhara reaction kya hoga?",
+                options: ["Foran call utha kar poonchoge 📞", "Silent karke so jaoge 😴", "Galiyan doge neend kharab karne par 🤬", "Sochenge koi serious masla ho gaya 🚨"]
+            },
+            {
+                q: "Aapke khayal mein hamari dosti kitne saal chalegi?",
+                options: ["Zindagi bhar (Soulmates) ♾️", "Jab tak faida hai tab tak 💀", "Shadi ke baad bhool jaoge 💍", "Real dost kabhi door nahi hote ❤️"]
             }
+        ];
+
+        // --- 2. STATE MANAGEMENT ---
+        let selectedGender = 'boy';
+        let currentQuestionIndex = 0;
+        let creatorAnswers = [];
+        let friendAnswers = [];
+        let isFriendMode = false;
+        let quizTargetData = null;
+
+        // --- 3. ANTI-CHEAT ENGINE (10-Second Timer + Shields) ---
+        const SPEED_LIMIT_SECONDS = 10;
+        let quizStartTime = null;
+        let tabSwitchCount = 0;
+        let isAntiCheatActive = false;
+
+        // DevTools & Right-Click Lock
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.keyCode === 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+               (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Tab Switch Detection
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden && isAntiCheatActive) {
+                tabSwitchCount++;
+                if (tabSwitchCount === 1) {
+                    alert("⚠️ CHEATING WARNING: Tab ya WhatsApp switch mat karein! Agli baar test disqualify ho jayega.");
+                } else if (tabSwitchCount >= 2) {
+                    alert("❌ DISQUALIFIED: Aapne quiz ke dauran browser change kiya. Attempt cancel!");
+                    isAntiCheatActive = false;
+                    location.reload();
+                }
+            }
+        });
+
+        function startAntiCheat() {
+            quizStartTime = Date.now();
+            isAntiCheatActive = true;
+            tabSwitchCount = 0;
         }
-    }
 
-    // URL Parsing on startup
-    window.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const encoded = urlParams.get('q');
+        function validateAntiCheatSubmission() {
+            if (!quizStartTime) return false;
+            let timeTaken = (Date.now() - quizStartTime) / 1000;
+            if (timeTaken < SPEED_LIMIT_SECONDS) {
+                alert("⚠️ SUSPICIOUS ACTIVITY: Aapne " + Math.round(timeTaken) + "s mein quiz solve kar liya! Minimum 10 seconds zaroori hain. Attempt invalid!");
+                isAntiCheatActive = false;
+                location.reload();
+                return false;
+            }
+            isAntiCheatActive = false;
+            return true;
+        }
 
-        if (encoded) {
+        // --- 4. AUDIO GENERATOR (Web Audio API) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
             try {
-                const payload = JSON.parse(decodeURIComponent(escape(atob(encoded))));
-                if (payload && payload.n && Array.isArray(payload.a) && payload.a.length === 10) {
-                    creatorName = payload.n;
-                    creatorGender = payload.g || 'm';
-                    creatorAnswers = payload.a;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+        function soundClick() { playTone(400, 'sine', 0.1); }
+        function soundWin() { 
+            setTimeout(() => playTone(523, 'triangle', 0.2), 0);
+            setTimeout(() => playTone(659, 'triangle', 0.2), 150);
+            setTimeout(() => playTone(783, 'triangle', 0.4), 300);
+        }
+
+        // --- 5. CONFETTI BURST (Pure Canvas) ---
+        function launchConfetti() {
+            const canvas = document.getElementById("confetti-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            const colors = ['#8b5cf6', '#00FFA3', '#FFD700', '#ec4899', '#3b82f6'];
+
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    r: Math.random() * 6 + 3,
+                    dx: (Math.random() - 0.5) * 12,
+                    dy: (Math.random() - 0.5) * 12 - 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    life: 100
+                });
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let activeParticles = false;
+                particles.forEach(p => {
+                    if (p.life > 0) {
+                        activeParticles = true;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fillStyle = p.color;
+                        ctx.fill();
+                        p.x += p.dx;
+                        p.y += p.dy;
+                        p.dy += 0.2;
+                        p.life--;
+                    }
+                });
+                if (activeParticles) requestAnimationFrame(render);
+            }
+            render();
+        }
+
+        // --- 6. CORE LOGIC & INITIALIZATION ---
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const dareData = urlParams.get('dare');
+
+            if (dareData) {
+                try {
+                    const decoded = JSON.parse(decodeURIComponent(atob(dareData)));
+                    quizTargetData = decoded;
                     isFriendMode = true;
 
-                    document.getElementById('target-name').innerText = creatorName;
-                    document.getElementById('target-highlight').innerText = creatorName;
-                    switchScreen('screen-friend-start');
-                    return;
+                    const hasAttempted = localStorage.getItem("dare_done_" + quizTargetData.n);
+                    if (hasAttempted) {
+                        alert("🚫 Aap pehle hi " + quizTargetData.n + " ka dare solve kar chuke hain! Score: " + hasAttempted + "/10");
+                    }
+
+                    document.getElementById('welcome-title').innerText = decoded.n + " Ka Friendship Test! 💀";
+                    document.getElementById('welcome-sub').innerText = decoded.n + " ne aapke liye yeh dare set kiya hai. Dekhein aap kitne sache dost hain!";
+                    document.getElementById('gender-group').style.display = "none";
+                } catch (e) {
+                    console.log("Normal mode active");
                 }
-            } catch (e) {
-                console.warn("Invalid challenge URL string.");
             }
-        }
-        switchScreen('screen-creator-intro');
-    });
-
-    // Creator starts making quiz
-    function startQuizBuilding() {
-        const input = document.getElementById('creator-name').value.trim();
-        if (!input) {
-            playBeep(220, 'sawtooth', 0.15);
-            document.getElementById('quiz-card').classList.add('shake-screen');
-            setTimeout(() => document.getElementById('quiz-card').classList.remove('shake-screen'), 400);
-            return;
-        }
-        playStartFanfare();
-        creatorName = input;
-        isFriendMode = false;
-        currentIdx = 0;
-        creatorAnswers = [];
-        document.getElementById('hud-title').innerText = "Apna Asli Answer Chuno";
-        switchScreen('screen-game');
-        displayQuestion();
-    }
-
-    // Friend accepts challenge
-    function acceptFriendChallenge() {
-        const input = document.getElementById('friend-name').value.trim();
-        if (!input) {
-            playBeep(220, 'sawtooth', 0.15);
-            document.getElementById('quiz-card').classList.add('shake-screen');
-            setTimeout(() => document.getElementById('quiz-card').classList.remove('shake-screen'), 400);
-            return;
-        }
-        playStartFanfare();
-        friendName = input;
-        currentIdx = 0;
-        friendAnswers = [];
-        document.getElementById('hud-title').innerText = `${creatorName} Ka Answer Guess Karo`;
-        switchScreen('screen-game');
-        displayQuestion();
-    }
-
-    // Render Current Question
-    function displayQuestion() {
-        const currentData = quizDataset[currentIdx];
-        document.getElementById('hud-counter').innerText = `${currentIdx + 1}/10`;
-
-        const pct = ((currentIdx) / quizDataset.length) * 100;
-        document.getElementById('progress-bar').style.width = `${pct}%`;
-
-        // Grammatical substitutions in question title
-        let title = currentData.q;
-        if (!isFriendMode) {
-            title = title.replace(/{N_POSS}/g, "mera")
-                         .replace(/{N_SUBJ}/g, "main")
-                         .replace(/{VERB_HO}/g, "jaun")
-                         .replace(/{VERB_HAI}/g, "hoon");
-        } else {
-            const possessive = `${creatorName} ka`;
-            title = title.replace(/{N_POSS}/g, possessive)
-                         .replace(/{N_SUBJ}/g, creatorName)
-                         .replace(/{VERB_HO}/g, "jaye")
-                         .replace(/{VERB_HAI}/g, "hai");
-        }
-        document.getElementById('question-text').innerText = title;
-
-        const container = document.getElementById('options-holder');
-        container.innerHTML = '';
-
-        currentData.options.forEach((choice, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'opt-btn';
-            const labelText = resolveChoiceText(choice);
-            btn.innerHTML = `<span class="opt-tag">${index + 1}</span> <span>${labelText}</span>`;
-            btn.onclick = () => recordPick(index, btn);
-            container.appendChild(btn);
-        });
-    }
-
-    // Handle Click
-    function recordPick(idx, element) {
-        playBeep(520 + (currentIdx * 30), 'sine', 0.09);
-
-        if (!isFriendMode) {
-            creatorAnswers.push(idx);
-            currentIdx++;
-            if (currentIdx < quizDataset.length) {
-                displayQuestion();
-            } else {
-                completeCreatorQuiz();
-            }
-        } else {
-            friendAnswers.push(idx);
-            if (idx === creatorAnswers[currentIdx]) {
-                element.classList.add('correct');
-            } else {
-                element.classList.add('wrong');
-            }
-
-            setTimeout(() => {
-                currentIdx++;
-                if (currentIdx < quizDataset.length) {
-                    displayQuestion();
-                } else {
-                    completeFriendAudit();
-                }
-            }, 250);
-        }
-    }
-
-    // Generate Dare Link
-    function completeCreatorQuiz() {
-        const payload = {
-            n: creatorName,
-            g: creatorGender,
-            a: creatorAnswers
         };
-        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-        const cleanBaseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-        finalDareUrl = `${cleanBaseUrl}?q=${encoded}`;
 
-        document.getElementById('share-link-preview').innerText = finalDareUrl;
-        playWinSound();
-        triggerConfetti(40);
-        switchScreen('screen-share');
-    }
-
-    function copyDareLink() {
-        playBeep(600, 'triangle', 0.08);
-        navigator.clipboard.writeText(finalDareUrl).then(() => {
-            alert("🔥 Link Copy Ho Gaya! Ab WhatsApp status aur stories pe share karein!");
-        }).catch(() => {
-            alert("Link: " + finalDareUrl);
-        });
-    }
-
-    function dispatchWhatsApp() {
-        const msg = `🔥 *WHO KNOWS ME BETTER? (Gen Z Edition)* 🔥\n\nDekhte hain tum mujhe sach mein kitna jante ho ya bas fake friendship chal rahi hai 💀!\n\n10 sawalon ka jawab do aur apna score dikhao 😈👇\n${finalDareUrl}`;
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-
-    // Friend finishes quiz
-    function completeFriendAudit() {
-        let score = 0;
-        for (let i = 0; i < quizDataset.length; i++) {
-            if (friendAnswers[i] === creatorAnswers[i]) {
-                score++;
+        function setGender(g) {
+            selectedGender = g;
+            soundClick();
+            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) {
+                event.target.classList.add('active');
             }
         }
 
-        document.getElementById('final-score').innerText = score;
-        document.getElementById('target-friend-label').innerText = creatorName;
+        function initiateQuizFlow() {
+            const name = document.getElementById('player-name').value.trim();
+            if (!name) {
+                alert("Pehle apna cool naam toh likho bhai!");
+                return;
+            }
 
-        const roast = document.getElementById('verdict-roast');
-        const headline = document.getElementById('score-headline');
-
-        if (score >= 8) {
-            playWinSound();
-            triggerConfetti(120);
-            headline.innerText = "W RIZZ! Certified Soulmate! 👑";
-            roast.innerHTML = `🔥 <strong>${friendName}</strong>, tum toh literal mind-reader ho! Dosti level: 100% Unbreakable! Party banti hai!`;
-        } else if (score >= 5) {
-            playBeep(440, 'triangle', 0.2);
-            headline.innerText = "Mid Friendship 😐";
-            roast.innerHTML = `⚠️ Thoda sa delulu chal rahe ho! Theek thaak jante ho lekin thoda aur dhyan do ${creatorName} par!`;
-        } else {
-            playFailSound();
-            document.getElementById('quiz-card').classList.add('shake-screen');
-            headline.innerText = "💀 BRO IS COOKED! Fake Friend Alert!";
-            roast.innerHTML = `🤡 Tum toh anjaan nikle! Itna galat guess kaise kar sakte ho? Contact delete karne ka time aa gaya hai!`;
+            soundClick();
+            switchScreen('screen-quiz');
+            startAntiCheat();
+            loadQuestion();
         }
 
-        switchScreen('screen-score');
-    }
+        function loadQuestion() {
+            const qObj = DARE_QUESTIONS[currentQuestionIndex];
+            document.getElementById('question-number').innerText = "Question " + (currentQuestionIndex + 1) + "/10";
+            document.getElementById('progress-bar').style.width = ((currentQuestionIndex + 1) * 10) + "%";
 
-    function shareScoreToCreator() {
-        const score = document.getElementById('final-score').innerText;
-        const msg = `Maine *${creatorName}* ke Friendship Audit mein 10 mein se *${score}* score kiya hai! 😎💀\n\nKya tum mujhse better score kar sakte ho? Test do 👇\n${window.location.href}`;
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-    }
+            let qText = qObj.q;
+            if (isFriendMode && quizTargetData) {
+                qText = qText.replace("mera", quizTargetData.n + " ka").replace("meri", quizTargetData.n + " ki");
+            }
+            document.getElementById('question-text').innerText = qText;
 
-    function createNewDare() {
-        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    }
+            const optsContainer = document.getElementById('options-container');
+            optsContainer.innerHTML = "";
 
-    // -------------------------------------------------------------
-    // 4. CONFETTI ANIMATION ENGINE
-    // -------------------------------------------------------------
-    const canvas = document.getElementById('confetti-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function triggerConfetti(count = 60) {
-        particles = [];
-        const colors = ['#ff2a85', '#8b5cf6', '#06b6d4', '#facc15', '#10b981', '#ffffff'];
-        for (let i = 0; i < count; i++) {
-            particles.push({
-                x: canvas.width / 2,
-                y: canvas.height / 2,
-                w: Math.random() * 8 + 4,
-                h: Math.random() * 8 + 4,
-                dx: (Math.random() - 0.5) * 14,
-                dy: (Math.random() - 0.7) * 16,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                rotation: Math.random() * 360,
-                rotSpeed: (Math.random() - 0.5) * 10,
-                opacity: 1
+            qObj.options.forEach((opt, idx) => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(idx);
+                optsContainer.appendChild(btn);
             });
         }
-        animateConfetti();
-    }
 
-    function animateConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let active = false;
-
-        particles.forEach(p => {
-            p.x += p.dx;
-            p.y += p.dy;
-            p.dy += 0.4;
-            p.rotation += p.rotSpeed;
-            p.opacity -= 0.012;
-
-            if (p.opacity > 0) {
-                active = true;
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate((p.rotation * Math.PI) / 180);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = Math.max(p.opacity, 0);
-                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-                ctx.restore();
+        function selectOption(idx) {
+            soundClick();
+            if (!isFriendMode) {
+                creatorAnswers.push(idx);
+                nextStep();
+            } else {
+                friendAnswers.push(idx);
+                nextStep();
             }
-        });
-
-        if (active) {
-            requestAnimationFrame(animateConfetti);
-        } else {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-    }
-</script>
-<script src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
-<!-- ================= ANTI-CHEAT SYSTEM START ================= -->
-<script>
-// 1. CONFIGURATION & STATE
-const SPEED_LIMIT_SECONDS = 10; // Aapke mutabiq strictly 10 seconds
-let quizStartTime = null;
-let tabSwitchCount = 0;
-let isQuizActive = false; // Jab sawalaat shuru honge tab true hoga
 
-// 2. RIGHT-CLICK & INSPECT ELEMENT LOCK
-document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-document.addEventListener("keydown", function(e) {
-    // F12 key
-    if (e.keyCode === 123) {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (DevTools)
-    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+U (View Source)
-    if (e.ctrlKey && e.keyCode === 85) {
-        e.preventDefault();
-        return false;
-    }
-});
-
-// 3. TAB SWITCH / MINIMIZE DETECTION (WhatsApp / Google roknay ke liye)
-document.addEventListener("visibilitychange", function() {
-    if (document.hidden && isQuizActive) {
-        tabSwitchCount++;
-        if (tabSwitchCount === 1) {
-            alert("⚠️ CHEATING WARNING: Tab ya app switch mat karein! Agli baar test cancel ho jayega.");
-        } else if (tabSwitchCount >= 2) {
-            alert("❌ DISQUALIFIED: Aapne quiz ke dauran WhatsApp/browser switch kiya. Aapka test cancel kar diya gaya hai!");
-            isQuizActive = false;
-            location.reload(); // Page reload karke disqualified kar dega
+        function nextStep() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < DARE_QUESTIONS.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
         }
-    }
-});
 
-// 4. ONE ATTEMPT PER DEVICE LOCK (LocalStorage)
-function checkDeviceAlreadyPlayed(quizId) {
-    const previousScore = localStorage.getItem("dare_completed_" + quizId);
-    if (previousScore !== null) {
-        alert("🚫 Aap is device se pehle hi yeh dare attempt kar chuke hain! Score: " + previousScore + "/10");
-        document.body.innerHTML = `
-            <div style="text-align:center; padding:50px 20px; color:#fff; font-family:sans-serif;">
-                <h1 style="font-size:3rem;">🚫</h1>
-                <h2>Access Blocked!</h2>
-                <p>Aap is dare ko pehle hi attempt kar chuke hain. Multiple attempts allow nahi hain.</p>
-            </div>
-        `;
-        return true;
-    }
-    return false;
-}
+        function finishQuiz() {
+            if (!validateAntiCheatSubmission()) {
+                return;
+            }
 
-// 5. SPEED TIMER (10 SECONDS VALIDATION)
-function startAntiCheatTimer() {
-    quizStartTime = Date.now();
-    isQuizActive = true;
-    tabSwitchCount = 0;
-}
+            if (!isFriendMode) {
+                const creatorName = document.getElementById('player-name').value.trim();
+                const payload = {
+                    n: creatorName,
+                    g: selectedGender,
+                    a: creatorAnswers
+                };
+                const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+                const shareURL = window.location.origin + window.location.pathname + "?dare=" + encoded;
 
-function validateAntiCheat(quizId, finalScore) {
-    // Check total time taken
-    if (!quizStartTime) return false;
-    
-    let timeTakenInSeconds = (Date.now() - quizStartTime) / 1000;
+                document.getElementById('share-link-input').value = shareURL;
+                soundWin();
+                launchConfetti();
+                switchScreen('screen-share');
+            } else {
+                let score = 0;
+                for (let i = 0; i < DARE_QUESTIONS.length; i++) {
+                    if (friendAnswers[i] === quizTargetData.a[i]) {
+                        score++;
+                    }
+                }
 
-    // 10-Second Speed Check
-    if (timeTakenInSeconds < SPEED_LIMIT_SECONDS) {
-        alert("⚠️ Suspicious activity: Aapne " + Math.round(timeTakenInSeconds) + " seconds mein submit kar diya! Minimum 10 seconds zaroori hain. Attempt invalid!");
-        isQuizActive = false;
-        location.reload();
-        return false;
-    }
+                localStorage.setItem("dare_done_" + quizTargetData.n, score);
 
-    // Attempt successful: Device lock active kar dein
-    localStorage.setItem("dare_completed_" + quizId, finalScore);
-    isQuizActive = false;
-    return true;
-}
-</script>
-<!-- ================== ANTI-CHEAT SYSTEM END =================== --></body>
+                document.getElementById('score-display').innerText = score + "/10";
+                const friendName = document.getElementById('player-name').value.trim();
+
+                let roast = "";
+                let icon = "😐";
+                if (score >= 8) {
+                    icon = "👑";
+                    roast = "Absolute Legend! Tum sach mein " + quizTargetData.n + " ke soulmate dost ho!";
+                    soundWin();
+                    launchConfetti();
+                } else if (score >= 5) {
+                    icon = "😎";
+                    roast = "Theek thaak hai! Na fake dost ho na 100% sacha dost!";
+                } else {
+                    icon = "💀";
+                    roast = "Wah bhai wah! Sirf naame ke dost ho, bilkul delulu nikle!";
+                }
+
+                document.getElementById('result-icon').innerText = icon;
+                document.getElementById('result-title').innerText = friendName + " vs " + quizTargetData.n;
+                document.getElementById('roast-comment').innerText = roast;
+
+                switchScreen('screen-result');
+            }
+        }
+
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function copyViralLink() {
+            soundClick();
+            const copyText = document.getElementById("share-link-input");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            alert("✅ Link Copied! Ab WhatsApp status aur groups mein aag laga do!");
+        }
+
+        function shareToWhatsApp() {
+            soundClick();
+            const link = document.getElementById("share-link-input").value;
+            const text = "🔥 *REAL FRIEND YA SIRF DELULU? 💀*\n\nMaine apna friendship challenge banaya hai. Dekhte hain kaun mujhe 100% janta hai!\n\nTop highest scorers ko cash reward pool mil raha hai 👇\n" + link;
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
+        }
+
+        function createOwnQuizRedirect() {
+            soundClick();
+            window.location.href = window.location.origin + window.location.pathname;
+        }
+    </script>
+</body>
 </html>
