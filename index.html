@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Knows Me Better? - Friendship Dare Quiz</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #8b5cf6;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 14px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s border;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            margin-top: 12px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .progress-box {
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background: #334155;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: #0f172a;
+            border: 2px solid #334155;
+            color: #e2e8f0;
+            padding: 14px 16px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #1e1b4b;
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .option-btn.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+        }
+
+        .option-btn.wrong {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+        }
+
+        .share-box {
+            background: #0f172a;
+            border: 1px dashed #475569;
+            border-radius: 14px;
+            padding: 14px;
+            margin: 15px 0;
+            word-break: break-all;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .score-number {
+            font-size: 38px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-total {
+            font-size: 14px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .ad-placeholder {
+            margin-top: 20px;
+            padding: 12px;
+            border: 1px dashed #334155;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- SCREEN 1: WELCOME SCREEN (CREATOR) -->
+    <div id="screen-welcome" class="screen active">
+        <span class="badge">Viral 2026 Edition</span>
+        <h1>Who Knows You Best? 🔥</h1>
+        <p>Apne baare mein 10 sawalaat ke jawab dein, link generate karein aur doston ko challenge karein!</p>
+        
+        <div class="input-group">
+            <label for="creator-name">Apna Naam Likhein:</label>
+            <input type="text" id="creator-name" placeholder="E.g. Ali, Hamza, Sara..." autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" onclick="startCreatingQuiz()">
+            Quiz Start Karein ➔
+        </button>
+
+        <div class="ad-placeholder">Sponsor Ad Slot</div>
+    </div>
+
+    <!-- SCREEN 2: QUESTION ANSWERING SCREEN -->
+    <div id="screen-quiz" class="screen">
+        <div class="progress-box">
+            <div class="progress-text">
+                <span id="quiz-player-mode">Apne Answers Chunein</span>
+                <span id="question-number">1 / 10</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-bar" class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <div id="question-title" class="question-card">Question text goes here?</div>
+        <div id="options-container" class="options-grid"></div>
+        <div class="ad-placeholder">Sponsor Ad Slot</div>
+    </div>
+
+    <!-- SCREEN 3: CREATOR LINK READY SCREEN -->
+    <div id="screen-share" class="screen">
+        <span class="badge">Quiz Ready! 🎉</span>
+        <h1>Aapka Quiz Ban Gaya!</h1>
+        <p>Niche diya gaya link copy karein ya direct WhatsApp par send karke doston ka test lein:</p>
+
+        <div id="quiz-link-box" class="share-box">Generating link...</div>
+
+        <button class="btn btn-primary" onclick="copyQuizLink()">
+            📋 Link Copy Karein
+        </button>
+
+        <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()">
+            💬 WhatsApp Par Bhejein
+        </button>
+
+        <div class="ad-placeholder">Sponsor Ad Slot</div>
+    </div>
+
+    <!-- SCREEN 4: FRIEND ENTRY SCREEN -->
+    <div id="screen-friend-welcome" class="screen">
+        <span class="badge">Friend Challenge ⚡</span>
+        <h1><span id="friend-target-name">Friend</span> Ka Test!</h1>
+        <p>Dekhte hain aap <strong id="friend-target-bold" style="color:white;">unhe</strong> kitna jante hain. 10 sawalaat ke sahi jawab do!</p>
+
+        <div class="input-group">
+            <label for="friend-name">Apna Naam Likhein:</label>
+            <input type="text" id="friend-name" placeholder="Aapka naam..." autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" onclick="startFriendQuiz()">
+            Challenge Accept Karein ➔
+        </button>
+
+        <div class="ad-placeholder">Sponsor Ad Slot</div>
+    </div>
+
+    <!-- SCREEN 5: FRIEND RESULT SCREEN -->
+    <div id="screen-result" class="screen">
+        <span class="badge">Score Card 🏆</span>
+        <h1>Aapka Result!</h1>
+        <p id="result-message">Dekhein aapne kitne sahi jawab diye:</p>
+
+        <div class="score-circle">
+            <span id="score-val" class="score-number">0</span>
+            <span class="score-total">out of 10</span>
+        </div>
+
+        <p id="result-verdict" style="text-align: center; font-weight: 700; color: #cbd5e1; margin-bottom: 24px;">Remark...</p>
+
+        <button class="btn btn-whatsapp" onclick="shareScoreOnWhatsApp()">
+            💬 Apna Score <span id="score-share-name">Dost</span> Ko Bhejein
+        </button>
+
+        <button class="btn btn-primary" style="margin-top: 12px;" onclick="resetToNewQuiz()">
+            🔥 Apna Khud Ka Quiz Banayein
+        </button>
+
+        <div class="ad-placeholder">Sponsor Ad Slot</div>
+    </div>
+</div>
+
+<script>
+    // 10 Viral & Fun Friendship Questions
+    const questions = [
+        {
+            q: "Mera favourite khana (food) kaunsa hai?",
+            options: ["Biryani", "Pizza / Burger", "Desi Karahi / Tikka", "Chai Paratha"]
+        },
+        {
+            q: "Agar mujhe free time mile toh main kya karunga?",
+            options: ["Mobile / Reels dekhna", "Sona (Sleep)", "Doston ke sath ghoomna", "Gaming / Movies"]
+        },
+        {
+            q: "Meri sabse badi aadat kya hai?",
+            options: ["Har waqt late aana", "Zaroorat se zyada sochna", "Har baat par hasna", "Baat baat par chillana"]
+        },
+        {
+            q: "Mera favourite season (mausam) kaunsa hai?",
+            options: ["Sardiyan (Winter)", "Garmiyan (Summer)", "Baarish (Monsoon)", "Bahaar (Spring)"]
+        },
+        {
+            q: "Chai ya Coffee?",
+            options: ["Karak Chai", "Cold Coffee", "Black Coffee", "Dono mein se kuch nahi"]
+        },
+        {
+            q: "Subah jaldi uthna ya raat ko der tak jaagna?",
+            options: ["Early Morning Bird ☀️", "Night Owl 🦉", "Jab neend aaye tab!", "Din bhar bas susti"]
+        },
+        {
+            q: "Main gusse mein sabse pehle kya karta hoon?",
+            options: ["Khamosh ho jana", "Chilla kar ladna", "Phone band kar dena", "Has kar taal dena"]
+        },
+        {
+            q: "Agar 1 Crore rupay mil jayein toh pehla kaam?",
+            options: ["World Tour par nikalna", "Business / Investment", "Sab doston ko party", "Bank mein chupana"]
+        },
+        {
+            q: "Meri dream travel destination kaunsi hai?",
+            options: ["Northern Areas / Mountains", "Dubai / Modern City", "Maldives / Sea Beach", "Turkey / Europe"]
+        },
+        {
+            q: "Hamari dosti ka sabse best part kya hai?",
+            options: ["Late night calls/chats", "Bina matlab ki hasi", "Mushkil waqt ka sahara", "Ek doosre ki bezzati karna"]
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let creatorAnswers = [];
+    let friendAnswers = [];
+    let isFriendMode = false;
+    let quizCreatorName = "";
+    let guestFriendName = "";
+    let finalShareableLink = "";
+
+    // DOM Navigation Helper
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // Check if user came from a shared link
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizData = urlParams.get('q');
+
+        if (quizData) {
+            try {
+                // Decode base64 URL payload
+                const decoded = JSON.parse(decodeURIComponent(escape(atob(quizData))));
+                if (decoded && decoded.n && decoded.a && decoded.a.length === 10) {
+                    quizCreatorName = decoded.n;
+                    creatorAnswers = decoded.a;
+                    isFriendMode = true;
+
+                    document.getElementById('friend-target-name').innerText = quizCreatorName;
+                    document.getElementById('friend-target-bold').innerText = quizCreatorName;
+                    showScreen('screen-friend-welcome');
+                    return;
+                }
+            } catch (e) {
+                console.error("Invalid quiz payload in URL");
+            }
+        }
+        showScreen('screen-welcome');
+    };
+
+    // Mode 1: Creator Starts
+    function startCreatingQuiz() {
+        const nameInput = document.getElementById('creator-name').value.trim();
+        if (!nameInput) {
+            alert("Bhai apna naam toh likhein!");
+            return;
+        }
+        quizCreatorName = nameInput;
+        isFriendMode = false;
+        currentQuestionIndex = 0;
+        creatorAnswers = [];
+        document.getElementById('quiz-player-mode').innerText = "Apne Answers Select Karein";
+        showScreen('screen-quiz');
+        renderQuestion();
+    }
+
+    // Mode 2: Friend Starts
+    function startFriendQuiz() {
+        const nameInput = document.getElementById('friend-name').value.trim();
+        if (!nameInput) {
+            alert("Pehle apna naam likhein!");
+            return;
+        }
+        guestFriendName = nameInput;
+        currentQuestionIndex = 0;
+        friendAnswers = [];
+        document.getElementById('quiz-player-mode').innerText = `${quizCreatorName} Ke Answers Guess Karein`;
+        showScreen('screen-quiz');
+        renderQuestion();
+    }
+
+    // Render Question & Options
+    function renderQuestion() {
+        const q = questions[currentQuestionIndex];
+        document.getElementById('question-number').innerText = `${currentQuestionIndex + 1} / ${questions.length}`;
+        
+        // Dynamic Question text for friend vs creator
+        let titleText = q.q;
+        if (isFriendMode) {
+            titleText = titleText.replace(/Mera/g, `${quizCreatorName} ka`).replace(/Meri/g, `${quizCreatorName} ki`).replace(/Main/g, quizCreatorName);
+        }
+        document.getElementById('question-title').innerText = titleText;
+
+        const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+        document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = '';
+
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerHTML = `<span style="opacity:0.5;">#${idx+1}</span> ${opt}`;
+            btn.onclick = () => selectOption(idx);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    // Handle Option Selection
+    function selectOption(selectedIdx) {
+        if (!isFriendMode) {
+            // Creator saving their true answer
+            creatorAnswers.push(selectedIdx);
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                renderQuestion();
+            } else {
+                finishCreatingQuiz();
+            }
+        } else {
+            // Friend guessing
+            friendAnswers.push(selectedIdx);
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                renderQuestion();
+            } else {
+                finishFriendQuiz();
+            }
+        }
+    }
+
+    // Creator Finishes -> Generate Viral Link
+    function finishCreatingQuiz() {
+        const payload = {
+            n: quizCreatorName,
+            a: creatorAnswers
+        };
+        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+        const cleanBaseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        finalShareableLink = `${cleanBaseUrl}?q=${encoded}`;
+
+        document.getElementById('quiz-link-box').innerText = finalShareableLink;
+        showScreen('screen-share');
+    }
+
+    function copyQuizLink() {
+        navigator.clipboard.writeText(finalShareableLink).then(() => {
+            alert("Quiz link copy ho gaya! Ab WhatsApp ya Instagram par share karein.");
+        }).catch(() => {
+            alert("Link: " + finalShareableLink);
+        });
+    }
+
+    function shareOnWhatsApp() {
+        const text = `🔥 *Who Knows Me Better Challenge!* 🔥\n\nDekhte hain tum mujhe kitna jante ho! 10 sawalaat ke sahi jawab do aur apna score dikhao 😈👇\n\n${finalShareableLink}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // Friend Finishes -> Calculate Score
+    function finishFriendQuiz() {
+        let score = 0;
+        for (let i = 0; i < questions.length; i++) {
+            if (friendAnswers[i] === creatorAnswers[i]) {
+                score++;
+            }
+        }
+
+        document.getElementById('score-val').innerText = score;
+        document.getElementById('score-share-name').innerText = quizCreatorName;
+
+        let verdict = "";
+        if (score >= 8) {
+            verdict = "🔥 Bhai tum toh dil ke kareeb ho! 100% True Friend!";
+        } else if (score >= 5) {
+            verdict = "👍 Theek thaak jante ho, thodi aur mehnat ki zaroorat hai!";
+        } else {
+            verdict = "💀 Tum toh anjaan nikle! Dobara se dosti karni padegi!";
+        }
+        document.getElementById('result-verdict').innerText = verdict;
+        showScreen('screen-result');
+    }
+
+    function shareScoreOnWhatsApp() {
+        const score = document.getElementById('score-val').innerText;
+        const text = `Maine *${quizCreatorName}* ke Friendship Quiz mein 10 mein se *${score}* score kiya hai! 😎\n\nKya tum mujhe beat kar sakte ho? Test do 👇\n${window.location.href}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function resetToNewQuiz() {
+        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    }
+</script>
+</body>
+</html>
