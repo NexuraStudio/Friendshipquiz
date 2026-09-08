@@ -4,7 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who Knows Me Better? - Gen Z Friendship Dare</title>
-    <style>
+    <style>/* ================= CASH REWARD BANNER STYLING ================= */
+.reward-highlight-banner {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(0, 255, 163, 0.08));
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    border-radius: 16px;
+    padding: 16px 14px;
+    text-align: center;
+    margin-bottom: 22px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.15), inset 0 0 15px rgba(255, 215, 0, 0.05);
+    backdrop-filter: blur(10px);
+    animation: border-pulse 2.5s infinite alternate;
+}
+
+.reward-top-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 215, 0, 0.18);
+    color: #FFD700;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #00FFA3;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00FFA3;
+    animation: blink 1.2s infinite;
+}
+
+.reward-main-title {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 4px 0 8px 0;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+}
+
+.cash-glow {
+    background: linear-gradient(90deg, #FFE259, #00FFA3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(0, 255, 163, 0.4);
+    font-weight: 900;
+}
+
+.reward-sub-text {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    margin: 0 0 12px 0;
+}
+
+.reward-sub-text span {
+    color: #FFE259;
+    font-weight: 700;
+}
+
+.payout-badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge-pill {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 8px;
+}
+
+/* Animations */
+@keyframes border-pulse {
+    0% {
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+    100% {
+        border-color: rgba(0, 255, 163, 0.6);
+        box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
         :root {
             --bg-deep: #090d16;
             --card-surface: #111827;
