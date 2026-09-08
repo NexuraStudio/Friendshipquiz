@@ -8,21 +8,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- FIREBASE SDK (COMPATIBILITY MODE) -->
+    <!-- FIREBASE REALTIME DATABASE COMPATIBILITY SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(18, 24, 38, 0.85);
+            --card-bg: rgba(18, 24, 38, 0.92);
             --primary: #8b5cf6;
             --primary-glow: rgba(139, 92, 246, 0.5);
             --accent: #00FFA3;
             --accent-glow: rgba(0, 255, 163, 0.4);
             --gold: #FFD700;
+            --gold-glow: rgba(255, 215, 0, 0.4);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
+            --danger: #ff4d4d;
         }
 
         * {
@@ -37,8 +39,8 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.15) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.22) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.18) 0px, transparent 50%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -52,24 +54,24 @@
             width: 100%;
             max-width: 460px;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
             border-radius: 24px;
             padding: 24px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75);
             position: relative;
             z-index: 2;
         }
 
-        /* REWARD BANNER */
+        /* REWARD BANNER (RS. 5,000) */
         .reward-highlight-banner {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 163, 0.1));
-            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.16), rgba(0, 255, 163, 0.1));
+            border: 1.5px solid rgba(255, 215, 0, 0.55);
             border-radius: 16px;
             padding: 14px 12px;
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.18);
             animation: border-pulse 2.5s infinite alternate;
         }
 
@@ -77,7 +79,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.22);
             color: var(--gold);
             font-size: 0.7rem;
             font-weight: 800;
@@ -97,9 +99,9 @@
         }
 
         .reward-main-title {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 900;
-            line-height: 1.3;
+            line-height: 1.35;
             margin-bottom: 4px;
         }
 
@@ -146,7 +148,7 @@
             margin-bottom: 20px;
         }
 
-        /* TOP 3 WINNERS PODIUM */
+        /* TOP 3 WINNERS PODIUM (RS. 5,000 BREAKDOWN) */
         .winners-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -190,10 +192,10 @@
         }
 
         .podium-item.first {
-            background: linear-gradient(180deg, rgba(255, 215, 0, 0.18), rgba(255, 215, 0, 0.05));
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
             border: 1.5px solid var(--gold);
             transform: translateY(-6px);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
         }
 
         .podium-item.second {
@@ -225,7 +227,7 @@
         .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
         input[type="text"] {
             width: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 14px;
             padding: 14px 16px;
@@ -301,15 +303,49 @@
         }
         .option-btn:active { background: rgba(0, 255, 163, 0.15); border-color: var(--accent); }
 
+        /* LIVE DASHBOARD ON CREATOR SCREEN */
+        .live-scoreboard {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 18px;
+            text-align: left;
+        }
+        .live-scoreboard h4 {
+            font-size: 0.82rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .attempts-list {
+            list-style: none;
+            max-height: 160px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+        }
+        .attempts-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 300x250 BANNER AD ZONE */
         .ad-zone {
             margin-top: 18px;
-            padding: 10px;
+            padding: 4px 0;
             border-radius: 12px;
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px dashed rgba(255, 255, 255, 0.15);
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            text-align: center;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            overflow: hidden;
+            width: 100%;
         }
 
         .screen { display: none; }
@@ -327,11 +363,11 @@
 
     <div class="container">
 
-        <!-- SCREEN 1: WELCOME -->
+        <!-- SCREEN 1: WELCOME & START -->
         <div id="screen-welcome" class="screen active">
             <div class="reward-highlight-banner">
                 <div class="reward-top-tag"><span class="pulse-dot"></span> WORLD'S 1ST REAL PAYING DARE GAME ⚡</div>
-                <h3 class="reward-main-title">Dosti Test Karo & Jeeto <span class="cash-glow">Rs. 3,000 Cash! 💸</span></h3>
+                <h3 class="reward-main-title">Dosti Test Karo & Jeeto <span class="cash-glow">Rs. 5,000 Cash! 💸</span></h3>
                 <p class="reward-sub-text">Khelte sab hain, Cash sirf <span>True Best Friends</span> jeet-te hain!</p>
             </div>
 
@@ -339,9 +375,10 @@
             <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
             <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
 
+            <!-- RS. 5,000 PODIUM -->
             <div class="winners-card">
                 <div class="winners-header">
-                    <span>🏆 Top 3 Winners (Rs. 3,000 Pool)</span>
+                    <span>🏆 Top 3 Winners (Rs. 5,000 Pool)</span>
                     <span class="live-tag">● Live Contest</span>
                 </div>
                 <div class="podium-grid">
@@ -349,19 +386,19 @@
                         <div class="podium-rank">🥈</div>
                         <div class="podium-name">Ayesha K.</div>
                         <div class="podium-score">10/10 (12s)</div>
-                        <div class="podium-prize">Rs. 1,000</div>
+                        <div class="podium-prize">Rs. 1,500</div>
                     </div>
                     <div class="podium-item first">
                         <div class="podium-rank">👑</div>
                         <div class="podium-name">Hamza R.</div>
                         <div class="podium-score">10/10 (11s)</div>
-                        <div class="podium-prize">Rs. 1,500</div>
+                        <div class="podium-prize">Rs. 2,500</div>
                     </div>
                     <div class="podium-item third">
                         <div class="podium-rank">🥉</div>
                         <div class="podium-name">Zain M.</div>
                         <div class="podium-score">9/10 (14s)</div>
-                        <div class="podium-prize">Rs. 500</div>
+                        <div class="podium-prize">Rs. 1,000</div>
                     </div>
                 </div>
             </div>
@@ -380,22 +417,34 @@
             </div>
 
             <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
-            <div class="ad-zone">SPONSOR AD UNIT</div>
+
+            <!-- ADSTERRA 300x250 BANNER UNIT -->
+            <div class="ad-zone">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '94fb15afb594d3de1d8be87485510686',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
+            </div>
         </div>
 
         <!-- SCREEN 2: QUESTIONS -->
         <div id="screen-quiz" class="screen">
             <div class="quiz-progress">
                 <span id="question-number">Question 1/10</span>
-                <span style="color: var(--accent);">● Shield Protected</span>
+                <span id="anti-cheat-status" style="color: var(--accent);">● Shield Protected</span>
             </div>
             <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
             <div id="question-text" class="question-box">Loading question...</div>
             <div id="options-container" class="options-list"></div>
-            <div class="ad-zone">SPONSOR AD UNIT</div>
         </div>
 
-        <!-- SCREEN 3: CREATOR SHARE LINK -->
+        <!-- SCREEN 3: CREATOR SHARE LINK & LIVE DASHBOARD -->
         <div id="screen-share" class="screen">
             <div style="font-size: 3rem; margin-bottom: 8px;">🔥</div>
             <h1>Aapka Dare Link Ready Hai!</h1>
@@ -406,9 +455,19 @@
                 <input type="text" id="share-link-input" readonly>
             </div>
 
-            <button class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
+            <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
-            <div class="ad-zone">SPONSOR AD UNIT</div>
+
+            <!-- LIVE SCOREBOARD FOR CREATOR -->
+            <div class="live-scoreboard">
+                <h4>
+                    <span>Doston Ka Live Score</span>
+                    <span id="live-views-count">Views: 0</span>
+                </h4>
+                <ul id="live-attempts-list" class="attempts-list">
+                    <li style="color: var(--text-dim);">Abhi tak kisi dost ne submit nahi kiya...</li>
+                </ul>
+            </div>
         </div>
 
         <!-- SCREEN 4: FRIEND'S RESULT -->
@@ -424,17 +483,30 @@
             </div>
 
             <button class="btn-primary" onclick="createOwnQuizRedirect()">🔥 Apna Khud Ka Dare Banao</button>
-            <div class="ad-zone">SPONSOR AD UNIT</div>
+
+            <!-- EXTRA BANNER ON RESULT SCREEN FOR IMPRESSIONS -->
+            <div class="ad-zone">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '94fb15afb594d3de1d8be87485510686',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
+            </div>
         </div>
 
     </div>
 
-    <!-- ================= ADSTERRA SCRIPT ================= -->
+    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT ================= -->
     <script src="https://pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
 
     <!-- ================= JAVASCRIPT & FIREBASE ENGINE ================= -->
     <script>
-        // --- 0. FIREBASE INITIALIZATION ---
+        // --- 0. FIREBASE REALTIME DB CONFIG ---
         const firebaseConfig = {
             apiKey: "AIzaSyD7pm092-rDb590HkUvK5_FNYe2kKDnuQg",
             authDomain: "quiz-415c2.firebaseapp.com",
@@ -447,7 +519,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // --- UNIQUE DEVICE IDENTIFIER GENERATOR ---
+        // --- 1. UNIQUE DEVICE IDENTIFIER GENERATOR ---
         function getOrCreateDeviceId() {
             let deviceId = localStorage.getItem("dare_device_fingerprint");
             if (!deviceId) {
@@ -457,7 +529,7 @@
             return deviceId;
         }
 
-        // --- 1. QUESTIONS DATABASE ---
+        // --- 2. QUESTIONS REPOSITORY ---
         const DARE_QUESTIONS = [
             { q: "Agar hum kisi emergency mein phans jayein toh mera sabse pehla reaction kya hoga?", options: ["Panic karke chillana 😱", "Cool dimaagh se solution nikalna 😎", "Sab kuch tum par chhod dena 😂", "Meme banakar post karna 📱"] },
             { q: "Meri sabse badi toxic aadat kaunsi hai?", options: ["Messages late seen karna ⏳", "Bina wajah overthink karna 🧠", "Achanak plan cancel karna 🏃‍♂️", "Khana share na karna 🍕"] },
@@ -478,12 +550,13 @@
         let isFriendMode = false;
         let quizTargetData = null;
 
-        // --- 2. ANTI-CHEAT ENGINE ---
+        // --- 3. ANTI-CHEAT SHIELD (10s Speed Check & Tab Switch Detection) ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
         let isAntiCheatActive = false;
 
+        // DevTools & Right-Click Lock
         document.addEventListener("contextmenu", e => e.preventDefault());
         document.addEventListener("keydown", e => {
             if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || (e.ctrlKey && e.keyCode === 85)) {
@@ -492,13 +565,15 @@
             }
         });
 
+        // Tab Switch Protection
         document.addEventListener("visibilitychange", () => {
             if (document.hidden && isAntiCheatActive) {
                 tabSwitchCount++;
+                soundError();
                 if (tabSwitchCount === 1) {
-                    alert("⚠️ WARNING: Tab ya WhatsApp switch mat karein! Agli baar test disqualify ho jayega.");
+                    alert("⚠️ CHEATING WARNING: Tab ya WhatsApp switch mat karein! Agli baar test disqualify ho jayega.");
                 } else if (tabSwitchCount >= 2) {
-                    alert("❌ DISQUALIFIED: Aapne quiz ke dauran browser switch kiya. Attempt cancel!");
+                    alert("❌ DISQUALIFIED: Aapne quiz ke dauran tab switch kiya. Aapka attempt cancel kar diya gaya hai!");
                     isAntiCheatActive = false;
                     location.reload();
                 }
@@ -515,7 +590,8 @@
             if (!quizStartTime) return false;
             let timeTaken = (Date.now() - quizStartTime) / 1000;
             if (timeTaken < SPEED_LIMIT_SECONDS) {
-                alert("⚠️ SUSPICIOUS ACTIVITY: Aapne " + Math.round(timeTaken) + "s mein submit kiya! Minimum 10 seconds zaroori hain.");
+                soundError();
+                alert("⚠️ SUSPICIOUS SPEED: Aapne sirf " + Math.round(timeTaken) + "s liye! Real friends sawal parh kar dete hain. Minimum 10 seconds zaroori hain.");
                 isAntiCheatActive = false;
                 location.reload();
                 return false;
@@ -524,7 +600,7 @@
             return true;
         }
 
-        // --- 3. AUDIO ENGINE ---
+        // --- 4. AUDIO ENGINE (Web Audio API) ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -540,28 +616,29 @@
                 osc.stop(audioCtx.currentTime + duration);
             } catch (e) {}
         }
-        function soundClick() { playTone(400, 'sine', 0.1); }
+        function soundClick() { playTone(440, 'sine', 0.08); }
+        function soundError() { playTone(150, 'sawtooth', 0.25); }
         function soundWin() { 
-            setTimeout(() => playTone(523, 'triangle', 0.2), 0);
-            setTimeout(() => playTone(659, 'triangle', 0.2), 150);
-            setTimeout(() => playTone(783, 'triangle', 0.4), 300);
+            setTimeout(() => playTone(523, 'triangle', 0.18), 0);
+            setTimeout(() => playTone(659, 'triangle', 0.18), 140);
+            setTimeout(() => playTone(783, 'triangle', 0.35), 280);
         }
 
-        // --- 4. CONFETTI CANVAS ---
+        // --- 5. CONFETTI CANVAS ENGINE ---
         function launchConfetti() {
             const canvas = document.getElementById("confetti-canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             let particles = [];
-            const colors = ['#8b5cf6', '#00FFA3', '#FFD700', '#ec4899'];
+            const colors = ['#8b5cf6', '#00FFA3', '#FFD700', '#ec4899', '#38bdf8'];
             for (let i = 0; i < 90; i++) {
                 particles.push({
                     x: canvas.width / 2,
                     y: canvas.height / 2,
                     r: Math.random() * 6 + 3,
-                    dx: (Math.random() - 0.5) * 12,
-                    dy: (Math.random() - 0.5) * 12 - 4,
+                    dx: (Math.random() - 0.5) * 13,
+                    dy: (Math.random() - 0.5) * 13 - 4,
                     color: colors[Math.floor(Math.random() * colors.length)],
                     life: 100
                 });
@@ -578,7 +655,7 @@
                         ctx.fill();
                         p.x += p.dx;
                         p.y += p.dy;
-                        p.dy += 0.2;
+                        p.dy += 0.22;
                         p.life--;
                     }
                 });
@@ -587,18 +664,16 @@
             render();
         }
 
-        // --- 5. INITIALIZATION & VIEW TRACKER ---
+        // --- 6. INITIALIZATION & DATA LOADING ---
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const quizId = urlParams.get('id');
 
             if (quizId) {
-                // TRACK TOTAL VIEWS (Safe Atomic Increment)
-                db.ref('quizzes/' + quizId + '/totalViews').transaction(function(currentViews) {
-                    return (currentViews || 0) + 1;
-                });
+                // ATOMIC VIEW COUNTER
+                db.ref('quizzes/' + quizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
-                // FETCH QUIZ DETAILS
+                // FETCH TARGET QUIZ
                 db.ref('quizzes/' + quizId).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         quizTargetData = snapshot.val();
@@ -632,6 +707,7 @@
         function initiateQuizFlow() {
             const name = document.getElementById('player-name').value.trim();
             if (!name) {
+                soundError();
                 alert("Pehle apna naam toh likho!");
                 return;
             }
@@ -702,6 +778,9 @@
                     soundWin();
                     launchConfetti();
                     switchScreen('screen-share');
+
+                    // ATTACH LIVE DASHBOARD LISTENER
+                    listenToCreatorDashboard(quizId);
                 }).catch(err => {
                     alert("Database Save Error: " + err.message);
                 });
@@ -718,7 +797,7 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
-                // SAVE ATTEMPT WITH DEVICE ID
+                // RECORD FRIEND ATTEMPT WITH DEVICE ID IN FIREBASE
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
@@ -739,9 +818,33 @@
                 document.getElementById('result-title').innerText = friendName + " vs " + quizTargetData.creator;
                 document.getElementById('roast-comment').innerText = roast;
 
-                if (score >= 8) { soundWin(); launchConfetti(); }
+                if (score >= 8) { soundWin(); launchConfetti(); } else { soundError(); }
                 switchScreen('screen-result');
             }
+        }
+
+        // REAL-TIME DASHBOARD LISTENER FOR CREATOR
+        function listenToCreatorDashboard(quizId) {
+            // Live Views
+            db.ref('quizzes/' + quizId + '/totalViews').on('value', snap => {
+                document.getElementById('live-views-count').innerText = "Views: " + (snap.val() || 0);
+            });
+
+            // Live Attempts List
+            db.ref('quizzes/' + quizId + '/attempts').on('value', snap => {
+                const listEl = document.getElementById('live-attempts-list');
+                listEl.innerHTML = "";
+                if (snap.exists()) {
+                    snap.forEach(child => {
+                        const val = child.val();
+                        const li = document.createElement('li');
+                        li.innerHTML = `<span><strong>${val.name}</strong> (${val.timeSeconds}s)</span> <span style="color:var(--accent); font-weight:700;">${val.score}/10</span>`;
+                        listEl.prepend(li);
+                    });
+                } else {
+                    listEl.innerHTML = "<li style='color:var(--text-dim);'>Abhi tak kisi dost ne submit nahi kiya...</li>";
+                }
+            });
         }
 
         function switchScreen(screenId) {
@@ -756,13 +859,16 @@
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(copyText.value);
-            alert("✅ Link Copied! WhatsApp par doston ko bhejein!");
+
+            const btn = document.getElementById('btn-copy-link');
+            btn.innerText = "✅ Copied! WhatsApp Ready!";
+            setTimeout(() => { btn.innerText = "📋 Copy Link"; }, 2500);
         }
 
         function shareToWhatsApp() {
             soundClick();
             const link = document.getElementById("share-link-input").value;
-            const text = "🔥 *REAL FRIEND YA SIRF DELULU? 💀*\n\nMaine apna challenge set kiya hai. Dekhein kaun mujhe kitna samajhta hai!\n\nTop 3 highest scorers ko Rs. 3,000 cash pool milega 👇\n" + link;
+            const text = "🔥 *REAL FRIEND YA SIRF DELULU? 💀*\n\nMaine apna challenge set kiya hai. Dekhein kaun mujhe kitna samajhta hai!\n\nTop 3 highest scorers ko Rs. 5,000 cash pool milega 👇\n" + link;
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
