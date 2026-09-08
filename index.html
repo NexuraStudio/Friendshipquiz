@@ -56,7 +56,7 @@
         .container {
             width: 100%;
             max-width: 440px;
-            background: rgba(17, 24, 39, 0.92);
+            background: rgba(17, 24, 39, 0.94);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.12);
@@ -108,7 +108,7 @@
         }
 
         h1 {
-            font-size: 27px;
+            font-size: 26px;
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 8px;
@@ -121,11 +121,11 @@
             color: var(--text-sub);
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .input-box {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
@@ -141,8 +141,8 @@
 
         .input-field {
             width: 100%;
-            padding: 16px 18px;
-            background: rgba(15, 23, 42, 0.8);
+            padding: 15px 18px;
+            background: rgba(15, 23, 42, 0.85);
             border: 2px solid #334155;
             border-radius: 16px;
             color: #fff;
@@ -154,6 +154,44 @@
         .input-field:focus {
             border-color: var(--neon-pink);
             box-shadow: 0 0 16px rgba(255, 42, 133, 0.35);
+        }
+
+        /* GENDER SELECTOR BUTTONS */
+        .gender-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .gender-btn {
+            background: rgba(15, 23, 42, 0.7);
+            border: 2px solid #334155;
+            border-radius: 16px;
+            padding: 14px 10px;
+            color: var(--text-sub);
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .gender-btn.selected-male {
+            border-color: var(--neon-cyan);
+            background: rgba(6, 182, 212, 0.18);
+            color: #fff;
+            box-shadow: 0 0 16px rgba(6, 182, 212, 0.3);
+        }
+
+        .gender-btn.selected-female {
+            border-color: var(--neon-pink);
+            background: rgba(255, 42, 133, 0.18);
+            color: #fff;
+            box-shadow: 0 0 16px rgba(255, 42, 133, 0.3);
         }
 
         .btn {
@@ -196,7 +234,7 @@
             margin-bottom: 12px;
         }
 
-        /* Question UI */
+        /* HUD & Question UI */
         .hud-header {
             display: flex;
             justify-content: space-between;
@@ -310,7 +348,6 @@
             color: #fecdd3 !important;
         }
 
-        /* Link Box */
         .url-card {
             background: #090d16;
             border: 1px dashed #475569;
@@ -323,9 +360,7 @@
             line-height: 1.4;
         }
 
-        /* Score Meter */
         .score-box {
-            position: relative;
             width: 140px;
             height: 140px;
             margin: 20px auto;
@@ -367,7 +402,6 @@
             line-height: 1.4;
         }
 
-        /* Ad Frame */
         .ad-zone {
             margin-top: 22px;
             padding: 12px;
@@ -393,11 +427,23 @@
     <div id="screen-creator-intro" class="screen active">
         <span class="pill-badge">🔥 2026 Gen Z Dare</span>
         <h1>Real Friend ya Sirf Delulu? 💀</h1>
-        <p>Apne 10 unhinged sawalon ke jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
+        <p>Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
 
         <div class="input-box">
             <label>Tumhara Cool Naam</label>
             <input type="text" id="creator-name" class="input-field" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
+        </div>
+
+        <div class="input-box">
+            <label>Aap Kaun Hain?</label>
+            <div class="gender-grid">
+                <button type="button" id="btn-male" class="gender-btn selected-male" onclick="setGender('m')">
+                    👦 Boy
+                </button>
+                <button type="button" id="btn-female" class="gender-btn" onclick="setGender('f')">
+                    👧 Girl
+                </button>
+            </div>
         </div>
 
         <button class="btn btn-neon" onclick="startQuizBuilding()">
@@ -427,7 +473,7 @@
     <div id="screen-share" class="screen">
         <span class="pill-badge">🎯 Link Cooked Ho Gaya!</span>
         <h1>Boom! Dare Ready Hai! 🔥</h1>
-        <p>Yeh link copy karke WhatsApp status aur groups mein phek do aur dekho kaun pass hota hai aur kaun fail!</p>
+        <p>Yeh link copy karke WhatsApp status aur groups mein bhej do aur dekho kaun pass hota hai aur kaun fail!</p>
 
         <div id="share-link-preview" class="url-card">Generating secret link...</div>
 
@@ -488,7 +534,7 @@
 
 <script>
     // -------------------------------------------------------------
-    // 1. CHIPTUNE AUDIO SYNTHESIZER (No external MP3 required!)
+    // 1. CHIPTUNE AUDIO SYNTHESIZER
     // -------------------------------------------------------------
     let audioCtx = null;
 
@@ -502,7 +548,6 @@
         }
     }
 
-    // Tap sound
     function playBeep(freq = 440, type = 'sine', duration = 0.08) {
         try {
             initAudio();
@@ -519,7 +564,6 @@
         } catch (e) {}
     }
 
-    // High energy start arpeggio
     function playStartFanfare() {
         try {
             initAudio();
@@ -530,7 +574,6 @@
         } catch (e) {}
     }
 
-    // Victory celebration tune
     function playWinSound() {
         try {
             initAudio();
@@ -541,7 +584,6 @@
         } catch (e) {}
     }
 
-    // "Cooked / Fail" trombone slide
     function playFailSound() {
         try {
             initAudio();
@@ -553,53 +595,103 @@
     }
 
     // -------------------------------------------------------------
-    // 2. 10 GEN Z FRIENDSHIP QUESTIONS
+    // 2. QUESTIONS DATASET WITH GENDER CONJUGATIONS
     // -------------------------------------------------------------
     const quizDataset = [
         {
-            q: "Agar humara random lafda ho jaye kisi se, toh mera pehla reaction?",
-            options: ["Seedha ladne chala jaunga 🥊", "Side se video bana ke reels pe dalunga 📱", "Dono ko shaant karane ki acting karunga 🕊️", "Wahan se sabse pehle bhaag jaunga 🏃"]
+            q: "Agar humara random lafda ho jaye kisi se, toh {N_POSS} pehla reaction?",
+            options: [
+                { m: "Seedha ladne chala jaunga 🥊", f: "Seedha ladne chali jaungi 🥊", fm: "Seedha ladne chala jayega 🥊", ff: "Seedha ladne chali jayegi 🥊" },
+                { m: "Side se video bana ke reels pe dalunga 📱", f: "Side se video bana ke reels pe dalungi 📱", fm: "Side se video bana ke reels pe dalega 📱", ff: "Side se video bana ke reels pe dalegi 📱" },
+                { m: "Dono ko shaant karane ki acting karunga 🕊️", f: "Dono ko shaant karane ki acting karungi 🕊️", fm: "Dono ko shaant karane ki acting karega 🕊️", ff: "Dono ko shaant karane ki acting karegi 🕊️" },
+                { m: "Wahan se sabse pehle bhaag jaunga 🏃", f: "Wahan se sabse pehle bhaag jaungi 🏃", fm: "Wahan se sabse pehle bhaag jayega 🏃", ff: "Wahan se sabse pehle bhaag jayegi 🏃" }
+            ]
         },
         {
-            q: "Mera sabse bada Toxic Trait kya hai? (Real Talk 💀)",
-            options: ["Online ho kar reply na dena", "Hamesha har jagah late aana", "Overthink karke scene banana", "Faltu baaton par zyada hasna"]
+            q: "{N_POSS} sabse bada Toxic Trait kya hai? (Real Talk 💀)",
+            options: [
+                "Online ho kar reply na dena",
+                "Hamesha har jagah late aana",
+                "Overthink karke scene banana",
+                "Faltu baaton par zyada hasna"
+            ]
         },
         {
-            q: "Mera late night 3 AM mood kya hota hai?",
-            options: ["Existential crisis & deep thoughts", "Midnight biryani ya snacks crave karna", "Reels aur memes scroll karte rehna", "Ghar walon ki tarah chup chaap sona"]
+            q: "{N_POSS} late night 3 AM mood kya hota hai?",
+            options: [
+                "Existential crisis & deep thoughts",
+                "Midnight biryani ya snacks crave karna",
+                "Reels aur memes scroll karte rehna",
+                "Ghar walon ki tarah chup chaap sona"
+            ]
         },
         {
-            q: "Agar mere account mein achanak 1 Crore aa jayein?",
-            options: ["Duniya ghoomne nikal jaunga ✈️", "iPhone aur gaari le kar show-off 😎", "Khamoshi se invest karke crypto/stocks 📈", "Sab doston ko bula kar grand party 🍕"]
+            q: "Agar {N_POSS} account mein achanak 1 Crore aa jayein?",
+            options: [
+                { m: "Duniya ghoomne nikal jaunga ✈️", f: "Duniya ghoomne nikal jaungi ✈️", fm: "Duniya ghoomne nikal jayega ✈️", ff: "Duniya ghoomne nikal jayegi ✈️" },
+                "iPhone aur gaari le kar show-off 😎",
+                "Khamoshi se invest karke crypto/stocks 📈",
+                { m: "Sab doston ko bula kar grand party doonga 🍕", f: "Sab doston ko bula kar grand party doongi 🍕", fm: "Sab doston ko bula kar grand party dega 🍕", ff: "Sab doston ko bula kar grand party degi 🍕" }
+            ]
         },
         {
-            q: "Mera comfort drink kya hai?",
-            options: ["Karak Dhaba Chai ☕", "Iced Cold Coffee 🥤", "Sting / Energy Drink ⚡", "Thanda Paani (Hydration king) 💧"]
+            q: "{N_POSS} comfort drink kya hai?",
+            options: [
+                "Karak Dhaba Chai ☕",
+                "Iced Cold Coffee 🥤",
+                "Sting / Energy Drink ⚡",
+                { m: "Thanda Paani (Hydration King) 💧", f: "Thanda Paani (Hydration Queen) 💧" }
+            ]
         },
         {
-            q: "Mera attention span kitna hai?",
-            options: ["Goldfish jaisa (10 seconds) 🐠", "Agar topic pasand ho toh ghanton sununga", "Bas meme dekhte waqt focus rehta hai", "Bohot disciplined aur focused"]
+            q: "{N_POSS} attention span kitna hai?",
+            options: [
+                "Goldfish jaisa (10 seconds) 🐠",
+                { m: "Agar topic pasand ho toh ghanton sununga 🎧", f: "Agar topic pasand ho toh ghanton sunungi 🎧", fm: "Agar topic pasand ho toh ghanton sunega 🎧", ff: "Agar topic pasand ho toh ghanton sunegi 🎧" },
+                "Bas meme dekhte waqt focus rehta hai",
+                "Bohot disciplined aur focused"
+            ]
         },
         {
-            q: "Meri dream vibe trip kahan ki hai?",
-            options: ["Northern Mountains & Campfire 🏔️", "Dubai / Neon City aesthetic 🏙️", "Beach side chill & sunsets 🏖️", "Ghar ka bistar aur AC on 🛏️"]
+            q: "{N_POSS} dream vibe trip kahan ki hai?",
+            options: [
+                "Northern Mountains & Campfire 🏔️",
+                "Dubai / Neon City aesthetic 🏙️",
+                "Beach side chill & sunsets 🏖️",
+                "Ghar ka bistar aur AC on 🛏️"
+            ]
         },
         {
-            q: "Agar main chup chaap ho jaun, toh iska kya matlab hai?",
-            options: ["Mood bohot heavy kharab hai 😤", "Neend aa rahi hai bas 😴", "Koi gehri scheming chal rahi hai 🧠", "Battery 1% bachi hai social hone ki"]
+            q: "Agar {N_SUBJ} chup chaap ho {VERB_HO}, toh iska kya matlab hai?",
+            options: [
+                "Mood bohot heavy kharab hai 😤",
+                "Neend aa rahi hai bas 😴",
+                "Koi gehri scheming chal rahi hai 🧠",
+                "Battery 1% bachi hai social hone ki"
+            ]
         },
         {
             q: "Hum dono ki dosti ka main base kya hai?",
-            options: ["Dono ka humor unhinged hai 💀", "Ek doosre ki roast karne ki aadat", "Life ke har dukh ka rona 🫂", "Bina bole baat samajh aana ✨"]
+            options: [
+                "Dono ka humor unhinged hai 💀",
+                "Ek doosre ko roast karne ki aadat",
+                "Life ke har dukh ka rona 🫂",
+                "Bina bole baat samajh aana ✨"
+            ]
         },
         {
-            q: "Aakhri sawal: Kya main main character hoon ya background NPC?",
-            options: ["100% Main Character Energy 💅", "Chaos create karne wala villain 😈", "Chill background character 🍿", "Bas vibes pe chal raha hoon 🧘"]
+            q: "Aakhri sawal: Kya {N_SUBJ} main character {VERB_HAI} ya background NPC?",
+            options: [
+                "100% Main Character Energy 💅",
+                { m: "Chaos create karne wala villain 😈", f: "Chaos create karne wali villain 😈" },
+                "Chill background character 🍿",
+                { m: "Bas vibes pe chal raha hoon 🧘", f: "Bas vibes pe chal rahi hoon 🧘", fm: "Bas vibes pe chal raha hai 🧘", ff: "Bas vibes pe chal rahi hai 🧘" }
+            ]
         }
     ];
 
     // -------------------------------------------------------------
-    // 3. STATE CONTROLLER & LOGIC
+    // 3. STATE & HELPERS
     // -------------------------------------------------------------
     let currentIdx = 0;
     let creatorAnswers = [];
@@ -607,7 +699,20 @@
     let isFriendMode = false;
     let creatorName = "";
     let friendName = "";
+    let creatorGender = "m"; // 'm' or 'f'
     let finalDareUrl = "";
+
+    function setGender(gen) {
+        creatorGender = gen;
+        playBeep(480, 'sine', 0.05);
+        if (gen === 'm') {
+            document.getElementById('btn-male').className = "gender-btn selected-male";
+            document.getElementById('btn-female').className = "gender-btn";
+        } else {
+            document.getElementById('btn-female').className = "gender-btn selected-female";
+            document.getElementById('btn-male').className = "gender-btn";
+        }
+    }
 
     function switchScreen(id) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -615,7 +720,22 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // App Initialization (Inspects URL for payload)
+    // Helper: Dynamic Grammar Formatter
+    function resolveChoiceText(choice) {
+        if (typeof choice === 'string') return choice;
+        if (!isFriendMode) {
+            return creatorGender === 'f' ? choice.f : choice.m;
+        } else {
+            // Friend viewing creator
+            if (creatorGender === 'f') {
+                return choice.ff || choice.f;
+            } else {
+                return choice.fm || choice.m;
+            }
+        }
+    }
+
+    // URL Parsing on startup
     window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const encoded = urlParams.get('q');
@@ -625,6 +745,7 @@
                 const payload = JSON.parse(decodeURIComponent(escape(atob(encoded))));
                 if (payload && payload.n && Array.isArray(payload.a) && payload.a.length === 10) {
                     creatorName = payload.n;
+                    creatorGender = payload.g || 'm';
                     creatorAnswers = payload.a;
                     isFriendMode = true;
 
@@ -677,19 +798,27 @@
         displayQuestion();
     }
 
-    // Display current Question Card
+    // Render Current Question
     function displayQuestion() {
         const currentData = quizDataset[currentIdx];
         document.getElementById('hud-counter').innerText = `${currentIdx + 1}/10`;
-        
-        // Progress bar percentage
+
         const pct = ((currentIdx) / quizDataset.length) * 100;
         document.getElementById('progress-bar').style.width = `${pct}%`;
 
-        // Format question for friend vs creator
+        // Grammatical substitutions in question title
         let title = currentData.q;
-        if (isFriendMode) {
-            title = title.replace(/Mera/g, `${creatorName} ka`).replace(/Meri/g, `${creatorName} ki`).replace(/main/g, creatorName);
+        if (!isFriendMode) {
+            title = title.replace(/{N_POSS}/g, "mera")
+                         .replace(/{N_SUBJ}/g, "main")
+                         .replace(/{VERB_HO}/g, "jaun")
+                         .replace(/{VERB_HAI}/g, "hoon");
+        } else {
+            const possessive = `${creatorName} ka`;
+            title = title.replace(/{N_POSS}/g, possessive)
+                         .replace(/{N_SUBJ}/g, creatorName)
+                         .replace(/{VERB_HO}/g, "jaye")
+                         .replace(/{VERB_HAI}/g, "hai");
         }
         document.getElementById('question-text').innerText = title;
 
@@ -699,13 +828,14 @@
         currentData.options.forEach((choice, index) => {
             const btn = document.createElement('button');
             btn.className = 'opt-btn';
-            btn.innerHTML = `<span class="opt-tag">${index + 1}</span> <span>${choice}</span>`;
+            const labelText = resolveChoiceText(choice);
+            btn.innerHTML = `<span class="opt-tag">${index + 1}</span> <span>${labelText}</span>`;
             btn.onclick = () => recordPick(index, btn);
             container.appendChild(btn);
         });
     }
 
-    // Handle Option Selection
+    // Handle Click
     function recordPick(idx, element) {
         playBeep(520 + (currentIdx * 30), 'sine', 0.09);
 
@@ -719,14 +849,12 @@
             }
         } else {
             friendAnswers.push(idx);
-            // Instant feedback
             if (idx === creatorAnswers[currentIdx]) {
                 element.classList.add('correct');
             } else {
                 element.classList.add('wrong');
             }
-            
-            // Short delay so friend sees feedback
+
             setTimeout(() => {
                 currentIdx++;
                 if (currentIdx < quizDataset.length) {
@@ -738,10 +866,11 @@
         }
     }
 
-    // Creator completes answers -> Generate Base64 Dare Link
+    // Generate Dare Link
     function completeCreatorQuiz() {
         const payload = {
             n: creatorName,
+            g: creatorGender,
             a: creatorAnswers
         };
         const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
@@ -757,18 +886,18 @@
     function copyDareLink() {
         playBeep(600, 'triangle', 0.08);
         navigator.clipboard.writeText(finalDareUrl).then(() => {
-            alert("🔥 Link Copy Ho Gaya! Ab WhatsApp status aur stories pe dosti ka test lo!");
+            alert("🔥 Link Copy Ho Gaya! Ab WhatsApp status aur stories pe share karein!");
         }).catch(() => {
             alert("Link: " + finalDareUrl);
         });
     }
 
     function dispatchWhatsApp() {
-        const msg = `🔥 *WHO KNOWS ME BETTER? (Gen Z Edition)* 🔥\n\nBhai dekhte hain tum mujhe sach mein kitna jante ho ya bas fake friendship chal rahi hai 💀!\n\n10 sawalon ka jawab do aur apna score dikhao 😈👇\n${finalDareUrl}`;
+        const msg = `🔥 *WHO KNOWS ME BETTER? (Gen Z Edition)* 🔥\n\nDekhte hain tum mujhe sach mein kitna jante ho ya bas fake friendship chal rahi hai 💀!\n\n10 sawalon ka jawab do aur apna score dikhao 😈👇\n${finalDareUrl}`;
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Friend finishes quiz -> Compute Result & Roast
+    // Friend finishes quiz
     function completeFriendAudit() {
         let score = 0;
         for (let i = 0; i < quizDataset.length; i++) {
@@ -853,7 +982,7 @@
         particles.forEach(p => {
             p.x += p.dx;
             p.y += p.dy;
-            p.dy += 0.4; // gravity
+            p.dy += 0.4;
             p.rotation += p.rotSpeed;
             p.opacity -= 0.012;
 
