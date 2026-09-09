@@ -48,6 +48,7 @@
             padding: 16px;
             color: var(--text-main);
             overflow-x: hidden;
+            position: relative;
         }
 
         .container {
@@ -331,6 +332,48 @@
             font-size: 0.72rem;
             color: var(--text-dim);
             line-height: 1.4;
+        }
+
+        /* CURIOSITY GATEKEEPING BOX (CREATOR DASHBOARD) */
+        .curiosity-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(139, 92, 246, 0.2));
+            border: 1.5px solid rgba(239, 68, 68, 0.6);
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 16px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .curiosity-title {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .curiosity-desc {
+            font-size: 0.74rem;
+            color: #cbd5e1;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .btn-curiosity-unlock {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
         }
 
         /* PASSBOOK MODAL TRANSACTIONS LIST */
@@ -666,6 +709,13 @@
             margin-top: 12px;
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
+        .btn-story-card {
+            background: linear-gradient(135deg, #FFD700, #ff8800);
+            color: #000;
+            font-weight: 900;
+            margin-top: 10px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
 
         /* QUIZ PROGRESS */
         .quiz-progress { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; font-weight: 700; }
@@ -746,6 +796,50 @@
             width: 100%;
         }
 
+        /* ================= REAL-TIME FOMO TOAST NOTIFICATION ================= */
+        .fomo-toast {
+            position: fixed;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(18, 24, 38, 0.95);
+            border: 1px solid var(--accent);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            z-index: 99998;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            max-width: 320px;
+        }
+        .fomo-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .fomo-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .fomo-content {
+            font-size: 0.73rem;
+            color: #f1f5f9;
+            line-height: 1.35;
+            text-align: left;
+        }
+        .fomo-content strong { color: var(--accent); }
+        .fomo-content span { color: var(--text-dim); font-size: 0.65rem; }
+
         /* ================= ADMIN DASHBOARD STYLING ================= */
         .admin-stats-grid {
             display: grid;
@@ -799,9 +893,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: #f1f5f9;
         }
-        .admin-table tr:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
+        .admin-table tr:hover { background: rgba(255, 255, 255, 0.03); }
 
         /* MODAL OVERLAYS */
         .modal-overlay {
@@ -872,6 +964,9 @@
         .screen.active { display: block; animation: fadeIn 0.3s ease; }
         #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 
+        /* HIDDEN STORY CARD CANVAS */
+        #story-card-canvas { display: none; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes border-pulse { 0% { border-color: rgba(255, 215, 0, 0.3); } 100% { border-color: rgba(0, 255, 163, 0.6); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -883,6 +978,16 @@
     <script type="text/javascript" src="//pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
 
     <canvas id="confetti-canvas"></canvas>
+    <canvas id="story-card-canvas" width="720" height="960"></canvas>
+
+    <!-- ================= REALTIME LIVE FOMO TOAST ================= -->
+    <div id="fomo-toast" class="fomo-toast">
+        <div id="fomo-avatar" class="fomo-avatar">⚡</div>
+        <div class="fomo-content">
+            <div id="fomo-text">Loading live activity...</div>
+            <span id="fomo-time">Just now</span>
+        </div>
+    </div>
 
     <!-- ================= MODAL: DETAILED ANSWERS ================= -->
     <div id="answers-modal" class="modal-overlay">
@@ -892,6 +997,19 @@
                 <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
             </div>
             <div id="modal-body-content" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: CURIOSITY SECRET UNLOCKED ================= -->
+    <div id="curiosity-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="color: var(--danger);">🕵️‍♂️ Aastin Ka Saanp Exposed!</h3>
+                <button class="btn-modal-close" onclick="closeCuriosityModal()">✕</button>
+            </div>
+            <div class="modal-body" id="curiosity-modal-body">
+                <!-- Injected dynamically -->
+            </div>
         </div>
     </div>
 
@@ -1175,6 +1293,19 @@
                 </div>
             </div>
 
+            <!-- CURIOSITY GATEKEEPING BOX (AASTIN KA SAANP EXPOSURE) -->
+            <div class="curiosity-box">
+                <div class="curiosity-title">
+                    <span>🕵️‍♂️</span> <span>Aastin Ke Saanp Ka Khulasa!</span>
+                </div>
+                <p class="curiosity-desc">
+                    Dekhein kis dost ne aapke peeth peeche sabse ghalat jawab diye aur aapko <strong>'Toxic' & 'Fake'</strong> sabit kiya!
+                </p>
+                <button class="btn-curiosity-unlock" onclick="unlockCuriosityRoast()">
+                    🔓 Unlock Secret Snake Roast (Instant View)
+                </button>
+            </div>
+
             <!-- 4-DIGIT PIN CARD -->
             <div class="pin-badge-display-box">
                 <div id="txt-pin-box-title" style="font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
@@ -1234,14 +1365,19 @@
             <h1 id="result-title">Result Calculation</h1>
             <p id="result-subtitle" class="subtitle">Checking your friendship level...</p>
 
-            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.1);">
                 <div style="font-size: 0.8rem; color: var(--text-dim);">FINAL SCORE</div>
                 <div id="score-display" style="font-size: 2.5rem; font-weight: 900; color: var(--accent);">0/10</div>
                 <p id="roast-comment" style="font-size: 0.85rem; font-weight: 600; margin-top: 4px;">Roast loading...</p>
             </div>
 
+            <!-- 1. WHATSAPP STORY EGO CARD DOWNLOAD BUTTON -->
+            <button class="btn-primary btn-story-card" onclick="generateAndDownloadStoryCard()">
+                📸 Download WhatsApp Story Card
+            </button>
+
             <!-- FRIEND WALLET CASHBACK NOTIFICATION -->
-            <div class="dare-wallet-card" style="margin-bottom: 18px;" onclick="openWalletModal()">
+            <div class="dare-wallet-card" style="margin-top: 14px; margin-bottom: 14px;" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span>🎁 Dare Cash Added To Your Wallet</span>
                     <span style="color:var(--gold);">+Rs. 50 Added</span>
@@ -1351,6 +1487,7 @@
         window.activeQuizCreatorAnswers = [];
         window.activeCachedAttempts = {};
         window.adminExportRows = [];
+        window.currentFriendResultData = null;
 
         // --- 1. DUAL-LANGUAGE QUESTION DATABASE ---
         const DARE_QUESTIONS = [
@@ -1452,11 +1589,8 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE (STARTING BONUS = RS. 15) ---
-        let userWallet = {
-            balance: 15,
-            history: []
-        };
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE ---
+        let userWallet = { balance: 15, history: [] };
 
         function getOrCreateDeviceId() {
             let deviceId = localStorage.getItem("dare_device_fingerprint");
@@ -1842,8 +1976,8 @@
             render();
         }
 
-        // --- 9. LUCKY SPIN & WIN WHEEL WITH STRICT WEIGHTED PROBABILITY ---
-        // Exactly 8 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100, Rs. 500, Rs. 1000
+        // --- 9. LUCKY SPIN & WIN WHEEL WITH "NEAR-MISS" CASINO PSYCHOLOGY ---
+        // Slices: 0: +Rs. 1, 1: +Rs. 5, 2: Try Again, 3: +Rs. 10, 4: +Rs. 50, 5: +Rs. 100, 6: +Rs. 500, 7: +Rs. 1000
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
@@ -1906,7 +2040,6 @@
             drawWheel('dash');
         }
 
-        // PURE WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES)
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
             if (rand < 1) {
@@ -1920,7 +2053,7 @@
             } else {
                 return 2; // Try Again -> 450 in 1000 (45%)
             }
-            // Rs. 100, Rs. 500, Rs. 1000 are NEVER chosen (0% Blocked)
+            // Rs. 1000, Rs. 500, Rs. 100 are strictly 0%
         }
 
         function checkWheelCooldown() {
@@ -1977,30 +2110,42 @@
             const chosenWinIndex = pickWeightedPrizeIndex();
             const prize = wheelPrizes[chosenWinIndex];
 
+            // CASINO NEAR-MISS ALGORITHM:
+            // Slices are laid out clockwise.
+            // Slice 7 is Rs. 1,000, Slice 0 is Rs. 1.
+            // When user lands on Try Again or Rs. 1, make it stop on the razor-thin border of Rs. 1,000!
             const numSlices = wheelPrizes.length;
             const arc = (2 * Math.PI) / numSlices;
-            const jitter = (Math.random() - 0.5) * (arc * 0.6);
-            const targetSliceCenter = (chosenWinIndex + 0.5) * arc + jitter;
+            
+            let targetSliceCenter;
+            if (chosenWinIndex === 0) {
+                // Land just 0.08 arc inside Rs. 1 right after Rs. 1000! Heart-stopping near miss!
+                targetSliceCenter = (chosenWinIndex * arc) + 0.08;
+            } else {
+                const jitter = (Math.random() - 0.5) * (arc * 0.5);
+                targetSliceCenter = (chosenWinIndex + 0.5) * arc + jitter;
+            }
 
             let targetOffset = ( (3 * Math.PI / 2) - targetSliceCenter ) % (2 * Math.PI);
             if (targetOffset < 0) targetOffset += 2 * Math.PI;
 
             const startAngle = wheelAngle % (2 * Math.PI);
-            const totalRotation = (6 * 2 * Math.PI) + ((targetOffset - startAngle + 2 * Math.PI) % (2 * Math.PI));
+            const totalRotation = (7 * 2 * Math.PI) + ((targetOffset - startAngle + 2 * Math.PI) % (2 * Math.PI));
             const finalTargetAngle = wheelAngle + totalRotation;
 
-            const duration = 4000;
+            const duration = 4600; // 4.6s for suspense
             const startTime = performance.now();
 
             function animatePhysicsSpin(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
 
-                const easeOut = 1 - Math.pow(1 - progress, 3);
+                // Hyper-dramatic exponential slow-down (feels like it barely tipped over)
+                const easeOut = 1 - Math.pow(1 - progress, 4);
                 wheelAngle = startAngle + (totalRotation * easeOut);
                 drawAllWheels();
 
-                if (progress < 0.95 && Math.random() < 0.28) soundTick();
+                if (progress < 0.96 && Math.random() < 0.28) soundTick();
 
                 if (progress < 1) {
                     requestAnimationFrame(animatePhysicsSpin);
@@ -2020,14 +2165,236 @@
                         alert("🎉 MUBARAK HO! Prize: " + prize.text + "!\nCash aapke Live Wallet mein deposit kar diya gaya hai!");
                     } else {
                         soundError();
-                        alert("💀 Bad Luck! 'Try Again' nikla hai.\nAgla spin 3 minute baad ghumayein!");
+                        alert("💀 OOOF! Sirf 1 millimeter se Rs. 1,000 reh gaya!\n'Try Again' nikla hai. Agla spin 3 minute baad!");
                     }
                 }
             }
             requestAnimationFrame(animatePhysicsSpin);
         }
 
-        // --- 10. SECRET MASTER ADMIN CONTROLLER (PIN: 9999) ---
+        // --- 10. REAL-TIME FOMO TICKER (HUNDREDS OF COMBINATIONS) ---
+        const fomoPakNames = [
+            "Hamza R.", "Bilal K.", "Daniyal M.", "Zain A.", "Usama T.", "Ayesha N.", "Fatima S.", "Maham K.", 
+            "Shahzaib Q.", "Farhan J.", "Hira M.", "Sania B.", "Talha N.", "Zubair G.", "Hassan P.", "Kashif E.", 
+            "Laiba W.", "Mariam C.", "Adeel K.", "Saad M.", "Raza H.", "Waqas B.", "Noman S.", "Anas F."
+        ];
+        const fomoPakCities = [
+            "Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan", 
+            "Peshawar", "Hyderabad", "Gujranwala", "Sialkot", "Quetta"
+        ];
+        const fomoActions = [
+            { text: "ne 10/10 score karke Dare dho daala! 👑", icon: "👑" },
+            { text: "ne Lucky Spin se Rs. 50 cash jeeta! 💸", icon: "💸" },
+            { text: "ka VIP Draw Ticket Goal unlock ho gaya! 🌟", icon: "🌟" },
+            { text: "ne apna naya dare banakar WhatsApp par phela diya! 🔥", icon: "🔥" },
+            { text: "dare mein 2/10 lakar 'Aastin Ka Saanp' nikla! 🐍", icon: "🐍" },
+            { text: "ne Lucky Spin se Rs. 10 cash earn kiya! ⚡", icon: "⚡" }
+        ];
+
+        function triggerFomoNotification() {
+            const toastEl = document.getElementById("fomo-toast");
+            if (!toastEl) return;
+
+            const name = fomoPakNames[Math.floor(Math.random() * fomoPakNames.length)];
+            const city = fomoPakCities[Math.floor(Math.random() * fomoPakCities.length)];
+            const act = fomoActions[Math.floor(Math.random() * fomoActions.length)];
+            const secondsAgo = Math.floor(Math.random() * 45) + 5;
+
+            document.getElementById("fomo-avatar").innerText = act.icon;
+            document.getElementById("fomo-text").innerHTML = `<strong>${name}</strong> (${city}) ${act.text}`;
+            document.getElementById("fomo-time").innerText = `${secondsAgo}s ago`;
+
+            toastEl.classList.add("show");
+            setTimeout(() => {
+                toastEl.classList.remove("show");
+            }, 4400);
+        }
+
+        setInterval(triggerFomoNotification, 9500);
+        setTimeout(triggerFomoNotification, 2000);
+
+        // --- 11. CURIOSITY GATEKEEPING (SECRET SNAKE ROAST CONTROLLER) ---
+        function unlockCuriosityRoast() {
+            soundClick();
+
+            // Find worst performing friend from cached attempts
+            const keys = Object.keys(window.activeCachedAttempts || {});
+            let worstFriend = null;
+            let lowestScore = 999;
+
+            keys.forEach(k => {
+                const att = window.activeCachedAttempts[k];
+                if (att.score < lowestScore) {
+                    lowestScore = att.score;
+                    worstFriend = att;
+                }
+            });
+
+            const bodyEl = document.getElementById("curiosity-modal-body");
+            bodyEl.innerHTML = "";
+
+            if (!worstFriend) {
+                bodyEl.innerHTML = `
+                    <div style="text-align:center; padding: 20px 10px;">
+                        <div style="font-size: 2.5rem; margin-bottom: 8px;">🤫</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1;">Abhi tak kisi dost ne dare attempt nahi kiya! Link WhatsApp par bhein aur dekhein kaun sabse ghalat jawab deta hai!</p>
+                    </div>
+                `;
+            } else {
+                bodyEl.innerHTML = `
+                    <div style="background: rgba(239, 68, 68, 0.15); border: 1.5px solid var(--danger); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 12px;">
+                        <div style="font-size: 2.5rem;">🐍</div>
+                        <h4 style="color: #ff6b6b; font-size: 1.1rem; font-weight: 900; margin: 4px 0;">${worstFriend.name} Asli Aastin Ka Saanp Nikla!</h4>
+                        <p style="font-size: 0.78rem; color: #f1f5f9;">Score: <strong style="color: var(--danger);">${worstFriend.score}/10</strong> (${worstFriend.timeSeconds}s)</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.04); border-radius: 10px; padding: 10px; font-size: 0.75rem; color: #cbd5e1; line-height: 1.4;">
+                        💬 <strong>Expose Summary:</strong> ${worstFriend.name} ko aapki basic aadaton ka bhi nahi pata! Isne tukkay lagaye aur aapko sabse zyada toxic choose kiya!
+                    </div>
+                    <button class="btn-primary btn-whatsapp" style="margin-top: 10px;" onclick="shareRoastToWhatsApp('${worstFriend.name}', ${worstFriend.score})">
+                        📲 WhatsApp Par Iski Be-Izzati Karo
+                    </button>
+                `;
+            }
+
+            document.getElementById("curiosity-modal").classList.add("active");
+        }
+
+        function closeCuriosityModal() {
+            soundClick();
+            document.getElementById("curiosity-modal").classList.remove("active");
+        }
+
+        function shareRoastToWhatsApp(friendName, score) {
+            soundClick();
+            const text = `🐍 *AASTIN KA SAANP EXPOSED!* 💀\n\nBhai *${friendName}* ne mera friendship dare khela aur sirf *${score}/10* laya! 🤣\n\nDekhein kya aap is se behtar jantay hain? 👇\n${document.getElementById("share-link-input").value}`;
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
+        }
+
+        // --- 12. WHATSAPP STORY EGO CARD CANVAS GENERATOR ---
+        function generateAndDownloadStoryCard() {
+            soundClick();
+            const canvas = document.getElementById("story-card-canvas");
+            const ctx = canvas.getContext("2d");
+            const w = canvas.width;
+            const h = canvas.height;
+
+            const resData = window.currentFriendResultData || {
+                friendName: "Me",
+                creatorName: (quizTargetData ? quizTargetData.creator : "My Bestie"),
+                score: 8
+            };
+
+            // 1. Background Gradient
+            const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+            bgGrad.addColorStop(0, "#0b0f19");
+            bgGrad.addColorStop(0.5, "#151b2e");
+            bgGrad.addColorStop(1, "#070a12");
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, w, h);
+
+            // 2. Glow Circles
+            ctx.beginPath();
+            ctx.arc(100, 150, 180, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgba(139, 92, 246, 0.15)";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(w - 100, h - 200, 200, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgba(0, 255, 163, 0.12)";
+            ctx.fill();
+
+            // 3. Neon Border Box
+            ctx.strokeStyle = "rgba(0, 255, 163, 0.5)";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(30, 30, w - 60, h - 60);
+
+            // 4. Header Badge
+            ctx.fillStyle = "rgba(255, 215, 0, 0.2)";
+            ctx.fillRect(w / 2 - 160, 70, 320, 42);
+            ctx.strokeStyle = "#FFD700";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(w / 2 - 160, 70, 320, 42);
+
+            ctx.font = "bold 18px Poppins";
+            ctx.fillStyle = "#FFD700";
+            ctx.textAlign = "center";
+            ctx.fillText("⚡ OFFICIAL FRIENDSHIP TEST 2026", w / 2, 98);
+
+            // 5. Title & Names
+            ctx.font = "bold 34px Poppins";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(`${resData.friendName} VS ${resData.creatorName}`, w / 2, 175);
+
+            ctx.font = "18px Poppins";
+            ctx.fillStyle = "#94a3b8";
+            ctx.fillText("Who Truly Knows Who Best?", w / 2, 210);
+
+            // 6. Big Score Emblem
+            ctx.beginPath();
+            ctx.arc(w / 2, 340, 95, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+            ctx.fill();
+            ctx.strokeStyle = (resData.score >= 8) ? "#00FFA3" : ((resData.score >= 5) ? "#FFD700" : "#ff4d4d");
+            ctx.lineWidth = 6;
+            ctx.stroke();
+
+            ctx.font = "900 68px Poppins";
+            ctx.fillStyle = (resData.score >= 8) ? "#00FFA3" : ((resData.score >= 5) ? "#FFD700" : "#ff4d4d");
+            ctx.fillText(`${resData.score}/10`, w / 2, 362);
+
+            // 7. Roast Title Badge
+            let badgeTitle = "👑 CERTIFIED SOULMATE";
+            let badgeSub = "Bhai Rishta Pakka! Real Bonding!";
+            let badgeColor = "#00FFA3";
+            if (resData.score < 5) {
+                badgeTitle = "🐍 AASTIN KA SAANP";
+                badgeSub = "Zero Bonding! Bilkul Fake Nikle!";
+                badgeColor = "#ff4d4d";
+            } else if (resData.score < 8) {
+                badgeTitle = "☕ CHAI PARTNER (AVERAGE)";
+                badgeSub = "Theek Thaak Dost! Thoda Thoda Jante Ho!";
+                badgeColor = "#FFD700";
+            }
+
+            ctx.font = "900 28px Poppins";
+            ctx.fillStyle = badgeColor;
+            ctx.fillText(badgeTitle, w / 2, 485);
+
+            ctx.font = "18px Poppins";
+            ctx.fillStyle = "#cbd5e1";
+            ctx.fillText(badgeSub, w / 2, 520);
+
+            // 8. Challenge Callout Box
+            ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+            ctx.fillRect(70, 580, w - 140, 140);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+            ctx.strokeRect(70, 580, w - 140, 140);
+
+            ctx.font = "bold 20px Poppins";
+            ctx.fillStyle = "#FFD700";
+            ctx.fillText("🔥 KYA TUM MUJHE BEHTAR JAANTE HO?", w / 2, 625);
+
+            ctx.font = "16px Poppins";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("Ye challenge solve karo aur Rs. 10,000 pool jeeto!", w / 2, 660);
+
+            ctx.font = "bold 15px Poppins";
+            ctx.fillStyle = "#00FFA3";
+            ctx.fillText("👉 Play now at: friendship-dare.github.io", w / 2, 695);
+
+            // 9. Bottom Footer
+            ctx.font = "14px Poppins";
+            ctx.fillStyle = "#64748b";
+            ctx.fillText("Verified Gen Z Friendship Protocol • Screenshot & Tag Me!", w / 2, 890);
+
+            // 10. Direct Download Trigger
+            const link = document.createElement("a");
+            link.download = `Dare_Story_${resData.friendName}_vs_${resData.creatorName}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+
+        // --- 13. SECRET MASTER ADMIN CONTROLLER (PIN: 9999) ---
         function openAdminMasterPanel() {
             soundClick();
             switchScreen('screen-admin');
@@ -2128,7 +2495,7 @@
             document.body.removeChild(link);
         }
 
-        // --- 11. APP INITIALIZATION ---
+        // --- 14. APP INITIALIZATION ---
         window.onload = function() {
             initUserWallet();
             changeLanguage(currentLang);
@@ -2176,7 +2543,6 @@
         function trackQuizByPin() {
             const pinInput = document.getElementById('track-pin-input').value.trim();
 
-            // SECRET MASTER ADMIN PIN CHECK: 9999
             if (pinInput === "9999") {
                 openAdminMasterPanel();
                 return;
@@ -2335,7 +2701,6 @@
 
                 db.ref('globalStats/totalPlayers').transaction(c => (c || 0) + 1);
 
-                // Save attempt
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
@@ -2345,7 +2710,6 @@
                     timestamp: Date.now()
                 });
 
-                // Credit Creator's Live Wallet in Firebase
                 if (quizTargetData.creatorDeviceId) {
                     const creatorBonus = (score === 10) ? 150 : 50;
                     const creatorWalletRef = db.ref('wallets/' + quizTargetData.creatorDeviceId);
@@ -2362,10 +2726,16 @@
                     });
                 }
 
-                // Credit Friend's Own Live Wallet (+Rs. 50 cashback)
                 creditUserWallet(50, `Completed ${quizTargetData.creator}'s Dare (${score}/10)`);
 
                 localStorage.setItem("dare_done_" + quizTargetData.id, score);
+
+                // Cache for WhatsApp Story Card Generator
+                window.currentFriendResultData = {
+                    friendName: friendName,
+                    creatorName: quizTargetData.creator,
+                    score: score
+                };
 
                 document.getElementById('score-display').innerText = score + "/10";
                 const icon = score >= 8 ? "👑" : (score >= 5 ? "😎" : "💀");
@@ -2383,7 +2753,7 @@
             }
         }
 
-        // --- 12. REALTIME CREATOR DASHBOARD LISTENER ---
+        // --- 15. REALTIME CREATOR DASHBOARD LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
