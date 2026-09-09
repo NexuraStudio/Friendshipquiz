@@ -1331,7 +1331,7 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE (MINIMUM WELCOME BONUS = RS. 15) ---
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE (STARTING BONUS = RS. 15) ---
         let userWallet = {
             balance: 15,
             history: []
@@ -1355,7 +1355,6 @@
                     userWallet = snap.val();
                     if (!userWallet.history) userWallet.history = [];
                 } else {
-                    // Seed with MINIMUM Welcome Bonus = Rs. 15
                     userWallet = {
                         balance: 15,
                         history: [
@@ -1400,7 +1399,6 @@
             const modalBal = document.getElementById("modal-wallet-balance");
             if (modalBal) modalBal.innerText = formatted;
 
-            // Target = Rs. 1,000
             const progressPercent = Math.min(100, Math.round((bal / 1000) * 100));
             const fillDash = document.getElementById("wallet-progress-fill");
             if (fillDash) fillDash.style.width = Math.max(2, progressPercent) + "%";
@@ -1461,7 +1459,6 @@
         // --- 5. ACCURATE 25-PLAYER MEGA JACKPOT ENGINE ---
         let currentJackpotAmount = 10000;
         function updateJackpotAndPodium(totalVerifiedPlayers) {
-            // STRICT RULE: Base 10,000 + Rs. 100 for every 25 players
             const poolAddons = Math.floor(totalVerifiedPlayers / 25) * 100;
             currentJackpotAmount = 10000 + poolAddons;
 
@@ -1470,7 +1467,6 @@
             const leftForNextHundred = 25 - (totalVerifiedPlayers % 25);
             document.getElementById("players-needed-count").innerText = leftForNextHundred + " left";
 
-            // Proportional Distribution: 1st: 50%, 2nd: 30%, 3rd: 20%
             const prize1st = Math.round(currentJackpotAmount * 0.50);
             const prize2nd = Math.round(currentJackpotAmount * 0.30);
             const prize3rd = Math.round(currentJackpotAmount * 0.20);
@@ -1711,7 +1707,7 @@
                     if (p.life > 0) {
                         active = true;
                         ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.arc(p.x, p.r, p.r, 0, Math.PI * 2);
                         ctx.fillStyle = p.color;
                         ctx.fill();
                         p.x += p.dx;
@@ -1726,14 +1722,16 @@
         }
 
         // --- 9. LUCKY SPIN & WIN WHEEL WITH STRICT WEIGHTED PROBABILITY ---
-        // Exactly 6 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100
+        // Exactly 8 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100, Rs. 500, Rs. 1000
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
             { text: "Try Again", color: "#475569", cashVal: 0 },
             { text: "+Rs. 10", color: "#3b82f6", cashVal: 10 },
             { text: "+Rs. 50", color: "#ec4899", cashVal: 50 },
-            { text: "+Rs. 100", color: "#FFD700", cashVal: 100 }
+            { text: "+Rs. 100", color: "#f59e0b", cashVal: 100 },
+            { text: "+Rs. 500", color: "#ef4444", cashVal: 500 },
+            { text: "+Rs. 1000", color: "#FFD700", cashVal: 1000 }
         ];
 
         let wheelAngle = 0;
@@ -1760,7 +1758,7 @@
                 ctx.lineTo(centerX, centerY);
                 ctx.fill();
                 ctx.strokeStyle = "rgba(255,255,255,0.2)";
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 1.5;
                 ctx.stroke();
 
                 ctx.save();
@@ -1768,8 +1766,8 @@
                 ctx.rotate(angle + arc / 2);
                 ctx.textAlign = "right";
                 ctx.fillStyle = (wheelPrizes[i].color === "#FFD700" || wheelPrizes[i].color === "#00FFA3") ? "#000" : "#fff";
-                ctx.font = "bold 11px Poppins";
-                ctx.fillText(wheelPrizes[i].text, radius - 14, 4);
+                ctx.font = "bold 9.5px Poppins";
+                ctx.fillText(wheelPrizes[i].text, radius - 10, 3.5);
                 ctx.restore();
             }
 
@@ -1787,27 +1785,29 @@
             drawWheel('dash');
         }
 
-        // PURE RIGGED WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES):
-        // Rs. 100 -> Exactly 0% (blocked completely)
-        // Rs. 50  -> Exactly 0.1% (1 in 1000 chance)
-        // Rs. 10  -> 2.9% (29 in 1000)
-        // Rs. 5   -> 17% (170 in 1000)
-        // Rs. 1   -> 35% (350 in 1000)
-        // Try Again -> 45% (450 in 1000)
+        // PURE WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES):
+        // Rs. 1000 -> Exactly 0% (BLOCKED)
+        // Rs. 500  -> Exactly 0% (BLOCKED)
+        // Rs. 100  -> Exactly 0% (BLOCKED)
+        // Rs. 50   -> Exactly 0.1% (1 in 1000 chance)
+        // Rs. 10   -> 2.9% (29 in 1000 chance)
+        // Rs. 5    -> 17% (170 in 1000 chance)
+        // Rs. 1    -> 35% (350 in 1000 chance)
+        // Try Again -> 45% (450 in 1000 chance)
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
             if (rand < 1) {
-                return 4; // Rs. 50 (Index 4) -> 1 in 1,000!
+                return 4; // Rs. 50 -> 1 in 1000 (0.1%)
             } else if (rand < 30) {
-                return 3; // Rs. 10 (Index 3) -> 2.9%
+                return 3; // Rs. 10 -> 29 in 1000 (2.9%)
             } else if (rand < 200) {
-                return 1; // Rs. 5 (Index 1) -> 17%
+                return 1; // Rs. 5 -> 170 in 1000 (17%)
             } else if (rand < 550) {
-                return 0; // Rs. 1 (Index 0) -> 35%
+                return 0; // Rs. 1 -> 350 in 1000 (35%)
             } else {
-                return 2; // Try Again (Index 2) -> 45% (Highest chance)
+                return 2; // Try Again -> 450 in 1000 (45%)
             }
-            // Index 5 (Rs. 100) will NEVER be returned!
+            // Note: Indices 5, 6, 7 (Rs. 100, Rs. 500, Rs. 1000) will NEVER be returned! Exactly 0% chance.
         }
 
         function checkWheelCooldown() {
@@ -1865,31 +1865,26 @@
             const chosenWinIndex = pickWeightedPrizeIndex();
             const prize = wheelPrizes[chosenWinIndex];
 
-            // 2. Calculate Exact Landing Angle
-            // Pointer is at Top: (3*PI/2)
+            // 2. Exact Angle Alignment on Canvas Pointer (Top: 3*PI/2)
             const numSlices = wheelPrizes.length;
             const arc = (2 * Math.PI) / numSlices;
-            // Target center of chosen slice + small random jitter within slice
             const jitter = (Math.random() - 0.5) * (arc * 0.6);
             const targetSliceCenter = (chosenWinIndex + 0.5) * arc + jitter;
 
-            // Normalized landing offset so targetSliceCenter stops under pointer (3*PI/2)
             let targetOffset = ( (3 * Math.PI / 2) - targetSliceCenter ) % (2 * Math.PI);
             if (targetOffset < 0) targetOffset += 2 * Math.PI;
 
-            // 6 Full Rotations (6 * 2*PI) + alignment offset
             const startAngle = wheelAngle % (2 * Math.PI);
             const totalRotation = (6 * 2 * Math.PI) + ((targetOffset - startAngle + 2 * Math.PI) % (2 * Math.PI));
             const finalTargetAngle = wheelAngle + totalRotation;
 
-            const duration = 4000; // 4 seconds spin
+            const duration = 4000;
             const startTime = performance.now();
 
             function animatePhysicsSpin(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
 
-                // Cubic Deceleration Easing Out
                 const easeOut = 1 - Math.pow(1 - progress, 3);
                 wheelAngle = startAngle + (totalRotation * easeOut);
                 drawAllWheels();
