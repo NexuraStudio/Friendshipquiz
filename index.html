@@ -919,9 +919,10 @@
                     </ul>
                 </div>
 
+                <!-- SAFE & APPROPRIATE POOL NOTICE -->
                 <div style="background: rgba(255, 215, 0, 0.08); border: 1px dashed var(--gold); border-radius: 10px; padding: 10px; font-size: 0.72rem; color: #fef08a; text-align: center; margin-top: 6px;" id="txt-wallet-footer-notice">
-    🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!
-</div>
+                    🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!
+                </div>
             </div>
         </div>
     </div>
@@ -1086,7 +1087,7 @@
                 <div class="payout-portal-card">
                     <div class="lock-notice-box">
                         <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
-                        <p id="txt-lock-notice">Yeh account details wala option countdown khatam hotay hi enable ho jayega! Top winners yahan apne Official Bank Account details submit karke prize receive kar saken ge.</p>
+                        <p id="txt-lock-notice">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
                     </div>
 
                     <div class="input-group locked-input">
@@ -1277,7 +1278,7 @@
             </div>
 
             <h1 style="font-size: 1.3rem; margin-bottom: 2px;">⚡ Platform Live Overview</h1>
-            <p class="subtitle" style="margin-bottom: 14px;">Tamam users ke balances, device IDs aur payout liability ka live record.</p>
+            <p class="subtitle" style="margin-bottom: 14px;">Tamam users ke balances, device IDs aur contest liability ka live record.</p>
 
             <!-- STATS SUMMARY CARDS -->
             <div class="admin-stats-grid">
@@ -1287,7 +1288,7 @@
                 </div>
                 <div class="admin-stat-card">
                     <div id="admin-total-liability" class="admin-stat-num" style="color: var(--gold);">Rs. 0</div>
-                    <div class="admin-stat-label">Total Wallet Payouts Owed</div>
+                    <div class="admin-stat-label">Total Wallet Balance Pool</div>
                 </div>
                 <div class="admin-stat-card">
                     <div id="admin-total-quizzes" class="admin-stat-num">0</div>
@@ -1349,7 +1350,7 @@
         let currentLang = localStorage.getItem("app_lang") || "ur";
         window.activeQuizCreatorAnswers = [];
         window.activeCachedAttempts = {};
-        window.adminExportRows = []; // Cached data for 1-click Excel export
+        window.adminExportRows = [];
 
         // --- 1. DUAL-LANGUAGE QUESTION DATABASE ---
         const DARE_QUESTIONS = [
@@ -1451,7 +1452,7 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE (MINIMUM WELCOME BONUS = RS. 15) ---
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE (STARTING BONUS = RS. 15) ---
         let userWallet = {
             balance: 15,
             history: []
@@ -1650,7 +1651,7 @@
                 document.getElementById("txt-passbook-title").innerText = "💰 My Live Dare Wallet";
                 document.getElementById("txt-avail-bal").innerText = "AVAILABLE CASH BALANCE";
                 document.getElementById("txt-recent-history").innerText = "⚡ RECENT EARNING HISTORY";
-                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 Payouts are claimable via Bank Transfer right after countdown ends on Sep 15!";
+                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 This balance determines your VIP entry & rank in the September 15 Mega Cash Pool Draw! Complete the goal to become an official Cash Winner!";
             } else {
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
                 document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.";
@@ -1691,7 +1692,7 @@
                 document.getElementById("txt-passbook-title").innerText = "💰 My Live Dare Wallet";
                 document.getElementById("txt-avail-bal").innerText = "AVAILABLE CASH BALANCE";
                 document.getElementById("txt-recent-history").innerText = "⚡ RECENT EARNING HISTORY";
-                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 Ye raqam 15 September ko countdown mukammal hote hi Bank Transfer ke zariye claim kar saken ge!";
+                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!";
             }
         }
 
@@ -1842,6 +1843,7 @@
         }
 
         // --- 9. LUCKY SPIN & WIN WHEEL WITH STRICT WEIGHTED PROBABILITY ---
+        // Exactly 8 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100, Rs. 500, Rs. 1000
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
@@ -1908,7 +1910,7 @@
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
             if (rand < 1) {
-                return 4; // Rs. 50 -> 1 in 1000 (0.1%)
+                return 4; // Rs. 50 -> Exactly 1 in 1000 (0.1%)
             } else if (rand < 30) {
                 return 3; // Rs. 10 -> 29 in 1000 (2.9%)
             } else if (rand < 200) {
@@ -1918,7 +1920,7 @@
             } else {
                 return 2; // Try Again -> 450 in 1000 (45%)
             }
-            // Rs. 100, Rs. 500, Rs. 1000 are NEVER chosen (0%)
+            // Rs. 100, Rs. 500, Rs. 1000 are NEVER chosen (0% Blocked)
         }
 
         function checkWheelCooldown() {
@@ -2037,7 +2039,6 @@
             const tableBody = document.getElementById('admin-table-body');
             tableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--gold);">🔄 Fetching live platform data...</td></tr>`;
 
-            // Pull Wallets and Quizzes in Parallel
             Promise.all([
                 db.ref('wallets').once('value'),
                 db.ref('quizzes').once('value')
@@ -2045,7 +2046,6 @@
                 const wallets = walletsSnap.val() || {};
                 const quizzes = quizzesSnap.val() || {};
 
-                // Map Device ID to Creator Name
                 const deviceToName = {};
                 let totalQuizzes = 0;
                 let totalAttempts = 0;
@@ -2097,7 +2097,6 @@
                     tableBody.appendChild(tr);
                 });
 
-                // Update Overview Metrics
                 document.getElementById('admin-total-users').innerText = walletKeys.length.toLocaleString();
                 document.getElementById('admin-total-liability').innerText = "Rs. " + totalLiability.toLocaleString();
                 document.getElementById('admin-total-quizzes').innerText = totalQuizzes.toLocaleString();
