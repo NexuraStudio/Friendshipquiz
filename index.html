@@ -321,7 +321,7 @@
 
         .wallet-progress-fill {
             height: 100%;
-            width: 20%;
+            width: 1.5%;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 10px;
             transition: width 0.4s ease;
@@ -848,10 +848,10 @@
             <div class="modal-body">
                 <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.2)); border: 1.5px solid var(--accent); border-radius: 14px; padding: 14px; text-align: center;">
                     <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
-                    <div id="modal-wallet-balance" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 200</div>
+                    <div id="modal-wallet-balance" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 15</div>
                     <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
                     <div class="wallet-progress-bg" style="margin-top: 8px;">
-                        <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 20%;"></div>
+                        <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
                     </div>
                 </div>
 
@@ -874,7 +874,7 @@
         <!-- TOP BAR: LIVE FLOATING WALLET + LANGUAGE SWITCHER -->
         <div class="top-utility-bar">
             <button class="wallet-pill-btn" onclick="openWalletModal()">
-                <span>💰</span> <span id="header-wallet-balance">Rs. 200</span>
+                <span>💰</span> <span id="header-wallet-balance">Rs. 15</span>
             </button>
             <div class="lang-switch">
                 <button id="btn-lang-ur" class="lang-btn active" onclick="changeLanguage('ur')">🇵🇰 Roman Urdu</button>
@@ -997,7 +997,7 @@
                 <div class="spin-wheel-card" style="margin-top: 0;">
                     <div class="badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
                     <h2 style="font-size: 1.2rem; font-weight: 900; margin: 6px 0;">Lucky Spin & Win</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash aur rank boost jeetein!</p>
+                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
 
                     <div class="wheel-container">
                         <div class="wheel-pointer"></div>
@@ -1106,11 +1106,11 @@
                     <span id="wallet-badge" style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; color:var(--gold);">LEVEL 1 VIP</span>
                 </div>
                 <div class="wallet-balance-row">
-                    <span class="wallet-amount" id="wallet-balance-display">Rs. 200</span>
+                    <span class="wallet-amount" id="wallet-balance-display">Rs. 15</span>
                     <span class="wallet-target">Target: Rs. 1,000</span>
                 </div>
                 <div class="wallet-progress-bg">
-                    <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 20%;"></div>
+                    <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
                 </div>
                 <div id="txt-wallet-note" class="wallet-note">
                     ⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)
@@ -1331,9 +1331,9 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE (SYNCED WITH FIREBASE) ---
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE (MINIMUM WELCOME BONUS = RS. 15) ---
         let userWallet = {
-            balance: 200,
+            balance: 15,
             history: []
         };
 
@@ -1355,11 +1355,11 @@
                     userWallet = snap.val();
                     if (!userWallet.history) userWallet.history = [];
                 } else {
-                    // Seed with initial Rs. 200 Welcome Bonus!
+                    // Seed with MINIMUM Welcome Bonus = Rs. 15
                     userWallet = {
-                        balance: 200,
+                        balance: 15,
                         history: [
-                            { desc: "Welcome Signup Bonus 🎉", amount: 200, timestamp: Date.now() }
+                            { desc: "Welcome Signup Bonus 🎉", amount: 15, timestamp: Date.now() }
                         ]
                     };
                     walletRef.set(userWallet);
@@ -1391,25 +1391,22 @@
             const bal = userWallet.balance || 0;
             const formatted = "Rs. " + bal.toLocaleString();
 
-            // Header Floating Badge
             const headerBadge = document.getElementById("header-wallet-balance");
             if (headerBadge) headerBadge.innerText = formatted;
 
-            // Creator Dashboard Display
             const dashDisplay = document.getElementById("wallet-balance-display");
             if (dashDisplay) dashDisplay.innerText = formatted;
 
-            // Passbook Modal Display
             const modalBal = document.getElementById("modal-wallet-balance");
             if (modalBal) modalBal.innerText = formatted;
 
-            // Progress towards Rs. 1,000 Target
+            // Target = Rs. 1,000
             const progressPercent = Math.min(100, Math.round((bal / 1000) * 100));
             const fillDash = document.getElementById("wallet-progress-fill");
-            if (fillDash) fillDash.style.width = progressPercent + "%";
+            if (fillDash) fillDash.style.width = Math.max(2, progressPercent) + "%";
 
             const fillModal = document.getElementById("modal-wallet-progress-fill");
-            if (fillModal) fillModal.style.width = progressPercent + "%";
+            if (fillModal) fillModal.style.width = Math.max(2, progressPercent) + "%";
 
             const badge = document.getElementById('wallet-badge');
             if (badge) {
@@ -1421,7 +1418,6 @@
                 }
             }
 
-            // Populate Passbook History List
             const historyListEl = document.getElementById("wallet-history-list");
             if (historyListEl) {
                 historyListEl.innerHTML = "";
@@ -1729,14 +1725,15 @@
             render();
         }
 
-        // --- 9. LUCKY SPIN & WIN WHEEL WITH 3-MIN COOLDOWN ---
+        // --- 9. LUCKY SPIN & WIN WHEEL WITH STRICT WEIGHTED PROBABILITY ---
+        // Exactly 6 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100
         const wheelPrizes = [
-            { text: "+Rs. 50 Cash", color: "#8b5cf6", cashVal: 50 },
-            { text: "+Rs. 100 Cash", color: "#FFD700", cashVal: 100 },
-            { text: "+Rs. 25 Cash", color: "#00FFA3", cashVal: 25 },
-            { text: "VIP Ticket", color: "#ec4899", cashVal: 0 },
-            { text: "+Rs. 15 Cash", color: "#3b82f6", cashVal: 15 },
-            { text: "Try Again", color: "#475569", cashVal: 0 }
+            { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
+            { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
+            { text: "Try Again", color: "#475569", cashVal: 0 },
+            { text: "+Rs. 10", color: "#3b82f6", cashVal: 10 },
+            { text: "+Rs. 50", color: "#ec4899", cashVal: 50 },
+            { text: "+Rs. 100", color: "#FFD700", cashVal: 100 }
         ];
 
         let wheelAngle = 0;
@@ -1790,6 +1787,29 @@
             drawWheel('dash');
         }
 
+        // PURE RIGGED WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES):
+        // Rs. 100 -> Exactly 0% (blocked completely)
+        // Rs. 50  -> Exactly 0.1% (1 in 1000 chance)
+        // Rs. 10  -> 2.9% (29 in 1000)
+        // Rs. 5   -> 17% (170 in 1000)
+        // Rs. 1   -> 35% (350 in 1000)
+        // Try Again -> 45% (450 in 1000)
+        function pickWeightedPrizeIndex() {
+            const rand = Math.random() * 1000;
+            if (rand < 1) {
+                return 4; // Rs. 50 (Index 4) -> 1 in 1,000!
+            } else if (rand < 30) {
+                return 3; // Rs. 10 (Index 3) -> 2.9%
+            } else if (rand < 200) {
+                return 1; // Rs. 5 (Index 1) -> 17%
+            } else if (rand < 550) {
+                return 0; // Rs. 1 (Index 0) -> 35%
+            } else {
+                return 2; // Try Again (Index 2) -> 45% (Highest chance)
+            }
+            // Index 5 (Rs. 100) will NEVER be returned!
+        }
+
         function checkWheelCooldown() {
             const lastSpin = localStorage.getItem("last_wheel_spin_time");
             const btnHome = document.getElementById("btn-spin-wheel-home");
@@ -1841,43 +1861,64 @@
             isSpinning = true;
             soundClick();
 
-            let spinVelocity = 0.45 + Math.random() * 0.25;
-            const friction = 0.988;
+            // 1. Predetermine Winner using Weighted Probabilities
+            const chosenWinIndex = pickWeightedPrizeIndex();
+            const prize = wheelPrizes[chosenWinIndex];
 
-            function animateSpin() {
-                wheelAngle += spinVelocity;
-                spinVelocity *= friction;
+            // 2. Calculate Exact Landing Angle
+            // Pointer is at Top: (3*PI/2)
+            const numSlices = wheelPrizes.length;
+            const arc = (2 * Math.PI) / numSlices;
+            // Target center of chosen slice + small random jitter within slice
+            const jitter = (Math.random() - 0.5) * (arc * 0.6);
+            const targetSliceCenter = (chosenWinIndex + 0.5) * arc + jitter;
+
+            // Normalized landing offset so targetSliceCenter stops under pointer (3*PI/2)
+            let targetOffset = ( (3 * Math.PI / 2) - targetSliceCenter ) % (2 * Math.PI);
+            if (targetOffset < 0) targetOffset += 2 * Math.PI;
+
+            // 6 Full Rotations (6 * 2*PI) + alignment offset
+            const startAngle = wheelAngle % (2 * Math.PI);
+            const totalRotation = (6 * 2 * Math.PI) + ((targetOffset - startAngle + 2 * Math.PI) % (2 * Math.PI));
+            const finalTargetAngle = wheelAngle + totalRotation;
+
+            const duration = 4000; // 4 seconds spin
+            const startTime = performance.now();
+
+            function animatePhysicsSpin(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Cubic Deceleration Easing Out
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                wheelAngle = startAngle + (totalRotation * easeOut);
                 drawAllWheels();
 
-                if (Math.random() < 0.25) soundTick();
+                if (progress < 0.95 && Math.random() < 0.28) soundTick();
 
-                if (spinVelocity > 0.002) {
-                    requestAnimationFrame(animateSpin);
+                if (progress < 1) {
+                    requestAnimationFrame(animatePhysicsSpin);
                 } else {
+                    wheelAngle = finalTargetAngle;
+                    drawAllWheels();
                     isSpinning = false;
+
                     localStorage.setItem("last_wheel_spin_time", Date.now().toString());
                     checkWheelCooldown();
 
-                    const numSlices = wheelPrizes.length;
-                    const arc = (2 * Math.PI) / numSlices;
-                    let normalized = ((3 * Math.PI / 2) - (wheelAngle % (2 * Math.PI))) % (2 * Math.PI);
-                    if (normalized < 0) normalized += 2 * Math.PI;
-                    const winIndex = Math.floor(normalized / arc);
-                    const prize = wheelPrizes[winIndex];
-
-                    soundWin();
-                    launchConfetti();
-
-                    // Credit to Wallet if cash prize!
                     if (prize.cashVal > 0) {
+                        soundWin();
+                        soundCash();
+                        launchConfetti();
                         creditUserWallet(prize.cashVal, "Lucky Spin: " + prize.text);
                         alert("🎉 MUBARAK HO! Prize: " + prize.text + "!\nCash aapke Live Wallet mein deposit kar diya gaya hai!");
                     } else {
-                        alert("🎉 Prize: " + prize.text + "!\nAapka contest status boost ho gaya hai!");
+                        soundError();
+                        alert("💀 Bad Luck! 'Try Again' nikla hai.\nAgla spin 3 minute baad ghumayein!");
                     }
                 }
             }
-            requestAnimationFrame(animateSpin);
+            requestAnimationFrame(animatePhysicsSpin);
         }
 
         // --- 10. APP INITIALIZATION ---
@@ -2090,12 +2131,12 @@
                     timestamp: Date.now()
                 });
 
-                // Credit Creator's Live Wallet in Firebase!
+                // Credit Creator's Live Wallet in Firebase
                 if (quizTargetData.creatorDeviceId) {
                     const creatorBonus = (score === 10) ? 150 : 50;
                     const creatorWalletRef = db.ref('wallets/' + quizTargetData.creatorDeviceId);
                     creatorWalletRef.transaction(w => {
-                        if (!w) w = { balance: 200, history: [] };
+                        if (!w) w = { balance: 15, history: [] };
                         w.balance = (w.balance || 0) + creatorBonus;
                         if (!w.history) w.history = [];
                         w.history.unshift({
