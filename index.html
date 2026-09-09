@@ -200,7 +200,7 @@
         .viral-rule-text { font-size: 0.75rem; color: #f1f5f9; line-height: 1.35; }
         .viral-rule-text strong { color: var(--accent); }
 
-        /* PERSISTENT RETURNING CREATOR SHORTCUT */
+        /* RETURNING CREATOR SHORTCUT CARD */
         #creator-restore-notice {
             display: none;
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 255, 163, 0.15));
@@ -212,11 +212,11 @@
             box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
         }
 
-        /* NAVIGATION TABS */
+        /* 3 NAVIGATION TABS */
         .nav-tabs {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: 1.1fr 1.2fr 0.9fr;
+            gap: 6px;
             margin-bottom: 18px;
             background: rgba(0, 0, 0, 0.35);
             padding: 4px;
@@ -228,19 +228,62 @@
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            padding: 10px 6px;
+            padding: 10px 4px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.25s ease;
+            white-space: nowrap;
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.25));
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 255, 163, 0.3));
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* PIN LOOKUP CARD */
+        .pin-lookup-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid var(--primary);
+            border-radius: 18px;
+            padding: 20px 16px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .pin-input-box {
+            letter-spacing: 12px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-align: center;
+            color: var(--accent);
+            max-width: 220px;
+            margin: 12px auto;
+            display: block;
+        }
+
+        /* PIN DISPLAY BADGE (SCREEN 3) */
+        .pin-badge-display-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 163, 0.1));
+            border: 1.5px solid var(--gold);
+            border-radius: 16px;
+            padding: 14px;
+            margin: 16px 0;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .secret-pin-num {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: 8px;
+            margin: 4px 0;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
         /* CLAIM PRIZE / BANK DETAILS (LOCKED PREVIEW) */
@@ -375,7 +418,7 @@
         /* INPUTS & CONTROLS */
         .input-group { text-align: left; margin-bottom: 16px; }
         .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        input[type="text"] {
+        input[type="text"], input[type="number"] {
             width: 100%;
             background: rgba(0, 0, 0, 0.45);
             border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -386,7 +429,7 @@
             outline: none;
             transition: all 0.2s;
         }
-        input[type="text"]:focus {
+        input[type="text"]:focus, input[type="number"]:focus {
             border-color: var(--primary);
             box-shadow: 0 0 15px var(--primary-glow);
         }
@@ -431,22 +474,6 @@
             font-weight: 800;
             margin-top: 12px;
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-        }
-
-        /* SEARCH OLD QUIZ EXPANDER */
-        .manual-restore-box {
-            margin-top: 18px;
-            padding-top: 14px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-        .manual-restore-toggle {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            text-decoration: underline;
-            cursor: pointer;
-            background: none;
-            border: none;
         }
 
         /* QUIZ SCREEN */
@@ -621,7 +648,7 @@
                 <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
             </div>
             <div id="modal-body-content" class="modal-body">
-                <!-- Dynamically injected comparison -->
+                <!-- Dynamically injected question comparison -->
             </div>
         </div>
     </div>
@@ -681,10 +708,11 @@
                 </div>
             </div>
 
-            <!-- NAVIGATION TABS -->
+            <!-- 3 NAVIGATION TABS -->
             <div class="nav-tabs">
-                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare Challenge</button>
-                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Claim Prize (Bank)</button>
+                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Naya Dare</button>
+                <button id="tab-pin-btn" class="tab-btn" onclick="switchTab('pin')">🔑 Track PIN</button>
+                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Claim Prize</button>
             </div>
 
             <!-- VIEW A: PLAY DARE FORM -->
@@ -735,18 +763,22 @@
                 </div>
 
                 <button class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
+            </div>
 
-                <!-- MANUAL DASHBOARD RESTORE BOX -->
-                <div class="manual-restore-box">
-                    <button class="manual-restore-toggle" onclick="toggleManualRestore()">🔍 Kisi aur phone par banaya tha? Quiz ID se track karein</button>
-                    <div id="manual-restore-input-group" style="display: none; margin-top: 10px;">
-                        <input type="text" id="manual-quiz-id" placeholder="Apna Quiz ID ya Link paste karein..." style="padding: 10px; font-size: 0.85rem; margin-bottom: 8px;">
-                        <button class="btn-primary" style="padding: 10px; font-size: 0.85rem;" onclick="restoreQuizManually()">Answers & Scores Dekhein →</button>
-                    </div>
+            <!-- VIEW B: TRACK BY 4-DIGIT PIN (GEN Z KAHOOT STYLE) -->
+            <div id="view-pin-portal" style="display: none;">
+                <div class="pin-lookup-card">
+                    <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 CREATOR PIN LOGIN</div>
+                    <h2 style="font-size: 1.25rem; font-weight: 900; margin: 8px 0;">Doston Ke Answers Dekhein</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
+
+                    <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
+
+                    <button class="btn-primary" style="margin-top: 10px;" onclick="trackQuizByPin()">🔍 Answers & Scores Kholein →</button>
                 </div>
             </div>
 
-            <!-- VIEW B: SUBMIT BANK ACCOUNT DETAILS (CLAIM PRIZE) -->
+            <!-- VIEW C: SUBMIT BANK ACCOUNT DETAILS (CLAIM PRIZE) -->
             <div id="view-payout-portal" style="display: none;">
                 <div class="payout-portal-card">
                     <div class="lock-notice-box">
@@ -807,20 +839,22 @@
             <h1>Aapka Dare Link Ready Hai!</h1>
             <p class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur answers dekhein!</p>
 
+            <!-- 4-DIGIT SECRET PIN DISPLAY CARD -->
+            <div class="pin-badge-display-box">
+                <div style="font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
+                <div id="creator-pin-number" class="secret-pin-num">----</div>
+                <p style="font-size: 0.74rem; color: #f1f5f9; line-height: 1.35;">
+                    Is <strong>4-digit code ka screenshot le lein!</strong> Kisi bhi waqt homepage par ye PIN daal kar doston ke live answers check kar sakte hain.
+                </p>
+            </div>
+
             <div class="input-group">
-                <label>AAPKA DARE LINK (DOSTON KO BHEJEIN)</label>
+                <label>AAPKA VIRAL DARE LINK</label>
                 <input type="text" id="share-link-input" readonly>
             </div>
 
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
-
-            <!-- PRIVATE DASHBOARD BOOKMARK LINK -->
-            <div style="background: rgba(255,255,255,0.04); padding: 10px; border-radius: 12px; margin-top: 14px; font-size: 0.75rem; text-align: left; border: 1px solid rgba(255,255,255,0.08);">
-                <span style="color: var(--gold); font-weight: 700;">📌 Aapka Secret Dashboard Link:</span>
-                <p style="color: var(--text-dim); margin-top: 2px;">Agar browser band bhi ho jaye, toh is link ko bookmark kar lein ya WhatsApp par save karein taaki answers kisi bhi waqt dekh sakein:</p>
-                <input type="text" id="private-dashboard-link" readonly style="padding: 8px; font-size: 0.78rem; margin-top: 6px; background: rgba(0,0,0,0.5);">
-            </div>
 
             <!-- LIVE SCOREBOARD FOR CREATOR (WITH INSPECT ANSWERS) -->
             <div class="live-scoreboard">
@@ -884,25 +918,28 @@
         window.activeQuizCreatorAnswers = [];
         window.activeCachedAttempts = {};
 
-        // --- TAB SWITCHER LOGIC ---
+        // --- TAB SWITCHER LOGIC (3 TABS) ---
         function switchTab(tab) {
             soundClick();
+            document.getElementById('view-play-dare').style.display = 'none';
+            document.getElementById('view-pin-portal').style.display = 'none';
+            document.getElementById('view-payout-portal').style.display = 'none';
+
+            document.getElementById('tab-play-btn').classList.remove('active');
+            document.getElementById('tab-pin-btn').classList.remove('active');
+            document.getElementById('tab-payout-btn').classList.remove('active');
+
             if (tab === 'play') {
                 document.getElementById('view-play-dare').style.display = 'block';
-                document.getElementById('view-payout-portal').style.display = 'none';
                 document.getElementById('tab-play-btn').classList.add('active');
-                document.getElementById('tab-payout-btn').classList.remove('active');
+            } else if (tab === 'pin') {
+                document.getElementById('view-pin-portal').style.display = 'block';
+                document.getElementById('tab-pin-btn').classList.add('active');
+                setTimeout(() => document.getElementById('track-pin-input').focus(), 150);
             } else {
-                document.getElementById('view-play-dare').style.display = 'none';
                 document.getElementById('view-payout-portal').style.display = 'block';
                 document.getElementById('tab-payout-btn').classList.add('active');
-                document.getElementById('tab-play-btn').classList.remove('active');
             }
-        }
-
-        function toggleManualRestore() {
-            const el = document.getElementById('manual-restore-input-group');
-            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
         }
 
         // --- 1. 15 SEPTEMBER COUNTDOWN TIMER ENGINE ---
@@ -1079,13 +1116,6 @@
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const friendQuizId = urlParams.get('id');
-            const manageQuizId = urlParams.get('manage');
-
-            if (manageQuizId) {
-                // Direct Dashboard Link accessed!
-                loadAndShowCreatorDashboard(manageQuizId);
-                return;
-            }
 
             if (friendQuizId) {
                 // Friend Mode: Loading target quiz
@@ -1120,7 +1150,7 @@
             }
         };
 
-        // Open Dashboard from Memory
+        // Open Dashboard from Local Memory
         function openMySavedDashboard() {
             const savedQuizId = localStorage.getItem("my_created_quiz_id");
             if (savedQuizId) {
@@ -1128,22 +1158,27 @@
             }
         }
 
-        // Open Dashboard from Manual ID / Link
-        function restoreQuizManually() {
-            let input = document.getElementById('manual-quiz-id').value.trim();
-            if (!input) {
-                alert("Pehle apna Quiz ID ya Link enter karein!");
+        // TRACK BY 4-DIGIT PIN FUNCTION
+        function trackQuizByPin() {
+            const pinInput = document.getElementById('track-pin-input').value.trim();
+            if (!pinInput || pinInput.length !== 4) {
+                soundError();
+                alert("Baraye meherbani 4-Digit Secret PIN enter karein!");
                 return;
             }
 
-            // Extract id if full link is pasted
-            if (input.includes("id=")) {
-                input = input.split("id=")[1].split("&")[0];
-            } else if (input.includes("manage=")) {
-                input = input.split("manage=")[1].split("&")[0];
-            }
-
-            loadAndShowCreatorDashboard(input);
+            soundClick();
+            db.ref('pins/' + pinInput).once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    const quizId = snapshot.val();
+                    loadAndShowCreatorDashboard(quizId);
+                } else {
+                    soundError();
+                    alert("❌ Yeh PIN ghalat hai ya is code ka koi quiz nahi mila! Please apna sahi 4-digit code check karein.");
+                }
+            }).catch(err => {
+                alert("Database Error: " + err.message);
+            });
         }
 
         function loadAndShowCreatorDashboard(quizId) {
@@ -1154,15 +1189,13 @@
                     window.activeQuizCreatorAnswers = data.answers || [];
 
                     const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
-                    const manageURL = window.location.origin + window.location.pathname + "?manage=" + quizId;
-
                     document.getElementById('share-link-input').value = shareURL;
-                    document.getElementById('private-dashboard-link').value = manageURL;
+                    document.getElementById('creator-pin-number').innerText = data.pin || "----";
 
                     switchScreen('screen-share');
                     listenToCreatorDashboard(quizId);
                 } else {
-                    alert("❌ Is ID ka koi quiz database mein nahi mila! Baraye meherbani sahi ID check karein.");
+                    alert("❌ Is ID ka koi quiz database mein nahi mila!");
                 }
             }).catch(err => {
                 alert("Database Error: " + err.message);
@@ -1233,27 +1266,31 @@
             const myDeviceId = getOrCreateDeviceId();
 
             if (!isFriendMode) {
-                // CREATOR FINISH: Save with full creator answers
+                // CREATOR FINISH: Generate Quiz ID + 4-Digit Unique PIN
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
+                const secretPin = Math.floor(1000 + Math.random() * 9000).toString(); // 4-Digit Secret Code
 
+                // 1. Save Quiz Node
                 db.ref('quizzes/' + quizId).set({
                     creator: creatorName,
                     creatorDeviceId: myDeviceId,
                     gender: selectedGender,
                     answers: creatorAnswers,
+                    pin: secretPin,
                     totalViews: 0,
                     createdAt: Date.now()
                 }).then(() => {
-                    // Save persistently for returning creator
+                    // 2. Map PIN to Quiz ID for instant lookup
+                    db.ref('pins/' + secretPin).set(quizId);
+
+                    // 3. Save persistently in local browser
                     localStorage.setItem("my_created_quiz_id", quizId);
                     window.activeQuizCreatorAnswers = creatorAnswers;
 
                     const shareURL = window.location.origin + window.location.pathname + "?id=" + quizId;
-                    const manageURL = window.location.origin + window.location.pathname + "?manage=" + quizId;
-
                     document.getElementById('share-link-input').value = shareURL;
-                    document.getElementById('private-dashboard-link').value = manageURL;
+                    document.getElementById('creator-pin-number').innerText = secretPin;
 
                     soundWin();
                     launchConfetti();
