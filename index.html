@@ -746,6 +746,63 @@
             width: 100%;
         }
 
+        /* ================= ADMIN DASHBOARD STYLING ================= */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .admin-stat-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+        .admin-stat-num {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .admin-stat-label {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .admin-table-wrap {
+            max-height: 320px;
+            overflow-y: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            margin-bottom: 14px;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+            text-align: left;
+        }
+        .admin-table th {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 10px;
+            color: var(--gold);
+            font-weight: 800;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .admin-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #f1f5f9;
+        }
+        .admin-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
         /* MODAL OVERLAYS */
         .modal-overlay {
             position: fixed;
@@ -1210,6 +1267,68 @@
             </div>
         </div>
 
+        <!-- ================= SCREEN 5: SECRET MASTER ADMIN DASHBOARD ================= -->
+        <div id="screen-admin" class="screen">
+            <div class="dashboard-header-nav">
+                <button class="btn-nav-back" onclick="goToHome()">
+                    <span>⬅️</span> <span>Exit Admin</span>
+                </button>
+                <span class="live-tag" style="background: rgba(255, 215, 0, 0.2); color: var(--gold);">👑 MASTER ADMIN</span>
+            </div>
+
+            <h1 style="font-size: 1.3rem; margin-bottom: 2px;">⚡ Platform Live Overview</h1>
+            <p class="subtitle" style="margin-bottom: 14px;">Tamam users ke balances, device IDs aur payout liability ka live record.</p>
+
+            <!-- STATS SUMMARY CARDS -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <div id="admin-total-users" class="admin-stat-num">0</div>
+                    <div class="admin-stat-label">Total Users (Devices)</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div id="admin-total-liability" class="admin-stat-num" style="color: var(--gold);">Rs. 0</div>
+                    <div class="admin-stat-label">Total Wallet Payouts Owed</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div id="admin-total-quizzes" class="admin-stat-num">0</div>
+                    <div class="admin-stat-label">Quizzes Created</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div id="admin-total-attempts" class="admin-stat-num">0</div>
+                    <div class="admin-stat-label">Total Completed Plays</div>
+                </div>
+            </div>
+
+            <!-- EXPORT ACTION BUTTON -->
+            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <button class="btn-primary" style="padding: 10px; font-size: 0.82rem; background: linear-gradient(135deg, #059669, #10b981);" onclick="exportAdminCSV()">
+                    📥 Download Excel (CSV) File
+                </button>
+                <button class="btn-primary" style="padding: 10px; font-size: 0.82rem; background: rgba(255,255,255,0.1); width: auto;" onclick="loadAdminMasterData()">
+                    🔄 Refresh
+                </button>
+            </div>
+
+            <!-- ALL MEMBERS DATA TABLE -->
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User Name</th>
+                            <th>Balance</th>
+                            <th>Device ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--text-dim);">Data loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
     <!-- ================= JAVASCRIPT & ENGINE ================= -->
@@ -1230,6 +1349,7 @@
         let currentLang = localStorage.getItem("app_lang") || "ur";
         window.activeQuizCreatorAnswers = [];
         window.activeCachedAttempts = {};
+        window.adminExportRows = []; // Cached data for 1-click Excel export
 
         // --- 1. DUAL-LANGUAGE QUESTION DATABASE ---
         const DARE_QUESTIONS = [
@@ -1331,7 +1451,7 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE (STARTING BONUS = RS. 15) ---
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE (MINIMUM WELCOME BONUS = RS. 15) ---
         let userWallet = {
             balance: 15,
             history: []
@@ -1707,7 +1827,7 @@
                     if (p.life > 0) {
                         active = true;
                         ctx.beginPath();
-                        ctx.arc(p.x, p.r, p.r, 0, Math.PI * 2);
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                         ctx.fillStyle = p.color;
                         ctx.fill();
                         p.x += p.dx;
@@ -1722,7 +1842,6 @@
         }
 
         // --- 9. LUCKY SPIN & WIN WHEEL WITH STRICT WEIGHTED PROBABILITY ---
-        // Exactly 8 Slices: Rs. 1, Rs. 5, Try Again, Rs. 10, Rs. 50, Rs. 100, Rs. 500, Rs. 1000
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
@@ -1785,15 +1904,7 @@
             drawWheel('dash');
         }
 
-        // PURE WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES):
-        // Rs. 1000 -> Exactly 0% (BLOCKED)
-        // Rs. 500  -> Exactly 0% (BLOCKED)
-        // Rs. 100  -> Exactly 0% (BLOCKED)
-        // Rs. 50   -> Exactly 0.1% (1 in 1000 chance)
-        // Rs. 10   -> 2.9% (29 in 1000 chance)
-        // Rs. 5    -> 17% (170 in 1000 chance)
-        // Rs. 1    -> 35% (350 in 1000 chance)
-        // Try Again -> 45% (450 in 1000 chance)
+        // PURE WEIGHTED PROBABILITY ENGINE (OUT OF 1000 CHANCES)
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
             if (rand < 1) {
@@ -1807,7 +1918,7 @@
             } else {
                 return 2; // Try Again -> 450 in 1000 (45%)
             }
-            // Note: Indices 5, 6, 7 (Rs. 100, Rs. 500, Rs. 1000) will NEVER be returned! Exactly 0% chance.
+            // Rs. 100, Rs. 500, Rs. 1000 are NEVER chosen (0%)
         }
 
         function checkWheelCooldown() {
@@ -1861,11 +1972,9 @@
             isSpinning = true;
             soundClick();
 
-            // 1. Predetermine Winner using Weighted Probabilities
             const chosenWinIndex = pickWeightedPrizeIndex();
             const prize = wheelPrizes[chosenWinIndex];
 
-            // 2. Exact Angle Alignment on Canvas Pointer (Top: 3*PI/2)
             const numSlices = wheelPrizes.length;
             const arc = (2 * Math.PI) / numSlices;
             const jitter = (Math.random() - 0.5) * (arc * 0.6);
@@ -1916,7 +2025,111 @@
             requestAnimationFrame(animatePhysicsSpin);
         }
 
-        // --- 10. APP INITIALIZATION ---
+        // --- 10. SECRET MASTER ADMIN CONTROLLER (PIN: 9999) ---
+        function openAdminMasterPanel() {
+            soundClick();
+            switchScreen('screen-admin');
+            loadAdminMasterData();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadAdminMasterData() {
+            const tableBody = document.getElementById('admin-table-body');
+            tableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--gold);">🔄 Fetching live platform data...</td></tr>`;
+
+            // Pull Wallets and Quizzes in Parallel
+            Promise.all([
+                db.ref('wallets').once('value'),
+                db.ref('quizzes').once('value')
+            ]).then(([walletsSnap, quizzesSnap]) => {
+                const wallets = walletsSnap.val() || {};
+                const quizzes = quizzesSnap.val() || {};
+
+                // Map Device ID to Creator Name
+                const deviceToName = {};
+                let totalQuizzes = 0;
+                let totalAttempts = 0;
+
+                Object.keys(quizzes).forEach(quizId => {
+                    totalQuizzes++;
+                    const q = quizzes[quizId];
+                    if (q.creatorDeviceId && q.creator) {
+                        deviceToName[q.creatorDeviceId] = q.creator;
+                    }
+                    if (q.attempts) {
+                        totalAttempts += Object.keys(q.attempts).length;
+                    }
+                });
+
+                const walletKeys = Object.keys(wallets);
+                let totalLiability = 0;
+                window.adminExportRows = [];
+
+                tableBody.innerHTML = "";
+
+                if (walletKeys.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-dim);">No wallets found.</td></tr>`;
+                    return;
+                }
+
+                walletKeys.forEach((devId, idx) => {
+                    const w = wallets[devId] || {};
+                    const bal = w.balance || 0;
+                    totalLiability += bal;
+
+                    const userName = deviceToName[devId] || (w.history && w.history[0] ? "Player" : "Guest");
+                    const shortDevId = devId.length > 14 ? devId.substring(0, 14) + "..." : devId;
+
+                    window.adminExportRows.push({
+                        index: idx + 1,
+                        name: userName,
+                        balance: bal,
+                        deviceId: devId
+                    });
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="color: var(--text-dim);">${idx + 1}</td>
+                        <td><strong>${userName}</strong></td>
+                        <td style="color: var(--accent); font-weight: 800;">Rs. ${bal.toLocaleString()}</td>
+                        <td style="font-family: monospace; font-size: 0.65rem; color: var(--text-dim);">${shortDevId}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+
+                // Update Overview Metrics
+                document.getElementById('admin-total-users').innerText = walletKeys.length.toLocaleString();
+                document.getElementById('admin-total-liability').innerText = "Rs. " + totalLiability.toLocaleString();
+                document.getElementById('admin-total-quizzes').innerText = totalQuizzes.toLocaleString();
+                document.getElementById('admin-total-attempts').innerText = totalAttempts.toLocaleString();
+
+            }).catch(err => {
+                tableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--danger);">Error: ${err.message}</td></tr>`;
+            });
+        }
+
+        function exportAdminCSV() {
+            soundClick();
+            if (!window.adminExportRows || window.adminExportRows.length === 0) {
+                alert("Koi data mojood nahi hai export karne ke liye!");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,Index,User Name,Wallet Balance (PKR),Device ID\n";
+            window.adminExportRows.forEach(row => {
+                csvContent += `"${row.index}","${row.name}","${row.balance}","${row.deviceId}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `dare_earnings_payouts_${Date.now()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- 11. APP INITIALIZATION ---
         window.onload = function() {
             initUserWallet();
             changeLanguage(currentLang);
@@ -1963,6 +2176,13 @@
 
         function trackQuizByPin() {
             const pinInput = document.getElementById('track-pin-input').value.trim();
+
+            // SECRET MASTER ADMIN PIN CHECK: 9999
+            if (pinInput === "9999") {
+                openAdminMasterPanel();
+                return;
+            }
+
             if (!pinInput || pinInput.length !== 4) {
                 soundError();
                 alert("Baraye meherbani 4-Digit Secret PIN enter karein!");
@@ -2164,7 +2384,7 @@
             }
         }
 
-        // --- 11. REALTIME CREATOR DASHBOARD LISTENER ---
+        // --- 12. REALTIME CREATOR DASHBOARD LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
