@@ -63,7 +63,7 @@
             z-index: 2;
         }
 
-        /* LANGUAGE SELECTOR BAR */
+        /* NAVIGATION & BACK BUTTONS */
         .top-utility-bar {
             display: flex;
             justify-content: space-between;
@@ -72,6 +72,34 @@
             padding-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
+        .dashboard-header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1.5px solid rgba(0, 255, 163, 0.3);
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+        }
+
+        .btn-nav-back {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 255, 163, 0.3));
+            border: 1.5px solid var(--accent);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 14px rgba(0, 255, 163, 0.25);
+            transition: all 0.2s;
+        }
+        .btn-nav-back:active { transform: scale(0.95); }
 
         .lang-switch {
             display: inline-flex;
@@ -100,23 +128,7 @@
             font-weight: 800;
         }
 
-        .btn-back {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-        .btn-back:active { transform: scale(0.96); }
-
-        /* REAL-TIME MEGA JACKPOT BANNER */
+        /* DYNAMIC MEGA JACKPOT BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 1.5px solid rgba(255, 215, 0, 0.65);
@@ -170,7 +182,7 @@
         .jackpot-info-row {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             color: var(--text-dim);
             margin-top: 6px;
             padding-top: 6px;
@@ -239,15 +251,15 @@
             margin-top: 2px;
         }
 
-        /* LIVE DARE WALLET WIDGET */
+        /* 1. LIVE DARE WALLET (LALACH KA ASLI ENGINE) */
         .dare-wallet-card {
-            background: linear-gradient(135deg, rgba(0, 255, 163, 0.12), rgba(139, 92, 246, 0.15));
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.18));
             border: 1.5px solid var(--accent);
             border-radius: 16px;
             padding: 14px;
             margin-bottom: 16px;
             text-align: left;
-            box-shadow: 0 0 20px rgba(0, 255, 163, 0.18);
+            box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
         }
 
         .wallet-head {
@@ -268,7 +280,7 @@
         }
 
         .wallet-amount {
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.5px;
@@ -282,8 +294,8 @@
 
         .wallet-progress-bg {
             width: 100%;
-            height: 7px;
-            background: rgba(0, 0, 0, 0.4);
+            height: 8px;
+            background: rgba(0, 0, 0, 0.45);
             border-radius: 10px;
             overflow: hidden;
             margin: 6px 0;
@@ -298,15 +310,15 @@
         }
 
         .wallet-note {
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             color: var(--text-dim);
-            line-height: 1.35;
+            line-height: 1.4;
         }
 
-        /* LUCKY SPIN WHEEL */
+        /* 2. LUCKY SPIN & WIN WHEEL (3-MIN COOLDOWN) */
         .spin-wheel-card {
-            background: rgba(0, 0, 0, 0.45);
-            border: 1.5px solid rgba(255, 215, 0, 0.35);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.4);
             border-radius: 18px;
             padding: 16px 12px;
             text-align: center;
@@ -323,7 +335,7 @@
 
         #wheel-canvas {
             border-radius: 50%;
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.45);
         }
 
         .wheel-pointer {
@@ -344,19 +356,19 @@
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 0.78rem;
-            font-weight: 700;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 800;
             color: var(--accent);
             margin-top: 8px;
             display: inline-block;
         }
 
-        /* NAVIGATION TABS */
+        /* 4 HOMEPAGE TABS */
         .nav-tabs {
             display: grid;
-            grid-template-columns: 1.1fr 1.2fr 0.9fr;
-            gap: 6px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 4px;
             margin-bottom: 18px;
             background: rgba(0, 0, 0, 0.35);
             padding: 4px;
@@ -368,9 +380,9 @@
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            padding: 10px 4px;
+            padding: 10px 2px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -804,16 +816,16 @@
         <!-- SCREEN 1: WELCOME & START -->
         <div id="screen-welcome" class="screen active">
             
-            <!-- REAL-TIME GROWING COMMUNITY MEGA JACKPOT -->
+            <!-- REAL-TIME GROWING MEGA JACKPOT -->
             <div class="reward-highlight-banner">
                 <div class="reward-top-tag"><span class="pulse-dot"></span> <span id="txt-jackpot-tag">COMMUNITY PRIZE POOL ⚡</span></div>
                 <div class="reward-main-title">🎰 MEGA JACKPOT: <span id="jackpot-display" class="jackpot-counter-box">Rs. 10,000</span></div>
                 <p id="txt-jackpot-desc" class="reward-sub-text">
-                    Base Pool <strong>Rs. 10,000</strong>! Har 50 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.
+                    Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.
                 </p>
                 <div class="jackpot-info-row">
-                    <span>👥 Total Players: <strong id="realtime-player-count" style="color:var(--accent);">0</strong></span>
-                    <span>⚡ Next +Rs. 100: <strong id="players-needed-count" style="color:var(--gold);">50 left</strong></span>
+                    <span>🟢 <span id="txt-online-label">Online Players:</span> <strong id="online-player-count" style="color:var(--accent);">240</strong></span>
+                    <span>⚡ <span id="txt-next-addon">Next +Rs. 100:</span> <strong id="players-needed-count" style="color:var(--gold);">25 left</strong></span>
                 </div>
             </div>
 
@@ -847,17 +859,18 @@
                 </div>
             </div>
 
-            <!-- RETURNING CREATOR CARD -->
+            <!-- RETURNING CREATOR SHORTCUT -->
             <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 255, 163, 0.15)); border:1.5px solid var(--accent); border-radius:14px; padding:12px; margin-bottom:16px; text-align:center;">
                 <p style="font-size: 0.82rem; font-weight: 800; margin-bottom: 6px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
                 <button class="btn-primary" style="padding: 10px; font-size: 0.88rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
             </div>
 
-            <!-- 3 NAVIGATION TABS -->
+            <!-- 4 NAVIGATION TABS ON HOMEPAGE -->
             <div class="nav-tabs">
-                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Naya Dare</button>
-                <button id="tab-pin-btn" class="tab-btn" onclick="switchTab('pin')">🔑 Track PIN</button>
-                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Claim Prize</button>
+                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare</button>
+                <button id="tab-spin-btn" class="tab-btn" onclick="switchTab('spin')">🎡 Spin</button>
+                <button id="tab-pin-btn" class="tab-btn" onclick="switchTab('pin')">🔑 PIN</button>
+                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Prize</button>
             </div>
 
             <!-- VIEW A: PLAY DARE FORM -->
@@ -866,7 +879,7 @@
                 <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
                 <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
 
-                <!-- DYNAMIC TOP 3 PODIUM (SCALED BY TOTAL POOL) -->
+                <!-- DYNAMIC TOP 3 PODIUM -->
                 <div class="winners-card">
                     <div class="winners-header">
                         <span id="txt-leaderboard-head">🏆 Live Community Leaderboard</span>
@@ -910,20 +923,39 @@
                 <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
             </div>
 
-            <!-- VIEW B: TRACK BY 4-DIGIT PIN -->
+            <!-- VIEW B: LUCKY SPIN WHEEL (DIRECT ACCESS ON HOMEPAGE) -->
+            <div id="view-spin-portal" style="display: none;">
+                <div class="spin-wheel-card" style="margin-top: 0;">
+                    <div class="badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
+                    <h2 style="font-size: 1.2rem; font-weight: 900; margin: 6px 0;">Lucky Spin & Win</h2>
+                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar points aur rank boost karein!</p>
+
+                    <div class="wheel-container">
+                        <div class="wheel-pointer"></div>
+                        <canvas id="wheel-canvas-home" width="240" height="240"></canvas>
+                    </div>
+
+                    <button id="btn-spin-wheel-home" class="btn-primary" style="padding:12px; font-size:0.95rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
+                        🎲 Abhi Ghumaao (Free Spin)
+                    </button>
+                    <div id="wheel-cooldown-timer-home" class="cooldown-badge" style="display:none;">⏳ Next Free Spin: <span id="cooldown-clock-home">03:00</span></div>
+                </div>
+            </div>
+
+            <!-- VIEW C: TRACK BY 4-DIGIT PIN & WALLET LOOKUP -->
             <div id="view-pin-portal" style="display: none;">
                 <div class="pin-lookup-card">
-                    <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN LOGIN</div>
-                    <h2 id="txt-pin-title" style="font-size: 1.25rem; font-weight: 900; margin: 8px 0;">Doston Ke Answers Dekhein</h2>
+                    <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
+                    <h2 id="txt-pin-title" style="font-size: 1.25rem; font-weight: 900; margin: 8px 0;">Doston Ke Answers & Wallet</h2>
                     <p id="txt-pin-sub" style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
 
                     <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
 
-                    <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 10px;" onclick="trackQuizByPin()">🔍 Answers & Scores Kholein →</button>
+                    <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 10px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
                 </div>
             </div>
 
-            <!-- VIEW C: SUBMIT BANK ACCOUNT DETAILS -->
+            <!-- VIEW D: SUBMIT BANK ACCOUNT DETAILS -->
             <div id="view-payout-portal" style="display: none;">
                 <div class="payout-portal-card">
                     <div class="lock-notice-box">
@@ -969,9 +1001,14 @@
 
         <!-- SCREEN 2: QUESTIONS -->
         <div id="screen-quiz" class="screen">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <button class="btn-nav-back" style="padding: 5px 12px; font-size: 0.72rem;" onclick="goToHome()">
+                    <span>⬅️</span> <span>Exit</span>
+                </button>
+                <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.75rem; font-weight: 700;">● Shield Protected</span>
+            </div>
             <div class="quiz-progress">
                 <span id="question-number">Question 1/10</span>
-                <span id="anti-cheat-status" style="color: var(--accent);">● Shield Protected</span>
             </div>
             <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
             <div id="question-text" class="question-box">Loading question...</div>
@@ -981,19 +1018,19 @@
         <!-- SCREEN 3: CREATOR DASHBOARD -->
         <div id="screen-share" class="screen">
             
-            <!-- BACK / RETURN BUTTON -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <button class="btn-back" onclick="goToHome()">
-                    ← <span id="txt-back-home">Main Page</span>
+            <!-- PROMINENT BACK BUTTON HEADER NAV (IMPOSSIBLE TO MISS) -->
+            <div class="dashboard-header-nav">
+                <button class="btn-nav-back" onclick="goToHome()">
+                    <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
                 </button>
-                <span class="live-tag">● Live Dashboard</span>
+                <span class="live-tag">● LIVE DASHBOARD</span>
             </div>
 
             <div style="font-size: 2.6rem; margin-bottom: 4px;">🔥</div>
             <h1 id="txt-dare-ready-title">Aapka Dare Link Ready Hai!</h1>
             <p id="txt-dare-ready-sub" class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!</p>
 
-            <!-- LIVE DARE WALLET -->
+            <!-- 1. LIVE DARE WALLET WIDGET -->
             <div class="dare-wallet-card">
                 <div class="wallet-head">
                     <span id="txt-wallet-title">💰 Live Dare Wallet</span>
@@ -1028,20 +1065,20 @@
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button id="btn-share-wa" class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
 
-            <!-- LUCKY SPIN WHEEL -->
+            <!-- 2. LUCKY SPIN WHEEL (ON DASHBOARD AS WELL) -->
             <div class="spin-wheel-card">
                 <div style="font-size:0.75rem; font-weight:800; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
                 <div id="txt-wheel-sub" style="font-size:0.78rem; color:var(--text-dim); margin-top:2px;">Free rewards ghuma kar jeeto aur rank boost karo!</div>
 
                 <div class="wheel-container">
                     <div class="wheel-pointer"></div>
-                    <canvas id="wheel-canvas" width="240" height="240"></canvas>
+                    <canvas id="wheel-canvas-dash" width="240" height="240"></canvas>
                 </div>
 
-                <button id="btn-spin-wheel" class="btn-primary" style="padding:12px; font-size:0.95rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction()">
+                <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:12px; font-size:0.95rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
                     🎲 Abhi Ghumaao (Free Spin)
                 </button>
-                <div id="wheel-cooldown-timer" class="cooldown-badge" style="display:none;">⏳ Next Free Spin: <span id="cooldown-clock">03:00</span></div>
+                <div id="wheel-cooldown-timer-dash" class="cooldown-badge" style="display:none;">⏳ Next Free Spin: <span id="cooldown-clock-dash">03:00</span></div>
             </div>
 
             <!-- LIVE ATTEMPTS LIST -->
@@ -1058,6 +1095,14 @@
 
         <!-- SCREEN 4: FRIEND'S RESULT -->
         <div id="screen-result" class="screen">
+            
+            <div class="dashboard-header-nav" style="margin-bottom: 12px;">
+                <button class="btn-nav-back" onclick="goToHome()">
+                    <span>⬅️</span> <span>Main Page</span>
+                </button>
+                <span class="live-tag">● RESULT</span>
+            </div>
+
             <div id="result-icon" style="font-size: 3.2rem; margin-bottom: 6px;">🎉</div>
             <h1 id="result-title">Result Calculation</h1>
             <p id="result-subtitle" class="subtitle">Checking your friendship level...</p>
@@ -1188,7 +1233,7 @@
         let isFriendMode = false;
         let quizTargetData = null;
 
-        // --- 2. AUDIO ENGINE (PURE WEB AUDIO API) ---
+        // --- 2. AUDIO ENGINE (WEB AUDIO API) ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -1217,22 +1262,29 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. DYNAMIC JACKPOT & REALTIME PLAYER TRACKING ---
-        let currentJackpotAmount = 10000;
+        // --- 3. DYNAMIC ONLINE PLAYERS FLUCTUATION ENGINE ---
+        let currentOnlineCount = Math.floor(Math.random() * (350 - 190 + 1)) + 190;
+        function updateOnlinePlayersDisplay() {
+            const diff = Math.floor(Math.random() * 23) - 9;
+            currentOnlineCount = Math.max(140, Math.min(550, currentOnlineCount + diff));
+            const el = document.getElementById("online-player-count");
+            if (el) el.innerText = currentOnlineCount.toLocaleString();
+        }
+        setInterval(updateOnlinePlayersDisplay, 4500);
 
-        function updateJackpotAndPodium(totalPlayers) {
-            // STRICT RULE: Base 10,000 + Rs. 100 for every 50 completed players
-            const poolAddons = Math.floor(totalPlayers / 50) * 100;
+        // --- 4. ACCURATE 25-PLAYER MEGA JACKPOT ENGINE ---
+        let currentJackpotAmount = 10000;
+        function updateJackpotAndPodium(totalVerifiedPlayers) {
+            // STRICT RULE: Base 10,000 + Rs. 100 for every 25 players
+            const poolAddons = Math.floor(totalVerifiedPlayers / 25) * 100;
             currentJackpotAmount = 10000 + poolAddons;
 
             document.getElementById("jackpot-display").innerText = "Rs. " + currentJackpotAmount.toLocaleString();
-            document.getElementById("realtime-player-count").innerText = totalPlayers.toLocaleString();
             
-            const leftForNextHundred = 50 - (totalPlayers % 50);
+            const leftForNextHundred = 25 - (totalVerifiedPlayers % 25);
             document.getElementById("players-needed-count").innerText = leftForNextHundred + " left";
 
-            // Proportional Distribution of Current Mega Jackpot:
-            // 1st: 50%, 2nd: 30%, 3rd: 20%
+            // Proportional Distribution: 1st: 50%, 2nd: 30%, 3rd: 20%
             const prize1st = Math.round(currentJackpotAmount * 0.50);
             const prize2nd = Math.round(currentJackpotAmount * 0.30);
             const prize3rd = Math.round(currentJackpotAmount * 0.20);
@@ -1242,13 +1294,12 @@
             document.getElementById("podium-prize-3").innerText = "Rs. " + prize3rd.toLocaleString();
         }
 
-        // Listen to Global Player Count in Firebase
         db.ref('globalStats/totalPlayers').on('value', snap => {
             const count = snap.val() || 0;
             updateJackpotAndPodium(count);
         });
 
-        // --- 4. LANGUAGE SWITCHER IMPLEMENTATION ---
+        // --- 5. LANGUAGE SWITCHER IMPLEMENTATION ---
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem("app_lang", lang);
@@ -1259,12 +1310,15 @@
 
             if (lang === 'en') {
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
-                document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Company adds <strong>+Rs. 100</strong> for every 50 new players.";
+                document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Company adds <strong>+Rs. 100</strong> for every 25 verified players.";
+                document.getElementById("txt-online-label").innerText = "Online Players:";
+                document.getElementById("txt-next-addon").innerText = "Next +Rs. 100:";
                 document.getElementById("txt-congrats").innerHTML = "🎉 <strong>Congratulations to last week's cash winners!</strong> Bank payouts completed. Next announcement on Sep 15!";
                 document.getElementById("txt-countdown-title").innerText = "⏳ Winner Announcement: September 15";
-                document.getElementById("tab-play-btn").innerText = "🔥 New Dare";
-                document.getElementById("tab-pin-btn").innerText = "🔑 Track PIN";
-                document.getElementById("tab-payout-btn").innerText = "🏦 Claim Prize";
+                document.getElementById("tab-play-btn").innerText = "🔥 Dare";
+                document.getElementById("tab-spin-btn").innerText = "🎡 Spin";
+                document.getElementById("tab-pin-btn").innerText = "🔑 PIN";
+                document.getElementById("tab-payout-btn").innerText = "🏦 Prize";
                 document.getElementById("welcome-title").innerText = "Real Friend or Just Delusional? 💀";
                 document.getElementById("welcome-sub").innerText = "Select your answers, generate your viral dare link, and check who knows you best!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
@@ -1275,8 +1329,8 @@
                 document.getElementById("btn-start-game").innerText = "Start Game Now →";
                 document.getElementById("txt-pin-title").innerText = "Inspect Friend's Answers";
                 document.getElementById("txt-pin-sub").innerText = "Enter the 4-Digit Secret PIN you received when creating your dare:";
-                document.getElementById("btn-track-pin-submit").innerText = "🔍 Open Answers & Scores →";
-                document.getElementById("txt-back-home").innerText = "Main Page";
+                document.getElementById("btn-track-pin-submit").innerText = "🔍 Open Answers & Wallet →";
+                document.getElementById("txt-back-home").innerText = "Back To Home";
                 document.getElementById("txt-dare-ready-title").innerText = "Your Dare Link Is Ready!";
                 document.getElementById("txt-dare-ready-sub").innerText = "Share it on your WhatsApp Story and groups. Watch live scores and wallet earnings below!";
                 document.getElementById("txt-wallet-title").innerText = "💰 Live Dare Wallet";
@@ -1287,18 +1341,21 @@
                 document.getElementById("btn-copy-link").innerText = "📋 Copy Link";
                 document.getElementById("btn-share-wa").innerText = "📲 Share on WhatsApp";
                 document.getElementById("txt-wheel-sub").innerText = "Spin for free rewards and boost your rank!";
-                document.getElementById("btn-spin-wheel").innerText = "🎲 Spin Now (Free)";
+                document.getElementById("btn-spin-wheel-dash").innerText = "🎲 Spin Now (Free)";
+                document.getElementById("btn-spin-wheel-home").innerText = "🎲 Spin Now (Free)";
                 document.getElementById("txt-attempts-head").innerText = "Friend Attempts & Answers";
                 document.getElementById("btn-create-own").innerText = "🔥 Create Your Own Dare";
             } else {
-                // Roman Urdu
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
-                document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Har 50 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.";
+                document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.";
+                document.getElementById("txt-online-label").innerText = "Online Players:";
+                document.getElementById("txt-next-addon").innerText = "Next +Rs. 100:";
                 document.getElementById("txt-congrats").innerHTML = "🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!";
                 document.getElementById("txt-countdown-title").innerText = "⏳ Winner Announcement: 15 September";
-                document.getElementById("tab-play-btn").innerText = "🔥 Naya Dare";
-                document.getElementById("tab-pin-btn").innerText = "🔑 Track PIN";
-                document.getElementById("tab-payout-btn").innerText = "🏦 Claim Prize";
+                document.getElementById("tab-play-btn").innerText = "🔥 Dare";
+                document.getElementById("tab-spin-btn").innerText = "🎡 Spin";
+                document.getElementById("tab-pin-btn").innerText = "🔑 PIN";
+                document.getElementById("tab-payout-btn").innerText = "🏦 Prize";
                 document.getElementById("welcome-title").innerText = "Real Friend ya Sirf Delulu? 💀";
                 document.getElementById("welcome-sub").innerText = "Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
@@ -1307,10 +1364,10 @@
                 document.getElementById("btn-gender-boy").innerText = "👦 Boy";
                 document.getElementById("btn-gender-girl").innerText = "👧 Girl";
                 document.getElementById("btn-start-game").innerText = "Game Shuru Karo →";
-                document.getElementById("txt-pin-title").innerText = "Doston Ke Answers Dekhein";
+                document.getElementById("txt-pin-title").innerText = "Doston Ke Answers & Wallet";
                 document.getElementById("txt-pin-sub").innerText = "Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:";
-                document.getElementById("btn-track-pin-submit").innerText = "🔍 Answers & Scores Kholein →";
-                document.getElementById("txt-back-home").innerText = "Main Page";
+                document.getElementById("btn-track-pin-submit").innerText = "🔍 Answers & Wallet Kholein →";
+                document.getElementById("txt-back-home").innerText = "Wapas Home Jayein";
                 document.getElementById("txt-dare-ready-title").innerText = "Aapka Dare Link Ready Hai!";
                 document.getElementById("txt-dare-ready-sub").innerText = "Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!";
                 document.getElementById("txt-wallet-title").innerText = "💰 Live Dare Wallet";
@@ -1321,33 +1378,41 @@
                 document.getElementById("btn-copy-link").innerText = "📋 Copy Link";
                 document.getElementById("btn-share-wa").innerText = "📲 WhatsApp Par Bhejo";
                 document.getElementById("txt-wheel-sub").innerText = "Free rewards ghuma kar jeeto aur rank boost karo!";
-                document.getElementById("btn-spin-wheel").innerText = "🎲 Abhi Ghumaao (Free Spin)";
+                document.getElementById("btn-spin-wheel-dash").innerText = "🎲 Abhi Ghumaao (Free Spin)";
+                document.getElementById("btn-spin-wheel-home").innerText = "🎲 Abhi Ghumaao (Free Spin)";
                 document.getElementById("txt-attempts-head").innerText = "Doston Ke Answers & Scores";
                 document.getElementById("btn-create-own").innerText = "🔥 Apna Khud Ka Dare Banao";
             }
         }
 
-        // --- 5. NAVIGATION / BACK BUTTON ---
+        // --- 6. NAVIGATION & PROMINENT BACK BUTTON FUNCTION ---
         function goToHome() {
             soundClick();
             switchScreen('screen-welcome');
             switchTab('play');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Tab Switching
+        // Tab Switching (Handles 4 Tabs cleanly)
         function switchTab(tab) {
             soundClick();
             document.getElementById('view-play-dare').style.display = 'none';
+            document.getElementById('view-spin-portal').style.display = 'none';
             document.getElementById('view-pin-portal').style.display = 'none';
             document.getElementById('view-payout-portal').style.display = 'none';
 
             document.getElementById('tab-play-btn').classList.remove('active');
+            document.getElementById('tab-spin-btn').classList.remove('active');
             document.getElementById('tab-pin-btn').classList.remove('active');
             document.getElementById('tab-payout-btn').classList.remove('active');
 
             if (tab === 'play') {
                 document.getElementById('view-play-dare').style.display = 'block';
                 document.getElementById('tab-play-btn').classList.add('active');
+            } else if (tab === 'spin') {
+                document.getElementById('view-spin-portal').style.display = 'block';
+                document.getElementById('tab-spin-btn').classList.add('active');
+                setTimeout(() => drawWheel('home'), 50);
             } else if (tab === 'pin') {
                 document.getElementById('view-pin-portal').style.display = 'block';
                 document.getElementById('tab-pin-btn').classList.add('active');
@@ -1358,7 +1423,7 @@
             }
         }
 
-        // --- 6. 15 SEPTEMBER COUNTDOWN TIMER ---
+        // 15 September Countdown Timer
         const targetDate = new Date("September 15, 2026 23:59:59").getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -1379,7 +1444,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Unique Device ID
+        // Unique Device Fingerprint
         function getOrCreateDeviceId() {
             let deviceId = localStorage.getItem("dare_device_fingerprint");
             if (!deviceId) {
@@ -1389,7 +1454,7 @@
             return deviceId;
         }
 
-        // --- 7. ANTI-CHEAT ENGINE (10s Speed Check & Tab Detection) ---
+        // --- 7. ANTI-CHEAT ENGINE ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
@@ -1408,7 +1473,7 @@
                 tabSwitchCount++;
                 soundError();
                 if (tabSwitchCount === 1) {
-                    alert("⚠️ CHEATING WARNING: Tab ya app switch na karein! Agli baar disqualify ho jayenge.");
+                    alert("⚠️ CHEATING WARNING: Tab switch na karein! Agli baar disqualify ho jayenge.");
                 } else if (tabSwitchCount >= 2) {
                     alert("❌ DISQUALIFIED: Tab switch karne ki wajah se attempt cancel!");
                     isAntiCheatActive = false;
@@ -1490,8 +1555,8 @@
         let wheelAngle = 0;
         let isSpinning = false;
 
-        function drawWheel() {
-            const canvas = document.getElementById("wheel-canvas");
+        function drawWheel(targetId) {
+            const canvas = document.getElementById("wheel-canvas-" + targetId);
             if (!canvas) return;
             const ctx = canvas.getContext("2d");
             const numSlices = wheelPrizes.length;
@@ -1533,11 +1598,19 @@
             ctx.stroke();
         }
 
+        function drawAllWheels() {
+            drawWheel('home');
+            drawWheel('dash');
+        }
+
         function checkWheelCooldown() {
             const lastSpin = localStorage.getItem("last_wheel_spin_time");
-            const btn = document.getElementById("btn-spin-wheel");
-            const timerBadge = document.getElementById("wheel-cooldown-timer");
-            const clockEl = document.getElementById("cooldown-clock");
+            const btnHome = document.getElementById("btn-spin-wheel-home");
+            const btnDash = document.getElementById("btn-spin-wheel-dash");
+            const timerBadgeHome = document.getElementById("wheel-cooldown-timer-home");
+            const timerBadgeDash = document.getElementById("wheel-cooldown-timer-dash");
+            const clockElHome = document.getElementById("cooldown-clock-home");
+            const clockElDash = document.getElementById("cooldown-clock-dash");
 
             if (!lastSpin) return true;
 
@@ -1549,24 +1622,29 @@
                 const remaining = Math.ceil((cooldownMs - elapsed) / 1000);
                 const mins = Math.floor(remaining / 60);
                 const secs = remaining % 60;
-                clockEl.innerText = (mins < 10 ? "0" + mins : mins) + ":" + (secs < 10 ? "0" + secs : secs);
+                const formatted = (mins < 10 ? "0" + mins : mins) + ":" + (secs < 10 ? "0" + secs : secs);
 
-                btn.disabled = true;
-                btn.style.opacity = "0.5";
-                btn.style.cursor = "not-allowed";
-                timerBadge.style.display = "inline-block";
+                if (clockElHome) clockElHome.innerText = formatted;
+                if (clockElDash) clockElDash.innerText = formatted;
+
+                if (btnHome) { btnHome.disabled = true; btnHome.style.opacity = "0.5"; btnHome.style.cursor = "not-allowed"; }
+                if (btnDash) { btnDash.disabled = true; btnDash.style.opacity = "0.5"; btnDash.style.cursor = "not-allowed"; }
+
+                if (timerBadgeHome) timerBadgeHome.style.display = "inline-block";
+                if (timerBadgeDash) timerBadgeDash.style.display = "inline-block";
                 return false;
             } else {
-                btn.disabled = false;
-                btn.style.opacity = "1";
-                btn.style.cursor = "pointer";
-                timerBadge.style.display = "none";
+                if (btnHome) { btnHome.disabled = false; btnHome.style.opacity = "1"; btnHome.style.cursor = "pointer"; }
+                if (btnDash) { btnDash.disabled = false; btnDash.style.opacity = "1"; btnDash.style.cursor = "pointer"; }
+
+                if (timerBadgeHome) timerBadgeHome.style.display = "none";
+                if (timerBadgeDash) timerBadgeDash.style.display = "none";
                 return true;
             }
         }
         setInterval(checkWheelCooldown, 1000);
 
-        function spinWheelAction() {
+        function spinWheelAction(targetId) {
             if (!checkWheelCooldown()) {
                 alert("⏳ Agla spin cooldown khatam hone par milega!");
                 return;
@@ -1582,7 +1660,7 @@
             function animateSpin() {
                 wheelAngle += spinVelocity;
                 spinVelocity *= friction;
-                drawWheel();
+                drawAllWheels();
 
                 if (Math.random() < 0.25) soundTick();
 
@@ -1609,17 +1687,17 @@
             requestAnimationFrame(animateSpin);
         }
 
-        // --- 9. FLOW INITIALIZATION ---
+        // --- 9. APP INITIALIZATION ---
         window.onload = function() {
             changeLanguage(currentLang);
-            drawWheel();
+            drawAllWheels();
             checkWheelCooldown();
+            updateOnlinePlayersDisplay();
 
             const urlParams = new URLSearchParams(window.location.search);
             const friendQuizId = urlParams.get('id');
 
             if (friendQuizId) {
-                // Friend Visit -> Track View
                 db.ref('quizzes/' + friendQuizId + '/totalViews').transaction(currentViews => (currentViews || 0) + 1);
 
                 db.ref('quizzes/' + friendQuizId).once('value').then(snapshot => {
@@ -1685,8 +1763,9 @@
                     document.getElementById('creator-pin-number').innerText = data.pin || "----";
 
                     switchScreen('screen-share');
-                    drawWheel();
+                    setTimeout(() => drawWheel('dash'), 50);
                     listenToCreatorDashboard(quizId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
                     alert("❌ Is ID ka koi quiz database mein nahi mila!");
                 }
@@ -1718,7 +1797,6 @@
             document.getElementById('question-number').innerText = "Question " + (currentQuestionIndex + 1) + "/10";
             document.getElementById('progress-bar').style.width = ((currentQuestionIndex + 1) * 10) + "%";
 
-            // Language Aware Question Rendering
             let qText = (currentLang === 'en') ? qObj.q_en : qObj.q_ur;
             if (isFriendMode && quizTargetData) {
                 if (currentLang === 'en') {
@@ -1768,7 +1846,6 @@
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
                 const secretPin = Math.floor(1000 + Math.random() * 9000).toString();
 
-                // Increment Global Total Players Count
                 db.ref('globalStats/totalPlayers').transaction(c => (c || 0) + 1);
 
                 db.ref('quizzes/' + quizId).set({
@@ -1792,8 +1869,9 @@
                     soundCash();
                     launchConfetti();
                     switchScreen('screen-share');
-                    drawWheel();
+                    setTimeout(() => drawWheel('dash'), 50);
                     listenToCreatorDashboard(quizId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }).catch(err => alert("Database Save Error: " + err.message));
 
             } else {
@@ -1806,7 +1884,6 @@
                 const friendName = document.getElementById('player-name').value.trim();
                 let timeTaken = Math.round((Date.now() - quizStartTime) / 1000);
 
-                // Increment Global Total Players Count
                 db.ref('globalStats/totalPlayers').transaction(c => (c || 0) + 1);
 
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
@@ -1832,10 +1909,11 @@
 
                 if (score >= 8) { soundWin(); soundCash(); launchConfetti(); } else { soundError(); }
                 switchScreen('screen-result');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        // --- 10. REALTIME CREATOR DASHBOARD & WALLET LISTENER ---
+        // --- 10. REALTIME DASHBOARD & WALLET LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
@@ -1928,10 +2006,10 @@
                 div.innerHTML = `
                     <div class="breakdown-q">${qTitle}</div>
                     <div class="breakdown-ans" style="color: var(--accent);">
-                        ✅ <strong>Original Answer:</strong> ${creatorChoiceText}
+                        ✅ <strong>Original:</strong> ${creatorChoiceText}
                     </div>
                     <div class="breakdown-ans" style="color: ${isCorrect ? 'var(--accent)' : 'var(--danger)'};">
-                        ${isCorrect ? '✅' : '❌'} <strong>${attempt.name}'s Choice:</strong> ${friendChoiceText}
+                        ${isCorrect ? '✅' : '❌'} <strong>${attempt.name}:</strong> ${friendChoiceText}
                     </div>
                 `;
                 bodyEl.appendChild(div);
@@ -1948,7 +2026,6 @@
         function switchScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(screenId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function copyViralLink() {
@@ -1960,7 +2037,7 @@
 
             const btn = document.getElementById('btn-copy-link');
             btn.innerText = "✅ Link Copied!";
-            setTimeout(() => { btn.innerText = (currentLang === 'en') ? "📋 Copy Link" : "📋 Copy Link"; }, 2500);
+            setTimeout(() => { btn.innerText = "📋 Copy Link"; }, 2500);
         }
 
         function shareToWhatsApp() {
