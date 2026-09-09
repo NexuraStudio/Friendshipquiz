@@ -15,14 +15,14 @@
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(18, 24, 38, 0.94);
+            --card-bg: rgba(18, 24, 38, 0.96);
             --primary: #8b5cf6;
-            --primary-glow: rgba(139, 92, 246, 0.5);
+            --primary-glow: rgba(139, 92, 246, 0.4);
             --accent: #00FFA3;
-            --accent-glow: rgba(0, 255, 163, 0.4);
+            --accent-glow: rgba(0, 255, 163, 0.35);
             --gold: #FFD700;
-            --gold-glow: rgba(255, 215, 0, 0.4);
-            --text-main: #f8fafc;
+            --gold-glow: rgba(255, 215, 0, 0.35);
+            --text-main: #ffffff;
             --text-dim: #94a3b8;
             --danger: #ff4d4d;
         }
@@ -39,103 +39,111 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.25) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.2) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.22) 0px, transparent 55%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.18) 0px, transparent 55%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 16px;
+            align-items: flex-start;
+            padding: 24px 16px 60px 16px;
             color: var(--text-main);
             overflow-x: hidden;
             position: relative;
         }
 
+        /* KHULA AUR WIDE RESPONSIVE CONTAINER (680px) */
         .container {
             width: 100%;
-            max-width: 470px;
+            max-width: 680px;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 22px 18px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(25px);
+            border-radius: 32px;
+            padding: 28px 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
             position: relative;
             z-index: 2;
+            margin: 0 auto;
         }
 
-        /* TOP UTILITY BAR (WALLET + LANGUAGE) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px;
+                border-radius: 24px;
+            }
+        }
+
+        /* TOP APP BAR */
         .top-utility-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .wallet-pill-btn {
-            background: linear-gradient(135deg, rgba(0, 255, 163, 0.2), rgba(139, 92, 246, 0.25));
-            border: 1.5px solid var(--accent);
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.25), rgba(139, 92, 246, 0.25));
+            border: 2px solid var(--accent);
             color: #fff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.76rem;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.92rem;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 255, 163, 0.25);
+            box-shadow: 0 0 16px rgba(0, 255, 163, 0.25);
             transition: all 0.2s ease;
         }
-        .wallet-pill-btn:active { transform: scale(0.95); }
+        .wallet-pill-btn:active { transform: scale(0.96); }
 
         .dashboard-header-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(0, 0, 0, 0.45);
-            border: 1.5px solid rgba(0, 255, 163, 0.3);
-            border-radius: 14px;
-            padding: 10px 14px;
-            margin-bottom: 16px;
+            border: 1.5px solid rgba(0, 255, 163, 0.35);
+            border-radius: 18px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
         }
 
         .btn-nav-back {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 255, 163, 0.3));
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(0, 255, 163, 0.35));
             border: 1.5px solid var(--accent);
             color: #fff;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.82rem;
+            padding: 10px 18px;
+            border-radius: 14px;
+            font-size: 0.9rem;
             font-weight: 800;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 0 14px rgba(0, 255, 163, 0.25);
             transition: all 0.2s;
         }
-        .btn-nav-back:active { transform: scale(0.95); }
+        .btn-nav-back:active { transform: scale(0.96); }
 
         .lang-switch {
             display: inline-flex;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 2px;
-            gap: 2px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 3px;
+            gap: 4px;
         }
 
         .lang-btn {
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.68rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 16px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -143,214 +151,317 @@
         .lang-btn.active {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: #000;
-            font-weight: 800;
+            font-weight: 900;
         }
 
-        /* 5. DAILY MYSTERY LIFAFA CARD (HOMEPAGE) */
-        .mystery-lifafa-banner {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(255, 215, 0, 0.2));
-            border: 1.5px dashed var(--gold);
-            border-radius: 16px;
-            padding: 12px 14px;
-            margin-bottom: 14px;
+        /* WAZEH STEP GUIDE BOXES (FOR SUPER EASY UNDERSTANDING) */
+        .step-instruction-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1.5px solid var(--primary);
+            color: #d8b4fe;
+            font-size: 0.8rem;
+            font-weight: 900;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .step-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            box-shadow: 0 0 18px rgba(255, 215, 0, 0.2);
-            transition: transform 0.2s;
+            gap: 8px;
         }
-        .mystery-lifafa-banner:active { transform: scale(0.98); }
-        .lifafa-left { display: flex; align-items: center; gap: 10px; text-align: left; }
-        .lifafa-icon { font-size: 2rem; animation: bounce 1.8s infinite; }
-        .lifafa-title { font-size: 0.84rem; font-weight: 900; color: var(--gold); }
-        .lifafa-sub { font-size: 0.7rem; color: #f1f5f9; }
-        .btn-claim-lifafa {
-            background: linear-gradient(135deg, #FFD700, #f59e0b);
+
+        /* BIG CLEAN INPUTS */
+        .input-group {
+            text-align: left;
+            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 16px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+            padding: 16px 18px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.25s;
+        }
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* BIG ACCESSIBLE GENDER CARDS */
+        .gender-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .gender-btn {
+            background: rgba(0, 0, 0, 0.45);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 18px;
+            padding: 16px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .gender-btn.active {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            color: #fff;
+        }
+
+        /* BIG SHINY CALL-TO-ACTION BUTTONS */
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 18px;
+            font-size: 1.15rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-whatsapp {
+            background: #25D366;
             color: #000;
             font-weight: 900;
-            font-size: 0.72rem;
-            padding: 7px 12px;
-            border-radius: 10px;
+            margin-top: 14px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+        }
+        .btn-story-card {
+            background: linear-gradient(135deg, #FFD700, #ff8800);
+            color: #000;
+            font-weight: 900;
+            margin-top: 14px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.35);
+        }
+        .btn-badla-mode {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            color: #fff;
+            font-weight: 900;
+            margin-top: 14px;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+        }
+        .btn-chat-prank {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: #fff;
+            font-weight: 900;
+            margin-top: 14px;
+        }
+
+        /* 4 HOMEPAGE TABS (CLEAN & WIDE) */
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 22px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tab-btn {
+            background: transparent;
             border: none;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 12px 6px;
+            border-radius: 14px;
             cursor: pointer;
+            transition: all 0.25s ease;
             white-space: nowrap;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(0, 255, 163, 0.35));
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         /* REAL-TIME GROWING MEGA JACKPOT BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
-            border: 1.5px solid rgba(255, 215, 0, 0.65);
-            border-radius: 18px;
-            padding: 14px 12px;
+            border: 2px solid rgba(255, 215, 0, 0.65);
+            border-radius: 24px;
+            padding: 18px 16px;
             text-align: center;
-            margin-bottom: 12px;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.22);
+            margin-bottom: 16px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.22);
             animation: border-pulse 2.5s infinite alternate;
         }
 
-        .reward-top-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 215, 0, 0.25);
-            color: var(--gold);
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            margin-bottom: 6px;
-        }
-
-        .pulse-dot {
-            width: 7px;
-            height: 7px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent);
-            animation: blink 1.2s infinite;
-        }
-
         .reward-main-title {
-            font-size: 1.22rem;
+            font-size: 1.35rem;
             font-weight: 900;
-            line-height: 1.35;
             margin-bottom: 4px;
         }
 
         .jackpot-counter-box {
-            font-size: 1.6rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--gold);
             letter-spacing: 1px;
-            text-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             display: inline-block;
         }
 
         .jackpot-info-row {
             display: flex;
             justify-content: space-between;
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            margin-top: 6px;
-            padding-top: 6px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
         }
 
-        /* CONGRATS TICKER */
-        .congrats-banner {
-            background: rgba(0, 255, 163, 0.08);
-            border: 1px dashed var(--accent);
+        /* MYSTERY LIFAFA BANNER */
+        .mystery-lifafa-banner {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(255, 215, 0, 0.25));
+            border: 2px dashed var(--gold);
+            border-radius: 20px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 0 22px rgba(255, 215, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .mystery-lifafa-banner:active { transform: scale(0.98); }
+        .lifafa-left { display: flex; align-items: center; gap: 14px; text-align: left; }
+        .lifafa-icon { font-size: 2.4rem; animation: bounce 1.8s infinite; }
+        .lifafa-title { font-size: 1.05rem; font-weight: 900; color: var(--gold); }
+        .lifafa-sub { font-size: 0.82rem; color: #f1f5f9; }
+        .btn-claim-lifafa {
+            background: linear-gradient(135deg, #FFD700, #f59e0b);
+            color: #000;
+            font-weight: 900;
+            font-size: 0.85rem;
+            padding: 10px 16px;
             border-radius: 12px;
-            padding: 8px 12px;
-            margin-bottom: 14px;
-            font-size: 0.74rem;
-            text-align: center;
-            color: #d1fae5;
-            line-height: 1.35;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
         }
 
-        .congrats-banner strong { color: var(--accent); }
-
-        /* 15 SEPTEMBER COUNTDOWN */
+        /* COUNTDOWN */
         .countdown-container {
-            background: rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 14px;
-            padding: 12px 10px;
-            margin-bottom: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.35);
+            border-radius: 20px;
+            padding: 14px 12px;
+            margin-bottom: 18px;
             text-align: center;
         }
-
         .countdown-title {
-            font-size: 0.72rem;
+            font-size: 0.82rem;
             font-weight: 800;
             color: var(--gold);
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
-
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 8px;
         }
-
         .timer-box {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 6px 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 8px 4px;
         }
-
         .timer-number {
-            font-size: 1.15rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: var(--accent);
             line-height: 1.1;
         }
-
         .timer-label {
-            font-size: 0.62rem;
+            font-size: 0.68rem;
             color: var(--text-dim);
             text-transform: uppercase;
             font-weight: 700;
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
-        /* LIVE DARE WALLET WIDGET */
-        .dare-wallet-card {
-            background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.18));
-            border: 1.5px solid var(--accent);
+        /* CONGRATS TICKER */
+        .congrats-banner {
+            background: rgba(0, 255, 163, 0.1);
+            border: 1.5px dashed var(--accent);
             border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 16px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #d1fae5;
+            line-height: 1.4;
+        }
+
+        /* DARE WALLET WIDGET */
+        .dare-wallet-card {
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.18), rgba(139, 92, 246, 0.22));
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 20px;
             text-align: left;
-            box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 163, 0.22);
             cursor: pointer;
         }
-
-        .wallet-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .wallet-balance-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin: 8px 0 4px 0;
-        }
-
         .wallet-amount {
-            font-size: 1.85rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.5px;
         }
-
-        .wallet-target {
-            font-size: 0.78rem;
-            color: var(--gold);
-            font-weight: 700;
-        }
-
         .wallet-progress-bg {
             width: 100%;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.45);
+            height: 10px;
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             overflow: hidden;
-            margin: 6px 0;
+            margin: 10px 0;
         }
-
         .wallet-progress-fill {
             height: 100%;
             width: 1.5%;
@@ -359,479 +470,153 @@
             transition: width 0.4s ease;
         }
 
-        .wallet-note {
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            line-height: 1.4;
-        }
-
-        /* 4. 1V1 DANGAL BATTLE CARD (CREATOR DASHBOARD) */
-        .dangal-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(239, 68, 68, 0.15));
-            border: 1.5px solid var(--gold);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 16px;
-            text-align: left;
-        }
-        .dangal-header {
+        /* QUIZ SCREEN OPTIONS (BIG DUOLINGO STYLE) */
+        .quiz-progress {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.82rem;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        .question-box {
+            font-size: 1.35rem;
             font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            line-height: 1.4;
+            margin-bottom: 24px;
+            min-height: 65px;
+            text-align: left;
+        }
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .option-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            padding: 18px 20px;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .option-btn:active {
+            background: rgba(0, 255, 163, 0.2);
+            border-color: var(--accent);
+            transform: scale(0.99);
         }
 
-        /* 3. ANONYMOUS CONFESSIONS FEED (CREATOR DASHBOARD) */
+        /* 1V1 DANGAL CARD */
+        .dangal-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(239, 68, 68, 0.2));
+            border: 2px solid var(--gold);
+            border-radius: 22px;
+            padding: 18px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        /* CURIOSITY BOX */
+        .curiosity-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.22));
+            border: 2px solid rgba(239, 68, 68, 0.7);
+            border-radius: 22px;
+            padding: 18px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+        }
+
+        /* CONFESSIONS CARD */
         .confessions-card {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 16px;
+            border: 1.5px solid rgba(139, 92, 246, 0.45);
+            border-radius: 22px;
+            padding: 18px;
+            margin-top: 20px;
             text-align: left;
         }
         .confessions-list {
             list-style: none;
-            max-height: 160px;
+            max-height: 180px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 10px;
         }
         .confession-bubble {
-            background: rgba(0, 0, 0, 0.35);
-            border-left: 3px solid var(--primary);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
             color: #e2e8f0;
             font-style: italic;
         }
 
-        /* CURIOSITY GATEKEEPING BOX */
-        .curiosity-box {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(139, 92, 246, 0.2));
-            border: 1.5px solid rgba(239, 68, 68, 0.6);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 16px;
-            text-align: left;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
-        }
-        .curiosity-title {
-            font-size: 0.85rem;
-            font-weight: 900;
-            color: #ff6b6b;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-        .curiosity-desc {
-            font-size: 0.74rem;
-            color: #cbd5e1;
-            line-height: 1.35;
-            margin-bottom: 10px;
-        }
-        .btn-curiosity-unlock {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: #fff;
-            border: none;
-            padding: 9px 14px;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-        }
-
-        /* LUCKY SPIN WHEEL */
+        /* LUCKY SPIN WHEEL CARD */
         .spin-wheel-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid rgba(255, 215, 0, 0.4);
-            border-radius: 18px;
-            padding: 16px 12px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid rgba(255, 215, 0, 0.45);
+            border-radius: 24px;
+            padding: 20px 16px;
             text-align: center;
-            margin-top: 18px;
+            margin-top: 20px;
             position: relative;
         }
         .wheel-container {
             position: relative;
-            width: 240px;
-            height: 240px;
-            margin: 12px auto;
+            width: 260px;
+            height: 260px;
+            margin: 16px auto;
         }
         #wheel-canvas-home, #wheel-canvas-dash {
             border-radius: 50%;
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.45);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
         }
         .wheel-pointer {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-top: 22px solid var(--gold);
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 24px solid var(--gold);
             z-index: 5;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
         }
-        .cooldown-badge {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 8px 14px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-top: 8px;
-            display: inline-block;
-        }
 
-        /* 4 HOMEPAGE TABS */
-        .nav-tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 4px;
-            margin-bottom: 18px;
-            background: rgba(0, 0, 0, 0.35);
-            padding: 4px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-dim);
-            font-size: 0.68rem;
-            font-weight: 700;
-            padding: 10px 2px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-        .tab-btn.active {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 255, 163, 0.3));
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        /* PIN LOOKUP CARD */
-        .pin-lookup-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1.5px solid var(--primary);
-            border-radius: 18px;
-            padding: 20px 16px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
-        }
-        .pin-input-box {
-            letter-spacing: 12px;
-            font-size: 1.8rem;
-            font-weight: 900;
-            text-align: center;
-            color: var(--accent);
-            max-width: 220px;
-            margin: 12px auto;
-            display: block;
-        }
-        .pin-badge-display-box {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 163, 0.1));
-            border: 1.5px solid var(--gold);
-            border-radius: 16px;
-            padding: 14px;
-            margin: 16px 0;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
-        }
-        .secret-pin-num {
-            font-size: 2.3rem;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 8px;
-            margin: 4px 0;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* CLAIM PRIZE / BANK DETAILS */
-        .payout-portal-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1.5px solid rgba(255, 215, 0, 0.3);
-            border-radius: 18px;
-            padding: 16px;
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .lock-notice-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px dashed var(--gold);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 14px;
-        }
-        .lock-badge {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.25);
-            color: var(--gold);
-            font-size: 0.72rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-bottom: 6px;
-        }
-        .lock-notice-box p {
-            font-size: 0.77rem;
-            color: #fef08a;
-            line-height: 1.4;
-            font-weight: 600;
-        }
-        .locked-input { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
-
-        /* HEADINGS */
-        .badge {
-            display: inline-block;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid var(--primary);
-            color: #c4b5fd;
-            font-size: 0.72rem;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 8px;
-        }
-        h1 { font-size: 1.45rem; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.5px; }
-        .subtitle { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; margin-bottom: 20px; }
-
-        /* TOP 3 WINNERS PODIUM */
-        .winners-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 22px;
-        }
-        .winners-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--gold);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        .live-tag {
-            background: rgba(0, 255, 163, 0.15);
-            color: var(--accent);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.65rem;
-        }
-        .podium-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.15fr 1fr;
-            gap: 8px;
-            align-items: flex-end;
-        }
-        .podium-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .podium-item.first {
-            background: linear-gradient(180deg, rgba(255, 215, 0, 0.22), rgba(255, 215, 0, 0.05));
-            border: 1.5px solid var(--gold);
-            transform: translateY(-6px);
-            box-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
-        }
-        .podium-item.second {
-            background: linear-gradient(180deg, rgba(192, 192, 192, 0.15), rgba(192, 192, 192, 0.03));
-            border: 1px solid #c0c0c0;
-        }
-        .podium-item.third {
-            background: linear-gradient(180deg, rgba(205, 127, 50, 0.15), rgba(205, 127, 50, 0.03));
-            border: 1px solid #cd7f32;
-        }
-        .podium-rank { font-size: 1.2rem; margin-bottom: 2px; }
-        .podium-name { font-size: 0.75rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .podium-score { font-size: 0.65rem; color: var(--text-dim); margin-bottom: 4px; }
-        .podium-prize {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.4);
-            color: var(--accent);
-            font-size: 0.68rem;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 6px;
-        }
-        .podium-item.first .podium-prize { color: var(--gold); font-weight: 900; }
-
-        /* INPUTS & CONTROLS */
-        .input-group { text-align: left; margin-bottom: 16px; }
-        .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        input[type="text"] {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.45);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 14px 16px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.2s;
-        }
-        input[type="text"]:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .gender-select { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .gender-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 12px;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .gender-btn.active {
-            background: rgba(139, 92, 246, 0.25);
-            border-color: var(--primary);
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        /* BUTTONS */
-        .btn-primary {
-            width: 100%;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
-        }
-        .btn-primary:active { transform: scale(0.98); }
-        .btn-whatsapp {
-            background: #25D366;
-            color: #000;
-            font-weight: 800;
-            margin-top: 10px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-        }
-        .btn-story-card {
-            background: linear-gradient(135deg, #FFD700, #ff8800);
-            color: #000;
-            font-weight: 900;
-            margin-top: 10px;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-        }
-        .btn-badla-mode {
-            background: linear-gradient(135deg, #ef4444, #b91c1c);
-            color: #fff;
-            font-weight: 900;
-            margin-top: 10px;
-            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
-        }
-        .btn-chat-prank {
-            background: linear-gradient(135deg, #0ea5e9, #2563eb);
-            color: #fff;
-            font-weight: 800;
-            margin-top: 10px;
-        }
-
-        /* QUIZ PROGRESS */
-        .quiz-progress { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; font-weight: 700; }
-        .progress-bar-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 10%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.3s ease; }
-        .question-box { font-size: 1.15rem; font-weight: 800; line-height: 1.35; margin-bottom: 20px; min-height: 55px; }
-        .options-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .option-btn {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 14px 16px;
-            color: #fff;
-            font-size: 0.92rem;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-        }
-        .option-btn:active { background: rgba(0, 255, 163, 0.15); border-color: var(--accent); }
-
-        /* LIVE DASHBOARD LIST */
-        .live-scoreboard {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 14px;
-            margin-top: 18px;
-            text-align: left;
-        }
-        .live-scoreboard h4 {
-            font-size: 0.82rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .attempts-list {
-            list-style: none;
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 0.8rem;
-        }
-        .attempts-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .btn-inspect-answers {
-            background: rgba(0, 255, 163, 0.15);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-size: 0.68rem;
-            font-weight: 800;
-            padding: 4px 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-left: 8px;
-            transition: all 0.2s ease;
-        }
-        .btn-inspect-answers:active { transform: scale(0.95); background: var(--accent); color: #000; }
-
-        /* 300x250 BANNER AD ZONE */
+        /* AD ZONE */
         .ad-zone {
-            margin-top: 18px;
-            padding: 4px 0;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px dashed rgba(255, 255, 255, 0.12);
+            margin-top: 22px;
+            padding: 6px 0;
+            border-radius: 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -843,54 +628,49 @@
         /* REAL-TIME FOMO TOAST */
         .fomo-toast {
             position: fixed;
-            bottom: 18px;
-            left: 18px;
-            background: rgba(18, 24, 38, 0.95);
-            border: 1px solid var(--accent);
-            border-radius: 14px;
-            padding: 10px 14px;
+            bottom: 22px;
+            left: 22px;
+            background: rgba(18, 24, 38, 0.96);
+            border: 1.5px solid var(--accent);
+            border-radius: 16px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            gap: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85);
             z-index: 99998;
-            transform: translateY(120px);
+            transform: translateY(140px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
-            max-width: 320px;
+            max-width: 360px;
         }
         .fomo-toast.show { transform: translateY(0); opacity: 1; }
         .fomo-avatar {
-            width: 34px; height: 34px;
+            width: 38px; height: 38px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; flex-shrink: 0;
+            font-size: 1.2rem; flex-shrink: 0;
         }
-        .fomo-content { font-size: 0.73rem; color: #f1f5f9; line-height: 1.35; text-align: left; }
+        .fomo-content { font-size: 0.82rem; color: #f1f5f9; line-height: 1.35; text-align: left; }
         .fomo-content strong { color: var(--accent); }
-        .fomo-content span { color: var(--text-dim); font-size: 0.65rem; }
 
-        /* 2. BIOMETRIC LIE DETECTOR MODAL */
-        .biometric-scanner-wrap {
-            padding: 24px 16px;
-            text-align: center;
-        }
+        /* BIOMETRIC SCANNER */
         .scanner-fingerprint-box {
             position: relative;
-            width: 110px;
-            height: 130px;
-            margin: 16px auto;
-            border: 2px solid rgba(0, 255, 163, 0.4);
-            border-radius: 18px;
+            width: 120px;
+            height: 140px;
+            margin: 20px auto;
+            border: 2px solid rgba(0, 255, 163, 0.5);
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            background: rgba(0, 0, 0, 0.4);
+            font-size: 4.5rem;
+            background: rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            box-shadow: 0 0 25px rgba(0, 255, 163, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
         }
         .scan-laser-line {
             position: absolute;
@@ -901,35 +681,34 @@
             animation: laserScan 1.4s ease-in-out infinite alternate;
         }
 
-        /* ADMIN DASHBOARD STYLING */
-        .admin-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        /* ADMIN DASHBOARD */
+        .admin-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
         .admin-stat-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 14px;
             text-align: center;
         }
-        .admin-stat-num { font-size: 1.35rem; font-weight: 900; color: var(--accent); }
-        .admin-stat-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
+        .admin-stat-num { font-size: 1.5rem; font-weight: 900; color: var(--accent); }
         .admin-table-wrap {
-            max-height: 320px;
+            max-height: 340px;
             overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.3);
-            margin-bottom: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.35);
+            margin-bottom: 16px;
         }
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; text-align: left; }
-        .admin-table th { background: rgba(255, 255, 255, 0.08); padding: 8px 10px; color: var(--gold); font-weight: 800; position: sticky; top: 0; z-index: 2; }
-        .admin-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #f1f5f9; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; }
+        .admin-table th { background: rgba(255, 255, 255, 0.1); padding: 10px 12px; color: var(--gold); font-weight: 800; }
+        .admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #f1f5f9; }
 
         /* MODAL OVERLAYS */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
             z-index: 99999;
             display: none;
             justify-content: center;
@@ -939,45 +718,34 @@
         .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
         .modal-content {
             background: #121826;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            border-radius: 26px;
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             max-height: 85vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.95);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
             overflow: hidden;
         }
         .modal-header {
-            padding: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
         }
-        .modal-header h3 { font-size: 0.95rem; font-weight: 800; color: var(--gold); }
+        .modal-body { padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
         .btn-modal-close {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             border: none;
             color: #fff;
-            width: 28px; height: 28px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: 800;
+            font-weight: 900;
         }
-        .modal-body { padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .breakdown-item {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            padding: 10px 12px;
-            border-left: 4px solid var(--accent);
-            text-align: left;
-        }
-        .breakdown-item.wrong { border-left-color: var(--danger); background: rgba(255, 77, 77, 0.04); }
-        .breakdown-q { font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-        .breakdown-ans { font-size: 0.72rem; margin-top: 3px; line-height: 1.35; }
 
         .screen { display: none; }
         .screen.active { display: block; animation: fadeIn 0.3s ease; }
@@ -985,7 +753,7 @@
         #story-card-canvas, #chat-prank-canvas { display: none; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes border-pulse { 0% { border-color: rgba(255, 215, 0, 0.3); } 100% { border-color: rgba(0, 255, 163, 0.6); } }
+        @keyframes border-pulse { 0% { border-color: rgba(255, 215, 0, 0.35); } 100% { border-color: rgba(0, 255, 163, 0.7); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         @keyframes laserScan { 0% { top: 0; } 100% { top: 96%; } }
@@ -993,14 +761,14 @@
 </head>
 <body>
 
-    <!-- ================= ADSTERRA SOCIAL BAR SCRIPT ================= -->
+    <!-- ADSTERRA SOCIAL BAR SCRIPT -->
     <script type="text/javascript" src="//pl31244908.profitableratecpmnetwork.com/2b/70/2a/2b702a23b1d2a045399137f359c1f821.js"></script>
 
     <canvas id="confetti-canvas"></canvas>
     <canvas id="story-card-canvas" width="720" height="960"></canvas>
     <canvas id="chat-prank-canvas" width="720" height="960"></canvas>
 
-    <!-- REALTIME LIVE FOMO TOAST -->
+    <!-- REALTIME FOMO TOAST -->
     <div id="fomo-toast" class="fomo-toast">
         <div id="fomo-avatar" class="fomo-avatar">⚡</div>
         <div class="fomo-content">
@@ -1009,79 +777,80 @@
         </div>
     </div>
 
-    <!-- 2. BIOMETRIC LIE DETECTOR MODAL (3.5S SCREEN TIME EXTENDER) -->
+    <!-- BIOMETRIC LIE DETECTOR MODAL -->
     <div id="biometric-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 360px;">
-            <div class="biometric-scanner-wrap">
-                <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">
+        <div class="modal-content" style="max-width: 380px;">
+            <div style="padding: 24px 16px; text-align: center;">
+                <div class="step-instruction-badge">
                     🔍 AI BIOMETRIC LIE DETECTOR
                 </div>
-                <h3 style="font-size: 1.15rem; font-weight: 900; margin: 10px 0 4px 0;">Dosti Ki Sachai Scan Ho Rahi Hai...</h3>
-                <p style="font-size: 0.75rem; color: var(--text-dim);">Apna angootha screen par daba kar rakhein aur sabar karein!</p>
+                <h3 style="font-size: 1.25rem; font-weight: 900; margin: 12px 0 6px 0;">Dosti Ki Sachai Scan Ho Rahi Hai...</h3>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Apna angootha screen par daba kar rakhein!</p>
 
                 <div class="scanner-fingerprint-box">
                     <div class="scan-laser-line"></div>
                     <span>👆</span>
                 </div>
 
-                <div id="biometric-scan-status" style="font-size: 0.8rem; font-weight: 800; color: var(--gold); letter-spacing: 1px;">
+                <div id="biometric-scan-status" style="font-size: 0.9rem; font-weight: 800; color: var(--gold); letter-spacing: 1px;">
                     ANALYZING TRUTH PATTERNS (42%)...
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL: DETAILED ANSWERS -->
+    <!-- DETAILED ANSWERS MODAL -->
     <div id="answers-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-title">Dost Ke Answers vs Aapke Answers</h3>
+                <h3 id="modal-title" style="font-size: 1.1rem; font-weight: 800; color: var(--gold);">Dost Ke Answers vs Aapke Answers</h3>
                 <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
             </div>
             <div id="modal-body-content" class="modal-body"></div>
         </div>
     </div>
 
-    <!-- MODAL: CURIOSITY EXPOSE -->
+    <!-- CURIOSITY EXPOSE MODAL -->
     <div id="curiosity-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 style="color: var(--danger);">🕵️‍♂️ Aastin Ka Saanp Exposed!</h3>
+                <h3 style="color: var(--danger); font-size: 1.1rem; font-weight: 900;">🕵️‍♂️ Aastin Ka Saanp Exposed!</h3>
                 <button class="btn-modal-close" onclick="closeCuriosityModal()">✕</button>
             </div>
             <div class="modal-body" id="curiosity-modal-body"></div>
         </div>
     </div>
 
-    <!-- MODAL: LIVE DARE WALLET PASSBOOK -->
+    <!-- LIVE DARE WALLET PASSBOOK MODAL -->
     <div id="wallet-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="txt-passbook-title">💰 My Live Dare Wallet</h3>
+                <h3 id="txt-passbook-title" style="font-size: 1.1rem; font-weight: 900; color: #fff;">💰 My Live Dare Wallet</h3>
                 <button class="btn-modal-close" onclick="closeWalletModal()">✕</button>
             </div>
             <div class="modal-body">
-                <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.2)); border: 1.5px solid var(--accent); border-radius: 14px; padding: 14px; text-align: center;">
-                    <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
-                    <div id="modal-wallet-balance" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 15</div>
-                    <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
-                    <div class="wallet-progress-bg" style="margin-top: 8px;">
+                <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.18), rgba(139, 92, 246, 0.22)); border: 2px solid var(--accent); border-radius: 18px; padding: 18px; text-align: center;">
+                    <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
+                    <div id="modal-wallet-balance" style="font-size: 2.5rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 15</div>
+                    <div style="font-size: 0.85rem; color: var(--gold); font-weight: 800;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
+                    <div class="wallet-progress-bg" style="margin-top: 10px;">
                         <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
                     </div>
                 </div>
 
                 <div style="margin-top: 10px;">
-                    <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
+                    <span style="font-size: 0.85rem; font-weight: 900; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
                     <ul id="wallet-history-list" class="passbook-list"></ul>
                 </div>
 
-                <div style="background: rgba(255, 215, 0, 0.08); border: 1px dashed var(--gold); border-radius: 10px; padding: 10px; font-size: 0.72rem; color: #fef08a; text-align: center; margin-top: 6px;" id="txt-wallet-footer-notice">
+                <div style="background: rgba(255, 215, 0, 0.1); border: 1.5px dashed var(--gold); border-radius: 12px; padding: 12px; font-size: 0.8rem; color: #fef08a; text-align: center; margin-top: 8px;" id="txt-wallet-footer-notice">
                     🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- MAIN CONTAINER -->
     <div class="container">
 
         <!-- TOP BAR: LIVE FLOATING WALLET + LANGUAGE SWITCHER -->
@@ -1098,7 +867,7 @@
         <!-- SCREEN 1: WELCOME & START -->
         <div id="screen-welcome" class="screen active">
             
-            <!-- 5. DAILY MYSTERY LIFAFA BANNER -->
+            <!-- DAILY MYSTERY LIFAFA BANNER -->
             <div class="mystery-lifafa-banner" onclick="claimDailyLifafa()">
                 <div class="lifafa-left">
                     <span class="lifafa-icon">🧧</span>
@@ -1114,12 +883,12 @@
             <div class="reward-highlight-banner">
                 <div class="reward-top-tag"><span class="pulse-dot"></span> <span id="txt-jackpot-tag">COMMUNITY PRIZE POOL ⚡</span></div>
                 <div class="reward-main-title">🎰 MEGA JACKPOT: <span id="jackpot-display" class="jackpot-counter-box">Rs. 10,000</span></div>
-                <p id="txt-jackpot-desc" class="reward-sub-text">
+                <p id="txt-jackpot-desc" style="font-size: 0.85rem; color: #cbd5e1; margin-top: 4px;">
                     Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.
                 </p>
                 <div class="jackpot-info-row">
-                    <span>🟢 <span id="txt-online-label">Online Players:</span> <strong id="online-player-count" style="color:var(--accent);">240</strong></span>
-                    <span>⚡ <span id="txt-next-addon">Next +Rs. 100:</span> <strong id="players-needed-count" style="color:var(--gold);">25 left</strong></span>
+                    <span>🟢 <span id="txt-online-label">Online Players:</span> <strong id="online-player-count" style="color:var(--accent); font-size:0.95rem;">240</strong></span>
+                    <span>⚡ <span id="txt-next-addon">Next +Rs. 100:</span> <strong id="players-needed-count" style="color:var(--gold); font-size:0.95rem;">25 left</strong></span>
                 </div>
             </div>
 
@@ -1154,9 +923,9 @@
             </div>
 
             <!-- RETURNING CREATOR SHORTCUT -->
-            <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(0, 255, 163, 0.15)); border:1.5px solid var(--accent); border-radius:14px; padding:12px; margin-bottom:16px; text-align:center;">
-                <p style="font-size: 0.82rem; font-weight: 800; margin-bottom: 6px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
-                <button class="btn-primary" style="padding: 10px; font-size: 0.88rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
+            <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.2)); border:2px solid var(--accent); border-radius:20px; padding:16px; margin-bottom:20px; text-align:center;">
+                <p style="font-size: 0.95rem; font-weight: 900; margin-bottom: 8px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
+                <button class="btn-primary" style="padding: 12px; font-size: 0.95rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
             </div>
 
             <!-- 4 NAVIGATION TABS -->
@@ -1167,13 +936,15 @@
                 <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Prize</button>
             </div>
 
-            <!-- VIEW A: PLAY DARE FORM -->
+            <!-- VIEW A: PLAY DARE FORM (SUPER EASY 3-STEP FLOW) -->
             <div id="view-play-dare">
-                <div class="badge">🔥 2026 GEN Z DARE</div>
-                <h1 id="welcome-title">Real Friend ya Sirf Delulu? 💀</h1>
-                <p id="welcome-sub" class="subtitle">Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!</p>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div class="step-instruction-badge">🔥 2026 GEN Z DARE</div>
+                    <h1 id="welcome-title" style="font-size: 1.8rem; font-weight: 900; margin: 8px 0;">Real Friend ya Sirf Delulu? 💀</h1>
+                    <p id="welcome-sub" style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.5;">Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!</p>
+                </div>
 
-                <!-- DYNAMIC TOP 3 PODIUM (WITH 7. SPEEDRUN BADGE) -->
+                <!-- TOP 3 PODIUM -->
                 <div class="winners-card">
                     <div class="winners-header">
                         <span id="txt-leaderboard-head">🏆 Live Community Leaderboard</span>
@@ -1201,51 +972,66 @@
                     </div>
                 </div>
 
+                <!-- STEP 1: APNA NAAM LIKHO -->
                 <div class="input-group">
-                    <label id="lbl-player-name">TUMHARA COOL NAAM</label>
+                    <div class="step-title">
+                        <span>✍️ STEP 1:</span> <span id="lbl-player-name">Apna Asli Ya Cool Naam Likhein:</span>
+                    </div>
                     <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
                 </div>
 
+                <!-- STEP 2: AAP KAUN HAIN? -->
                 <div id="gender-group" class="input-group">
-                    <label id="lbl-gender">AAP KAUN HAIN?</label>
+                    <div class="step-title">
+                        <span>👦👧 STEP 2:</span> <span id="lbl-gender">Aap Kaun Hain?</span>
+                    </div>
                     <div class="gender-select">
-                        <button id="btn-gender-boy" class="gender-btn active" onclick="setGender('boy')">👦 Boy</button>
-                        <button id="btn-gender-girl" class="gender-btn" onclick="setGender('girl')">👧 Girl</button>
+                        <button id="btn-gender-boy" class="gender-btn active" onclick="setGender('boy')">👦 Boy (Larka)</button>
+                        <button id="btn-gender-girl" class="gender-btn" onclick="setGender('girl')">👧 Girl (Larki)</button>
                     </div>
                 </div>
 
-                <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
+                <!-- STEP 3: BUTTON DABAYEIN -->
+                <div style="margin-top: 10px;">
+                    <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">
+                        🚀 STEP 3: Game Shuru Karo →
+                    </button>
+                </div>
             </div>
 
             <!-- VIEW B: LUCKY SPIN WHEEL -->
             <div id="view-spin-portal" style="display: none;">
                 <div class="spin-wheel-card" style="margin-top: 0;">
-                    <div class="badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
-                    <h2 style="font-size: 1.2rem; font-weight: 900; margin: 6px 0;">Lucky Spin & Win</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
+                    <div class="step-instruction-badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">
+                        🎡 FREE CASINO CHANCE
+                    </div>
+                    <h2 style="font-size: 1.4rem; font-weight: 900; margin: 8px 0;">Lucky Spin & Win</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
 
                     <div class="wheel-container">
                         <div class="wheel-pointer"></div>
-                        <canvas id="wheel-canvas-home" width="240" height="240"></canvas>
+                        <canvas id="wheel-canvas-home" width="260" height="260"></canvas>
                     </div>
 
-                    <button id="btn-spin-wheel-home" class="btn-primary" style="padding:12px; font-size:0.95rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
+                    <button id="btn-spin-wheel-home" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
                         🎲 Abhi Ghumaao (Free Spin)
                     </button>
-                    <div id="wheel-cooldown-timer-home" class="cooldown-badge" style="display:none;">⏳ Next Free Spin: <span id="cooldown-clock-home">03:00</span></div>
+                    <div id="wheel-cooldown-timer-home" class="cooldown-badge" style="display:none; font-size:0.9rem; padding:10px 18px;">⏳ Next Free Spin: <span id="cooldown-clock-home">03:00</span></div>
                 </div>
             </div>
 
             <!-- VIEW C: TRACK BY 4-DIGIT PIN -->
             <div id="view-pin-portal" style="display: none;">
                 <div class="pin-lookup-card">
-                    <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
-                    <h2 id="txt-pin-title" style="font-size: 1.25rem; font-weight: 900; margin: 8px 0;">Doston Ke Answers & Wallet</h2>
-                    <p id="txt-pin-sub" style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
+                    <div class="step-instruction-badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">
+                        🔑 PIN & WALLET LOGIN
+                    </div>
+                    <h2 id="txt-pin-title" style="font-size: 1.4rem; font-weight: 900; margin: 10px 0;">Doston Ke Answers & Wallet</h2>
+                    <p id="txt-pin-sub" style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
 
                     <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
 
-                    <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 10px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
+                    <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 14px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
                 </div>
             </div>
 
@@ -1254,21 +1040,21 @@
                 <div class="payout-portal-card">
                     <div class="lock-notice-box">
                         <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
-                        <p id="txt-lock-notice">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
+                        <p id="txt-lock-notice" style="font-size: 0.85rem;">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
                         <input type="text" placeholder="Account Holder Official Name" disabled>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>BANK NAME (LOCAL / INTERNATIONAL)</label>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">BANK NAME (LOCAL / INTERNATIONAL)</label>
                         <input type="text" placeholder="e.g. Meezan Bank, HBL, Standard Chartered, Chase, etc." disabled>
                     </div>
 
                     <div class="input-group locked-input">
-                        <label>BANK ACCOUNT NUMBER / IBAN</label>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">BANK ACCOUNT NUMBER / IBAN</label>
                         <input type="text" placeholder="IBAN ya 14-digit Account Number" disabled>
                     </div>
 
@@ -1278,7 +1064,7 @@
                 </div>
             </div>
 
-            <!-- ADSTERRA 300x250 BANNER -->
+            <!-- ADSTERRA BANNER -->
             <div class="ad-zone">
                 <script type="text/javascript">
                     atOptions = {
@@ -1293,19 +1079,21 @@
             </div>
         </div>
 
-        <!-- SCREEN 2: QUESTIONS -->
+        <!-- SCREEN 2: QUESTIONS (BIG, CLEAR, TOUCH-FRIENDLY) -->
         <div id="screen-quiz" class="screen">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <button class="btn-nav-back" style="padding: 5px 12px; font-size: 0.72rem;" onclick="goToHome()">
-                    <span>⬅️</span> <span>Exit</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <button class="btn-nav-back" style="padding: 6px 14px; font-size: 0.8rem;" onclick="goToHome()">
+                    <span>⬅️</span> <span>Exit Game</span>
                 </button>
-                <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.75rem; font-weight: 700;">● Shield Protected</span>
+                <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.85rem; font-weight: 800;">● Shield Protected</span>
             </div>
+            
             <div class="quiz-progress">
                 <span id="question-number">Question 1/10</span>
-                <span id="quiz-live-timer" style="color:var(--gold); font-weight:800;">⏱️ 0.0s</span>
+                <span id="quiz-live-timer" style="color:var(--gold); font-weight:900;">⏱️ 0.0s</span>
             </div>
             <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
+            
             <div id="question-text" class="question-box">Loading question...</div>
             <div id="options-container" class="options-list"></div>
         </div>
@@ -1313,7 +1101,6 @@
         <!-- SCREEN 3: CREATOR DASHBOARD -->
         <div id="screen-share" class="screen">
             
-            <!-- PROMINENT BACK BUTTON -->
             <div class="dashboard-header-nav">
                 <button class="btn-nav-back" onclick="goToHome()">
                     <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
@@ -1321,19 +1108,19 @@
                 <span class="live-tag">● LIVE DASHBOARD</span>
             </div>
 
-            <div style="font-size: 2.6rem; margin-bottom: 4px;">🔥</div>
-            <h1 id="txt-dare-ready-title">Aapka Dare Link Ready Hai!</h1>
-            <p id="txt-dare-ready-sub" class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!</p>
+            <div style="font-size: 3rem; margin-bottom: 6px;">🔥</div>
+            <h1 id="txt-dare-ready-title" style="font-size: 1.6rem; font-weight: 900;">Aapka Dare Link Ready Hai!</h1>
+            <p id="txt-dare-ready-sub" style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 20px;">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores dekhein!</p>
 
             <!-- LIVE DARE WALLET CARD -->
             <div class="dare-wallet-card" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span id="txt-wallet-title">💰 Live Dare Wallet</span>
-                    <span id="wallet-badge" style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; color:var(--gold);">LEVEL 1 VIP</span>
+                    <span id="wallet-badge" style="background:rgba(0,0,0,0.4); padding:4px 10px; border-radius:8px; color:var(--gold);">LEVEL 1 VIP</span>
                 </div>
                 <div class="wallet-balance-row">
                     <span class="wallet-amount" id="wallet-balance-display">Rs. 15</span>
-                    <span class="wallet-target">Target: Rs. 1,000</span>
+                    <span class="wallet-target" style="font-size: 0.9rem;">Target: Rs. 1,000</span>
                 </div>
                 <div class="wallet-progress-bg">
                     <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
@@ -1356,42 +1143,40 @@
                 </button>
             </div>
 
-            <!-- 4. 1V1 DOSTI KA DANGAL BATTLE CARD -->
+            <!-- 1V1 DANGAL BATTLE CARD -->
             <div id="dangal-section" class="dangal-card" style="display:none;">
-                <div class="dangal-header">
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.95rem; font-weight:900; color:var(--gold); margin-bottom:8px;">
                     <span>🥊 1v1 Dosti Ka Dangal</span>
-                    <span style="font-size:0.65rem; color:var(--text-dim);">GROUP WAR</span>
+                    <span style="font-size:0.72rem; color:#fff; background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px;">GROUP WAR</span>
                 </div>
-                <p style="font-size:0.75rem; color:#f1f5f9; margin-bottom:8px;" id="dangal-summary-text">
-                    Do doston ka direct mukabla tayar hai! WhatsApp group mein phenk kar aag lagayein!
-                </p>
-                <button class="btn-primary btn-whatsapp" style="padding:10px; font-size:0.82rem; margin-top:0;" onclick="shareDangalToWhatsApp()">
+                <p style="font-size:0.85rem; color:#f1f5f9; margin-bottom:12px;" id="dangal-summary-text"></p>
+                <button class="btn-primary btn-whatsapp" style="padding:14px; font-size:0.92rem; margin-top:0;" onclick="shareDangalToWhatsApp()">
                     📲 WhatsApp Group Mein Dangal Phenko
                 </button>
             </div>
 
-            <!-- 3. ANONYMOUS CONFESSIONS FEED -->
+            <!-- ANONYMOUS CONFESSIONS FEED -->
             <div class="confessions-card">
-                <div style="font-size:0.82rem; font-weight:900; color:var(--primary); display:flex; justify-content:space-between;">
-                    <span>🤫 Doston Ke Be-Naam Secret Confessions</span>
+                <div style="font-size:0.95rem; font-weight:900; color:var(--primary); display:flex; justify-content:space-between;">
+                    <span>🤫 Doston Ke Secret Confessions</span>
                     <span id="confessions-count-badge" style="color:var(--gold);">0 Messages</span>
                 </div>
                 <ul id="confessions-list-box" class="confessions-list">
-                    <li style="color:var(--text-dim); font-size:0.75rem; font-style:italic;">Abhi tak kisi dost ne secret confession nahi chhora...</li>
+                    <li style="color:var(--text-dim); font-size:0.82rem; font-style:italic;">Abhi tak kisi dost ne secret confession nahi chhora...</li>
                 </ul>
             </div>
 
-            <!-- 4-DIGIT PIN CARD -->
+            <!-- 4-DIGIT PIN DISPLAY CARD -->
             <div class="pin-badge-display-box">
-                <div id="txt-pin-box-title" style="font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
+                <div id="txt-pin-box-title" style="font-size: 0.82rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
                 <div id="creator-pin-number" class="secret-pin-num">----</div>
-                <p id="txt-pin-box-desc" style="font-size: 0.74rem; color: #f1f5f9; line-height: 1.35;">
+                <p id="txt-pin-box-desc" style="font-size: 0.82rem; color: #f1f5f9; line-height: 1.4;">
                     Is <strong>4-digit code ka screenshot le lein!</strong> Kisi bhi device par ye PIN daal kar doston ke live answers check kar sakte hain.
                 </p>
             </div>
 
-            <div class="input-group">
-                <label id="lbl-share-link">AAPKA VIRAL DARE LINK</label>
+            <div class="input-group" style="margin-bottom: 16px;">
+                <label id="lbl-share-link" style="font-size:0.82rem; font-weight:800; color:var(--accent); display:block; margin-bottom:6px;">AAPKA VIRAL DARE LINK</label>
                 <input type="text" id="share-link-input" readonly>
             </div>
 
@@ -1400,18 +1185,18 @@
 
             <!-- LUCKY SPIN WHEEL (DASHBOARD) -->
             <div class="spin-wheel-card">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
-                <div id="txt-wheel-sub" style="font-size:0.78rem; color:var(--text-dim); margin-top:2px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
+                <div style="font-size:0.85rem; font-weight:900; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
+                <div id="txt-wheel-sub" style="font-size:0.85rem; color:var(--text-dim); margin-top:4px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
 
                 <div class="wheel-container">
                     <div class="wheel-pointer"></div>
-                    <canvas id="wheel-canvas-dash" width="240" height="240"></canvas>
+                    <canvas id="wheel-canvas-dash" width="260" height="260"></canvas>
                 </div>
 
-                <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:12px; font-size:0.95rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
+                <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
                     🎲 Abhi Ghumaao (Free Spin)
                 </button>
-                <div id="wheel-cooldown-timer-dash" class="cooldown-badge" style="display:none;">⏳ Next Free Spin: <span id="cooldown-clock-dash">03:00</span></div>
+                <div id="wheel-cooldown-timer-dash" class="cooldown-badge" style="display:none; font-size:0.9rem; padding:10px 18px;">⏳ Next Free Spin: <span id="cooldown-clock-dash">03:00</span></div>
             </div>
 
             <!-- LIVE ATTEMPTS LIST -->
@@ -1429,25 +1214,25 @@
         <!-- SCREEN 4: FRIEND'S RESULT -->
         <div id="screen-result" class="screen">
             
-            <div class="dashboard-header-nav" style="margin-bottom: 12px;">
+            <div class="dashboard-header-nav">
                 <button class="btn-nav-back" onclick="goToHome()">
                     <span>⬅️</span> <span>Main Page</span>
                 </button>
                 <span class="live-tag">● RESULT</span>
             </div>
 
-            <div id="result-icon" style="font-size: 3.2rem; margin-bottom: 6px;">🎉</div>
-            <h1 id="result-title">Result Calculation</h1>
-            <p id="result-subtitle" class="subtitle">Checking your friendship level...</p>
+            <div id="result-icon" style="font-size: 3.5rem; margin-bottom: 6px;">🎉</div>
+            <h1 id="result-title" style="font-size: 1.6rem; font-weight: 900;">Result Calculation</h1>
+            <p id="result-subtitle" style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 16px;">Checking your friendship level...</p>
 
-            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="font-size: 0.8rem; color: var(--text-dim);">FINAL SCORE & SPEED</div>
-                <div id="score-display" style="font-size: 2.5rem; font-weight: 900; color: var(--accent);">0/10</div>
-                <div id="speed-badge-display" style="font-size: 0.75rem; color: var(--gold); font-weight: 800; margin-bottom: 4px;">⏱️ Speed: 14s</div>
-                <p id="roast-comment" style="font-size: 0.85rem; font-weight: 600; margin-top: 4px;">Roast loading...</p>
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 22px; margin-bottom: 16px; border: 1.5px solid rgba(255,255,255,0.12);">
+                <div style="font-size: 0.85rem; color: var(--text-dim); font-weight:800;">FINAL SCORE & SPEED</div>
+                <div id="score-display" style="font-size: 3rem; font-weight: 900; color: var(--accent); margin: 6px 0;">0/10</div>
+                <div id="speed-badge-display" style="font-size: 0.85rem; color: var(--gold); font-weight: 800; margin-bottom: 6px;">⏱️ Speed: 14s</div>
+                <p id="roast-comment" style="font-size: 0.95rem; font-weight: 700; color: #fff;">Roast loading...</p>
             </div>
 
-            <!-- 1. BADLA MODE (UNO REVERSE) BUTTON -->
+            <!-- BADLA MODE BUTTON -->
             <button class="btn-primary btn-badla-mode" onclick="startBadlaMode()">
                 🔥 <span id="badla-btn-creator-name">Creator</span> Se Badla Lo (Reverse Dare)
             </button>
@@ -1457,29 +1242,29 @@
                 📸 Download Official Story Card
             </button>
 
-            <!-- 8. FAKE LEAKED WHATSAPP CHAT PRANK BUTTON -->
+            <!-- FAKE LEAKED CHAT PRANK BUTTON -->
             <button class="btn-primary btn-chat-prank" onclick="generateAndDownloadChatPrank()">
                 💬 Download Leaked WhatsApp Chat Prank
             </button>
 
-            <!-- 3. ANONYMOUS CONFESSION INPUT FORM -->
-            <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(139, 92, 246, 0.4); border-radius:14px; padding:12px; margin-top:14px; text-align:left;">
-                <label style="font-size:0.75rem; font-weight:800; color:var(--primary); display:block; margin-bottom:6px;">
+            <!-- ANONYMOUS CONFESSION FORM -->
+            <div style="background:rgba(0,0,0,0.4); border:1.5px solid rgba(139, 92, 246, 0.5); border-radius:18px; padding:16px; margin-top:16px; text-align:left;">
+                <label style="font-size:0.85rem; font-weight:800; color:var(--primary); display:block; margin-bottom:8px;">
                     🕵️‍♂️ <span id="confession-creator-name">Creator</span> Ke Liye Secret Message Chhoro (Naam Chupa Rahega):
                 </label>
-                <input type="text" id="confession-input" placeholder="E.g. Tu hamesha treat ke time gayab ho jata hai..." style="padding:10px 12px; font-size:0.85rem; margin-bottom:8px;">
-                <button class="btn-primary" style="padding:8px; font-size:0.78rem;" onclick="submitAnonymousConfession()">
+                <input type="text" id="confession-input" placeholder="E.g. Tu hamesha treat ke time gayab ho jata hai..." style="padding:14px 16px; font-size:0.95rem; margin-bottom:10px;">
+                <button class="btn-primary" style="padding:12px; font-size:0.9rem;" onclick="submitAnonymousConfession()">
                     🤫 Be-Naam Paigham Bhejo
                 </button>
             </div>
 
-            <!-- FRIEND WALLET CASHBACK NOTIFICATION -->
-            <div class="dare-wallet-card" style="margin-top: 14px; margin-bottom: 14px;" onclick="openWalletModal()">
+            <!-- FRIEND CASHBACK NOTIFICATION -->
+            <div class="dare-wallet-card" style="margin-top: 16px; margin-bottom: 16px;" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span>🎁 Dare Cash Added To Your Wallet</span>
                     <span style="color:var(--gold);">+Rs. 50 Added</span>
                 </div>
-                <p id="txt-friend-wallet-msg" style="font-size:0.75rem; color:#fff; margin-top:6px; line-height:1.4;">
+                <p id="txt-friend-wallet-msg" style="font-size:0.82rem; color:#fff; margin-top:8px; line-height:1.4;">
                     Yeh dare complete karne par <strong>Rs. 50 aapke personal wallet mein jama ho gaye hain!</strong> Ab apna khud ka dare banayein aur unlimited cash boost jeetein!
                 </p>
             </div>
@@ -1510,8 +1295,8 @@
                 <span class="live-tag" style="background: rgba(255, 215, 0, 0.2); color: var(--gold);">👑 MASTER ADMIN</span>
             </div>
 
-            <h1 style="font-size: 1.3rem; margin-bottom: 2px;">⚡ Platform Live Overview</h1>
-            <p class="subtitle" style="margin-bottom: 14px;">Tamam users ke balances, device IDs aur contest liability ka live record.</p>
+            <h1 style="font-size: 1.4rem; margin-bottom: 4px;">⚡ Platform Live Overview</h1>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 18px;">Tamam users ke balances, device IDs aur contest liability ka live record.</p>
 
             <div class="admin-stats-grid">
                 <div class="admin-stat-card">
@@ -1532,11 +1317,11 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                <button class="btn-primary" style="padding: 10px; font-size: 0.82rem; background: linear-gradient(135deg, #059669, #10b981);" onclick="exportAdminCSV()">
+            <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                <button class="btn-primary" style="padding: 12px; font-size: 0.9rem; background: linear-gradient(135deg, #059669, #10b981);" onclick="exportAdminCSV()">
                     📥 Download Excel (CSV) File
                 </button>
-                <button class="btn-primary" style="padding: 10px; font-size: 0.82rem; background: rgba(255,255,255,0.1); width: auto;" onclick="loadAdminMasterData()">
+                <button class="btn-primary" style="padding: 12px; font-size: 0.9rem; background: rgba(255,255,255,0.1); width: auto;" onclick="loadAdminMasterData()">
                     🔄 Refresh
                 </button>
             </div>
@@ -1562,7 +1347,7 @@
 
     </div>
 
-    <!-- ================= JAVASCRIPT & ENGINE ================= -->
+    <!-- JAVASCRIPT & ENGINE -->
     <script>
         // --- 0. FIREBASE REALTIME DB CONFIG ---
         const firebaseConfig = {
@@ -1585,7 +1370,7 @@
         window.quizLiveTimerInterval = null;
         window.isBadlaModeActive = false;
 
-        // --- 1. DUAL-LANGUAGE QUESTION DATABASE ---
+        // --- 1. QUESTIONS REPOSITORY ---
         const DARE_QUESTIONS = [
             { 
                 q_ur: "Agar hum kisi emergency mein phans jayein toh mera sabse pehla reaction kya hoga?", 
@@ -1656,7 +1441,7 @@
         let isFriendMode = false;
         let quizTargetData = null;
 
-        // --- 2. AUDIO ENGINE & MEME SOUNDBOARD (WEB AUDIO API) ---
+        // --- 2. AUDIO & MEME SOUNDBOARD ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -1685,9 +1470,7 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // 6. PAKISTANI MEME SOUNDBOARD SEQUENCES
         function soundMemeMoyeMoye() {
-            // Melancholy slow sadness sequence (G3 -> F3 -> Eb3 -> D3)
             setTimeout(() => playTone(196, 'sawtooth', 0.35), 0);
             setTimeout(() => playTone(174, 'sawtooth', 0.35), 350);
             setTimeout(() => playTone(155, 'sawtooth', 0.4), 700);
@@ -1695,20 +1478,18 @@
         }
 
         function soundMemeAverage() {
-            // Comedic cartoon slide sequence
             setTimeout(() => playTone(300, 'sine', 0.15), 0);
             setTimeout(() => playTone(240, 'sine', 0.25), 150);
         }
 
         function soundMemeJalwa() {
-            // High energy victory fanfare sequence
             setTimeout(() => playTone(440, 'triangle', 0.12), 0);
             setTimeout(() => playTone(554, 'triangle', 0.12), 130);
             setTimeout(() => playTone(659, 'triangle', 0.15), 260);
             setTimeout(() => playTone(880, 'triangle', 0.4), 420);
         }
 
-        // --- 3. UNIVERSAL LIVE WALLET ENGINE ---
+        // --- 3. LIVE WALLET ENGINE ---
         let userWallet = { balance: 15, history: [] };
 
         function getOrCreateDeviceId() {
@@ -1820,7 +1601,7 @@
             document.getElementById("wallet-modal").classList.remove("active");
         }
 
-        // --- 4. 5. DAILY MYSTERY LIFAFA ENGINE (24H COOLDOWN) ---
+        // --- 4. DAILY MYSTERY LIFAFA ---
         function checkDailyLifafaStatus() {
             const lastClaim = localStorage.getItem("last_daily_lifafa_claim");
             const btn = document.getElementById("btn-lifafa-action");
@@ -1862,14 +1643,14 @@
             }
 
             soundClick();
-            const rewardCash = Math.floor(Math.random() * 5) + 1; // Rs. 1 to Rs. 5
+            const rewardCash = Math.floor(Math.random() * 5) + 1;
             localStorage.setItem("last_daily_lifafa_claim", Date.now().toString());
             creditUserWallet(rewardCash, "Daily Mystery Lifafa Reward 🧧");
             checkDailyLifafaStatus();
             alert(`🎉 MUBARAK HO! Aaj ke Mystery Lifafa se aapko Rs. ${rewardCash} mile hain!\nYe raqam aapke Live Wallet mein deposit kar di gayi hai!`);
         }
 
-        // --- 5. DYNAMIC ONLINE PLAYERS FLUCTUATION ENGINE ---
+        // --- 5. DYNAMIC ONLINE PLAYERS ---
         let currentOnlineCount = Math.floor(Math.random() * (350 - 190 + 1)) + 190;
         function updateOnlinePlayersDisplay() {
             const diff = Math.floor(Math.random() * 23) - 9;
@@ -1879,7 +1660,7 @@
         }
         setInterval(updateOnlinePlayersDisplay, 4500);
 
-        // --- 6. ACCURATE 25-PLAYER MEGA JACKPOT ENGINE ---
+        // --- 6. 25-PLAYER MEGA JACKPOT ENGINE ---
         let currentJackpotAmount = 10000;
         function updateJackpotAndPodium(totalVerifiedPlayers) {
             const poolAddons = Math.floor(totalVerifiedPlayers / 25) * 100;
@@ -1927,11 +1708,11 @@
                 document.getElementById("welcome-title").innerText = "Real Friend or Just Delusional? 💀";
                 document.getElementById("welcome-sub").innerText = "Select your answers, generate your viral dare link, and check who knows you best!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
-                document.getElementById("lbl-player-name").innerText = "YOUR COOL NAME";
-                document.getElementById("lbl-gender").innerText = "WHO ARE YOU?";
+                document.getElementById("lbl-player-name").innerText = "Enter Your Cool Name:";
+                document.getElementById("lbl-gender").innerText = "Who Are You?";
                 document.getElementById("btn-gender-boy").innerText = "👦 Boy";
                 document.getElementById("btn-gender-girl").innerText = "👧 Girl";
-                document.getElementById("btn-start-game").innerText = "Start Game Now →";
+                document.getElementById("btn-start-game").innerText = "🚀 STEP 3: Start Game Now →";
                 document.getElementById("txt-pin-title").innerText = "Inspect Friend's Answers";
                 document.getElementById("txt-pin-sub").innerText = "Enter the 4-Digit Secret PIN you received when creating your dare:";
                 document.getElementById("btn-track-pin-submit").innerText = "🔍 Open Answers & Wallet →";
@@ -1966,19 +1747,19 @@
                 document.getElementById("tab-pin-btn").innerText = "🔑 PIN";
                 document.getElementById("tab-payout-btn").innerText = "🏦 Prize";
                 document.getElementById("welcome-title").innerText = "Real Friend ya Sirf Delulu? 💀";
-                document.getElementById("welcome-sub").innerText = "Apne 10 sawalon ke sahi jawab select karo, viral link banao aur check karo kaun sach mein tumhara sage dost hai!";
+                document.getElementById("welcome-sub").innerText = "Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
-                document.getElementById("lbl-player-name").innerText = "TUMHARA COOL NAAM";
-                document.getElementById("lbl-gender").innerText = "AAP KAUN HAIN?";
-                document.getElementById("btn-gender-boy").innerText = "👦 Boy";
-                document.getElementById("btn-gender-girl").innerText = "👧 Girl";
-                document.getElementById("btn-start-game").innerText = "Game Shuru Karo →";
+                document.getElementById("lbl-player-name").innerText = "Apna Asli Ya Cool Naam Likhein:";
+                document.getElementById("lbl-gender").innerText = "Aap Kaun Hain?";
+                document.getElementById("btn-gender-boy").innerText = "👦 Boy (Larka)";
+                document.getElementById("btn-gender-girl").innerText = "👧 Girl (Larki)";
+                document.getElementById("btn-start-game").innerText = "🚀 STEP 3: Game Shuru Karo →";
                 document.getElementById("txt-pin-title").innerText = "Doston Ke Answers & Wallet";
                 document.getElementById("txt-pin-sub").innerText = "Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:";
                 document.getElementById("btn-track-pin-submit").innerText = "🔍 Answers & Wallet Kholein →";
                 document.getElementById("txt-back-home").innerText = "Wapas Home Jayein";
                 document.getElementById("txt-dare-ready-title").innerText = "Aapka Dare Link Ready Hai!";
-                document.getElementById("txt-dare-ready-sub").innerText = "Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!";
+                document.getElementById("txt-dare-ready-sub").innerText = "Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores dekhein!";
                 document.getElementById("txt-wallet-title").innerText = "💰 Live Dare Wallet";
                 document.getElementById("txt-wallet-note").innerHTML = "⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)";
                 document.getElementById("txt-pin-box-title").innerText = "🔑 AAPKA 4-DIGIT SECRET PIN";
@@ -1998,7 +1779,7 @@
             }
         }
 
-        // --- 8. NAVIGATION & BACK BUTTON FUNCTION ---
+        // --- 8. NAVIGATION ---
         function goToHome() {
             soundClick();
             switchScreen('screen-welcome');
@@ -2035,7 +1816,7 @@
             }
         }
 
-        // 15 September Countdown Timer
+        // 15 September Countdown
         const targetDate = new Date("September 15, 2026 23:59:59").getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -2056,7 +1837,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- 9. ANTI-CHEAT ENGINE & 7. SPEEDRUN LIVE TIMER ---
+        // --- 9. SPEEDRUN & ANTI-CHEAT ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
@@ -2153,7 +1934,7 @@
             render();
         }
 
-        // --- 10. LUCKY SPIN & WIN WHEEL WITH "NEAR-MISS" CASINO PSYCHOLOGY ---
+        // --- 10. RIGGED NEAR-MISS WHEEL ---
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
@@ -2197,7 +1978,7 @@
                 ctx.rotate(angle + arc / 2);
                 ctx.textAlign = "right";
                 ctx.fillStyle = (wheelPrizes[i].color === "#FFD700" || wheelPrizes[i].color === "#00FFA3") ? "#000" : "#fff";
-                ctx.font = "bold 9.5px Poppins";
+                ctx.font = "bold 10px Poppins";
                 ctx.fillText(wheelPrizes[i].text, radius - 10, 3.5);
                 ctx.restore();
             }
@@ -2219,15 +2000,15 @@
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
             if (rand < 1) {
-                return 4; // Rs. 50 -> Exactly 1 in 1000 (0.1%)
+                return 4; // Rs. 50 -> 1 in 1000 (0.1%)
             } else if (rand < 30) {
-                return 3; // Rs. 10 -> 29 in 1000 (2.9%)
+                return 3; // Rs. 10 -> 2.9%
             } else if (rand < 200) {
-                return 1; // Rs. 5 -> 170 in 1000 (17%)
+                return 1; // Rs. 5 -> 17%
             } else if (rand < 550) {
-                return 0; // Rs. 1 -> 350 in 1000 (35%)
+                return 0; // Rs. 1 -> 35%
             } else {
-                return 2; // Try Again -> 450 in 1000 (45%)
+                return 2; // Try Again -> 45%
             }
         }
 
@@ -2244,7 +2025,7 @@
 
             const now = Date.now();
             const elapsed = now - parseInt(lastSpin, 10);
-            const cooldownMs = 3 * 60 * 1000; // 3 Minutes
+            const cooldownMs = 3 * 60 * 1000;
 
             if (elapsed < cooldownMs) {
                 const remaining = Math.ceil((cooldownMs - elapsed) / 1000);
@@ -2341,7 +2122,7 @@
             requestAnimationFrame(animatePhysicsSpin);
         }
 
-        // --- 11. REAL-TIME FOMO TICKER ---
+        // --- 11. FOMO TOAST ENGINE ---
         const fomoPakNames = [
             "Hamza R.", "Bilal K.", "Daniyal M.", "Zain A.", "Usama T.", "Ayesha N.", "Fatima S.", "Maham K.", 
             "Shahzaib Q.", "Farhan J.", "Hira M.", "Sania B.", "Talha N.", "Zubair G.", "Hassan P.", "Kashif E.", 
@@ -2379,7 +2160,7 @@
         setInterval(triggerFomoNotification, 9500);
         setTimeout(triggerFomoNotification, 2000);
 
-        // --- 12. CURIOSITY GATEKEEPING CONTROLLER ---
+        // --- 12. CURIOSITY EXPOSE ---
         function unlockCuriosityRoast() {
             soundClick();
             const keys = Object.keys(window.activeCachedAttempts || {});
@@ -2400,26 +2181,25 @@
             if (!worstFriend) {
                 bodyEl.innerHTML = `
                     <div style="text-align:center; padding: 20px 10px;">
-                        <div style="font-size: 2.5rem; margin-bottom: 8px;">🤫</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1;">Abhi tak kisi dost ne dare attempt nahi kiya! Link WhatsApp par bhejein aur dekhein kaun sabse ghalat jawab deta hai!</p>
+                        <div style="font-size: 3rem; margin-bottom: 8px;">🤫</div>
+                        <p style="font-size: 0.95rem; color: #cbd5e1;">Abhi tak kisi dost ne dare attempt nahi kiya! Link WhatsApp par bhejein aur dekhein kaun sabse ghalat jawab deta hai!</p>
                     </div>
                 `;
             } else {
                 bodyEl.innerHTML = `
-                    <div style="background: rgba(239, 68, 68, 0.15); border: 1.5px solid var(--danger); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 12px;">
-                        <div style="font-size: 2.5rem;">🐍</div>
-                        <h4 style="color: #ff6b6b; font-size: 1.1rem; font-weight: 900; margin: 4px 0;">${worstFriend.name} Asli Aastin Ka Saanp Nikla!</h4>
-                        <p style="font-size: 0.78rem; color: #f1f5f9;">Score: <strong style="color: var(--danger);">${worstFriend.score}/10</strong> (${worstFriend.timeSeconds}s)</p>
+                    <div style="background: rgba(239, 68, 68, 0.18); border: 2px solid var(--danger); border-radius: 18px; padding: 18px; text-align: center; margin-bottom: 14px;">
+                        <div style="font-size: 3rem;">🐍</div>
+                        <h4 style="color: #ff6b6b; font-size: 1.25rem; font-weight: 900; margin: 6px 0;">${worstFriend.name} Asli Aastin Ka Saanp Nikla!</h4>
+                        <p style="font-size: 0.9rem; color: #f1f5f9;">Score: <strong style="color: var(--danger); font-size: 1.1rem;">${worstFriend.score}/10</strong> (${worstFriend.timeSeconds}s)</p>
                     </div>
-                    <div style="background: rgba(255, 255, 255, 0.04); border-radius: 10px; padding: 10px; font-size: 0.75rem; color: #cbd5e1; line-height: 1.4;">
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 14px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
                         💬 <strong>Expose Summary:</strong> ${worstFriend.name} ko aapki basic aadaton ka bhi nahi pata! Isne tukkay lagaye aur dosti mein flop ho gaya!
                     </div>
-                    <button class="btn-primary btn-whatsapp" style="margin-top: 10px;" onclick="shareRoastToWhatsApp('${worstFriend.name}', ${worstFriend.score})">
+                    <button class="btn-primary btn-whatsapp" style="margin-top: 14px;" onclick="shareRoastToWhatsApp('${worstFriend.name}', ${worstFriend.score})">
                         📲 WhatsApp Par Iski Be-Izzati Karo
                     </button>
                 `;
             }
-
             document.getElementById("curiosity-modal").classList.add("active");
         }
 
@@ -2434,7 +2214,7 @@
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
-        // --- 13. 4. 1V1 DOSTI KA DANGAL GENERATOR ---
+        // --- 13. 1V1 DANGAL ---
         function checkAndRenderDangal(attemptsObj) {
             const keys = Object.keys(attemptsObj || {});
             const dangalCard = document.getElementById("dangal-section");
@@ -2443,7 +2223,6 @@
                 return;
             }
 
-            // Pick highest and lowest to make an epic battle
             let sorted = keys.map(k => attemptsObj[k]).sort((a, b) => b.score - a.score);
             const winner = sorted[0];
             const loser = sorted[sorted.length - 1];
@@ -2465,7 +2244,7 @@
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
-        // --- 14. 3. ANONYMOUS CONFESSION SUBMISSION & LISTENER ---
+        // --- 14. ANONYMOUS CONFESSIONS ---
         function submitAnonymousConfession() {
             const input = document.getElementById("confession-input");
             const text = input.value.trim();
@@ -2499,18 +2278,18 @@
                         const val = c.val();
                         const li = document.createElement("li");
                         li.className = "confession-bubble";
-                        li.innerHTML = `"${val.text}" <span style="font-size:0.65rem; color:var(--text-dim); display:block; margin-top:2px;">— Anonymous Friend</span>`;
+                        li.innerHTML = `"${val.text}" <span style="font-size:0.7rem; color:var(--text-dim); display:block; margin-top:3px;">— Anonymous Friend</span>`;
                         listEl.prepend(li);
                     });
                     countBadge.innerText = `${total} Messages`;
                 } else {
-                    listEl.innerHTML = "<li style='color:var(--text-dim); font-size:0.75rem; font-style:italic;'>Abhi tak kisi dost ne secret confession nahi chhora...</li>";
+                    listEl.innerHTML = "<li style='color:var(--text-dim); font-size:0.82rem; font-style:italic;'>Abhi tak kisi dost ne secret confession nahi chhora...</li>";
                     countBadge.innerText = "0 Messages";
                 }
             });
         }
 
-        // --- 15. 1. BADLA MODE (UNO REVERSE) CONTROLLER ---
+        // --- 15. BADLA MODE ---
         function startBadlaMode() {
             soundClick();
             const creatorName = quizTargetData ? quizTargetData.creator : "Dost";
@@ -2520,14 +2299,13 @@
             switchScreen('screen-welcome');
             switchTab('play');
 
-            // Pre-fill fields for revenge
             document.getElementById("player-name").value = friendName;
             document.getElementById("welcome-title").innerText = `🔥 ${creatorName} Se Badla Dare!`;
             document.getElementById("welcome-sub").innerText = `${creatorName} ko uski aukaat dikhane ke liye apne 10 sawal chunain aur use challenge karein!`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 16. WHATSAPP STORY EGO CARD CANVAS GENERATOR ---
+        // --- 16. STORY EGO CARD CANVAS ---
         function generateAndDownloadStoryCard() {
             soundClick();
             const canvas = document.getElementById("story-card-canvas");
@@ -2641,7 +2419,7 @@
             link.click();
         }
 
-        // --- 17. 8. FAKE LEAKED WHATSAPP CHAT PRANK GENERATOR ---
+        // --- 17. FAKE LEAKED CHAT PRANK CANVAS ---
         function generateAndDownloadChatPrank() {
             soundClick();
             const canvas = document.getElementById("chat-prank-canvas");
@@ -2655,11 +2433,9 @@
                 score: 3
             };
 
-            // WhatsApp Dark Mode Background
             ctx.fillStyle = "#0b141a";
             ctx.fillRect(0, 0, w, h);
 
-            // WhatsApp Top Header Bar
             ctx.fillStyle = "#202c33";
             ctx.fillRect(0, 0, w, 110);
 
@@ -2680,7 +2456,6 @@
             ctx.fillStyle = "#8696a0";
             ctx.fillText("online", 115, 75);
 
-            // Dialogue generation based on score
             let chatLines = [];
             if (resData.score < 5) {
                 chatLines = [
@@ -2702,7 +2477,6 @@
                 ];
             }
 
-            // Draw Chat Bubbles
             let currentY = 160;
             chatLines.forEach(msg => {
                 ctx.font = "18px Poppins";
@@ -2711,14 +2485,12 @@
                 const bubbleH = 65;
 
                 if (msg.sender === "friend") {
-                    // Outgoing (Green Bubble on Right)
                     const bx = w - bubbleW - 40;
                     ctx.fillStyle = "#005c4b";
                     roundRect(ctx, bx, currentY, bubbleW, bubbleH, 14);
                     ctx.fillStyle = "#e9edef";
                     ctx.fillText(msg.text, bx + 18, currentY + 38);
                 } else {
-                    // Incoming (Dark Bubble on Left)
                     const bx = 40;
                     ctx.fillStyle = "#202c33";
                     roundRect(ctx, bx, currentY, bubbleW, bubbleH, 14);
@@ -2728,7 +2500,6 @@
                 currentY += 105;
             });
 
-            // Watermark on Bottom
             ctx.font = "bold 15px Poppins";
             ctx.fillStyle = "#8696a0";
             ctx.textAlign = "center";
@@ -2755,7 +2526,7 @@
             ctx.fill();
         }
 
-        // --- 18. SECRET MASTER ADMIN CONTROLLER (PIN: 9999) ---
+        // --- 18. SECRET MASTER ADMIN (PIN: 9999) ---
         function openAdminMasterPanel() {
             soundClick();
             switchScreen('screen-admin');
@@ -2820,7 +2591,7 @@
                         <td style="color: var(--text-dim);">${idx + 1}</td>
                         <td><strong>${userName}</strong></td>
                         <td style="color: var(--accent); font-weight: 800;">Rs. ${bal.toLocaleString()}</td>
-                        <td style="font-family: monospace; font-size: 0.65rem; color: var(--text-dim);">${shortDevId}</td>
+                        <td style="font-family: monospace; font-size: 0.7rem; color: var(--text-dim);">${shortDevId}</td>
                     `;
                     tableBody.appendChild(tr);
                 });
@@ -3011,7 +2782,6 @@
             if (currentQuestionIndex < DARE_QUESTIONS.length) {
                 loadQuestion();
             } else {
-                // 2. BIOMETRIC LIE DETECTOR TRIGGER (FOR FRIEND MODE)
                 if (isFriendMode) {
                     triggerBiometricScanThenFinish();
                 } else {
@@ -3020,7 +2790,6 @@
             }
         }
 
-        // 2. FORCED DWELL TIME BIOMETRIC SCANNER ENGINE
         function triggerBiometricScanThenFinish() {
             const modal = document.getElementById("biometric-modal");
             const statusEl = document.getElementById("biometric-scan-status");
@@ -3142,7 +2911,6 @@
                 document.getElementById('result-title').innerText = friendName + " vs " + quizTargetData.creator;
                 document.getElementById('roast-comment').innerText = roast;
 
-                // 6. MEME SOUNDBOARD AUDIO TRIGGER
                 if (score >= 8) {
                     soundMemeJalwa();
                     launchConfetti();
@@ -3157,7 +2925,7 @@
             }
         }
 
-        // --- 20. REALTIME CREATOR DASHBOARD LISTENER ---
+        // --- 20. DASHBOARD LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
@@ -3183,11 +2951,11 @@
                         const li = document.createElement('li');
                         li.innerHTML = `
                             <div>
-                                <strong>${val.name}</strong> 
-                                <span style="font-size:0.7rem; color:var(--text-dim);">(${val.timeSeconds}s ${val.timeSeconds <= 15 ? '⚡' : ''})</span>
+                                <strong style="font-size:0.95rem;">${val.name}</strong> 
+                                <span style="font-size:0.78rem; color:var(--text-dim);">(${val.timeSeconds}s ${val.timeSeconds <= 15 ? '⚡' : ''})</span>
                             </div>
                             <div style="display:flex; align-items:center;">
-                                <span style="color:var(--accent); font-weight:800; font-size:0.95rem;">${val.score}/10</span>
+                                <span style="color:var(--accent); font-weight:900; font-size:1.05rem;">${val.score}/10</span>
                                 <button class="btn-inspect-answers" onclick="inspectFriendAnswers('${attemptKey}')">👁️ Inspect</button>
                             </div>
                         `;
@@ -3200,7 +2968,6 @@
             });
         }
 
-        // Detailed Answers Comparison Modal
         function inspectFriendAnswers(attemptKey) {
             soundClick();
             const attempt = window.activeCachedAttempts[attemptKey];
