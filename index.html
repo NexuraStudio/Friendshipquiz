@@ -63,7 +63,7 @@
             z-index: 2;
         }
 
-        /* NAVIGATION & BACK BUTTONS */
+        /* TOP UTILITY BAR (LIVE FLOATING WALLET + LANGUAGE) */
         .top-utility-bar {
             display: flex;
             justify-content: space-between;
@@ -72,6 +72,23 @@
             padding-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
+        .wallet-pill-btn {
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.2), rgba(139, 92, 246, 0.25));
+            border: 1.5px solid var(--accent);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(0, 255, 163, 0.25);
+            transition: all 0.2s ease;
+        }
+        .wallet-pill-btn:active { transform: scale(0.95); }
 
         .dashboard-header-nav {
             display: flex;
@@ -128,7 +145,7 @@
             font-weight: 800;
         }
 
-        /* DYNAMIC MEGA JACKPOT BANNER */
+        /* REAL-TIME GROWING MEGA JACKPOT BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 1.5px solid rgba(255, 215, 0, 0.65);
@@ -251,7 +268,7 @@
             margin-top: 2px;
         }
 
-        /* 1. LIVE DARE WALLET (LALACH KA ASLI ENGINE) */
+        /* LIVE DARE WALLET WIDGET */
         .dare-wallet-card {
             background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.18));
             border: 1.5px solid var(--accent);
@@ -260,6 +277,7 @@
             margin-bottom: 16px;
             text-align: left;
             box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
+            cursor: pointer;
         }
 
         .wallet-head {
@@ -315,7 +333,29 @@
             line-height: 1.4;
         }
 
-        /* 2. LUCKY SPIN & WIN WHEEL (3-MIN COOLDOWN) */
+        /* PASSBOOK MODAL TRANSACTIONS LIST */
+        .passbook-list {
+            list-style: none;
+            max-height: 190px;
+            overflow-y: auto;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .passbook-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid var(--accent);
+            font-size: 0.76rem;
+        }
+
+        /* LUCKY SPIN WHEEL */
         .spin-wheel-card {
             background: rgba(0, 0, 0, 0.5);
             border: 1.5px solid rgba(255, 215, 0, 0.4);
@@ -333,7 +373,7 @@
             margin: 12px auto;
         }
 
-        #wheel-canvas {
+        #wheel-canvas-home, #wheel-canvas-dash {
             border-radius: 50%;
             box-shadow: 0 0 25px rgba(139, 92, 246, 0.45);
         }
@@ -627,7 +667,7 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
 
-        /* QUIZ SCREEN */
+        /* QUIZ PROGRESS */
         .quiz-progress { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; font-weight: 700; }
         .progress-bar-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
         .progress-fill { height: 100%; width: 10%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.3s ease; }
@@ -647,7 +687,7 @@
         }
         .option-btn:active { background: rgba(0, 255, 163, 0.15); border-color: var(--accent); }
 
-        /* LIVE DASHBOARD ON CREATOR SCREEN */
+        /* LIVE DASHBOARD LIST */
         .live-scoreboard {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -689,11 +729,7 @@
             margin-left: 8px;
             transition: all 0.2s ease;
         }
-        .btn-inspect-answers:active {
-            transform: scale(0.95);
-            background: var(--accent);
-            color: #000;
-        }
+        .btn-inspect-answers:active { transform: scale(0.95); background: var(--accent); color: #000; }
 
         /* 300x250 BANNER AD ZONE */
         .ad-zone {
@@ -710,7 +746,7 @@
             width: 100%;
         }
 
-        /* MODAL */
+        /* MODAL OVERLAYS */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -802,11 +838,44 @@
         </div>
     </div>
 
+    <!-- ================= MODAL: LIVE DARE WALLET PASSBOOK ================= -->
+    <div id="wallet-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="txt-passbook-title">💰 My Live Dare Wallet</h3>
+                <button class="btn-modal-close" onclick="closeWalletModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(139, 92, 246, 0.2)); border: 1.5px solid var(--accent); border-radius: 14px; padding: 14px; text-align: center;">
+                    <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
+                    <div id="modal-wallet-balance" style="font-size: 2.2rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 200</div>
+                    <div style="font-size: 0.75rem; color: var(--gold); font-weight: 700;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
+                    <div class="wallet-progress-bg" style="margin-top: 8px;">
+                        <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 20%;"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
+                    <ul id="wallet-history-list" class="passbook-list">
+                        <!-- Injected dynamically -->
+                    </ul>
+                </div>
+
+                <div style="background: rgba(255, 215, 0, 0.08); border: 1px dashed var(--gold); border-radius: 10px; padding: 10px; font-size: 0.72rem; color: #fef08a; text-align: center; margin-top: 6px;" id="txt-wallet-footer-notice">
+                    🔒 Ye raqam 15 September ko countdown mukammal hote hi Bank Transfer ke zariye claim kar saken ge!
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
 
-        <!-- TOP BAR: LANGUAGE SWITCHER -->
+        <!-- TOP BAR: LIVE FLOATING WALLET + LANGUAGE SWITCHER -->
         <div class="top-utility-bar">
-            <span style="font-size:0.75rem; color:var(--text-dim); font-weight:700;">🔥 DARE 2026</span>
+            <button class="wallet-pill-btn" onclick="openWalletModal()">
+                <span>💰</span> <span id="header-wallet-balance">Rs. 200</span>
+            </button>
             <div class="lang-switch">
                 <button id="btn-lang-ur" class="lang-btn active" onclick="changeLanguage('ur')">🇵🇰 Roman Urdu</button>
                 <button id="btn-lang-en" class="lang-btn" onclick="changeLanguage('en')">🇬🇧 English</button>
@@ -923,12 +992,12 @@
                 <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">Game Shuru Karo →</button>
             </div>
 
-            <!-- VIEW B: LUCKY SPIN WHEEL (DIRECT ACCESS ON HOMEPAGE) -->
+            <!-- VIEW B: LUCKY SPIN WHEEL (DIRECT HOMEPAGE CHANCE) -->
             <div id="view-spin-portal" style="display: none;">
                 <div class="spin-wheel-card" style="margin-top: 0;">
                     <div class="badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
                     <h2 style="font-size: 1.2rem; font-weight: 900; margin: 6px 0;">Lucky Spin & Win</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar points aur rank boost karein!</p>
+                    <p style="font-size: 0.78rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash aur rank boost jeetein!</p>
 
                     <div class="wheel-container">
                         <div class="wheel-pointer"></div>
@@ -942,7 +1011,7 @@
                 </div>
             </div>
 
-            <!-- VIEW C: TRACK BY 4-DIGIT PIN & WALLET LOOKUP -->
+            <!-- VIEW C: TRACK BY 4-DIGIT PIN -->
             <div id="view-pin-portal" style="display: none;">
                 <div class="pin-lookup-card">
                     <div class="badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
@@ -1018,7 +1087,7 @@
         <!-- SCREEN 3: CREATOR DASHBOARD -->
         <div id="screen-share" class="screen">
             
-            <!-- PROMINENT BACK BUTTON HEADER NAV (IMPOSSIBLE TO MISS) -->
+            <!-- PROMINENT BACK BUTTON HEADER NAV -->
             <div class="dashboard-header-nav">
                 <button class="btn-nav-back" onclick="goToHome()">
                     <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
@@ -1030,8 +1099,8 @@
             <h1 id="txt-dare-ready-title">Aapka Dare Link Ready Hai!</h1>
             <p id="txt-dare-ready-sub" class="subtitle">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!</p>
 
-            <!-- 1. LIVE DARE WALLET WIDGET -->
-            <div class="dare-wallet-card">
+            <!-- LIVE DARE WALLET CARD (CREATOR) -->
+            <div class="dare-wallet-card" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span id="txt-wallet-title">💰 Live Dare Wallet</span>
                     <span id="wallet-badge" style="background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px; color:var(--gold);">LEVEL 1 VIP</span>
@@ -1044,7 +1113,7 @@
                     <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 20%;"></div>
                 </div>
                 <div id="txt-wallet-note" class="wallet-note">
-                    ⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi!
+                    ⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)
                 </div>
             </div>
 
@@ -1065,10 +1134,10 @@
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button id="btn-share-wa" class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
 
-            <!-- 2. LUCKY SPIN WHEEL (ON DASHBOARD AS WELL) -->
+            <!-- LUCKY SPIN WHEEL (DASHBOARD) -->
             <div class="spin-wheel-card">
                 <div style="font-size:0.75rem; font-weight:800; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
-                <div id="txt-wheel-sub" style="font-size:0.78rem; color:var(--text-dim); margin-top:2px;">Free rewards ghuma kar jeeto aur rank boost karo!</div>
+                <div id="txt-wheel-sub" style="font-size:0.78rem; color:var(--text-dim); margin-top:2px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
 
                 <div class="wheel-container">
                     <div class="wheel-pointer"></div>
@@ -1113,14 +1182,14 @@
                 <p id="roast-comment" style="font-size: 0.85rem; font-weight: 600; margin-top: 4px;">Roast loading...</p>
             </div>
 
-            <!-- FRIEND WALLET NOTICE -->
-            <div class="dare-wallet-card" style="margin-bottom: 18px;">
+            <!-- FRIEND WALLET CASHBACK NOTIFICATION -->
+            <div class="dare-wallet-card" style="margin-bottom: 18px;" onclick="openWalletModal()">
                 <div class="wallet-head">
-                    <span>🎁 Friendship Bonus Added</span>
-                    <span style="color:var(--gold);">+Rs. 150 Added</span>
+                    <span>🎁 Dare Cash Added To Your Wallet</span>
+                    <span style="color:var(--gold);">+Rs. 50 Added</span>
                 </div>
                 <p id="txt-friend-wallet-msg" style="font-size:0.75rem; color:#fff; margin-top:6px; line-height:1.4;">
-                    Aapke attempt se creator ke wallet mein <strong>Rs. 150</strong> credit ho chuke hain! Ab aap apna dare banayein aur Rs. 10,000+ pool jeetein!
+                    Yeh dare complete karne par <strong>Rs. 50 aapke personal wallet mein jama ho gaye hain!</strong> Ab apna khud ka dare banayein aur unlimited cash boost jeetein!
                 </p>
             </div>
 
@@ -1262,7 +1331,128 @@
             setTimeout(() => playTone(783, 'triangle', 0.35), 260);
         }
 
-        // --- 3. DYNAMIC ONLINE PLAYERS FLUCTUATION ENGINE ---
+        // --- 3. UNIVERSAL LIVE WALLET ENGINE (SYNCED WITH FIREBASE) ---
+        let userWallet = {
+            balance: 200,
+            history: []
+        };
+
+        function getOrCreateDeviceId() {
+            let deviceId = localStorage.getItem("dare_device_fingerprint");
+            if (!deviceId) {
+                deviceId = "dev_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now().toString(36);
+                localStorage.setItem("dare_device_fingerprint", deviceId);
+            }
+            return deviceId;
+        }
+
+        function initUserWallet() {
+            const devId = getOrCreateDeviceId();
+            const walletRef = db.ref('wallets/' + devId);
+
+            walletRef.on('value', snap => {
+                if (snap.exists()) {
+                    userWallet = snap.val();
+                    if (!userWallet.history) userWallet.history = [];
+                } else {
+                    // Seed with initial Rs. 200 Welcome Bonus!
+                    userWallet = {
+                        balance: 200,
+                        history: [
+                            { desc: "Welcome Signup Bonus 🎉", amount: 200, timestamp: Date.now() }
+                        ]
+                    };
+                    walletRef.set(userWallet);
+                }
+                updateWalletUI();
+            });
+        }
+
+        function creditUserWallet(amount, desc) {
+            const devId = getOrCreateDeviceId();
+            const walletRef = db.ref('wallets/' + devId);
+
+            userWallet.balance = (userWallet.balance || 0) + amount;
+            if (!userWallet.history) userWallet.history = [];
+            userWallet.history.unshift({
+                desc: desc,
+                amount: amount,
+                timestamp: Date.now()
+            });
+
+            walletRef.set(userWallet).then(() => {
+                soundCash();
+                launchConfetti();
+                updateWalletUI();
+            });
+        }
+
+        function updateWalletUI() {
+            const bal = userWallet.balance || 0;
+            const formatted = "Rs. " + bal.toLocaleString();
+
+            // Header Floating Badge
+            const headerBadge = document.getElementById("header-wallet-balance");
+            if (headerBadge) headerBadge.innerText = formatted;
+
+            // Creator Dashboard Display
+            const dashDisplay = document.getElementById("wallet-balance-display");
+            if (dashDisplay) dashDisplay.innerText = formatted;
+
+            // Passbook Modal Display
+            const modalBal = document.getElementById("modal-wallet-balance");
+            if (modalBal) modalBal.innerText = formatted;
+
+            // Progress towards Rs. 1,000 Target
+            const progressPercent = Math.min(100, Math.round((bal / 1000) * 100));
+            const fillDash = document.getElementById("wallet-progress-fill");
+            if (fillDash) fillDash.style.width = progressPercent + "%";
+
+            const fillModal = document.getElementById("modal-wallet-progress-fill");
+            if (fillModal) fillModal.style.width = progressPercent + "%";
+
+            const badge = document.getElementById('wallet-badge');
+            if (badge) {
+                if (bal >= 1000) {
+                    badge.innerText = "🌟 VIP TICKET UNLOCKED";
+                    badge.style.color = "#00FFA3";
+                } else {
+                    badge.innerText = "LEVEL 1 VIP (" + progressPercent + "%)";
+                }
+            }
+
+            // Populate Passbook History List
+            const historyListEl = document.getElementById("wallet-history-list");
+            if (historyListEl) {
+                historyListEl.innerHTML = "";
+                if (userWallet.history && userWallet.history.length > 0) {
+                    userWallet.history.slice(0, 10).forEach(item => {
+                        const li = document.createElement("li");
+                        li.className = "passbook-item";
+                        li.innerHTML = `
+                            <span>${item.desc}</span>
+                            <strong style="color:var(--accent);">+Rs. ${item.amount}</strong>
+                        `;
+                        historyListEl.appendChild(li);
+                    });
+                } else {
+                    historyListEl.innerHTML = "<li style='color:var(--text-dim); font-size:0.75rem;'>No transactions yet...</li>";
+                }
+            }
+        }
+
+        function openWalletModal() {
+            soundClick();
+            updateWalletUI();
+            document.getElementById("wallet-modal").classList.add("active");
+        }
+
+        function closeWalletModal() {
+            soundClick();
+            document.getElementById("wallet-modal").classList.remove("active");
+        }
+
+        // --- 4. DYNAMIC ONLINE PLAYERS FLUCTUATION ENGINE ---
         let currentOnlineCount = Math.floor(Math.random() * (350 - 190 + 1)) + 190;
         function updateOnlinePlayersDisplay() {
             const diff = Math.floor(Math.random() * 23) - 9;
@@ -1272,7 +1462,7 @@
         }
         setInterval(updateOnlinePlayersDisplay, 4500);
 
-        // --- 4. ACCURATE 25-PLAYER MEGA JACKPOT ENGINE ---
+        // --- 5. ACCURATE 25-PLAYER MEGA JACKPOT ENGINE ---
         let currentJackpotAmount = 10000;
         function updateJackpotAndPodium(totalVerifiedPlayers) {
             // STRICT RULE: Base 10,000 + Rs. 100 for every 25 players
@@ -1299,7 +1489,7 @@
             updateJackpotAndPodium(count);
         });
 
-        // --- 5. LANGUAGE SWITCHER IMPLEMENTATION ---
+        // --- 6. LANGUAGE SWITCHER IMPLEMENTATION ---
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem("app_lang", lang);
@@ -1334,7 +1524,7 @@
                 document.getElementById("txt-dare-ready-title").innerText = "Your Dare Link Is Ready!";
                 document.getElementById("txt-dare-ready-sub").innerText = "Share it on your WhatsApp Story and groups. Watch live scores and wallet earnings below!";
                 document.getElementById("txt-wallet-title").innerText = "💰 Live Dare Wallet";
-                document.getElementById("txt-wallet-note").innerHTML = "⚡ <strong>+Rs. 50 per attempt</strong> and <strong>+Rs. 150</strong> on perfect 10/10! Complete target to unlock VIP Draw Ticket.";
+                document.getElementById("txt-wallet-note").innerHTML = "⚡ <strong>+Rs. 50 per attempt</strong> and <strong>+Rs. 150</strong> on perfect 10/10! Complete target to unlock VIP Draw Ticket. (Tap to view Passbook)";
                 document.getElementById("txt-pin-box-title").innerText = "🔑 YOUR 4-DIGIT SECRET PIN";
                 document.getElementById("txt-pin-box-desc").innerHTML = "<strong>Take a screenshot of this PIN!</strong> You can enter it on the homepage anytime to view your friends' live answers.";
                 document.getElementById("lbl-share-link").innerText = "YOUR VIRAL DARE LINK";
@@ -1345,6 +1535,10 @@
                 document.getElementById("btn-spin-wheel-home").innerText = "🎲 Spin Now (Free)";
                 document.getElementById("txt-attempts-head").innerText = "Friend Attempts & Answers";
                 document.getElementById("btn-create-own").innerText = "🔥 Create Your Own Dare";
+                document.getElementById("txt-passbook-title").innerText = "💰 My Live Dare Wallet";
+                document.getElementById("txt-avail-bal").innerText = "AVAILABLE CASH BALANCE";
+                document.getElementById("txt-recent-history").innerText = "⚡ RECENT EARNING HISTORY";
+                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 Payouts are claimable via Bank Transfer right after countdown ends on Sep 15!";
             } else {
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
                 document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.";
@@ -1371,7 +1565,7 @@
                 document.getElementById("txt-dare-ready-title").innerText = "Aapka Dare Link Ready Hai!";
                 document.getElementById("txt-dare-ready-sub").innerText = "Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores aur wallet earnings dekhein!";
                 document.getElementById("txt-wallet-title").innerText = "💰 Live Dare Wallet";
-                document.getElementById("txt-wallet-note").innerHTML = "⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi!";
+                document.getElementById("txt-wallet-note").innerHTML = "⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)";
                 document.getElementById("txt-pin-box-title").innerText = "🔑 AAPKA 4-DIGIT SECRET PIN";
                 document.getElementById("txt-pin-box-desc").innerHTML = "Is <strong>4-digit code ka screenshot le lein!</strong> Kisi bhi device par ye PIN daal kar doston ke live answers check kar sakte hain.";
                 document.getElementById("lbl-share-link").innerText = "AAPKA VIRAL DARE LINK";
@@ -1382,10 +1576,14 @@
                 document.getElementById("btn-spin-wheel-home").innerText = "🎲 Abhi Ghumaao (Free Spin)";
                 document.getElementById("txt-attempts-head").innerText = "Doston Ke Answers & Scores";
                 document.getElementById("btn-create-own").innerText = "🔥 Apna Khud Ka Dare Banao";
+                document.getElementById("txt-passbook-title").innerText = "💰 My Live Dare Wallet";
+                document.getElementById("txt-avail-bal").innerText = "AVAILABLE CASH BALANCE";
+                document.getElementById("txt-recent-history").innerText = "⚡ RECENT EARNING HISTORY";
+                document.getElementById("txt-wallet-footer-notice").innerText = "🔒 Ye raqam 15 September ko countdown mukammal hote hi Bank Transfer ke zariye claim kar saken ge!";
             }
         }
 
-        // --- 6. NAVIGATION & PROMINENT BACK BUTTON FUNCTION ---
+        // --- 7. NAVIGATION & BACK BUTTON FUNCTION ---
         function goToHome() {
             soundClick();
             switchScreen('screen-welcome');
@@ -1393,7 +1591,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Tab Switching (Handles 4 Tabs cleanly)
         function switchTab(tab) {
             soundClick();
             document.getElementById('view-play-dare').style.display = 'none';
@@ -1444,17 +1641,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Unique Device Fingerprint
-        function getOrCreateDeviceId() {
-            let deviceId = localStorage.getItem("dare_device_fingerprint");
-            if (!deviceId) {
-                deviceId = "dev_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now().toString(36);
-                localStorage.setItem("dare_device_fingerprint", deviceId);
-            }
-            return deviceId;
-        }
-
-        // --- 7. ANTI-CHEAT ENGINE ---
+        // --- 8. ANTI-CHEAT ENGINE ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
@@ -1542,14 +1729,14 @@
             render();
         }
 
-        // --- 8. LUCKY SPIN & WIN WHEEL WITH 3-MIN COOLDOWN ---
+        // --- 9. LUCKY SPIN & WIN WHEEL WITH 3-MIN COOLDOWN ---
         const wheelPrizes = [
-            { text: "+500 Pts", color: "#8b5cf6" },
-            { text: "Rs. 100 Load", color: "#FFD700" },
-            { text: "2X Multiplier", color: "#00FFA3" },
-            { text: "VIP Ticket", color: "#ec4899" },
-            { text: "+100 Pts", color: "#3b82f6" },
-            { text: "Try Again", color: "#475569" }
+            { text: "+Rs. 50 Cash", color: "#8b5cf6", cashVal: 50 },
+            { text: "+Rs. 100 Cash", color: "#FFD700", cashVal: 100 },
+            { text: "+Rs. 25 Cash", color: "#00FFA3", cashVal: 25 },
+            { text: "VIP Ticket", color: "#ec4899", cashVal: 0 },
+            { text: "+Rs. 15 Cash", color: "#3b82f6", cashVal: 15 },
+            { text: "Try Again", color: "#475569", cashVal: 0 }
         ];
 
         let wheelAngle = 0;
@@ -1679,16 +1866,23 @@
                     const prize = wheelPrizes[winIndex];
 
                     soundWin();
-                    soundCash();
                     launchConfetti();
-                    alert("🎉 MUBARAK HO! Prize: " + prize.text + "!\nRanking boost apply ho chuki hai!");
+
+                    // Credit to Wallet if cash prize!
+                    if (prize.cashVal > 0) {
+                        creditUserWallet(prize.cashVal, "Lucky Spin: " + prize.text);
+                        alert("🎉 MUBARAK HO! Prize: " + prize.text + "!\nCash aapke Live Wallet mein deposit kar diya gaya hai!");
+                    } else {
+                        alert("🎉 Prize: " + prize.text + "!\nAapka contest status boost ho gaya hai!");
+                    }
                 }
             }
             requestAnimationFrame(animateSpin);
         }
 
-        // --- 9. APP INITIALIZATION ---
+        // --- 10. APP INITIALIZATION ---
         window.onload = function() {
+            initUserWallet();
             changeLanguage(currentLang);
             drawAllWheels();
             checkWheelCooldown();
@@ -1886,6 +2080,7 @@
 
                 db.ref('globalStats/totalPlayers').transaction(c => (c || 0) + 1);
 
+                // Save attempt
                 db.ref('quizzes/' + quizTargetData.id + '/attempts').push({
                     name: friendName,
                     score: score,
@@ -1894,6 +2089,26 @@
                     answers: friendAnswers,
                     timestamp: Date.now()
                 });
+
+                // Credit Creator's Live Wallet in Firebase!
+                if (quizTargetData.creatorDeviceId) {
+                    const creatorBonus = (score === 10) ? 150 : 50;
+                    const creatorWalletRef = db.ref('wallets/' + quizTargetData.creatorDeviceId);
+                    creatorWalletRef.transaction(w => {
+                        if (!w) w = { balance: 200, history: [] };
+                        w.balance = (w.balance || 0) + creatorBonus;
+                        if (!w.history) w.history = [];
+                        w.history.unshift({
+                            desc: `${friendName} completed your dare! (${score}/10)`,
+                            amount: creatorBonus,
+                            timestamp: Date.now()
+                        });
+                        return w;
+                    });
+                }
+
+                // Credit Friend's Own Live Wallet (+Rs. 50 cashback)
+                creditUserWallet(50, `Completed ${quizTargetData.creator}'s Dare (${score}/10)`);
 
                 localStorage.setItem("dare_done_" + quizTargetData.id, score);
 
@@ -1913,7 +2128,7 @@
             }
         }
 
-        // --- 10. REALTIME DASHBOARD & WALLET LISTENER ---
+        // --- 11. REALTIME CREATOR DASHBOARD LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
@@ -1930,17 +2145,11 @@
                 listEl.innerHTML = "";
                 window.activeCachedAttempts = {};
 
-                let totalAttempts = 0;
-                let perfectScores = 0;
-
                 if (snap.exists()) {
                     snap.forEach(child => {
-                        totalAttempts++;
                         const attemptKey = child.key;
                         const val = child.val();
                         window.activeCachedAttempts[attemptKey] = val;
-
-                        if (val.score === 10) perfectScores++;
 
                         const li = document.createElement('li');
                         li.innerHTML = `
@@ -1957,21 +2166,6 @@
                     });
                 } else {
                     listEl.innerHTML = "<li style='color:var(--text-dim);'>No friends have attempted yet...</li>";
-                }
-
-                // Wallet: Rs. 200 base + Rs. 50/attempt + Rs. 150 per 10/10 score
-                const calculatedWallet = 200 + (totalAttempts * 50) + (perfectScores * 150);
-                document.getElementById('wallet-balance-display').innerText = "Rs. " + calculatedWallet.toLocaleString();
-
-                const progressPercent = Math.min(100, Math.round((calculatedWallet / 1000) * 100));
-                document.getElementById('wallet-progress-fill').style.width = progressPercent + "%";
-
-                const badge = document.getElementById('wallet-badge');
-                if (calculatedWallet >= 1000) {
-                    badge.innerText = "🌟 VIP TICKET UNLOCKED";
-                    badge.style.color = "#00FFA3";
-                } else {
-                    badge.innerText = "LEVEL 1 VIP (" + progressPercent + "%)";
                 }
             });
         }
