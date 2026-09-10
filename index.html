@@ -14,8 +14,8 @@
 
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(18, 24, 38, 0.96);
+            --bg-color: #070a14;
+            --card-bg: rgba(15, 22, 36, 0.96);
             --primary: #8b5cf6;
             --primary-glow: rgba(139, 92, 246, 0.4);
             --accent: #00FFA3;
@@ -39,40 +39,111 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.22) 0px, transparent 55%),
-                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.18) 0px, transparent 55%);
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.25) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 255, 163, 0.2) 0px, transparent 50%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 24px 16px 60px 16px;
+            padding: 20px 12px 60px 12px;
             color: var(--text-main);
             overflow-x: hidden;
             position: relative;
         }
 
-        .container {
+        /* MASTER WRAPPER WITH DESKTOP SIDEBARS */
+        .page-wrapper {
             width: 100%;
-            max-width: 680px;
-            background: var(--card-bg);
-            border: 1.5px solid rgba(255, 255, 255, 0.14);
-            backdrop-filter: blur(25px);
-            border-radius: 32px;
-            padding: 28px 24px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+            max-width: 1040px;
+            display: grid;
+            grid-template-columns: 220px minmax(0, 620px) 220px;
+            gap: 16px;
+            justify-content: center;
+            align-items: flex-start;
             position: relative;
             z-index: 2;
-            margin: 0 auto;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 16px;
-                border-radius: 24px;
+        @media (max-width: 920px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 680px;
+            }
+            .side-action-panel {
+                display: none !important; /* Will show as horizontal tabs on mobile */
             }
         }
 
-        /* TOP APP BAR */
+        /* FLOATING SIDEBAR PANELS FOR DESKTOP */
+        .side-action-panel {
+            background: rgba(18, 24, 38, 0.9);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: sticky;
+            top: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .side-panel-title {
+            font-size: 0.72rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 6px;
+        }
+
+        .side-nav-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px 14px;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .side-nav-btn:hover {
+            background: rgba(139, 92, 246, 0.25);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .side-nav-btn.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(0, 255, 163, 0.3));
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
+        }
+
+        /* MAIN CENTER CONTAINER */
+        .container {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border-radius: 32px;
+            padding: 26px 22px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 18px 14px; border-radius: 20px; }
+        }
+
+        /* TOP ENHANCED HEADER */
         .top-utility-bar {
             display: flex;
             justify-content: space-between;
@@ -82,17 +153,31 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .brand-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand-title {
+            font-size: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #00FFA3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
         .wallet-pill-btn {
             background: linear-gradient(135deg, rgba(0, 255, 163, 0.25), rgba(139, 92, 246, 0.25));
             border: 2px solid var(--accent);
             color: #fff;
-            padding: 8px 18px;
+            padding: 7px 16px;
             border-radius: 30px;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
             cursor: pointer;
             box-shadow: 0 0 16px rgba(0, 255, 163, 0.25);
             transition: all 0.2s ease;
@@ -139,14 +224,13 @@
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 800;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
         .lang-btn.active {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: #000;
@@ -161,7 +245,7 @@
             background: rgba(139, 92, 246, 0.2);
             border: 1.5px solid var(--primary);
             color: #d8b4fe;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 900;
             padding: 4px 14px;
             border-radius: 20px;
@@ -171,7 +255,7 @@
         }
 
         .step-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             color: #fff;
             margin-bottom: 8px;
@@ -182,7 +266,7 @@
 
         .input-group {
             text-align: left;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
@@ -194,9 +278,9 @@
             background: rgba(0, 0, 0, 0.55);
             border: 2px solid rgba(255, 255, 255, 0.18);
             border-radius: 16px;
-            padding: 16px 18px;
+            padding: 15px 18px;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             outline: none;
             transition: all 0.25s;
@@ -218,7 +302,7 @@
             border-radius: 18px;
             padding: 14px;
             color: #fff;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             cursor: pointer;
             display: flex;
@@ -234,7 +318,7 @@
             color: #fff;
         }
 
-        /* PRIMARY ACTION BUTTONS */
+        /* ACTION BUTTONS */
         .btn-primary {
             width: 100%;
             background: linear-gradient(135deg, #a855f7, #6366f1);
@@ -242,7 +326,7 @@
             border: none;
             padding: 18px;
             border-radius: 18px;
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             font-weight: 900;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
@@ -258,117 +342,38 @@
         .btn-badla-mode { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-weight: 900; margin-top: 14px; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4); }
         .btn-chat-prank { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; font-weight: 900; margin-top: 14px; }
 
-        /* NAVIGATION TABS */
-        .nav-tabs {
-            display: grid;
+        /* MOBILE NAV TABS (FALLBACK WHEN SIDEBARS ARE HIDDEN ON PHONES) */
+        .mobile-bottom-nav-tabs {
+            display: none;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.4);
+            gap: 6px;
+            margin-bottom: 16px;
+            background: rgba(0, 0, 0, 0.45);
             padding: 6px;
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .tab-btn {
+        @media (max-width: 920px) {
+            .mobile-bottom-nav-tabs { display: grid; }
+        }
+        .mob-tab-btn {
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 800;
-            padding: 12px 6px;
-            border-radius: 14px;
+            padding: 10px 4px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            white-space: nowrap;
+            text-align: center;
         }
-        .tab-btn.active {
+        .mob-tab-btn.active {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(0, 255, 163, 0.35));
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* RE-DESIGNED SPLIT GRID (SIDE-BY-SIDE SIDEBAR WIDGETS) */
-        .home-split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-        @media (max-width: 520px) {
-            .home-split-grid { grid-template-columns: 1fr; }
-        }
-
-        /* SIDEBAR 1: COMPACT LEADERBOARD PODIUM */
-        .sidebar-podium-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 14px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .sidebar-podium-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
-            margin-top: 8px;
-            align-items: flex-end;
-        }
-        .sidebar-podium-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 8px 4px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .sidebar-podium-item.first {
-            background: linear-gradient(180deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.03));
-            border: 1.5px solid var(--gold);
-            transform: translateY(-4px);
-        }
-
-        /* SIDEBAR 2: COMPACT COUNTDOWN */
-        .sidebar-countdown-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid rgba(255, 215, 0, 0.35);
-            border-radius: 20px;
-            padding: 14px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .sidebar-countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
-            margin-top: 8px;
-        }
-        .sidebar-timer-box {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
-            padding: 6px 2px;
-            text-align: center;
-        }
-        .sidebar-timer-num {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1.1;
-        }
-        .sidebar-timer-lbl {
-            font-size: 0.58rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            font-weight: 800;
-            margin-top: 2px;
-        }
-
-        /* REAL-TIME GROWING MEGA JACKPOT BANNER */
+        /* MEGA JACKPOT BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 2px solid rgba(255, 215, 0, 0.65);
@@ -379,114 +384,91 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.22);
             animation: border-pulse 2.5s infinite alternate;
         }
+        .reward-main-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 4px; }
+        .jackpot-counter-box { font-size: 1.9rem; font-weight: 900; color: var(--gold); letter-spacing: 1px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); display: inline-block; }
+        .jackpot-info-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: #cbd5e1; margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.15); }
 
-        /* MYSTERY LIFAFA BANNER */
+        /* MYSTERY LIFAFA */
         .mystery-lifafa-banner {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(255, 215, 0, 0.25));
-            border: 2px dashed var(--gold);
-            border-radius: 20px;
-            padding: 16px 18px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            box-shadow: 0 0 22px rgba(255, 215, 0, 0.2);
-            transition: transform 0.2s;
+            border: 2px dashed var(--gold); border-radius: 20px; padding: 14px 16px; margin-bottom: 16px;
+            display: flex; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
-        .mystery-lifafa-banner:active { transform: scale(0.98); }
+        .lifafa-left { display: flex; align-items: center; gap: 12px; text-align: left; }
+        .lifafa-icon { font-size: 2.2rem; animation: bounce 1.8s infinite; }
+        .lifafa-title { font-size: 0.98rem; font-weight: 900; color: var(--gold); }
+        .lifafa-sub { font-size: 0.78rem; color: #f1f5f9; }
+        .btn-claim-lifafa {
+            background: linear-gradient(135deg, #FFD700, #f59e0b); color: #000; font-weight: 900; font-size: 0.8rem;
+            padding: 8px 14px; border-radius: 10px; border: none; cursor: pointer; white-space: nowrap;
+        }
 
         /* CONGRATS TICKER */
         .congrats-banner {
-            background: rgba(0, 255, 163, 0.1);
-            border: 1.5px dashed var(--accent);
-            border-radius: 16px;
-            padding: 12px 14px;
-            margin-bottom: 16px;
-            font-size: 0.85rem;
-            text-align: center;
-            color: #d1fae5;
-            line-height: 1.4;
+            background: rgba(0, 255, 163, 0.1); border: 1.5px dashed var(--accent); border-radius: 16px;
+            padding: 12px 14px; margin-bottom: 16px; font-size: 0.82rem; text-align: center; color: #d1fae5; line-height: 1.4;
         }
 
         /* DARE WALLET WIDGET */
         .dare-wallet-card {
             background: linear-gradient(135deg, rgba(0, 255, 163, 0.18), rgba(139, 92, 246, 0.22));
-            border: 2px solid var(--accent);
-            border-radius: 24px;
-            padding: 18px;
-            margin-bottom: 20px;
-            text-align: left;
-            box-shadow: 0 0 25px rgba(0, 255, 163, 0.22);
-            cursor: pointer;
+            border: 2px solid var(--accent); border-radius: 24px; padding: 18px; margin-bottom: 18px; text-align: left;
+            box-shadow: 0 0 25px rgba(0, 255, 163, 0.22); cursor: pointer;
         }
         .wallet-amount { font-size: 2.2rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
-        .wallet-progress-bg {
-            width: 100%; height: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; overflow: hidden; margin: 10px 0;
-        }
-        .wallet-progress-fill {
-            height: 100%; width: 1.5%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.4s ease;
-        }
+        .wallet-progress-bg { width: 100%; height: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; overflow: hidden; margin: 10px 0; }
+        .wallet-progress-fill { height: 100%; width: 1.5%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.4s ease; }
 
         /* QUIZ SCREEN OPTIONS */
         .quiz-progress { display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--text-dim); margin-bottom: 10px; font-weight: 800; }
-        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.12); border-radius: 10px; margin-bottom: 24px; overflow: hidden; }
+        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.12); border-radius: 10px; margin-bottom: 22px; overflow: hidden; }
         .progress-fill { height: 100%; width: 10%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.3s ease; }
-        .question-box { font-size: 1.35rem; font-weight: 900; line-height: 1.4; margin-bottom: 24px; min-height: 65px; text-align: left; }
-        .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .question-box { font-size: 1.3rem; font-weight: 900; line-height: 1.4; margin-bottom: 22px; min-height: 60px; text-align: left; }
+        .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
         .option-btn {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.14);
-            border-radius: 18px;
-            padding: 18px 20px;
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            width: 100%; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.14); border-radius: 18px;
+            padding: 16px 18px; color: #fff; font-size: 1.02rem; font-weight: 700; text-align: left; cursor: pointer; transition: all 0.2s ease;
         }
         .option-btn:active { background: rgba(0, 255, 163, 0.2); border-color: var(--accent); transform: scale(0.99); }
 
         /* CURIOSITY & DANGAL */
-        .dangal-card { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(239, 68, 68, 0.2)); border: 2px solid var(--gold); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; }
-        .curiosity-box { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.22)); border: 2px solid rgba(239, 68, 68, 0.7); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; box-shadow: 0 0 25px rgba(239, 68, 68, 0.25); }
-        .confessions-card { background: rgba(255, 255, 255, 0.04); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; }
-        .confessions-list { list-style: none; max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-        .confession-bubble { background: rgba(0, 0, 0, 0.4); border-left: 4px solid var(--primary); border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: #e2e8f0; font-style: italic; }
+        .dangal-card { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(239, 68, 68, 0.2)); border: 2px solid var(--gold); border-radius: 20px; padding: 16px; margin-top: 18px; text-align: left; }
+        .curiosity-box { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.22)); border: 2px solid rgba(239, 68, 68, 0.7); border-radius: 20px; padding: 16px; margin-top: 18px; text-align: left; box-shadow: 0 0 22px rgba(239, 68, 68, 0.2); }
+        .confessions-card { background: rgba(255, 255, 255, 0.04); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 20px; padding: 16px; margin-top: 18px; text-align: left; }
+        .confessions-list { list-style: none; max-height: 160px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+        .confession-bubble { background: rgba(0, 0, 0, 0.4); border-left: 4px solid var(--primary); border-radius: 8px; padding: 8px 12px; font-size: 0.8rem; color: #e2e8f0; font-style: italic; }
 
         /* LUCKY SPIN WHEEL */
-        .spin-wheel-card { background: rgba(0, 0, 0, 0.55); border: 2px solid rgba(255, 215, 0, 0.45); border-radius: 24px; padding: 20px 16px; text-align: center; margin-top: 20px; position: relative; }
-        .wheel-container { position: relative; width: 260px; height: 260px; margin: 16px auto; }
-        #wheel-canvas-home, #wheel-canvas-dash { border-radius: 50%; box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); }
+        .spin-wheel-card { background: rgba(0, 0, 0, 0.55); border: 2px solid rgba(255, 215, 0, 0.45); border-radius: 22px; padding: 18px 14px; text-align: center; margin-top: 18px; position: relative; }
+        .wheel-container { position: relative; width: 240px; height: 240px; margin: 14px auto; }
+        #wheel-canvas-home, #wheel-canvas-dash { border-radius: 50%; box-shadow: 0 0 25px rgba(139, 92, 246, 0.45); }
         .wheel-pointer {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0;
-            border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 24px solid var(--gold); z-index: 5;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0;
+            border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--gold); z-index: 5;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
         }
 
         /* AD ZONE */
         .ad-zone {
-            margin-top: 22px; padding: 6px 0; border-radius: 18px; background: rgba(0, 0, 0, 0.4);
+            margin-top: 20px; padding: 6px 0; border-radius: 16px; background: rgba(0, 0, 0, 0.4);
             border: 1px dashed rgba(255, 255, 255, 0.15); display: flex; justify-content: center; align-items: center; min-height: 250px; overflow: hidden; width: 100%;
         }
 
         /* FOMO TOAST */
         .fomo-toast {
-            position: fixed; bottom: 22px; left: 22px; background: rgba(18, 24, 38, 0.96); border: 1.5px solid var(--accent); border-radius: 16px;
-            padding: 12px 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85); z-index: 99998;
-            transform: translateY(140px); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; max-width: 360px;
+            position: fixed; bottom: 20px; left: 20px; background: rgba(18, 24, 38, 0.96); border: 1.5px solid var(--accent); border-radius: 16px;
+            padding: 10px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85); z-index: 99998;
+            transform: translateY(140px); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; max-width: 350px;
         }
         .fomo-toast.show { transform: translateY(0); opacity: 1; }
-        .fomo-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-        .fomo-content { font-size: 0.82rem; color: #f1f5f9; line-height: 1.35; text-align: left; }
+        .fomo-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .fomo-content { font-size: 0.8rem; color: #f1f5f9; line-height: 1.35; text-align: left; }
         .fomo-content strong { color: var(--accent); }
 
         /* BIOMETRIC SCANNER */
         .scanner-fingerprint-box {
-            position: relative; width: 120px; height: 140px; margin: 20px auto; border: 2px solid rgba(0, 255, 163, 0.5); border-radius: 22px;
-            display: flex; align-items: center; justify-content: center; font-size: 4.5rem; background: rgba(0, 0, 0, 0.5); overflow: hidden; box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
+            position: relative; width: 110px; height: 130px; margin: 18px auto; border: 2px solid rgba(0, 255, 163, 0.5); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; font-size: 4rem; background: rgba(0, 0, 0, 0.5); overflow: hidden; box-shadow: 0 0 25px rgba(0, 255, 163, 0.25);
         }
         .scan-laser-line {
             position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
@@ -494,13 +476,13 @@
         }
 
         /* ADMIN DASHBOARD */
-        .admin-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-        .admin-stat-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 14px; text-align: center; }
-        .admin-stat-num { font-size: 1.5rem; font-weight: 900; color: var(--accent); }
-        .admin-table-wrap { max-height: 340px; overflow-y: auto; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(0, 0, 0, 0.35); margin-bottom: 16px; }
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; }
-        .admin-table th { background: rgba(255, 255, 255, 0.1); padding: 10px 12px; color: var(--gold); font-weight: 800; }
-        .admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #f1f5f9; }
+        .admin-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .admin-stat-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 12px; text-align: center; }
+        .admin-stat-num { font-size: 1.4rem; font-weight: 900; color: var(--accent); }
+        .admin-table-wrap { max-height: 320px; overflow-y: auto; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(0, 0, 0, 0.35); margin-bottom: 14px; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left; }
+        .admin-table th { background: rgba(255, 255, 255, 0.1); padding: 9px 10px; color: var(--gold); font-weight: 800; }
+        .admin-table td { padding: 9px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #f1f5f9; }
 
         /* MODAL OVERLAYS */
         .modal-overlay {
@@ -509,12 +491,12 @@
         }
         .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
         .modal-content {
-            background: #121826; border: 2px solid rgba(255, 255, 255, 0.18); border-radius: 26px; width: 100%; max-width: 480px; max-height: 85vh;
+            background: #121826; border: 2px solid rgba(255, 255, 255, 0.18); border-radius: 24px; width: 100%; max-width: 460px; max-height: 85vh;
             display: flex; flex-direction: column; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); overflow: hidden;
         }
-        .modal-header { padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.25); }
-        .modal-body { padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
-        .btn-modal-close { background: rgba(255, 255, 255, 0.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: 900; }
+        .modal-header { padding: 16px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.25); }
+        .modal-body { padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .btn-modal-close { background: rgba(255, 255, 255, 0.15); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: 900; }
 
         .screen { display: none; }
         .screen.active { display: block; animation: fadeIn 0.3s ease; }
@@ -548,16 +530,16 @@
 
     <!-- BIOMETRIC LIE DETECTOR MODAL -->
     <div id="biometric-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 380px;">
-            <div style="padding: 24px 16px; text-align: center;">
+        <div class="modal-content" style="max-width: 360px;">
+            <div style="padding: 22px 14px; text-align: center;">
                 <div class="step-instruction-badge">🔍 AI BIOMETRIC LIE DETECTOR</div>
-                <h3 style="font-size: 1.25rem; font-weight: 900; margin: 12px 0 6px 0;">Dosti Ki Sachai Scan Ho Rahi Hai...</h3>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">Apna angootha screen par daba kar rakhein!</p>
+                <h3 style="font-size: 1.2rem; font-weight: 900; margin: 10px 0 4px 0;">Dosti Ki Sachai Scan Ho Rahi Hai...</h3>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Apna angootha screen par daba kar rakhein!</p>
                 <div class="scanner-fingerprint-box">
                     <div class="scan-laser-line"></div>
                     <span>👆</span>
                 </div>
-                <div id="biometric-scan-status" style="font-size: 0.9rem; font-weight: 800; color: var(--gold); letter-spacing: 1px;">
+                <div id="biometric-scan-status" style="font-size: 0.85rem; font-weight: 800; color: var(--gold); letter-spacing: 1px;">
                     ANALYZING TRUTH PATTERNS (42%)...
                 </div>
             </div>
@@ -568,7 +550,7 @@
     <div id="answers-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-title" style="font-size: 1.1rem; font-weight: 800; color: var(--gold);">Dost Ke Answers vs Aapke Answers</h3>
+                <h3 id="modal-title" style="font-size: 1.05rem; font-weight: 800; color: var(--gold);">Dost Ke Answers vs Aapke Answers</h3>
                 <button class="btn-modal-close" onclick="closeAnswersModal()">✕</button>
             </div>
             <div id="modal-body-content" class="modal-body"></div>
@@ -579,7 +561,7 @@
     <div id="curiosity-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 style="color: var(--danger); font-size: 1.1rem; font-weight: 900;">🕵️‍♂️ Aastin Ka Saanp Exposed!</h3>
+                <h3 style="color: var(--danger); font-size: 1.05rem; font-weight: 900;">🕵️‍♂️ Aastin Ka Saanp Exposed!</h3>
                 <button class="btn-modal-close" onclick="closeCuriosityModal()">✕</button>
             </div>
             <div class="modal-body" id="curiosity-modal-body"></div>
@@ -590,500 +572,484 @@
     <div id="wallet-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="txt-passbook-title" style="font-size: 1.1rem; font-weight: 900; color: #fff;">💰 My Live Dare Wallet</h3>
+                <h3 id="txt-passbook-title" style="font-size: 1.05rem; font-weight: 900; color: #fff;">💰 My Live Dare Wallet</h3>
                 <button class="btn-modal-close" onclick="closeWalletModal()">✕</button>
             </div>
             <div class="modal-body">
-                <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.18), rgba(139, 92, 246, 0.22)); border: 2px solid var(--accent); border-radius: 18px; padding: 18px; text-align: center;">
-                    <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
-                    <div id="modal-wallet-balance" style="font-size: 2.5rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 15</div>
-                    <div style="font-size: 0.85rem; color: var(--gold); font-weight: 800;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
-                    <div class="wallet-progress-bg" style="margin-top: 10px;">
+                <div style="background: linear-gradient(135deg, rgba(0, 255, 163, 0.18), rgba(139, 92, 246, 0.22)); border: 2px solid var(--accent); border-radius: 16px; padding: 16px; text-align: center;">
+                    <div style="font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase;" id="txt-avail-bal">AVAILABLE CASH BALANCE</div>
+                    <div id="modal-wallet-balance" style="font-size: 2.3rem; font-weight: 900; color: #fff; margin: 4px 0;">Rs. 15</div>
+                    <div style="font-size: 0.8rem; color: var(--gold); font-weight: 800;" id="modal-wallet-status">VIP Draw Goal: Rs. 1,000</div>
+                    <div class="wallet-progress-bg" style="margin-top: 8px;">
                         <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
                     </div>
                 </div>
-                <div style="margin-top: 10px;">
-                    <span style="font-size: 0.85rem; font-weight: 900; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
+                <div style="margin-top: 8px;">
+                    <span style="font-size: 0.8rem; font-weight: 900; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
                     <ul id="wallet-history-list" class="passbook-list"></ul>
                 </div>
-                <div style="background: rgba(255, 215, 0, 0.1); border: 1.5px dashed var(--gold); border-radius: 12px; padding: 12px; font-size: 0.8rem; color: #fef08a; text-align: center; margin-top: 8px;" id="txt-wallet-footer-notice">
+                <div style="background: rgba(255, 215, 0, 0.1); border: 1.5px dashed var(--gold); border-radius: 12px; padding: 10px; font-size: 0.76rem; color: #fef08a; text-align: center; margin-top: 6px;" id="txt-wallet-footer-notice">
                     🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
-    <div class="container">
+    <!-- MASTER PAGE LAYOUT WRAPPER (SPLIT SIDEBARS) -->
+    <div class="page-wrapper">
 
-        <!-- TOP BAR -->
-        <div class="top-utility-bar">
-            <button class="wallet-pill-btn" onclick="openWalletModal()">
-                <span>💰</span> <span id="header-wallet-balance">Rs. 15</span>
+        <!-- LEFT SIDEBAR PANEL (QUICK OPTIONS) -->
+        <div class="side-action-panel">
+            <div class="side-panel-title">⚡ Navigation</div>
+            <button class="side-nav-btn active" id="side-tab-play" onclick="switchTab('play')">
+                <span>🔥</span> <span>Naya Dare</span>
             </button>
-            <div class="lang-switch">
-                <button id="btn-lang-ur" class="lang-btn active" onclick="changeLanguage('ur')">🇵🇰 Roman Urdu</button>
-                <button id="btn-lang-en" class="lang-btn" onclick="changeLanguage('en')">🇬🇧 English</button>
-            </div>
+            <button class="side-nav-btn" id="side-tab-spin" onclick="switchTab('spin')">
+                <span>🎡</span> <span>Lucky Spin</span>
+            </button>
+            <button class="side-nav-btn" id="side-tab-pin" onclick="switchTab('pin')">
+                <span>🔑</span> <span>Track PIN</span>
+            </button>
+            <button class="side-nav-btn" id="side-tab-payout" onclick="switchTab('payout')">
+                <span>🏦</span> <span>Claim Prize</span>
+            </button>
         </div>
 
-        <!-- SCREEN 1: WELCOME & START -->
-        <div id="screen-welcome" class="screen active">
-            
-            <!-- MEGA JACKPOT BANNER -->
-            <div class="reward-highlight-banner">
-                <div class="reward-top-tag"><span class="pulse-dot"></span> <span id="txt-jackpot-tag">COMMUNITY PRIZE POOL ⚡</span></div>
-                <div class="reward-main-title">🎰 MEGA JACKPOT: <span id="jackpot-display" class="jackpot-counter-box">Rs. 10,000</span></div>
-                <p id="txt-jackpot-desc" style="font-size: 0.85rem; color: #cbd5e1; margin-top: 4px;">
-                    Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.
-                </p>
-                <div class="jackpot-info-row">
-                    <span>🟢 <span id="txt-online-label">Online Players:</span> <strong id="online-player-count" style="color:var(--accent); font-size:0.95rem;">240</strong></span>
-                    <span>⚡ <span id="txt-next-addon">Next +Rs. 100:</span> <strong id="players-needed-count" style="color:var(--gold); font-size:0.95rem;">25 left</strong></span>
+        <!-- MAIN CENTER CONTAINER -->
+        <div class="container">
+
+            <!-- TOP ENHANCED HEADER -->
+            <div class="top-utility-bar">
+                <div class="brand-logo-area">
+                    <span style="font-size: 1.3rem;">⚡</span>
+                    <span class="brand-title">DARE 2026</span>
+                </div>
+                <button class="wallet-pill-btn" onclick="openWalletModal()">
+                    <span>💰</span> <span id="header-wallet-balance">Rs. 15</span>
+                </button>
+                <div class="lang-switch">
+                    <button id="btn-lang-ur" class="lang-btn active" onclick="changeLanguage('ur')">🇵🇰 Urdu</button>
+                    <button id="btn-lang-en" class="lang-btn" onclick="changeLanguage('en')">🇬🇧 Eng</button>
                 </div>
             </div>
 
-            <!-- DAILY MYSTERY LIFAFA -->
-            <div class="mystery-lifafa-banner" onclick="claimDailyLifafa()">
-                <div class="lifafa-left">
-                    <span class="lifafa-icon">🧧</span>
-                    <div>
-                        <div class="lifafa-title">Aaj Ka Mystery Lifafa 🎁</div>
-                        <div id="lifafa-status-text" class="lifafa-sub">Click karke free Rs. 1 se Rs. 5 claim karein!</div>
-                    </div>
-                </div>
-                <button id="btn-lifafa-action" class="btn-claim-lifafa">Open Now</button>
+            <!-- MOBILE FALLBACK TABS (VISIBLE ONLY ON PHONES) -->
+            <div class="mobile-bottom-nav-tabs">
+                <button id="mob-tab-play" class="mob-tab-btn active" onclick="switchTab('play')">🔥 Dare</button>
+                <button id="mob-tab-spin" class="mob-tab-btn" onclick="switchTab('spin')">🎡 Spin</button>
+                <button id="mob-tab-pin" class="mob-tab-btn" onclick="switchTab('pin')">🔑 PIN</button>
+                <button id="mob-tab-payout" class="mob-tab-btn" onclick="switchTab('payout')">🏦 Prize</button>
             </div>
 
-            <!-- LAST WEEK CONGRATS TICKER -->
-            <div id="txt-congrats" class="congrats-banner">
-                🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!
-            </div>
-
-            <!-- RETURNING CREATOR SHORTCUT -->
-            <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.2)); border:2px solid var(--accent); border-radius:20px; padding:16px; margin-bottom:18px; text-align:center;">
-                <p style="font-size: 0.95rem; font-weight: 900; margin-bottom: 8px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
-                <button class="btn-primary" style="padding: 12px; font-size: 0.95rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
-            </div>
-
-            <!-- NAVIGATION TABS -->
-            <div class="nav-tabs">
-                <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare</button>
-                <button id="tab-spin-btn" class="tab-btn" onclick="switchTab('spin')">🎡 Spin</button>
-                <button id="tab-pin-btn" class="tab-btn" onclick="switchTab('pin')">🔑 PIN</button>
-                <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Prize</button>
-            </div>
-
-            <!-- VIEW A: PLAY DARE FORM (WITH 2-COLUMN SIDE-BY-SIDE WIDGETS FOR LEADERBOARD & COUNTDOWN) -->
-            <div id="view-play-dare">
+            <!-- SCREEN 1: WELCOME & START -->
+            <div id="screen-welcome" class="screen active">
                 
-                <!-- SIDE-BY-SIDE SIDEBAR WIDGETS (LEADERBOARD & COUNTDOWN MOVED OUT OF THE WAY) -->
-                <div class="home-split-grid">
-                    
-                    <!-- SIDEBAR 1: COMPACT LEADERBOARD -->
-                    <div class="sidebar-podium-card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">
-                            <span>🏆 Top Players</span>
-                            <span class="live-tag" style="font-size: 0.55rem; padding: 1px 5px;">Speed</span>
-                        </div>
-                        <div class="sidebar-podium-grid">
-                            <div class="sidebar-podium-item">
-                                <div style="font-size: 0.9rem;">🥈</div>
-                                <div style="font-size: 0.65rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ayesha</div>
-                                <div style="font-size: 0.55rem; color: var(--accent);">Rs. 3k</div>
-                            </div>
-                            <div class="sidebar-podium-item first">
-                                <div style="font-size: 1rem;">👑</div>
-                                <div style="font-size: 0.68rem; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Hamza</div>
-                                <div style="font-size: 0.58rem; color: var(--gold); font-weight: 900;">Rs. 5k</div>
-                            </div>
-                            <div class="sidebar-podium-item">
-                                <div style="font-size: 0.9rem;">🥉</div>
-                                <div style="font-size: 0.65rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Zain</div>
-                                <div style="font-size: 0.55rem; color: var(--accent);">Rs. 2k</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SIDEBAR 2: COMPACT COUNTDOWN -->
-                    <div class="sidebar-countdown-card">
-                        <div style="font-size: 0.72rem; font-weight: 900; color: var(--gold); text-transform: uppercase; margin-bottom: 2px;">
-                            ⏳ Draw: 15 Sept
-                        </div>
-                        <div class="sidebar-countdown-grid">
-                            <div class="sidebar-timer-box">
-                                <div id="days" class="sidebar-timer-num">00</div>
-                                <div class="sidebar-timer-lbl">Days</div>
-                            </div>
-                            <div class="sidebar-timer-box">
-                                <div id="hours" class="sidebar-timer-num">00</div>
-                                <div class="sidebar-timer-lbl">Hrs</div>
-                            </div>
-                            <div class="sidebar-timer-box">
-                                <div id="minutes" class="sidebar-timer-num">00</div>
-                                <div class="sidebar-timer-lbl">Mins</div>
-                            </div>
-                            <div class="sidebar-timer-box">
-                                <div id="seconds" class="sidebar-timer-num">00</div>
-                                <div class="sidebar-timer-lbl">Secs</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- MAIN FORM (NOW RIGHT AT THE TOP FOR EASY ACCESSIBILITY) -->
-                <div style="text-align: center; margin-bottom: 16px;">
-                    <div class="step-instruction-badge">🔥 2026 GEN Z DARE</div>
-                    <h1 id="welcome-title" style="font-size: 1.65rem; font-weight: 900; margin: 6px 0;">Real Friend ya Sirf Delulu? 💀</h1>
-                    <p id="welcome-sub" style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.4;">Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!</p>
-                </div>
-
-                <!-- STEP 1: APNA NAAM LIKHO -->
-                <div class="input-group">
-                    <div class="step-title">
-                        <span>✍️ STEP 1:</span> <span id="lbl-player-name">Apna Asli Ya Cool Naam Likhein:</span>
-                    </div>
-                    <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
-                </div>
-
-                <!-- STEP 2: AAP KAUN HAIN? -->
-                <div id="gender-group" class="input-group">
-                    <div class="step-title">
-                        <span>👦👧 STEP 2:</span> <span id="lbl-gender">Aap Kaun Hain?</span>
-                    </div>
-                    <div class="gender-select">
-                        <button id="btn-gender-boy" class="gender-btn active" onclick="setGender('boy')">👦 Boy (Larka)</button>
-                        <button id="btn-gender-girl" class="gender-btn" onclick="setGender('girl')">👧 Girl (Larki)</button>
+                <!-- MEGA JACKPOT BANNER -->
+                <div class="reward-highlight-banner">
+                    <div class="reward-top-tag"><span class="pulse-dot"></span> <span id="txt-jackpot-tag">COMMUNITY PRIZE POOL ⚡</span></div>
+                    <div class="reward-main-title">🎰 MEGA JACKPOT: <span id="jackpot-display" class="jackpot-counter-box">Rs. 10,000</span></div>
+                    <p id="txt-jackpot-desc" style="font-size: 0.82rem; color: #cbd5e1; margin-top: 4px;">
+                        Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.
+                    </p>
+                    <div class="jackpot-info-row">
+                        <span>🟢 <span id="txt-online-label">Online:</span> <strong id="online-player-count" style="color:var(--accent);">240</strong></span>
+                        <span>⚡ <span id="txt-next-addon">Next +Rs. 100:</span> <strong id="players-needed-count" style="color:var(--gold);">25 left</strong></span>
                     </div>
                 </div>
 
-                <!-- STEP 3: BUTTON DABAYEIN (PROMINENTLY PLACED UP TOP) -->
-                <div style="margin-top: 10px;">
-                    <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">
-                        🚀 STEP 3: Game Shuru Karo →
+                <!-- DAILY MYSTERY LIFAFA -->
+                <div class="mystery-lifafa-banner" onclick="claimDailyLifafa()">
+                    <div class="lifafa-left">
+                        <span class="lifafa-icon">🧧</span>
+                        <div>
+                            <div class="lifafa-title">Aaj Ka Mystery Lifafa 🎁</div>
+                            <div id="lifafa-status-text" class="lifafa-sub">Click karke free Rs. 1 se Rs. 5 claim karein!</div>
+                        </div>
+                    </div>
+                    <button id="btn-lifafa-action" class="btn-claim-lifafa">Open Now</button>
+                </div>
+
+                <!-- LAST WEEK CONGRATS TICKER -->
+                <div id="txt-congrats" class="congrats-banner">
+                    🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!
+                </div>
+
+                <!-- RETURNING CREATOR SHORTCUT -->
+                <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.2)); border:2px solid var(--accent); border-radius:18px; padding:14px; margin-bottom:16px; text-align:center;">
+                    <p style="font-size: 0.9rem; font-weight: 900; margin-bottom: 6px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
+                    <button class="btn-primary" style="padding: 10px; font-size: 0.9rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
+                </div>
+
+                <!-- VIEW A: PLAY DARE FORM (ACTION BUTTONS NOW ON TOP) -->
+                <div id="view-play-dare">
+                    <div style="text-align: center; margin-bottom: 16px;">
+                        <div class="step-instruction-badge">🔥 2026 GEN Z DARE</div>
+                        <h1 id="welcome-title" style="font-size: 1.5rem; font-weight: 900; margin: 6px 0;">Real Friend ya Sirf Delulu? 💀</h1>
+                        <p id="welcome-sub" style="font-size: 0.88rem; color: var(--text-dim); line-height: 1.4;">Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!</p>
+                    </div>
+
+                    <!-- STEP 1: APNA NAAM LIKHO -->
+                    <div class="input-group">
+                        <div class="step-title">
+                            <span>✍️ STEP 1:</span> <span id="lbl-player-name">Apna Asli Ya Cool Naam Likhein:</span>
+                        </div>
+                        <input type="text" id="player-name" placeholder="E.g. Hamza, Zain, Ayesha..." autocomplete="off">
+                    </div>
+
+                    <!-- STEP 2: AAP KAUN HAIN? -->
+                    <div id="gender-group" class="input-group">
+                        <div class="step-title">
+                            <span>👦👧 STEP 2:</span> <span id="lbl-gender">Aap Kaun Hain?</span>
+                        </div>
+                        <div class="gender-select">
+                            <button id="btn-gender-boy" class="gender-btn active" onclick="setGender('boy')">👦 Boy (Larka)</button>
+                            <button id="btn-gender-girl" class="gender-btn" onclick="setGender('girl')">👧 Girl (Larki)</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: GAME SHURU KARO -->
+                    <div style="margin-top: 8px;">
+                        <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">
+                            🚀 STEP 3: Game Shuru Karo →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIEW B: LUCKY SPIN WHEEL -->
+                <div id="view-spin-portal" style="display: none;">
+                    <div class="spin-wheel-card" style="margin-top: 0;">
+                        <div class="step-instruction-badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
+                        <h2 style="font-size: 1.3rem; font-weight: 900; margin: 6px 0;">Lucky Spin & Win</h2>
+                        <p style="font-size: 0.82rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
+                        <div class="wheel-container">
+                            <div class="wheel-pointer"></div>
+                            <canvas id="wheel-canvas-home" width="240" height="240"></canvas>
+                        </div>
+                        <button id="btn-spin-wheel-home" class="btn-primary" style="padding:14px; font-size:1rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
+                            🎲 Abhi Ghumaao (Free Spin)
+                        </button>
+                        <div id="wheel-cooldown-timer-home" class="cooldown-badge" style="display:none; font-size:0.85rem; padding:8px 14px;">⏳ Next Free Spin: <span id="cooldown-clock-home">03:00</span></div>
+                    </div>
+                </div>
+
+                <!-- VIEW C: TRACK BY 4-DIGIT PIN -->
+                <div id="view-pin-portal" style="display: none;">
+                    <div class="pin-lookup-card">
+                        <div class="step-instruction-badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
+                        <h2 id="txt-pin-title" style="font-size: 1.3rem; font-weight: 900; margin: 8px 0;">Doston Ke Answers & Wallet</h2>
+                        <p id="txt-pin-sub" style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 14px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
+                        <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
+                        <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 12px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
+                    </div>
+                </div>
+
+                <!-- VIEW D: SUBMIT BANK ACCOUNT DETAILS -->
+                <div id="view-payout-portal" style="display: none;">
+                    <div class="payout-portal-card">
+                        <div class="lock-notice-box">
+                            <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
+                            <p id="txt-lock-notice" style="font-size: 0.82rem;">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
+                        </div>
+                        <div class="input-group locked-input" style="padding: 10px; margin-bottom: 10px;">
+                            <label style="font-size:0.75rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
+                            <input type="text" placeholder="Account Holder Official Name" disabled style="padding: 8px;">
+                        </div>
+                        <div class="input-group locked-input" style="padding: 10px; margin-bottom: 10px;">
+                            <label style="font-size:0.75rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">BANK NAME</label>
+                            <input type="text" placeholder="e.g. Meezan Bank, EasyPaisa, JazzCash" disabled style="padding: 8px;">
+                        </div>
+                        <div class="input-group locked-input" style="padding: 10px; margin-bottom: 14px;">
+                            <label style="font-size:0.75rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT NUMBER / IBAN</label>
+                            <input type="text" placeholder="IBAN ya Account Number" disabled style="padding: 8px;">
+                        </div>
+                        <button class="btn-primary" style="opacity:0.6; cursor:not-allowed;" onclick="alert('⚠️ Portal 15 September ko unlock hoga!')">
+                            🔒 Portal Locked (Unlocks on 15 Sep)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADSTERRA BANNER -->
+                <div class="ad-zone">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '94fb15afb594d3de1d8be87485510686',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
+                </div>
+            </div>
+
+            <!-- SCREEN 2: QUESTIONS -->
+            <div id="screen-quiz" class="screen">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                    <button class="btn-nav-back" style="padding: 6px 14px; font-size: 0.8rem;" onclick="goToHome()">
+                        <span>⬅️</span> <span>Exit Game</span>
+                    </button>
+                    <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.8rem; font-weight: 800;">● Shield Protected</span>
+                </div>
+                <div class="quiz-progress">
+                    <span id="question-number">Question 1/10</span>
+                    <span id="quiz-live-timer" style="color:var(--gold); font-weight:900;">⏱️ 0.0s</span>
+                </div>
+                <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
+                <div id="question-text" class="question-box">Loading question...</div>
+                <div id="options-container" class="options-list"></div>
+            </div>
+
+            <!-- SCREEN 3: CREATOR DASHBOARD -->
+            <div id="screen-share" class="screen">
+                <div class="dashboard-header-nav">
+                    <button class="btn-nav-back" onclick="goToHome()">
+                        <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
+                    </button>
+                    <span class="live-tag">● LIVE DASHBOARD</span>
+                </div>
+
+                <div style="font-size: 2.8rem; margin-bottom: 4px;">🔥</div>
+                <h1 id="txt-dare-ready-title" style="font-size: 1.5rem; font-weight: 900;">Aapka Dare Link Ready Hai!</h1>
+                <p id="txt-dare-ready-sub" style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 18px;">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores dekhein!</p>
+
+                <!-- LIVE DARE WALLET -->
+                <div class="dare-wallet-card" onclick="openWalletModal()">
+                    <div class="wallet-head">
+                        <span id="txt-wallet-title">💰 Live Dare Wallet</span>
+                        <span id="wallet-badge" style="background:rgba(0,0,0,0.4); padding:3px 8px; border-radius:6px; color:var(--gold);">LEVEL 1 VIP</span>
+                    </div>
+                    <div class="wallet-balance-row">
+                        <span class="wallet-amount" id="wallet-balance-display">Rs. 15</span>
+                        <span class="wallet-target" style="font-size: 0.85rem;">Target: Rs. 1,000</span>
+                    </div>
+                    <div class="wallet-progress-bg">
+                        <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
+                    </div>
+                    <div id="txt-wallet-note" class="wallet-note">
+                        ⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)
+                    </div>
+                </div>
+
+                <!-- CURIOSITY BOX -->
+                <div class="curiosity-box">
+                    <div style="font-size: 0.9rem; font-weight: 900; color: #ff6b6b; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                        <span>🕵️‍♂️</span> <span>Aastin Ke Saanp Ka Khulasa!</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 10px;">
+                        Dekhein kis dost ne aapke peeth peeche sabse ghalat jawab diye aur aapko <strong>'Toxic' & 'Fake'</strong> sabit kiya!
+                    </p>
+                    <button class="btn-primary" style="background: linear-gradient(135deg, #ef4444, #dc2626); padding: 10px; font-size: 0.82rem;" onclick="unlockCuriosityRoast()">
+                        🔓 Unlock Secret Snake Roast (Instant View)
                     </button>
                 </div>
-            </div>
 
-            <!-- VIEW B: LUCKY SPIN WHEEL -->
-            <div id="view-spin-portal" style="display: none;">
-                <div class="spin-wheel-card" style="margin-top: 0;">
-                    <div class="step-instruction-badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
-                    <h2 style="font-size: 1.4rem; font-weight: 900; margin: 8px 0;">Lucky Spin & Win</h2>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
+                <!-- 1V1 DANGAL -->
+                <div id="dangal-section" class="dangal-card" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.9rem; font-weight:900; color:var(--gold); margin-bottom:6px;">
+                        <span>🥊 1v1 Dosti Ka Dangal</span>
+                        <span style="font-size:0.68rem; color:#fff; background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:6px;">GROUP WAR</span>
+                    </div>
+                    <p style="font-size:0.82rem; color:#f1f5f9; margin-bottom:10px;" id="dangal-summary-text"></p>
+                    <button class="btn-primary btn-whatsapp" style="padding:12px; font-size:0.88rem; margin-top:0;" onclick="shareDangalToWhatsApp()">
+                        📲 WhatsApp Group Mein Dangal Phenko
+                    </button>
+                </div>
+
+                <!-- ANONYMOUS CONFESSIONS -->
+                <div class="confessions-card">
+                    <div style="font-size:0.9rem; font-weight:900; color:var(--primary); display:flex; justify-content:space-between;">
+                        <span>🤫 Doston Ke Secret Confessions</span>
+                        <span id="confessions-count-badge" style="color:var(--gold);">0 Messages</span>
+                    </div>
+                    <ul id="confessions-list-box" class="confessions-list">
+                        <li style="color:var(--text-dim); font-size:0.8rem; font-style:italic;">Abhi tak kisi dost ne secret confession nahi chhora...</li>
+                    </ul>
+                </div>
+
+                <!-- 4-DIGIT PIN CARD -->
+                <div class="pin-badge-display-box">
+                    <div id="txt-pin-box-title" style="font-size: 0.78rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
+                    <div id="creator-pin-number" class="secret-pin-num">----</div>
+                    <p id="txt-pin-box-desc" style="font-size: 0.78rem; color: #f1f5f9; line-height: 1.35;">
+                        Is <strong>4-digit code ka screenshot le lein!</strong> Kisi bhi device par ye PIN daal kar doston ke live answers check kar sakte hain.
+                    </p>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 14px;">
+                    <label id="lbl-share-link" style="font-size:0.78rem; font-weight:800; color:var(--accent); display:block; margin-bottom:6px;">AAPKA VIRAL DARE LINK</label>
+                    <input type="text" id="share-link-input" readonly>
+                </div>
+
+                <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
+                <button id="btn-share-wa" class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
+
+                <!-- LUCKY SPIN WHEEL -->
+                <div class="spin-wheel-card">
+                    <div style="font-size:0.82rem; font-weight:900; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
+                    <div id="txt-wheel-sub" style="font-size:0.82rem; color:var(--text-dim); margin-top:3px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
                     <div class="wheel-container">
                         <div class="wheel-pointer"></div>
-                        <canvas id="wheel-canvas-home" width="260" height="260"></canvas>
+                        <canvas id="wheel-canvas-dash" width="240" height="240"></canvas>
                     </div>
-                    <button id="btn-spin-wheel-home" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
+                    <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:14px; font-size:1rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
                         🎲 Abhi Ghumaao (Free Spin)
                     </button>
-                    <div id="wheel-cooldown-timer-home" class="cooldown-badge" style="display:none; font-size:0.9rem; padding:10px 18px;">⏳ Next Free Spin: <span id="cooldown-clock-home">03:00</span></div>
+                    <div id="wheel-cooldown-timer-dash" class="cooldown-badge" style="display:none; font-size:0.85rem; padding:8px 14px;">⏳ Next Free Spin: <span id="cooldown-clock-dash">03:00</span></div>
+                </div>
+
+                <!-- LIVE ATTEMPTS LIST -->
+                <div class="live-scoreboard">
+                    <h4>
+                        <span id="txt-attempts-head">Doston Ke Answers & Scores</span>
+                        <span id="live-views-count">Views: 0</span>
+                    </h4>
+                    <ul id="live-attempts-list" class="attempts-list">
+                        <li style="color: var(--text-dim);">Abhi tak kisi dost ne submit nahi kiya...</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- VIEW C: TRACK BY 4-DIGIT PIN -->
-            <div id="view-pin-portal" style="display: none;">
-                <div class="pin-lookup-card">
-                    <div class="step-instruction-badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
-                    <h2 id="txt-pin-title" style="font-size: 1.4rem; font-weight: 900; margin: 10px 0;">Doston Ke Answers & Wallet</h2>
-                    <p id="txt-pin-sub" style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
-                    <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
-                    <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 14px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
+            <!-- SCREEN 4: FRIEND'S RESULT -->
+            <div id="screen-result" class="screen">
+                <div class="dashboard-header-nav">
+                    <button class="btn-nav-back" onclick="goToHome()">
+                        <span>⬅️</span> <span>Main Page</span>
+                    </button>
+                    <span class="live-tag">● RESULT</span>
                 </div>
-            </div>
 
-            <!-- VIEW D: SUBMIT BANK ACCOUNT DETAILS -->
-            <div id="view-payout-portal" style="display: none;">
-                <div class="payout-portal-card">
-                    <div class="lock-notice-box">
-                        <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
-                        <p id="txt-lock-notice" style="font-size: 0.85rem;">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
-                    </div>
-                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 12px;">
-                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
-                        <input type="text" placeholder="Account Holder Official Name" disabled style="padding: 10px;">
-                    </div>
-                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 12px;">
-                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">BANK NAME</label>
-                        <input type="text" placeholder="e.g. Meezan Bank, HBL, EasyPaisa, JazzCash" disabled style="padding: 10px;">
-                    </div>
-                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 16px;">
-                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT NUMBER / IBAN</label>
-                        <input type="text" placeholder="IBAN ya Account Number" disabled style="padding: 10px;">
-                    </div>
-                    <button class="btn-primary" style="opacity:0.6; cursor:not-allowed;" onclick="alert('⚠️ Portal 15 September ko unlock hoga!')">
-                        🔒 Portal Locked (Unlocks on 15 Sep)
+                <div id="result-icon" style="font-size: 3.2rem; margin-bottom: 6px;">🎉</div>
+                <h1 id="result-title" style="font-size: 1.5rem; font-weight: 900;">Result Calculation</h1>
+                <p id="result-subtitle" style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 14px;">Checking your friendship level...</p>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 18px; border-radius: 20px; margin-bottom: 14px; border: 1.5px solid rgba(255,255,255,0.12);">
+                    <div style="font-size: 0.8rem; color: var(--text-dim); font-weight:800;">FINAL SCORE & SPEED</div>
+                    <div id="score-display" style="font-size: 2.8rem; font-weight: 900; color: var(--accent); margin: 4px 0;">0/10</div>
+                    <div id="speed-badge-display" style="font-size: 0.82rem; color: var(--gold); font-weight: 800; margin-bottom: 4px;">⏱️ Speed: 14s</div>
+                    <p id="roast-comment" style="font-size: 0.9rem; font-weight: 700; color: #fff;">Roast loading...</p>
+                </div>
+
+                <button class="btn-primary btn-badla-mode" onclick="startBadlaMode()">
+                    🔥 <span id="badla-btn-creator-name">Creator</span> Se Badla Lo (Reverse Dare)
+                </button>
+                <button class="btn-primary btn-story-card" onclick="generateAndDownloadStoryCard()">
+                    📸 Download Official Story Card
+                </button>
+                <button class="btn-primary btn-chat-prank" onclick="generateAndDownloadChatPrank()">
+                    💬 Download Leaked WhatsApp Chat Prank
+                </button>
+
+                <div style="background:rgba(0,0,0,0.4); border:1.5px solid rgba(139, 92, 246, 0.5); border-radius:16px; padding:14px; margin-top:14px; text-align:left;">
+                    <label style="font-size:0.8rem; font-weight:800; color:var(--primary); display:block; margin-bottom:6px;">
+                        🕵️‍♂️ <span id="confession-creator-name">Creator</span> Ke Liye Secret Message Chhoro (Naam Chupa Rahega):
+                    </label>
+                    <input type="text" id="confession-input" placeholder="E.g. Tu hamesha treat ke time gayab ho jata hai..." style="padding:12px 14px; font-size:0.9rem; margin-bottom:8px;">
+                    <button class="btn-primary" style="padding:10px; font-size:0.85rem;" onclick="submitAnonymousConfession()">
+                        🤫 Be-Naam Paigham Bhejo
                     </button>
                 </div>
+
+                <div class="dare-wallet-card" style="margin-top: 14px; margin-bottom: 14px;" onclick="openWalletModal()">
+                    <div class="wallet-head">
+                        <span>🎁 Dare Cash Added To Your Wallet</span>
+                        <span style="color:var(--gold);">+Rs. 50 Added</span>
+                    </div>
+                    <p id="txt-friend-wallet-msg" style="font-size:0.78rem; color:#fff; margin-top:6px; line-height:1.4;">
+                        Yeh dare complete karne par <strong>Rs. 50 aapke personal wallet mein jama ho gaye hain!</strong> Ab apna khud ka dare banayein aur unlimited cash boost jeetein!
+                    </p>
+                </div>
+
+                <button id="btn-create-own" class="btn-primary" onclick="createOwnQuizRedirect()">🔥 Apna Khud Ka Naya Dare Banao</button>
+
+                <!-- ADSTERRA BANNER -->
+                <div class="ad-zone">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '94fb15afb594d3de1d8be87485510686',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
+                </div>
             </div>
 
-            <!-- ADSTERRA BANNER -->
-            <div class="ad-zone">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '94fb15afb594d3de1d8be87485510686',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
+            <!-- SCREEN 5: SECRET MASTER ADMIN DASHBOARD -->
+            <div id="screen-admin" class="screen">
+                <div class="dashboard-header-nav">
+                    <button class="btn-nav-back" onclick="goToHome()">
+                        <span>⬅️</span> <span>Exit Admin</span>
+                    </button>
+                    <span class="live-tag" style="background: rgba(255, 215, 0, 0.2); color: var(--gold);">👑 MASTER ADMIN</span>
+                </div>
+
+                <h1 style="font-size: 1.3rem; margin-bottom: 4px;">⚡ Platform Live Overview</h1>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 16px;">Tamam users ke balances, device IDs aur contest liability ka live record.</p>
+
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div id="admin-total-users" class="admin-stat-num">0</div>
+                        <div class="admin-stat-label">Total Users (Devices)</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div id="admin-total-liability" class="admin-stat-num" style="color: var(--gold);">Rs. 0</div>
+                        <div class="admin-stat-label">Total Wallet Balance Pool</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div id="admin-total-quizzes" class="admin-stat-num">0</div>
+                        <div class="admin-stat-label">Quizzes Created</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div id="admin-total-attempts" class="admin-stat-num">0</div>
+                        <div class="admin-stat-label">Total Completed Plays</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+                    <button class="btn-primary" style="padding: 10px; font-size: 0.85rem; background: linear-gradient(135deg, #059669, #10b981);" onclick="exportAdminCSV()">
+                        📥 Download Excel (CSV) File
+                    </button>
+                    <button class="btn-primary" style="padding: 10px; font-size: 0.85rem; background: rgba(255,255,255,0.1); width: auto;" onclick="loadAdminMasterData()">
+                        🔄 Refresh
+                    </button>
+                </div>
+
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>Balance</th>
+                                <th>Device ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: var(--text-dim);">Data loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
 
-        <!-- SCREEN 2: QUESTIONS -->
-        <div id="screen-quiz" class="screen">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <button class="btn-nav-back" style="padding: 6px 14px; font-size: 0.8rem;" onclick="goToHome()">
-                    <span>⬅️</span> <span>Exit Game</span>
-                </button>
-                <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.85rem; font-weight: 800;">● Shield Protected</span>
+        <!-- RIGHT SIDEBAR PANEL (QUICK STATS / PROMO) -->
+        <div class="side-action-panel">
+            <div class="side-panel-title">🏆 Top Rewards</div>
+            <div style="background: rgba(255,215,0,0.08); border: 1px dashed var(--gold); border-radius: 14px; padding: 10px; text-align: center;">
+                <div style="font-size: 1.4rem;">👑</div>
+                <div style="font-size: 0.72rem; font-weight: 800; color: var(--gold); margin-top: 2px;">1st Prize: Rs. 5,000</div>
+                <div style="font-size: 0.62rem; color: var(--text-dim);">Direct Bank Transfer</div>
             </div>
-            <div class="quiz-progress">
-                <span id="question-number">Question 1/10</span>
-                <span id="quiz-live-timer" style="color:var(--gold); font-weight:900;">⏱️ 0.0s</span>
-            </div>
-            <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
-            <div id="question-text" class="question-box">Loading question...</div>
-            <div id="options-container" class="options-list"></div>
-        </div>
-
-        <!-- SCREEN 3: CREATOR DASHBOARD -->
-        <div id="screen-share" class="screen">
-            <div class="dashboard-header-nav">
-                <button class="btn-nav-back" onclick="goToHome()">
-                    <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
-                </button>
-                <span class="live-tag">● LIVE DASHBOARD</span>
-            </div>
-
-            <div style="font-size: 3rem; margin-bottom: 6px;">🔥</div>
-            <h1 id="txt-dare-ready-title" style="font-size: 1.6rem; font-weight: 900;">Aapka Dare Link Ready Hai!</h1>
-            <p id="txt-dare-ready-sub" style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 20px;">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores dekhein!</p>
-
-            <!-- LIVE DARE WALLET -->
-            <div class="dare-wallet-card" onclick="openWalletModal()">
-                <div class="wallet-head">
-                    <span id="txt-wallet-title">💰 Live Dare Wallet</span>
-                    <span id="wallet-badge" style="background:rgba(0,0,0,0.4); padding:4px 10px; border-radius:8px; color:var(--gold);">LEVEL 1 VIP</span>
-                </div>
-                <div class="wallet-balance-row">
-                    <span class="wallet-amount" id="wallet-balance-display">Rs. 15</span>
-                    <span class="wallet-target" style="font-size: 0.9rem;">Target: Rs. 1,000</span>
-                </div>
-                <div class="wallet-progress-bg">
-                    <div id="wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
-                </div>
-                <div id="txt-wallet-note" class="wallet-note">
-                    ⚡ <strong>Har attempt par +Rs. 50</strong> aur 10/10 par <strong>+Rs. 150</strong> wallet mein jama hote hain! Target complete hone par <strong>VIP Mega Draw Ticket</strong> unlock ho jayegi! (Tap to view Passbook)
-                </div>
-            </div>
-
-            <!-- CURIOSITY BOX -->
-            <div class="curiosity-box">
-                <div style="font-size: 0.95rem; font-weight: 900; color: #ff6b6b; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-                    <span>🕵️‍♂️</span> <span>Aastin Ke Saanp Ka Khulasa!</span>
-                </div>
-                <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 12px;">
-                    Dekhein kis dost ne aapke peeth peeche sabse ghalat jawab diye aur aapko <strong>'Toxic' & 'Fake'</strong> sabit kiya!
-                </p>
-                <button class="btn-primary" style="background: linear-gradient(135deg, #ef4444, #dc2626); padding: 12px; font-size: 0.85rem;" onclick="unlockCuriosityRoast()">
-                    🔓 Unlock Secret Snake Roast (Instant View)
-                </button>
-            </div>
-
-            <!-- 1V1 DANGAL -->
-            <div id="dangal-section" class="dangal-card" style="display:none;">
-                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.95rem; font-weight:900; color:var(--gold); margin-bottom:8px;">
-                    <span>🥊 1v1 Dosti Ka Dangal</span>
-                    <span style="font-size:0.72rem; color:#fff; background:rgba(0,0,0,0.3); padding:2px 8px; border-radius:6px;">GROUP WAR</span>
-                </div>
-                <p style="font-size:0.85rem; color:#f1f5f9; margin-bottom:12px;" id="dangal-summary-text"></p>
-                <button class="btn-primary btn-whatsapp" style="padding:14px; font-size:0.92rem; margin-top:0;" onclick="shareDangalToWhatsApp()">
-                    📲 WhatsApp Group Mein Dangal Phenko
-                </button>
-            </div>
-
-            <!-- ANONYMOUS CONFESSIONS -->
-            <div class="confessions-card">
-                <div style="font-size:0.95rem; font-weight:900; color:var(--primary); display:flex; justify-content:space-between;">
-                    <span>🤫 Doston Ke Secret Confessions</span>
-                    <span id="confessions-count-badge" style="color:var(--gold);">0 Messages</span>
-                </div>
-                <ul id="confessions-list-box" class="confessions-list">
-                    <li style="color:var(--text-dim); font-size:0.82rem; font-style:italic;">Abhi tak kisi dost ne secret confession nahi chhora...</li>
-                </ul>
-            </div>
-
-            <!-- 4-DIGIT PIN CARD -->
-            <div class="pin-badge-display-box">
-                <div id="txt-pin-box-title" style="font-size: 0.82rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
-                <div id="creator-pin-number" class="secret-pin-num">----</div>
-                <p id="txt-pin-box-desc" style="font-size: 0.82rem; color: #f1f5f9; line-height: 1.4;">
-                    Is <strong>4-digit code ka screenshot le lein!</strong> Kisi bhi device par ye PIN daal kar doston ke live answers check kar sakte hain.
-                </p>
-            </div>
-
-            <div class="input-group" style="margin-bottom: 16px;">
-                <label id="lbl-share-link" style="font-size:0.82rem; font-weight:800; color:var(--accent); display:block; margin-bottom:6px;">AAPKA VIRAL DARE LINK</label>
-                <input type="text" id="share-link-input" readonly>
-            </div>
-
-            <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
-            <button id="btn-share-wa" class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
-
-            <!-- LUCKY SPIN WHEEL -->
-            <div class="spin-wheel-card">
-                <div style="font-size:0.85rem; font-weight:900; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
-                <div id="txt-wheel-sub" style="font-size:0.85rem; color:var(--text-dim); margin-top:4px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
-                <div class="wheel-container">
-                    <div class="wheel-pointer"></div>
-                    <canvas id="wheel-canvas-dash" width="260" height="260"></canvas>
-                </div>
-                <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
-                    🎲 Abhi Ghumaao (Free Spin)
-                </button>
-                <div id="wheel-cooldown-timer-dash" class="cooldown-badge" style="display:none; font-size:0.9rem; padding:10px 18px;">⏳ Next Free Spin: <span id="cooldown-clock-dash">03:00</span></div>
-            </div>
-
-            <!-- LIVE ATTEMPTS LIST -->
-            <div class="live-scoreboard">
-                <h4>
-                    <span id="txt-attempts-head">Doston Ke Answers & Scores</span>
-                    <span id="live-views-count">Views: 0</span>
-                </h4>
-                <ul id="live-attempts-list" class="attempts-list">
-                    <li style="color: var(--text-dim);">Abhi tak kisi dost ne submit nahi kiya...</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- SCREEN 4: FRIEND'S RESULT -->
-        <div id="screen-result" class="screen">
-            <div class="dashboard-header-nav">
-                <button class="btn-nav-back" onclick="goToHome()">
-                    <span>⬅️</span> <span>Main Page</span>
-                </button>
-                <span class="live-tag">● RESULT</span>
-            </div>
-
-            <div id="result-icon" style="font-size: 3.5rem; margin-bottom: 6px;">🎉</div>
-            <h1 id="result-title" style="font-size: 1.6rem; font-weight: 900;">Result Calculation</h1>
-            <p id="result-subtitle" style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 16px;">Checking your friendship level...</p>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 22px; margin-bottom: 16px; border: 1.5px solid rgba(255,255,255,0.12);">
-                <div style="font-size: 0.85rem; color: var(--text-dim); font-weight:800;">FINAL SCORE & SPEED</div>
-                <div id="score-display" style="font-size: 3rem; font-weight: 900; color: var(--accent); margin: 6px 0;">0/10</div>
-                <div id="speed-badge-display" style="font-size: 0.85rem; color: var(--gold); font-weight: 800; margin-bottom: 6px;">⏱️ Speed: 14s</div>
-                <p id="roast-comment" style="font-size: 0.95rem; font-weight: 700; color: #fff;">Roast loading...</p>
-            </div>
-
-            <button class="btn-primary btn-badla-mode" onclick="startBadlaMode()">
-                🔥 <span id="badla-btn-creator-name">Creator</span> Se Badla Lo (Reverse Dare)
-            </button>
-            <button class="btn-primary btn-story-card" onclick="generateAndDownloadStoryCard()">
-                📸 Download Official Story Card
-            </button>
-            <button class="btn-primary btn-chat-prank" onclick="generateAndDownloadChatPrank()">
-                💬 Download Leaked WhatsApp Chat Prank
-            </button>
-
-            <div style="background:rgba(0,0,0,0.4); border:1.5px solid rgba(139, 92, 246, 0.5); border-radius:18px; padding:16px; margin-top:16px; text-align:left;">
-                <label style="font-size:0.85rem; font-weight:800; color:var(--primary); display:block; margin-bottom:8px;">
-                    🕵️‍♂️ <span id="confession-creator-name">Creator</span> Ke Liye Secret Message Chhoro (Naam Chupa Rahega):
-                </label>
-                <input type="text" id="confession-input" placeholder="E.g. Tu hamesha treat ke time gayab ho jata hai..." style="padding:14px 16px; font-size:0.95rem; margin-bottom:10px;">
-                <button class="btn-primary" style="padding:12px; font-size:0.9rem;" onclick="submitAnonymousConfession()">
-                    🤫 Be-Naam Paigham Bhejo
-                </button>
-            </div>
-
-            <div class="dare-wallet-card" style="margin-top: 16px; margin-bottom: 16px;" onclick="openWalletModal()">
-                <div class="wallet-head">
-                    <span>🎁 Dare Cash Added To Your Wallet</span>
-                    <span style="color:var(--gold);">+Rs. 50 Added</span>
-                </div>
-                <p id="txt-friend-wallet-msg" style="font-size:0.82rem; color:#fff; margin-top:8px; line-height:1.4;">
-                    Yeh dare complete karne par <strong>Rs. 50 aapke personal wallet mein jama ho gaye hain!</strong> Ab apna khud ka dare banayein aur unlimited cash boost jeetein!
-                </p>
-            </div>
-
-            <button id="btn-create-own" class="btn-primary" onclick="createOwnQuizRedirect()">🔥 Apna Khud Ka Naya Dare Banao</button>
-
-            <!-- ADSTERRA BANNER -->
-            <div class="ad-zone">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '94fb15afb594d3de1d8be87485510686',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="https://www.highrevenueformat.com/94fb15afb594d3de1d8be87485510686/invoke.js"></script>
-            </div>
-        </div>
-
-        <!-- SCREEN 5: SECRET MASTER ADMIN DASHBOARD -->
-        <div id="screen-admin" class="screen">
-            <div class="dashboard-header-nav">
-                <button class="btn-nav-back" onclick="goToHome()">
-                    <span>⬅️</span> <span>Exit Admin</span>
-                </button>
-                <span class="live-tag" style="background: rgba(255, 215, 0, 0.2); color: var(--gold);">👑 MASTER ADMIN</span>
-            </div>
-
-            <h1 style="font-size: 1.4rem; margin-bottom: 4px;">⚡ Platform Live Overview</h1>
-            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 18px;">Tamam users ke balances, device IDs aur contest liability ka live record.</p>
-
-            <div class="admin-stats-grid">
-                <div class="admin-stat-card">
-                    <div id="admin-total-users" class="admin-stat-num">0</div>
-                    <div class="admin-stat-label">Total Users (Devices)</div>
-                </div>
-                <div class="admin-stat-card">
-                    <div id="admin-total-liability" class="admin-stat-num" style="color: var(--gold);">Rs. 0</div>
-                    <div class="admin-stat-label">Total Wallet Balance Pool</div>
-                </div>
-                <div class="admin-stat-card">
-                    <div id="admin-total-quizzes" class="admin-stat-num">0</div>
-                    <div class="admin-stat-label">Quizzes Created</div>
-                </div>
-                <div class="admin-stat-card">
-                    <div id="admin-total-attempts" class="admin-stat-num">0</div>
-                    <div class="admin-stat-label">Total Completed Plays</div>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 10px; margin-bottom: 16px;">
-                <button class="btn-primary" style="padding: 12px; font-size: 0.9rem; background: linear-gradient(135deg, #059669, #10b981);" onclick="exportAdminCSV()">
-                    📥 Download Excel (CSV) File
-                </button>
-                <button class="btn-primary" style="padding: 12px; font-size: 0.9rem; background: rgba(255,255,255,0.1); width: auto;" onclick="loadAdminMasterData()">
-                    🔄 Refresh
-                </button>
-            </div>
-
-            <div class="admin-table-wrap">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>User Name</th>
-                            <th>Balance</th>
-                            <th>Device ID</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-table-body">
-                        <tr>
-                            <td colspan="4" style="text-align: center; color: var(--text-dim);">Data loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div style="background: rgba(0,255,163,0.08); border: 1px dashed var(--accent); border-radius: 14px; padding: 10px; text-align: center;">
+                <div style="font-size: 1.4rem;">⚡</div>
+                <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent); margin-top: 2px;">Speedrun Bonus</div>
+                <div style="font-size: 0.62rem; color: var(--text-dim);">Finish under 15s</div>
             </div>
         </div>
 
@@ -1423,7 +1389,7 @@
             if (lang === 'en') {
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
                 document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Company adds <strong>+Rs. 100</strong> for every 25 verified players.";
-                document.getElementById("txt-online-label").innerText = "Online Players:";
+                document.getElementById("txt-online-label").innerText = "Online:";
                 document.getElementById("txt-next-addon").innerText = "Next +Rs. 100:";
                 document.getElementById("txt-congrats").innerHTML = "🎉 <strong>Congratulations to last week's cash winners!</strong> Bank payouts completed. Next announcement on Sep 15!";
                 document.getElementById("txt-countdown-title").innerText = "⏳ Winner Announcement: September 15";
@@ -1431,6 +1397,14 @@
                 document.getElementById("tab-spin-btn").innerText = "🎡 Spin";
                 document.getElementById("tab-pin-btn").innerText = "🔑 PIN";
                 document.getElementById("tab-payout-btn").innerText = "🏦 Prize";
+                document.getElementById("mob-tab-play").innerText = "🔥 Dare";
+                document.getElementById("mob-tab-spin").innerText = "🎡 Spin";
+                document.getElementById("mob-tab-pin").innerText = "🔑 PIN";
+                document.getElementById("mob-tab-payout").innerText = "🏦 Prize";
+                document.getElementById("side-tab-play").innerHTML = "<span>🔥</span> <span>New Dare</span>";
+                document.getElementById("side-tab-spin").innerHTML = "<span>🎡</span> <span>Lucky Spin</span>";
+                document.getElementById("side-tab-pin").innerHTML = "<span>🔑</span> <span>Track PIN</span>";
+                document.getElementById("side-tab-payout").innerHTML = "<span>🏦</span> <span>Claim Prize</span>";
                 document.getElementById("welcome-title").innerText = "Real Friend or Just Delusional? 💀";
                 document.getElementById("welcome-sub").innerText = "Select your answers, generate your viral dare link, and check who knows you best!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
@@ -1464,7 +1438,7 @@
             } else {
                 document.getElementById("txt-jackpot-tag").innerText = "COMMUNITY PRIZE POOL ⚡";
                 document.getElementById("txt-jackpot-desc").innerHTML = "Base Pool <strong>Rs. 10,000</strong>! Har 25 naye players ke aane par company prize pool mein <strong>+Rs. 100</strong> add karegi.";
-                document.getElementById("txt-online-label").innerText = "Online Players:";
+                document.getElementById("txt-online-label").innerText = "Online:";
                 document.getElementById("txt-next-addon").innerText = "Next +Rs. 100:";
                 document.getElementById("txt-congrats").innerHTML = "🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!";
                 document.getElementById("txt-countdown-title").innerText = "⏳ Winner Announcement: 15 September";
@@ -1472,6 +1446,14 @@
                 document.getElementById("tab-spin-btn").innerText = "🎡 Spin";
                 document.getElementById("tab-pin-btn").innerText = "🔑 PIN";
                 document.getElementById("tab-payout-btn").innerText = "🏦 Prize";
+                document.getElementById("mob-tab-play").innerText = "🔥 Dare";
+                document.getElementById("mob-tab-spin").innerText = "🎡 Spin";
+                document.getElementById("mob-tab-pin").innerText = "🔑 PIN";
+                document.getElementById("mob-tab-payout").innerText = "🏦 Prize";
+                document.getElementById("side-tab-play").innerHTML = "<span>🔥</span> <span>Naya Dare</span>";
+                document.getElementById("side-tab-spin").innerHTML = "<span>🎡</span> <span>Lucky Spin</span>";
+                document.getElementById("side-tab-pin").innerHTML = "<span>🔑</span> <span>Track PIN</span>";
+                document.getElementById("side-tab-payout").innerHTML = "<span>🏦</span> <span>Claim Prize</span>";
                 document.getElementById("welcome-title").innerText = "Real Friend ya Sirf Delulu? 💀";
                 document.getElementById("welcome-sub").innerText = "Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!";
                 document.getElementById("txt-leaderboard-head").innerText = "🏆 Live Community Leaderboard";
@@ -1519,25 +1501,29 @@
             document.getElementById('view-pin-portal').style.display = 'none';
             document.getElementById('view-payout-portal').style.display = 'none';
 
-            document.getElementById('tab-play-btn').classList.remove('active');
-            document.getElementById('tab-spin-btn').classList.remove('active');
-            document.getElementById('tab-pin-btn').classList.remove('active');
-            document.getElementById('tab-payout-btn').classList.remove('active');
+            // Reset side nav buttons
+            ['play', 'spin', 'pin', 'payout'].forEach(t => {
+                const sb = document.getElementById('side-tab-' + t);
+                const mb = document.getElementById('mob-tab-' + t);
+                if (sb) sb.classList.remove('active');
+                if (mb) mb.classList.remove('active');
+            });
+
+            const activeSideBtn = document.getElementById('side-tab-' + tab);
+            const activeMobBtn = document.getElementById('mob-tab-' + tab);
+            if (activeSideBtn) activeSideBtn.classList.add('active');
+            if (activeMobBtn) activeMobBtn.classList.add('active');
 
             if (tab === 'play') {
                 document.getElementById('view-play-dare').style.display = 'block';
-                document.getElementById('tab-play-btn').classList.add('active');
             } else if (tab === 'spin') {
                 document.getElementById('view-spin-portal').style.display = 'block';
-                document.getElementById('tab-spin-btn').classList.add('active');
                 setTimeout(() => drawWheel('home'), 50);
             } else if (tab === 'pin') {
                 document.getElementById('view-pin-portal').style.display = 'block';
-                document.getElementById('tab-pin-btn').classList.add('active');
                 setTimeout(() => document.getElementById('track-pin-input').focus(), 150);
             } else {
                 document.getElementById('view-payout-portal').style.display = 'block';
-                document.getElementById('tab-payout-btn').classList.add('active');
             }
         }
 
@@ -2651,11 +2637,11 @@
                         const li = document.createElement('li');
                         li.innerHTML = `
                             <div>
-                                <strong style="font-size:0.95rem;">${val.name}</strong> 
-                                <span style="font-size:0.78rem; color:var(--text-dim);">(${val.timeSeconds}s ${val.timeSeconds <= 15 ? '⚡' : ''})</span>
+                                <strong style="font-size:0.92rem;">${val.name}</strong> 
+                                <span style="font-size:0.75rem; color:var(--text-dim);">(${val.timeSeconds}s ${val.timeSeconds <= 15 ? '⚡' : ''})</span>
                             </div>
                             <div style="display:flex; align-items:center;">
-                                <span style="color:var(--accent); font-weight:900; font-size:1.05rem;">${val.score}/10</span>
+                                <span style="color:var(--accent); font-weight:900; font-size:1rem;">${val.score}/10</span>
                                 <button class="btn-inspect-answers" onclick="inspectFriendAnswers('${attemptKey}')">👁️ Inspect</button>
                             </div>
                         `;
