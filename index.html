@@ -51,7 +51,6 @@
             position: relative;
         }
 
-        /* KHULA AUR WIDE RESPONSIVE CONTAINER (680px) */
         .container {
             width: 100%;
             max-width: 680px;
@@ -78,8 +77,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -154,7 +153,7 @@
             font-weight: 900;
         }
 
-        /* WAZEH STEP GUIDE BOXES (FOR SUPER EASY UNDERSTANDING) */
+        /* STEP GUIDE BADGE & INPUTS */
         .step-instruction-badge {
             display: inline-flex;
             align-items: center;
@@ -181,10 +180,9 @@
             gap: 8px;
         }
 
-        /* BIG CLEAN INPUTS */
         .input-group {
             text-align: left;
-            margin-bottom: 22px;
+            margin-bottom: 18px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
@@ -208,7 +206,6 @@
             box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* BIG ACCESSIBLE GENDER CARDS */
         .gender-select {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -219,9 +216,9 @@
             background: rgba(0, 0, 0, 0.45);
             border: 2px solid rgba(255, 255, 255, 0.15);
             border-radius: 18px;
-            padding: 16px;
+            padding: 14px;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             cursor: pointer;
             display: flex;
@@ -237,7 +234,7 @@
             color: #fff;
         }
 
-        /* BIG SHINY CALL-TO-ACTION BUTTONS */
+        /* PRIMARY ACTION BUTTONS */
         .btn-primary {
             width: 100%;
             background: linear-gradient(135deg, #a855f7, #6366f1);
@@ -256,40 +253,17 @@
             transition: all 0.2s;
         }
         .btn-primary:active { transform: scale(0.98); }
-        .btn-whatsapp {
-            background: #25D366;
-            color: #000;
-            font-weight: 900;
-            margin-top: 14px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
-        }
-        .btn-story-card {
-            background: linear-gradient(135deg, #FFD700, #ff8800);
-            color: #000;
-            font-weight: 900;
-            margin-top: 14px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.35);
-        }
-        .btn-badla-mode {
-            background: linear-gradient(135deg, #ef4444, #b91c1c);
-            color: #fff;
-            font-weight: 900;
-            margin-top: 14px;
-            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
-        }
-        .btn-chat-prank {
-            background: linear-gradient(135deg, #0ea5e9, #2563eb);
-            color: #fff;
-            font-weight: 900;
-            margin-top: 14px;
-        }
+        .btn-whatsapp { background: #25D366; color: #000; font-weight: 900; margin-top: 14px; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35); }
+        .btn-story-card { background: linear-gradient(135deg, #FFD700, #ff8800); color: #000; font-weight: 900; margin-top: 14px; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.35); }
+        .btn-badla-mode { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-weight: 900; margin-top: 14px; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4); }
+        .btn-chat-prank { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; font-weight: 900; margin-top: 14px; }
 
-        /* 4 HOMEPAGE TABS (CLEAN & WIDE) */
+        /* NAVIGATION TABS */
         .nav-tabs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             background: rgba(0, 0, 0, 0.4);
             padding: 6px;
             border-radius: 18px;
@@ -314,41 +288,96 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
+        /* RE-DESIGNED SPLIT GRID (SIDE-BY-SIDE SIDEBAR WIDGETS) */
+        .home-split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        @media (max-width: 520px) {
+            .home-split-grid { grid-template-columns: 1fr; }
+        }
+
+        /* SIDEBAR 1: COMPACT LEADERBOARD PODIUM */
+        .sidebar-podium-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-podium-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+            align-items: flex-end;
+        }
+        .sidebar-podium-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 8px 4px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .sidebar-podium-item.first {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.03));
+            border: 1.5px solid var(--gold);
+            transform: translateY(-4px);
+        }
+
+        /* SIDEBAR 2: COMPACT COUNTDOWN */
+        .sidebar-countdown-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(255, 215, 0, 0.35);
+            border-radius: 20px;
+            padding: 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            margin-top: 8px;
+        }
+        .sidebar-timer-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 6px 2px;
+            text-align: center;
+        }
+        .sidebar-timer-num {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+        .sidebar-timer-lbl {
+            font-size: 0.58rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
         /* REAL-TIME GROWING MEGA JACKPOT BANNER */
         .reward-highlight-banner {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(0, 255, 163, 0.12));
             border: 2px solid rgba(255, 215, 0, 0.65);
             border-radius: 24px;
-            padding: 18px 16px;
+            padding: 16px;
             text-align: center;
             margin-bottom: 16px;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.22);
             animation: border-pulse 2.5s infinite alternate;
-        }
-
-        .reward-main-title {
-            font-size: 1.35rem;
-            font-weight: 900;
-            margin-bottom: 4px;
-        }
-
-        .jackpot-counter-box {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            display: inline-block;
-        }
-
-        .jackpot-info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.82rem;
-            color: #cbd5e1;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.15);
         }
 
         /* MYSTERY LIFAFA BANNER */
@@ -357,7 +386,7 @@
             border: 2px dashed var(--gold);
             border-radius: 20px;
             padding: 16px 18px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -366,63 +395,6 @@
             transition: transform 0.2s;
         }
         .mystery-lifafa-banner:active { transform: scale(0.98); }
-        .lifafa-left { display: flex; align-items: center; gap: 14px; text-align: left; }
-        .lifafa-icon { font-size: 2.4rem; animation: bounce 1.8s infinite; }
-        .lifafa-title { font-size: 1.05rem; font-weight: 900; color: var(--gold); }
-        .lifafa-sub { font-size: 0.82rem; color: #f1f5f9; }
-        .btn-claim-lifafa {
-            background: linear-gradient(135deg, #FFD700, #f59e0b);
-            color: #000;
-            font-weight: 900;
-            font-size: 0.85rem;
-            padding: 10px 16px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        /* COUNTDOWN */
-        .countdown-container {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid rgba(255, 215, 0, 0.35);
-            border-radius: 20px;
-            padding: 14px 12px;
-            margin-bottom: 18px;
-            text-align: center;
-        }
-        .countdown-title {
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--gold);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-        .timer-box {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            padding: 8px 4px;
-        }
-        .timer-number {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1.1;
-        }
-        .timer-label {
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 3px;
-        }
 
         /* CONGRATS TICKER */
         .congrats-banner {
@@ -430,7 +402,7 @@
             border: 1.5px dashed var(--accent);
             border-radius: 16px;
             padding: 12px 14px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             font-size: 0.85rem;
             text-align: center;
             color: #d1fae5;
@@ -448,66 +420,20 @@
             box-shadow: 0 0 25px rgba(0, 255, 163, 0.22);
             cursor: pointer;
         }
-        .wallet-amount {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: -0.5px;
-        }
+        .wallet-amount { font-size: 2.2rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
         .wallet-progress-bg {
-            width: 100%;
-            height: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px 0;
+            width: 100%; height: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; overflow: hidden; margin: 10px 0;
         }
         .wallet-progress-fill {
-            height: 100%;
-            width: 1.5%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 10px;
-            transition: width 0.4s ease;
+            height: 100%; width: 1.5%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.4s ease;
         }
 
-        /* QUIZ SCREEN OPTIONS (BIG DUOLINGO STYLE) */
-        .quiz-progress {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        .progress-bar-bg {
-            width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 10%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-        .question-box {
-            font-size: 1.35rem;
-            font-weight: 900;
-            line-height: 1.4;
-            margin-bottom: 24px;
-            min-height: 65px;
-            text-align: left;
-        }
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
+        /* QUIZ SCREEN OPTIONS */
+        .quiz-progress { display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--text-dim); margin-bottom: 10px; font-weight: 800; }
+        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.12); border-radius: 10px; margin-bottom: 24px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 10%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.3s ease; }
+        .question-box { font-size: 1.35rem; font-weight: 900; line-height: 1.4; margin-bottom: 24px; min-height: 65px; text-align: left; }
+        .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
         .option-btn {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
@@ -521,231 +447,74 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .option-btn:active {
-            background: rgba(0, 255, 163, 0.2);
-            border-color: var(--accent);
-            transform: scale(0.99);
-        }
+        .option-btn:active { background: rgba(0, 255, 163, 0.2); border-color: var(--accent); transform: scale(0.99); }
 
-        /* 1V1 DANGAL CARD */
-        .dangal-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(239, 68, 68, 0.2));
-            border: 2px solid var(--gold);
-            border-radius: 22px;
-            padding: 18px;
-            margin-top: 20px;
-            text-align: left;
-        }
+        /* CURIOSITY & DANGAL */
+        .dangal-card { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(239, 68, 68, 0.2)); border: 2px solid var(--gold); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; }
+        .curiosity-box { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.22)); border: 2px solid rgba(239, 68, 68, 0.7); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; box-shadow: 0 0 25px rgba(239, 68, 68, 0.25); }
+        .confessions-card { background: rgba(255, 255, 255, 0.04); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 22px; padding: 18px; margin-top: 20px; text-align: left; }
+        .confessions-list { list-style: none; max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .confession-bubble { background: rgba(0, 0, 0, 0.4); border-left: 4px solid var(--primary); border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: #e2e8f0; font-style: italic; }
 
-        /* CURIOSITY BOX */
-        .curiosity-box {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.22));
-            border: 2px solid rgba(239, 68, 68, 0.7);
-            border-radius: 22px;
-            padding: 18px;
-            margin-top: 20px;
-            text-align: left;
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
-        }
-
-        /* CONFESSIONS CARD */
-        .confessions-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1.5px solid rgba(139, 92, 246, 0.45);
-            border-radius: 22px;
-            padding: 18px;
-            margin-top: 20px;
-            text-align: left;
-        }
-        .confessions-list {
-            list-style: none;
-            max-height: 180px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .confession-bubble {
-            background: rgba(0, 0, 0, 0.4);
-            border-left: 4px solid var(--primary);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 0.82rem;
-            color: #e2e8f0;
-            font-style: italic;
-        }
-
-        /* LUCKY SPIN WHEEL CARD */
-        .spin-wheel-card {
-            background: rgba(0, 0, 0, 0.55);
-            border: 2px solid rgba(255, 215, 0, 0.45);
-            border-radius: 24px;
-            padding: 20px 16px;
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
-        }
-        .wheel-container {
-            position: relative;
-            width: 260px;
-            height: 260px;
-            margin: 16px auto;
-        }
-        #wheel-canvas-home, #wheel-canvas-dash {
-            border-radius: 50%;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
+        /* LUCKY SPIN WHEEL */
+        .spin-wheel-card { background: rgba(0, 0, 0, 0.55); border: 2px solid rgba(255, 215, 0, 0.45); border-radius: 24px; padding: 20px 16px; text-align: center; margin-top: 20px; position: relative; }
+        .wheel-container { position: relative; width: 260px; height: 260px; margin: 16px auto; }
+        #wheel-canvas-home, #wheel-canvas-dash { border-radius: 50%; box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); }
         .wheel-pointer {
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 14px solid transparent;
-            border-right: 14px solid transparent;
-            border-top: 24px solid var(--gold);
-            z-index: 5;
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0;
+            border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 24px solid var(--gold); z-index: 5;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
         }
 
         /* AD ZONE */
         .ad-zone {
-            margin-top: 22px;
-            padding: 6px 0;
-            border-radius: 18px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px dashed rgba(255, 255, 255, 0.15);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 250px;
-            overflow: hidden;
-            width: 100%;
+            margin-top: 22px; padding: 6px 0; border-radius: 18px; background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(255, 255, 255, 0.15); display: flex; justify-content: center; align-items: center; min-height: 250px; overflow: hidden; width: 100%;
         }
 
-        /* REAL-TIME FOMO TOAST */
+        /* FOMO TOAST */
         .fomo-toast {
-            position: fixed;
-            bottom: 22px;
-            left: 22px;
-            background: rgba(18, 24, 38, 0.96);
-            border: 1.5px solid var(--accent);
-            border-radius: 16px;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85);
-            z-index: 99998;
-            transform: translateY(140px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
-            max-width: 360px;
+            position: fixed; bottom: 22px; left: 22px; background: rgba(18, 24, 38, 0.96); border: 1.5px solid var(--accent); border-radius: 16px;
+            padding: 12px 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85); z-index: 99998;
+            transform: translateY(140px); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; max-width: 360px;
         }
         .fomo-toast.show { transform: translateY(0); opacity: 1; }
-        .fomo-avatar {
-            width: 38px; height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; flex-shrink: 0;
-        }
+        .fomo-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
         .fomo-content { font-size: 0.82rem; color: #f1f5f9; line-height: 1.35; text-align: left; }
         .fomo-content strong { color: var(--accent); }
 
         /* BIOMETRIC SCANNER */
         .scanner-fingerprint-box {
-            position: relative;
-            width: 120px;
-            height: 140px;
-            margin: 20px auto;
-            border: 2px solid rgba(0, 255, 163, 0.5);
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            background: rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
+            position: relative; width: 120px; height: 140px; margin: 20px auto; border: 2px solid rgba(0, 255, 163, 0.5); border-radius: 22px;
+            display: flex; align-items: center; justify-content: center; font-size: 4.5rem; background: rgba(0, 0, 0, 0.5); overflow: hidden; box-shadow: 0 0 30px rgba(0, 255, 163, 0.25);
         }
         .scan-laser-line {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            box-shadow: 0 0 15px var(--accent);
-            animation: laserScan 1.4s ease-in-out infinite alternate;
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            box-shadow: 0 0 15px var(--accent); animation: laserScan 1.4s ease-in-out infinite alternate;
         }
 
         /* ADMIN DASHBOARD */
         .admin-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-        .admin-stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 14px;
-            text-align: center;
-        }
+        .admin-stat-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 14px; text-align: center; }
         .admin-stat-num { font-size: 1.5rem; font-weight: 900; color: var(--accent); }
-        .admin-table-wrap {
-            max-height: 340px;
-            overflow-y: auto;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(0, 0, 0, 0.35);
-            margin-bottom: 16px;
-        }
+        .admin-table-wrap { max-height: 340px; overflow-y: auto; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(0, 0, 0, 0.35); margin-bottom: 16px; }
         .admin-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; }
         .admin-table th { background: rgba(255, 255, 255, 0.1); padding: 10px 12px; color: var(--gold); font-weight: 800; }
         .admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #f1f5f9; }
 
         /* MODAL OVERLAYS */
         .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(12px);
-            z-index: 99999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(12px);
+            z-index: 99999; display: none; justify-content: center; align-items: center; padding: 16px;
         }
         .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
         .modal-content {
-            background: #121826;
-            border: 2px solid rgba(255, 255, 255, 0.18);
-            border-radius: 26px;
-            width: 100%;
-            max-width: 480px;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
-            overflow: hidden;
+            background: #121826; border: 2px solid rgba(255, 255, 255, 0.18); border-radius: 26px; width: 100%; max-width: 480px; max-height: 85vh;
+            display: flex; flex-direction: column; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); overflow: hidden;
         }
-        .modal-header {
-            padding: 18px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.25);
-        }
+        .modal-header { padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.25); }
         .modal-body { padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
-        .btn-modal-close {
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
-            color: #fff;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: 900;
-        }
+        .btn-modal-close { background: rgba(255, 255, 255, 0.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: 900; }
 
         .screen { display: none; }
         .screen.active { display: block; animation: fadeIn 0.3s ease; }
@@ -781,17 +550,13 @@
     <div id="biometric-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 380px;">
             <div style="padding: 24px 16px; text-align: center;">
-                <div class="step-instruction-badge">
-                    🔍 AI BIOMETRIC LIE DETECTOR
-                </div>
+                <div class="step-instruction-badge">🔍 AI BIOMETRIC LIE DETECTOR</div>
                 <h3 style="font-size: 1.25rem; font-weight: 900; margin: 12px 0 6px 0;">Dosti Ki Sachai Scan Ho Rahi Hai...</h3>
                 <p style="font-size: 0.85rem; color: var(--text-dim);">Apna angootha screen par daba kar rakhein!</p>
-
                 <div class="scanner-fingerprint-box">
                     <div class="scan-laser-line"></div>
                     <span>👆</span>
                 </div>
-
                 <div id="biometric-scan-status" style="font-size: 0.9rem; font-weight: 800; color: var(--gold); letter-spacing: 1px;">
                     ANALYZING TRUTH PATTERNS (42%)...
                 </div>
@@ -837,12 +602,10 @@
                         <div id="modal-wallet-progress-fill" class="wallet-progress-fill" style="width: 1.5%;"></div>
                     </div>
                 </div>
-
                 <div style="margin-top: 10px;">
                     <span style="font-size: 0.85rem; font-weight: 900; color: var(--accent); text-transform: uppercase;" id="txt-recent-history">⚡ RECENT EARNING HISTORY</span>
                     <ul id="wallet-history-list" class="passbook-list"></ul>
                 </div>
-
                 <div style="background: rgba(255, 215, 0, 0.1); border: 1.5px dashed var(--gold); border-radius: 12px; padding: 12px; font-size: 0.8rem; color: #fef08a; text-align: center; margin-top: 8px;" id="txt-wallet-footer-notice">
                     🔒 Yeh balance 15 September ke Mega Cash Pool Draw mein aapki entry aur ranking confirm karta hai! Target complete karein aur VIP Winner banein!
                 </div>
@@ -853,7 +616,7 @@
     <!-- MAIN CONTAINER -->
     <div class="container">
 
-        <!-- TOP BAR: LIVE FLOATING WALLET + LANGUAGE SWITCHER -->
+        <!-- TOP BAR -->
         <div class="top-utility-bar">
             <button class="wallet-pill-btn" onclick="openWalletModal()">
                 <span>💰</span> <span id="header-wallet-balance">Rs. 15</span>
@@ -867,19 +630,7 @@
         <!-- SCREEN 1: WELCOME & START -->
         <div id="screen-welcome" class="screen active">
             
-            <!-- DAILY MYSTERY LIFAFA BANNER -->
-            <div class="mystery-lifafa-banner" onclick="claimDailyLifafa()">
-                <div class="lifafa-left">
-                    <span class="lifafa-icon">🧧</span>
-                    <div>
-                        <div class="lifafa-title">Aaj Ka Mystery Lifafa 🎁</div>
-                        <div id="lifafa-status-text" class="lifafa-sub">Click karke free Rs. 1 se Rs. 5 claim karein!</div>
-                    </div>
-                </div>
-                <button id="btn-lifafa-action" class="btn-claim-lifafa">Open Now</button>
-            </div>
-
-            <!-- REAL-TIME GROWING MEGA JACKPOT -->
+            <!-- MEGA JACKPOT BANNER -->
             <div class="reward-highlight-banner">
                 <div class="reward-top-tag"><span class="pulse-dot"></span> <span id="txt-jackpot-tag">COMMUNITY PRIZE POOL ⚡</span></div>
                 <div class="reward-main-title">🎰 MEGA JACKPOT: <span id="jackpot-display" class="jackpot-counter-box">Rs. 10,000</span></div>
@@ -892,43 +643,30 @@
                 </div>
             </div>
 
+            <!-- DAILY MYSTERY LIFAFA -->
+            <div class="mystery-lifafa-banner" onclick="claimDailyLifafa()">
+                <div class="lifafa-left">
+                    <span class="lifafa-icon">🧧</span>
+                    <div>
+                        <div class="lifafa-title">Aaj Ka Mystery Lifafa 🎁</div>
+                        <div id="lifafa-status-text" class="lifafa-sub">Click karke free Rs. 1 se Rs. 5 claim karein!</div>
+                    </div>
+                </div>
+                <button id="btn-lifafa-action" class="btn-claim-lifafa">Open Now</button>
+            </div>
+
             <!-- LAST WEEK CONGRATS TICKER -->
             <div id="txt-congrats" class="congrats-banner">
                 🎉 <strong>Last week kay winners ko bohat bohat mubarak ho!</strong> Inki payments direct transfer ho chuki hain. Next announcement 15 September ko hogi!
             </div>
 
-            <!-- 15 SEPTEMBER COUNTDOWN -->
-            <div class="countdown-container">
-                <div class="countdown-title">
-                    <span id="txt-countdown-title">⏳ Winner Announcement: 15 September</span>
-                </div>
-                <div class="countdown-grid">
-                    <div class="timer-box">
-                        <div id="days" class="timer-number">00</div>
-                        <div class="timer-label">Days</div>
-                    </div>
-                    <div class="timer-box">
-                        <div id="hours" class="timer-number">00</div>
-                        <div class="timer-label">Hours</div>
-                    </div>
-                    <div class="timer-box">
-                        <div id="minutes" class="timer-number">00</div>
-                        <div class="timer-label">Mins</div>
-                    </div>
-                    <div class="timer-box">
-                        <div id="seconds" class="timer-number">00</div>
-                        <div class="timer-label">Secs</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- RETURNING CREATOR SHORTCUT -->
-            <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.2)); border:2px solid var(--accent); border-radius:20px; padding:16px; margin-bottom:20px; text-align:center;">
+            <div id="creator-restore-notice" style="display:none; background:linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(0, 255, 163, 0.2)); border:2px solid var(--accent); border-radius:20px; padding:16px; margin-bottom:18px; text-align:center;">
                 <p style="font-size: 0.95rem; font-weight: 900; margin-bottom: 8px; color: #00FFA3;">⚡ Aapka Dare Quiz Active Hai!</p>
                 <button class="btn-primary" style="padding: 12px; font-size: 0.95rem;" onclick="openMySavedDashboard()">📊 Mera Live Dashboard & Doston Ke Jawab Kholein</button>
             </div>
 
-            <!-- 4 NAVIGATION TABS -->
+            <!-- NAVIGATION TABS -->
             <div class="nav-tabs">
                 <button id="tab-play-btn" class="tab-btn active" onclick="switchTab('play')">🔥 Dare</button>
                 <button id="tab-spin-btn" class="tab-btn" onclick="switchTab('spin')">🎡 Spin</button>
@@ -936,40 +674,69 @@
                 <button id="tab-payout-btn" class="tab-btn" onclick="switchTab('payout')">🏦 Prize</button>
             </div>
 
-            <!-- VIEW A: PLAY DARE FORM (SUPER EASY 3-STEP FLOW) -->
+            <!-- VIEW A: PLAY DARE FORM (WITH 2-COLUMN SIDE-BY-SIDE WIDGETS FOR LEADERBOARD & COUNTDOWN) -->
             <div id="view-play-dare">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div class="step-instruction-badge">🔥 2026 GEN Z DARE</div>
-                    <h1 id="welcome-title" style="font-size: 1.8rem; font-weight: 900; margin: 8px 0;">Real Friend ya Sirf Delulu? 💀</h1>
-                    <p id="welcome-sub" style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.5;">Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!</p>
+                
+                <!-- SIDE-BY-SIDE SIDEBAR WIDGETS (LEADERBOARD & COUNTDOWN MOVED OUT OF THE WAY) -->
+                <div class="home-split-grid">
+                    
+                    <!-- SIDEBAR 1: COMPACT LEADERBOARD -->
+                    <div class="sidebar-podium-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">
+                            <span>🏆 Top Players</span>
+                            <span class="live-tag" style="font-size: 0.55rem; padding: 1px 5px;">Speed</span>
+                        </div>
+                        <div class="sidebar-podium-grid">
+                            <div class="sidebar-podium-item">
+                                <div style="font-size: 0.9rem;">🥈</div>
+                                <div style="font-size: 0.65rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ayesha</div>
+                                <div style="font-size: 0.55rem; color: var(--accent);">Rs. 3k</div>
+                            </div>
+                            <div class="sidebar-podium-item first">
+                                <div style="font-size: 1rem;">👑</div>
+                                <div style="font-size: 0.68rem; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Hamza</div>
+                                <div style="font-size: 0.58rem; color: var(--gold); font-weight: 900;">Rs. 5k</div>
+                            </div>
+                            <div class="sidebar-podium-item">
+                                <div style="font-size: 0.9rem;">🥉</div>
+                                <div style="font-size: 0.65rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Zain</div>
+                                <div style="font-size: 0.55rem; color: var(--accent);">Rs. 2k</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SIDEBAR 2: COMPACT COUNTDOWN -->
+                    <div class="sidebar-countdown-card">
+                        <div style="font-size: 0.72rem; font-weight: 900; color: var(--gold); text-transform: uppercase; margin-bottom: 2px;">
+                            ⏳ Draw: 15 Sept
+                        </div>
+                        <div class="sidebar-countdown-grid">
+                            <div class="sidebar-timer-box">
+                                <div id="days" class="sidebar-timer-num">00</div>
+                                <div class="sidebar-timer-lbl">Days</div>
+                            </div>
+                            <div class="sidebar-timer-box">
+                                <div id="hours" class="sidebar-timer-num">00</div>
+                                <div class="sidebar-timer-lbl">Hrs</div>
+                            </div>
+                            <div class="sidebar-timer-box">
+                                <div id="minutes" class="sidebar-timer-num">00</div>
+                                <div class="sidebar-timer-lbl">Mins</div>
+                            </div>
+                            <div class="sidebar-timer-box">
+                                <div id="seconds" class="sidebar-timer-num">00</div>
+                                <div class="sidebar-timer-lbl">Secs</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- TOP 3 PODIUM -->
-                <div class="winners-card">
-                    <div class="winners-header">
-                        <span id="txt-leaderboard-head">🏆 Live Community Leaderboard</span>
-                        <span class="live-tag">⚡ Speedrun Mode</span>
-                    </div>
-                    <div class="podium-grid">
-                        <div class="podium-item second">
-                            <div class="podium-rank">🥈</div>
-                            <div class="podium-name">Ayesha K.</div>
-                            <div class="podium-score">10/10 (12.4s ⚡)</div>
-                            <div id="podium-prize-2" class="podium-prize">Rs. 3,000</div>
-                        </div>
-                        <div class="podium-item first">
-                            <div class="podium-rank">👑</div>
-                            <div class="podium-name">Hamza R.</div>
-                            <div class="podium-score">10/10 (11.1s ⚡)</div>
-                            <div id="podium-prize-1" class="podium-prize">Rs. 5,000</div>
-                        </div>
-                        <div class="podium-item third">
-                            <div class="podium-rank">🥉</div>
-                            <div class="podium-name">Zain M.</div>
-                            <div class="podium-score">9/10 (14.8s)</div>
-                            <div id="podium-prize-3" class="podium-prize">Rs. 2,000</div>
-                        </div>
-                    </div>
+                <!-- MAIN FORM (NOW RIGHT AT THE TOP FOR EASY ACCESSIBILITY) -->
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div class="step-instruction-badge">🔥 2026 GEN Z DARE</div>
+                    <h1 id="welcome-title" style="font-size: 1.65rem; font-weight: 900; margin: 6px 0;">Real Friend ya Sirf Delulu? 💀</h1>
+                    <p id="welcome-sub" style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.4;">Apne 10 sawalon ke sahi jawab select karein, link banayein aur doston ko challenge karein!</p>
                 </div>
 
                 <!-- STEP 1: APNA NAAM LIKHO -->
@@ -991,7 +758,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: BUTTON DABAYEIN -->
+                <!-- STEP 3: BUTTON DABAYEIN (PROMINENTLY PLACED UP TOP) -->
                 <div style="margin-top: 10px;">
                     <button id="btn-start-game" class="btn-primary" onclick="initiateQuizFlow()">
                         🚀 STEP 3: Game Shuru Karo →
@@ -1002,17 +769,13 @@
             <!-- VIEW B: LUCKY SPIN WHEEL -->
             <div id="view-spin-portal" style="display: none;">
                 <div class="spin-wheel-card" style="margin-top: 0;">
-                    <div class="step-instruction-badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">
-                        🎡 FREE CASINO CHANCE
-                    </div>
+                    <div class="step-instruction-badge" style="background: rgba(255,215,0,0.15); border-color: var(--gold); color: var(--gold);">🎡 FREE CASINO CHANCE</div>
                     <h2 style="font-size: 1.4rem; font-weight: 900; margin: 8px 0;">Lucky Spin & Win</h2>
                     <p style="font-size: 0.9rem; color: var(--text-dim);">Har 3 minute baad free spin ghuma kar live wallet cash jeetein!</p>
-
                     <div class="wheel-container">
                         <div class="wheel-pointer"></div>
                         <canvas id="wheel-canvas-home" width="260" height="260"></canvas>
                     </div>
-
                     <button id="btn-spin-wheel-home" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('home')">
                         🎲 Abhi Ghumaao (Free Spin)
                     </button>
@@ -1023,14 +786,10 @@
             <!-- VIEW C: TRACK BY 4-DIGIT PIN -->
             <div id="view-pin-portal" style="display: none;">
                 <div class="pin-lookup-card">
-                    <div class="step-instruction-badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">
-                        🔑 PIN & WALLET LOGIN
-                    </div>
+                    <div class="step-instruction-badge" style="background: rgba(0,255,163,0.15); border-color: var(--accent); color: var(--accent);">🔑 PIN & WALLET LOGIN</div>
                     <h2 id="txt-pin-title" style="font-size: 1.4rem; font-weight: 900; margin: 10px 0;">Doston Ke Answers & Wallet</h2>
                     <p id="txt-pin-sub" style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px;">Apna 4-Digit Secret PIN enter karein jo dare banate waqt mila tha:</p>
-
                     <input type="text" id="track-pin-input" class="pin-input-box" placeholder="••••" maxlength="4" autocomplete="off" inputmode="numeric">
-
                     <button id="btn-track-pin-submit" class="btn-primary" style="margin-top: 14px;" onclick="trackQuizByPin()">🔍 Answers & Wallet Kholein →</button>
                 </div>
             </div>
@@ -1042,22 +801,18 @@
                         <div class="lock-badge">🔒 LOCKED UNTIL 15 SEPTEMBER</div>
                         <p id="txt-lock-notice" style="font-size: 0.85rem;">Yeh portal 15 September ko announcement ke baad Top Pool Winners ke direct payouts ke liye unlock hoga!</p>
                     </div>
-
-                    <div class="input-group locked-input">
-                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
-                        <input type="text" placeholder="Account Holder Official Name" disabled>
+                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 12px;">
+                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT TITLE / BENEFICIARY FULL NAME</label>
+                        <input type="text" placeholder="Account Holder Official Name" disabled style="padding: 10px;">
                     </div>
-
-                    <div class="input-group locked-input">
-                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">BANK NAME (LOCAL / INTERNATIONAL)</label>
-                        <input type="text" placeholder="e.g. Meezan Bank, HBL, Standard Chartered, Chase, etc." disabled>
+                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 12px;">
+                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">BANK NAME</label>
+                        <input type="text" placeholder="e.g. Meezan Bank, HBL, EasyPaisa, JazzCash" disabled style="padding: 10px;">
                     </div>
-
-                    <div class="input-group locked-input">
-                        <label style="font-size:0.8rem; font-weight:700; color:var(--accent); display:block; margin-bottom:6px;">BANK ACCOUNT NUMBER / IBAN</label>
-                        <input type="text" placeholder="IBAN ya 14-digit Account Number" disabled>
+                    <div class="input-group locked-input" style="padding: 12px; margin-bottom: 16px;">
+                        <label style="font-size:0.78rem; font-weight:700; color:var(--accent); display:block; margin-bottom:4px;">ACCOUNT NUMBER / IBAN</label>
+                        <input type="text" placeholder="IBAN ya Account Number" disabled style="padding: 10px;">
                     </div>
-
                     <button class="btn-primary" style="opacity:0.6; cursor:not-allowed;" onclick="alert('⚠️ Portal 15 September ko unlock hoga!')">
                         🔒 Portal Locked (Unlocks on 15 Sep)
                     </button>
@@ -1079,7 +834,7 @@
             </div>
         </div>
 
-        <!-- SCREEN 2: QUESTIONS (BIG, CLEAR, TOUCH-FRIENDLY) -->
+        <!-- SCREEN 2: QUESTIONS -->
         <div id="screen-quiz" class="screen">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                 <button class="btn-nav-back" style="padding: 6px 14px; font-size: 0.8rem;" onclick="goToHome()">
@@ -1087,20 +842,17 @@
                 </button>
                 <span id="anti-cheat-status" style="color: var(--accent); font-size: 0.85rem; font-weight: 800;">● Shield Protected</span>
             </div>
-            
             <div class="quiz-progress">
                 <span id="question-number">Question 1/10</span>
                 <span id="quiz-live-timer" style="color:var(--gold); font-weight:900;">⏱️ 0.0s</span>
             </div>
             <div class="progress-bar-bg"><div id="progress-bar" class="progress-fill"></div></div>
-            
             <div id="question-text" class="question-box">Loading question...</div>
             <div id="options-container" class="options-list"></div>
         </div>
 
         <!-- SCREEN 3: CREATOR DASHBOARD -->
         <div id="screen-share" class="screen">
-            
             <div class="dashboard-header-nav">
                 <button class="btn-nav-back" onclick="goToHome()">
                     <span>⬅️</span> <span id="txt-back-home">Wapas Home Jayein</span>
@@ -1112,7 +864,7 @@
             <h1 id="txt-dare-ready-title" style="font-size: 1.6rem; font-weight: 900;">Aapka Dare Link Ready Hai!</h1>
             <p id="txt-dare-ready-sub" style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 20px;">Isko WhatsApp Status aur groups mein share karein. Niche doston ke live scores dekhein!</p>
 
-            <!-- LIVE DARE WALLET CARD -->
+            <!-- LIVE DARE WALLET -->
             <div class="dare-wallet-card" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span id="txt-wallet-title">💰 Live Dare Wallet</span>
@@ -1130,20 +882,20 @@
                 </div>
             </div>
 
-            <!-- CURIOSITY GATEKEEPING BOX -->
+            <!-- CURIOSITY BOX -->
             <div class="curiosity-box">
-                <div class="curiosity-title">
+                <div style="font-size: 0.95rem; font-weight: 900; color: #ff6b6b; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
                     <span>🕵️‍♂️</span> <span>Aastin Ke Saanp Ka Khulasa!</span>
                 </div>
-                <p class="curiosity-desc">
+                <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 12px;">
                     Dekhein kis dost ne aapke peeth peeche sabse ghalat jawab diye aur aapko <strong>'Toxic' & 'Fake'</strong> sabit kiya!
                 </p>
-                <button class="btn-curiosity-unlock" onclick="unlockCuriosityRoast()">
+                <button class="btn-primary" style="background: linear-gradient(135deg, #ef4444, #dc2626); padding: 12px; font-size: 0.85rem;" onclick="unlockCuriosityRoast()">
                     🔓 Unlock Secret Snake Roast (Instant View)
                 </button>
             </div>
 
-            <!-- 1V1 DANGAL BATTLE CARD -->
+            <!-- 1V1 DANGAL -->
             <div id="dangal-section" class="dangal-card" style="display:none;">
                 <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.95rem; font-weight:900; color:var(--gold); margin-bottom:8px;">
                     <span>🥊 1v1 Dosti Ka Dangal</span>
@@ -1155,7 +907,7 @@
                 </button>
             </div>
 
-            <!-- ANONYMOUS CONFESSIONS FEED -->
+            <!-- ANONYMOUS CONFESSIONS -->
             <div class="confessions-card">
                 <div style="font-size:0.95rem; font-weight:900; color:var(--primary); display:flex; justify-content:space-between;">
                     <span>🤫 Doston Ke Secret Confessions</span>
@@ -1166,7 +918,7 @@
                 </ul>
             </div>
 
-            <!-- 4-DIGIT PIN DISPLAY CARD -->
+            <!-- 4-DIGIT PIN CARD -->
             <div class="pin-badge-display-box">
                 <div id="txt-pin-box-title" style="font-size: 0.82rem; font-weight: 900; color: var(--gold); text-transform: uppercase;">🔑 AAPKA 4-DIGIT SECRET PIN</div>
                 <div id="creator-pin-number" class="secret-pin-num">----</div>
@@ -1183,16 +935,14 @@
             <button id="btn-copy-link" class="btn-primary" onclick="copyViralLink()">📋 Copy Link</button>
             <button id="btn-share-wa" class="btn-primary btn-whatsapp" onclick="shareToWhatsApp()">📲 WhatsApp Par Bhejo</button>
 
-            <!-- LUCKY SPIN WHEEL (DASHBOARD) -->
+            <!-- LUCKY SPIN WHEEL -->
             <div class="spin-wheel-card">
                 <div style="font-size:0.85rem; font-weight:900; color:var(--gold); text-transform:uppercase;">🎡 LUCKY SPIN & WIN</div>
                 <div id="txt-wheel-sub" style="font-size:0.85rem; color:var(--text-dim); margin-top:4px;">Free rewards ghuma kar jeeto aur wallet cash boost karo!</div>
-
                 <div class="wheel-container">
                     <div class="wheel-pointer"></div>
                     <canvas id="wheel-canvas-dash" width="260" height="260"></canvas>
                 </div>
-
                 <button id="btn-spin-wheel-dash" class="btn-primary" style="padding:16px; font-size:1.05rem; background:linear-gradient(135deg, #00FFA3, #059669); color:#000;" onclick="spinWheelAction('dash')">
                     🎲 Abhi Ghumaao (Free Spin)
                 </button>
@@ -1213,7 +963,6 @@
 
         <!-- SCREEN 4: FRIEND'S RESULT -->
         <div id="screen-result" class="screen">
-            
             <div class="dashboard-header-nav">
                 <button class="btn-nav-back" onclick="goToHome()">
                     <span>⬅️</span> <span>Main Page</span>
@@ -1232,22 +981,16 @@
                 <p id="roast-comment" style="font-size: 0.95rem; font-weight: 700; color: #fff;">Roast loading...</p>
             </div>
 
-            <!-- BADLA MODE BUTTON -->
             <button class="btn-primary btn-badla-mode" onclick="startBadlaMode()">
                 🔥 <span id="badla-btn-creator-name">Creator</span> Se Badla Lo (Reverse Dare)
             </button>
-
-            <!-- WHATSAPP STORY CARD BUTTON -->
             <button class="btn-primary btn-story-card" onclick="generateAndDownloadStoryCard()">
                 📸 Download Official Story Card
             </button>
-
-            <!-- FAKE LEAKED CHAT PRANK BUTTON -->
             <button class="btn-primary btn-chat-prank" onclick="generateAndDownloadChatPrank()">
                 💬 Download Leaked WhatsApp Chat Prank
             </button>
 
-            <!-- ANONYMOUS CONFESSION FORM -->
             <div style="background:rgba(0,0,0,0.4); border:1.5px solid rgba(139, 92, 246, 0.5); border-radius:18px; padding:16px; margin-top:16px; text-align:left;">
                 <label style="font-size:0.85rem; font-weight:800; color:var(--primary); display:block; margin-bottom:8px;">
                     🕵️‍♂️ <span id="confession-creator-name">Creator</span> Ke Liye Secret Message Chhoro (Naam Chupa Rahega):
@@ -1258,7 +1001,6 @@
                 </button>
             </div>
 
-            <!-- FRIEND CASHBACK NOTIFICATION -->
             <div class="dare-wallet-card" style="margin-top: 16px; margin-bottom: 16px;" onclick="openWalletModal()">
                 <div class="wallet-head">
                     <span>🎁 Dare Cash Added To Your Wallet</span>
@@ -1271,7 +1013,7 @@
 
             <button id="btn-create-own" class="btn-primary" onclick="createOwnQuizRedirect()">🔥 Apna Khud Ka Naya Dare Banao</button>
 
-            <!-- BANNER AD -->
+            <!-- ADSTERRA BANNER -->
             <div class="ad-zone">
                 <script type="text/javascript">
                     atOptions = {
@@ -1349,7 +1091,6 @@
 
     <!-- JAVASCRIPT & ENGINE -->
     <script>
-        // --- 0. FIREBASE REALTIME DB CONFIG ---
         const firebaseConfig = {
             apiKey: "AIzaSyD7pm092-rDb590HkUvK5_FNYe2kKDnuQg",
             authDomain: "quiz-415c2.firebaseapp.com",
@@ -1370,7 +1111,6 @@
         window.quizLiveTimerInterval = null;
         window.isBadlaModeActive = false;
 
-        // --- 1. QUESTIONS REPOSITORY ---
         const DARE_QUESTIONS = [
             { 
                 q_ur: "Agar hum kisi emergency mein phans jayein toh mera sabse pehla reaction kya hoga?", 
@@ -1441,7 +1181,6 @@
         let isFriendMode = false;
         let quizTargetData = null;
 
-        // --- 2. AUDIO & MEME SOUNDBOARD ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -1489,7 +1228,6 @@
             setTimeout(() => playTone(880, 'triangle', 0.4), 420);
         }
 
-        // --- 3. LIVE WALLET ENGINE ---
         let userWallet = { balance: 15, history: [] };
 
         function getOrCreateDeviceId() {
@@ -1601,7 +1339,6 @@
             document.getElementById("wallet-modal").classList.remove("active");
         }
 
-        // --- 4. DAILY MYSTERY LIFAFA ---
         function checkDailyLifafaStatus() {
             const lastClaim = localStorage.getItem("last_daily_lifafa_claim");
             const btn = document.getElementById("btn-lifafa-action");
@@ -1650,7 +1387,6 @@
             alert(`🎉 MUBARAK HO! Aaj ke Mystery Lifafa se aapko Rs. ${rewardCash} mile hain!\nYe raqam aapke Live Wallet mein deposit kar di gayi hai!`);
         }
 
-        // --- 5. DYNAMIC ONLINE PLAYERS ---
         let currentOnlineCount = Math.floor(Math.random() * (350 - 190 + 1)) + 190;
         function updateOnlinePlayersDisplay() {
             const diff = Math.floor(Math.random() * 23) - 9;
@@ -1660,7 +1396,6 @@
         }
         setInterval(updateOnlinePlayersDisplay, 4500);
 
-        // --- 6. 25-PLAYER MEGA JACKPOT ENGINE ---
         let currentJackpotAmount = 10000;
         function updateJackpotAndPodium(totalVerifiedPlayers) {
             const poolAddons = Math.floor(totalVerifiedPlayers / 25) * 100;
@@ -1670,14 +1405,6 @@
             
             const leftForNextHundred = 25 - (totalVerifiedPlayers % 25);
             document.getElementById("players-needed-count").innerText = leftForNextHundred + " left";
-
-            const prize1st = Math.round(currentJackpotAmount * 0.50);
-            const prize2nd = Math.round(currentJackpotAmount * 0.30);
-            const prize3rd = Math.round(currentJackpotAmount * 0.20);
-
-            document.getElementById("podium-prize-1").innerText = "Rs. " + prize1st.toLocaleString();
-            document.getElementById("podium-prize-2").innerText = "Rs. " + prize2nd.toLocaleString();
-            document.getElementById("podium-prize-3").innerText = "Rs. " + prize3rd.toLocaleString();
         }
 
         db.ref('globalStats/totalPlayers').on('value', snap => {
@@ -1685,7 +1412,6 @@
             updateJackpotAndPodium(count);
         });
 
-        // --- 7. LANGUAGE SWITCHER ---
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem("app_lang", lang);
@@ -1779,7 +1505,6 @@
             }
         }
 
-        // --- 8. NAVIGATION ---
         function goToHome() {
             soundClick();
             switchScreen('screen-welcome');
@@ -1816,7 +1541,6 @@
             }
         }
 
-        // 15 September Countdown
         const targetDate = new Date("September 15, 2026 23:59:59").getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -1828,16 +1552,20 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+                const dEl = document.getElementById("days");
+                const hEl = document.getElementById("hours");
+                const mEl = document.getElementById("minutes");
+                const sEl = document.getElementById("seconds");
+
+                if (dEl) dEl.innerText = days < 10 ? "0" + days : days;
+                if (hEl) hEl.innerText = hours < 10 ? "0" + hours : hours;
+                if (mEl) mEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+                if (sEl) sEl.innerText = seconds < 10 ? "0" + seconds : seconds;
             }
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- 9. SPEEDRUN & ANTI-CHEAT ---
         const SPEED_LIMIT_SECONDS = 10;
         let quizStartTime = null;
         let tabSwitchCount = 0;
@@ -1904,13 +1632,10 @@
             const colors = ['#8b5cf6', '#00FFA3', '#FFD700', '#ec4899', '#38bdf8'];
             for (let i = 0; i < 90; i++) {
                 particles.push({
-                    x: canvas.width / 2,
-                    y: canvas.height / 2,
+                    x: canvas.width / 2, y: canvas.height / 2,
                     r: Math.random() * 6 + 3,
-                    dx: (Math.random() - 0.5) * 13,
-                    dy: (Math.random() - 0.5) * 13 - 4,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    life: 100
+                    dx: (Math.random() - 0.5) * 13, dy: (Math.random() - 0.5) * 13 - 4,
+                    color: colors[Math.floor(Math.random() * colors.length)], life: 100
                 });
             }
             function render() {
@@ -1923,10 +1648,7 @@
                         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                         ctx.fillStyle = p.color;
                         ctx.fill();
-                        p.x += p.dx;
-                        p.y += p.dy;
-                        p.dy += 0.22;
-                        p.life--;
+                        p.x += p.dx; p.y += p.dy; p.dy += 0.22; p.life--;
                     }
                 });
                 if (active) requestAnimationFrame(render);
@@ -1934,7 +1656,6 @@
             render();
         }
 
-        // --- 10. RIGGED NEAR-MISS WHEEL ---
         const wheelPrizes = [
             { text: "+Rs. 1", color: "#8b5cf6", cashVal: 1 },
             { text: "+Rs. 5", color: "#00FFA3", cashVal: 5 },
@@ -1999,17 +1720,11 @@
 
         function pickWeightedPrizeIndex() {
             const rand = Math.random() * 1000;
-            if (rand < 1) {
-                return 4; // Rs. 50 -> 1 in 1000 (0.1%)
-            } else if (rand < 30) {
-                return 3; // Rs. 10 -> 2.9%
-            } else if (rand < 200) {
-                return 1; // Rs. 5 -> 17%
-            } else if (rand < 550) {
-                return 0; // Rs. 1 -> 35%
-            } else {
-                return 2; // Try Again -> 45%
-            }
+            if (rand < 1) return 4;
+            else if (rand < 30) return 3;
+            else if (rand < 200) return 1;
+            else if (rand < 550) return 0;
+            else return 2;
         }
 
         function checkWheelCooldown() {
@@ -2122,7 +1837,6 @@
             requestAnimationFrame(animatePhysicsSpin);
         }
 
-        // --- 11. FOMO TOAST ENGINE ---
         const fomoPakNames = [
             "Hamza R.", "Bilal K.", "Daniyal M.", "Zain A.", "Usama T.", "Ayesha N.", "Fatima S.", "Maham K.", 
             "Shahzaib Q.", "Farhan J.", "Hira M.", "Sania B.", "Talha N.", "Zubair G.", "Hassan P.", "Kashif E.", 
@@ -2160,7 +1874,6 @@
         setInterval(triggerFomoNotification, 9500);
         setTimeout(triggerFomoNotification, 2000);
 
-        // --- 12. CURIOSITY EXPOSE ---
         function unlockCuriosityRoast() {
             soundClick();
             const keys = Object.keys(window.activeCachedAttempts || {});
@@ -2214,7 +1927,6 @@
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
-        // --- 13. 1V1 DANGAL ---
         function checkAndRenderDangal(attemptsObj) {
             const keys = Object.keys(attemptsObj || {});
             const dangalCard = document.getElementById("dangal-section");
@@ -2244,7 +1956,6 @@
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), '_blank');
         }
 
-        // --- 14. ANONYMOUS CONFESSIONS ---
         function submitAnonymousConfession() {
             const input = document.getElementById("confession-input");
             const text = input.value.trim();
@@ -2289,7 +2000,6 @@
             });
         }
 
-        // --- 15. BADLA MODE ---
         function startBadlaMode() {
             soundClick();
             const creatorName = quizTargetData ? quizTargetData.creator : "Dost";
@@ -2305,7 +2015,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 16. STORY EGO CARD CANVAS ---
         function generateAndDownloadStoryCard() {
             soundClick();
             const canvas = document.getElementById("story-card-canvas");
@@ -2419,7 +2128,6 @@
             link.click();
         }
 
-        // --- 17. FAKE LEAKED CHAT PRANK CANVAS ---
         function generateAndDownloadChatPrank() {
             soundClick();
             const canvas = document.getElementById("chat-prank-canvas");
@@ -2526,7 +2234,6 @@
             ctx.fill();
         }
 
-        // --- 18. SECRET MASTER ADMIN (PIN: 9999) ---
         function openAdminMasterPanel() {
             soundClick();
             switchScreen('screen-admin');
@@ -2580,10 +2287,7 @@
                     const shortDevId = devId.length > 14 ? devId.substring(0, 14) + "..." : devId;
 
                     window.adminExportRows.push({
-                        index: idx + 1,
-                        name: userName,
-                        balance: bal,
-                        deviceId: devId
+                        index: idx + 1, name: userName, balance: bal, deviceId: devId
                     });
 
                     const tr = document.createElement('tr');
@@ -2627,7 +2331,6 @@
             document.body.removeChild(link);
         }
 
-        // --- 19. APP INITIALIZATION ---
         window.onload = function() {
             initUserWallet();
             changeLanguage(currentLang);
@@ -2819,7 +2522,6 @@
             const myDeviceId = getOrCreateDeviceId();
 
             if (!isFriendMode) {
-                // CREATOR FINISH
                 const creatorName = document.getElementById('player-name').value.trim();
                 const quizId = "dare_" + Math.random().toString(36).substring(2, 8);
                 const secretPin = Math.floor(1000 + Math.random() * 9000).toString();
@@ -2854,7 +2556,6 @@
                 }).catch(err => alert("Database Save Error: " + err.message));
 
             } else {
-                // FRIEND FINISH
                 let score = 0;
                 for (let i = 0; i < DARE_QUESTIONS.length; i++) {
                     if (friendAnswers[i] === quizTargetData.answers[i]) score++;
@@ -2925,7 +2626,6 @@
             }
         }
 
-        // --- 20. DASHBOARD LISTENER ---
         function listenToCreatorDashboard(quizId) {
             if (!window.activeQuizCreatorAnswers || window.activeQuizCreatorAnswers.length === 0) {
                 db.ref('quizzes/' + quizId + '/answers').once('value').then(snap => {
